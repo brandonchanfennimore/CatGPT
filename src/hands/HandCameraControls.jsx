@@ -10,6 +10,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { MathUtils, Spherical, Vector3 } from "three";
+import { openMarkerNearestCenter } from "../markers";
 
 // Tuning knobs
 const ROTATE_SPEED = 4; // radians per full video width, at 1 Earth radius above the surface
@@ -22,7 +23,7 @@ const COAST_FRICTION = 3;
 const spherical = new Spherical();
 const offset = new Vector3();
 
-export default function HandCameraControls({ gestureRef, earthRadius }) {
+export default function HandCameraControls({ gestureRef, earthRadius, paused = false }) {
   const camera = useThree((s) => s.camera);
   const controls = useThree((s) => s.controls); // set by <OrbitControls makeDefault />
   const coast = useRef({ x: 0, y: 0 }); // leftover spin speed after a fling (video-widths/s)
@@ -38,8 +39,15 @@ export default function HandCameraControls({ gestureRef, earthRadius }) {
   // Runs every frame, AFTER OrbitControls.update() (drei runs that at priority -1).
   // `delta` = seconds since the last frame.
   useFrame((_, delta) => {
-    if (!controls) return;
+    // Paused (info view open): leave the gestures for the info view to use.
+    if (!controls || paused) return;
     const g = gestureRef.current;
+
+    // Pinch opened: "click" the marker closest to the middle of the screen.
+    if (g.select) {
+      g.select = false;
+      openMarkerNearestCenter(camera);
+    }
 
     // A rotate just ended with the hand moving: start coasting at that speed.
     if (g.fling) {

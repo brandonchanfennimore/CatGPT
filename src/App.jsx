@@ -44,7 +44,9 @@ export default function App() {
   return (
     <div className="app-container">
       {/* 3D Earth scene */}
-      <Canvas camera={{ position: [0, 0, 7] }}>
+      {/* near: how close to the camera things can be and still be drawn. The closest
+          zoom puts the camera only 0.1 above the surface, so it must be smaller than that. */}
+      <Canvas camera={{ position: [0, 0, 7], near: 0.01 }}>
         <Lighting mode={lighting} />
 
         <Stars
@@ -71,9 +73,11 @@ export default function App() {
           maxDistance={EARTH_RADIUS * 10}
         />
 
+        {/* Paused while the info view is open: it uses the hand gestures instead. */}
         <HandCameraControls
           gestureRef={gestureRef}
           earthRadius={EARTH_RADIUS}
+          paused={selectedArea !== null}
         />
 
         <ZoomReadout barRef={zoomBarRef} targetRef={zoomTargetRef} />
@@ -90,7 +94,7 @@ export default function App() {
       </p>
 
       {/* Webcam hand tracking */}
-      <HandTracker gestureRef={gestureRef} />
+      <HandTracker gestureRef={gestureRef} context={selectedArea ? "info" : "globe"} />
 
       {/* UI overlay */}
       <Header
@@ -117,6 +121,7 @@ export default function App() {
         <StudyAreaView
           studyArea={selectedArea}
           onBack={() => setSelectedArea(null)}
+          gestureRef={gestureRef}
         />
       )}
     </div>

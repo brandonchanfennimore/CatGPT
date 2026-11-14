@@ -20,6 +20,7 @@ body {
 /* ---- Webcam / hand-gesture panel (snaps to a corner) ---- */
 .hand-panel {
   position: fixed;
+  z-index: 200; /* above the study-area info view (z-index 100) so gestures stay usable */
   width: 260px;
   padding: 12px;
   border-radius: 12px;

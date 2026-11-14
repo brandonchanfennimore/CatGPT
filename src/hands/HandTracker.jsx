@@ -17,9 +17,14 @@ const WASM_URL = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/was
 const MODEL_URL =
   "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task";
 
-const LABELS = { none: "No hand", release: "Paused", rotate: "Rotate", zoom: "Zoom" };
+// Gesture names shown in the panel. Same hand shapes, different jobs in the info view.
+const LABELS = {
+  globe: { none: "No hand", release: "Paused", pinch: "Pinch: open to select", rotate: "Rotate", zoom: "Zoom" },
+  info: { none: "No hand", release: "Paused", pinch: "Pinch: open to go back", rotate: "Scroll", zoom: "Swipe pictures" },
+};
 
-export default function HandTracker({ gestureRef }) {
+// context: "globe" (exploring Earth) or "info" (a study area's info view is open).
+export default function HandTracker({ gestureRef, context = "globe" }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const cleanupRef = useRef(null);
@@ -103,6 +108,7 @@ export default function HandTracker({ gestureRef }) {
         shared.dx += g.dx;
         shared.dy += g.dy;
         if (g.fling) shared.fling = g.fling; // HandCameraControls turns this into a coasting spin
+        if (g.select) shared.select = true; // HandCameraControls opens the marker in the middle
 
         // Only re-render React when the label actually changes.
         if (g.mode !== lastMode) setMode((lastMode = g.mode));
@@ -171,16 +177,26 @@ export default function HandTracker({ gestureRef }) {
 
       {state === "running" && (
         <p className="hand-status">
-          Gesture: <strong>{LABELS[mode]}</strong>
+          Gesture: <strong>{LABELS[context][mode]}</strong>
         </p>
       )}
       {message && <p className="hand-error">{message}</p>}
 
-      <ul className="hand-guide">
-        <li>🖐️ Open palm + move: rotate (swipe out of view to spin)</li>
-        <li>☝️ Point + move right/left: zoom in/out</li>
-        <li>✊ Fist: pause</li>
-      </ul>
+      {context === "info" ? (
+        <ul className="hand-guide">
+          <li>🖐️ Open palm + move up/down: scroll</li>
+          <li>☝️ Point + move right/left: next/previous picture</li>
+          <li>✊ Fist: pause</li>
+          <li>🤏 Pinch, then open: back to Earth</li>
+        </ul>
+      ) : (
+        <ul className="hand-guide">
+          <li>🖐️ Open palm + move: rotate (swipe out of view to spin)</li>
+          <li>☝️ Point + move right/left: zoom in/out</li>
+          <li>✊ Fist: pause</li>
+          <li>🤏 Pinch, then open: select the marker in the middle</li>
+        </ul>
+      )}
     </div>
   );
 }

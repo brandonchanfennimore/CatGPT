@@ -12,6 +12,8 @@
  * Gestures (one hand only):
  *   open palm + move          -> 'rotate'
  *   index finger + move L/R   -> 'zoom' (right = closer, left = farther)
+ *   pinch (thumb + index tips) -> 'pinch' (nothing moves)...
+ *     ...then open the pinch   -> `select: true` once: "click" the marker in the middle
  *   fist (or any other shape) -> 'release' (nothing moves)
  *   no hand                   -> 'none'
  *
@@ -39,6 +41,17 @@ export const MIN_FLING_SPEED = 0.15;
 // How quickly the speed estimate follows the hand (0..1). Lower = steadier.
 export const VELOCITY_SMOOTHING = 0.5;
 
+// Pinch = thumb tip close to index tip, measured relative to hand size (so it
+// works near or far from the camera). Two thresholds ("hysteresis"): a pinch
+// STARTS below PINCH_ON but only ENDS above PINCH_OFF, so it can't flicker.
+export const PINCH_ON = 0.25;
+export const PINCH_OFF = 0.45;
+// In a real pinch the index fingertip is out in front of the palm. In a fist it's
+// tucked in near the wrist, so a fist (whose thumb is also near the index) doesn't count.
+export const PINCH_MIN_REACH = 0.9; // index tip at least this many hand-sizes from the wrist
+// Hold the pinch at least this long before opening it counts as a "click".
+export const PINCH_MIN_HOLD_MS = 150;
+
 // ---------------------------------------------------------------------------
 
 const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -51,8 +64,17 @@ const mirror = (p) => ({ x: 1 - p.x, y: p.y });
 // people hold it in all sorts of ways.)
 const FINGERS = [[8, 6], [12, 10], [16, 14], [20, 18]];
 
-/** Classify one hand as 'open', 'point', 'fist' or 'other'. */
-export function classifyHand(lm) {
+/**
+ * Classify one hand as 'pinch', 'open', 'point', 'fist' or 'other'.
+ * wasPinching: was this hand pinching last frame? (for hysteresis)
+ */
+export function classifyHand(lm, wasPinching = false) {
+  // Hand size = wrist to middle-finger knuckle, so thresholds don't depend on distance.
+  const size = dist(lm[0], lm[9]) || 1e-6;
+  const pinchGap = dist(lm[4], lm[8]) / size;
+  const reach = dist(lm[8], lm[0]) / size;
+  if (pinchGap < (wasPinching ? PINCH_OFF : PINCH_ON) && reach > PINCH_MIN_REACH) return 'pinch';
+
   // Is each finger straight? Compare tip and middle-joint distance from the wrist.
   const [index, middle, ring, pinky] = FINGERS.map(
     ([tip, pip]) => dist(lm[tip], lm[0]) > dist(lm[pip], lm[0]) * EXTEND_RATIO
@@ -70,10 +92,11 @@ export function classifyHand(lm) {
  * Call the returned function once per video frame with MediaPipe's
  * `result.landmarks` (an array of hands; only the first is used) and the frame
  * time in milliseconds. It returns:
- *   { mode, dx, dy, fling }
- *   mode:   'none' | 'release' | 'rotate' | 'zoom'
+ *   { mode, dx, dy, fling, select }
+ *   mode:   'none' | 'release' | 'pinch' | 'rotate' | 'zoom'
  *   dx, dy: how far the tracked point moved this frame (fraction of the video size)
  *   fling:  only on the frame a rotate ends: {x, y} speed of the hand, else null
+ *   select: true only on the frame a held pinch opens (the hand is still in view)
  */
 export function createGestureTracker() {
   let mode = 'none';
@@ -81,6 +104,7 @@ export function createGestureTracker() {
   let prev = null; // last position we reported movement from
   let vel = { x: 0, y: 0 }; // smoothed hand speed (per second), used for fling
   let lastTime = null;
+  let pinchStart = null; // when the current pinch began (ms), or null
 
   return function update(hands = [], timeMs = performance.now()) {
     const dt = lastTime === null ? 0 : (timeMs - lastTime) / 1000; // seconds since last frame
@@ -88,9 +112,22 @@ export function createGestureTracker() {
 
     // Pick the mode and the point we follow for that mode.
     const hand = hands[0];
-    const kind = hand ? classifyHand(hand) : null;
+    const kind = hand ? classifyHand(hand, mode === 'pinch') : null;
+
+    // Pinch "click": a pinch held long enough, then opened while the hand is still visible.
+    let select = false;
+    if (kind === 'pinch') {
+      pinchStart ??= timeMs;
+    } else {
+      select = pinchStart !== null && hand !== undefined && timeMs - pinchStart >= PINCH_MIN_HOLD_MS;
+      pinchStart = null;
+    }
+
     let newMode, raw;
-    if (kind === 'open') {
+    if (kind === 'pinch') {
+      newMode = 'pinch';
+      raw = null; // a pinch never moves the camera
+    } else if (kind === 'open') {
       newMode = 'rotate';
       raw = mirror(hand[9]); // middle knuckle = roughly the palm centre
     } else if (kind === 'point') {
@@ -110,7 +147,7 @@ export function createGestureTracker() {
       smooth = raw && { ...raw };
       prev = raw && { ...raw };
       vel = { x: 0, y: 0 };
-      return { mode, dx: 0, dy: 0, fling };
+      return { mode, dx: 0, dy: 0, fling, select };
     }
 
     // Exponential smoothing: move part of the way toward the new value each frame.
@@ -134,6 +171,6 @@ export function createGestureTracker() {
       vel.y += VELOCITY_SMOOTHING * (dy / dt - vel.y);
     }
 
-    return { mode, dx, dy, fling: null };
+    return { mode, dx, dy, fling: null, select };
   };
 }

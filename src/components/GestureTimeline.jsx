@@ -1,9 +1,16 @@
 
-import { useState } from "react";
+import { useImperativeHandle, useState } from "react";
 import "./GestureTimeline.css";
 
-export default function GestureTimeline({ observations = [] }) {
+// `ref` lets the parent flip pictures too (used by the hand swipe gesture):
+// ref.current.next() / ref.current.previous().
+export default function GestureTimeline({ observations = [], ref }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useImperativeHandle(ref, () => ({
+    next: () => setCurrentIndex((i) => Math.min(i + 1, observations.length - 1)),
+    previous: () => setCurrentIndex((i) => Math.max(i - 1, 0)),
+  }), [observations.length]);
 
   if (observations.length === 0) {
     return <p>Waiting for NASA NISAR observations...</p>;
