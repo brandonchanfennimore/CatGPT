@@ -4,6 +4,8 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { useRef, useState } from "react";
 
 import Earth, { EARTH_RADIUS } from "./components/Earth";
+import Lighting from "./components/Lighting";
+import { ZoomBar, ZoomReadout } from "./components/ZoomBar";
 import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 
@@ -21,20 +23,20 @@ export default function App() {
     dy: 0,
   });
 
-  // Stores the currently selected study area
+  // Reference used by the zoom bar
+  const zoomBarRef = useRef(null);
+
+  // Currently selected NISAR study area
   const [selectedArea, setSelectedArea] = useState(null);
+
+  // Lighting mode: bright or realistic
+  const [lighting, setLighting] = useState("bright");
 
   return (
     <div className="app-container">
-
       {/* 3D Earth scene */}
       <Canvas camera={{ position: [0, 0, 7] }}>
-        <ambientLight intensity={1.2} />
-
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={2}
-        />
+        <Lighting mode={lighting} />
 
         <Stars
           radius={100}
@@ -58,13 +60,20 @@ export default function App() {
           gestureRef={gestureRef}
           earthRadius={EARTH_RADIUS}
         />
+
+        <ZoomReadout barRef={zoomBarRef} />
       </Canvas>
 
       {/* Webcam hand tracking */}
       <HandTracker gestureRef={gestureRef} />
 
       {/* UI overlay */}
-      <Header />
+      <Header
+        lighting={lighting}
+        onLightingChange={setLighting}
+      />
+
+      <ZoomBar barRef={zoomBarRef} />
 
       <div className="explore-controls">
         <p>Use your hand or mouse to explore Earth.</p>
@@ -76,17 +85,17 @@ export default function App() {
         </button>
       </div>
 
-      {/* Study area timeline */}
+      {/* NISAR study area timeline */}
       {selectedArea && (
         <StudyAreaView
           studyArea={selectedArea}
           onBack={() => setSelectedArea(null)}
         />
       )}
-
     </div>
   );
 }
+
 
 
 

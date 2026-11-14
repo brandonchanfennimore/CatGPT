@@ -32,6 +32,57 @@
   color: #aabbcc;
 }
 
+/* ---- Bright / Realistic lighting switch ---- */
+.light-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr; /* two equal halves */
+  margin-top: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: auto; /* the header ignores clicks; the switch must not */
+}
+/* The sliding highlight behind the selected option. */
+.light-toggle::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: #2778c4;
+  transition: transform 0.25s ease;
+}
+.light-toggle[data-mode="realistic"]::before {
+  transform: translateX(100%);
+}
+.light-toggle button {
+  position: relative; /* sit above the highlight */
+  padding: 6px 14px;
+  border: 0;
+  background: transparent;
+  color: #aabbcc;
+  font: inherit;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.light-toggle button[aria-pressed="true"] {
+  color: white;
+  font-weight: bold;
+}
+.light-toggle button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .light-toggle::before { transition: none; }
+}
+
 .explore-controls {
   position: absolute;
   bottom: 36px;
@@ -99,4 +150,62 @@
   padding: 20px;
   border-radius: 12px;
   margin: 24px 0;
+}
+
+/* ---- Zoom bar (top centre), like a camera's zoom indicator ---- */
+.zoom-bar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(9, 22, 43, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #aabbcc;
+  font-size: 14px;
+  pointer-events: none; /* display only: clicks go through to the globe */
+}
+.zoom-track {
+  position: relative;
+  width: 220px;
+  height: 14px;
+  /* The line, plus small tick marks every 10% (and one at each end). */
+  background:
+    linear-gradient(#aabbcc, #aabbcc) center / 100% 1px no-repeat,
+    repeating-linear-gradient(to right, rgba(170, 187, 204, 0.5) 0 1px, transparent 1px 10%) center / 100% 7px no-repeat;
+  border-left: 1px solid #aabbcc;
+  border-right: 1px solid #aabbcc;
+}
+.zoom-knob {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--zoom, 0) * 100%); /* --zoom (0..1) is set by ZoomReadout */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  box-shadow: 0 0 8px #7dd3fc;
+  transform: translate(-50%, -50%);
+}
+.zoom-end {
+  width: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.zoom-value {
+  min-width: 3.5em;
+  color: white;
+  font-variant-numeric: tabular-nums; /* digits don't wiggle as they change */
+}
+
+/* Narrow screens: the bar would sit on top of the title, so move the title down. */
+@media (max-width: 860px) {
+  .zoom-bar { top: 8px; }
+  .zoom-track { width: 140px; }
+  .app-header { top: 56px; }
 }

@@ -13,7 +13,7 @@ import { MathUtils, Spherical, Vector3 } from "three";
 
 // Tuning knobs
 const ROTATE_SPEED = 4; // radians per full video width, at 1 Earth radius above the surface
-const ZOOM_SPEED = 3; // fist moving the full video height up = this many times closer (roughly)
+const ZOOM_SPEED = 3; // how strongly sliding your pointing finger left/right zooms
 // After a fling, how fast the spin slows down (per second). Higher = stops sooner.
 // With 3, the speed halves about every 0.23 s.
 const COAST_FRICTION = 3;
@@ -46,14 +46,14 @@ export default function HandCameraControls({ gestureRef, earthRadius }) {
       coast.current = g.fling;
       g.fling = null;
     }
-    // Pinching or making a fist "grabs" the wheel and stops the coast.
+    // Rotating or zooming by hand "grabs" the wheel and stops the coast.
     if (g.mode === "rotate" || g.mode === "zoom") coast.current = { x: 0, y: 0 };
 
     // Rotation this frame = hand movement + coasting spin.
     const c = coast.current;
     const rotX = (g.mode === "rotate" ? g.dx : 0) + c.x * delta;
     const rotY = (g.mode === "rotate" ? g.dy : 0) + c.y * delta;
-    const zoom = g.mode === "zoom" ? g.dy : 0;
+    const zoom = g.mode === "zoom" ? g.dx : 0; // pointing finger: left/right
 
     // Friction: shrink the coasting speed a bit every frame, like a wheel slowing down.
     // Math.exp makes the slow-down the same no matter the frame rate.
@@ -77,8 +77,8 @@ export default function HandCameraControls({ gestureRef, earthRadius }) {
         spherical.phi = MathUtils.clamp(spherical.phi, 0.05, Math.PI - 0.05); // don't flip over the poles
       }
       if (zoom) {
-        // Fist moving up (dy < 0) = move closer; down = move away.
-        spherical.radius *= MathUtils.clamp(1 + zoom * ZOOM_SPEED, 0.5, 1.5);
+        // Finger moving right (dx > 0) = move closer; left = move away.
+        spherical.radius *= MathUtils.clamp(1 - zoom * ZOOM_SPEED, 0.5, 1.5);
         spherical.radius = MathUtils.clamp(spherical.radius, controls.minDistance, controls.maxDistance);
       }
 
