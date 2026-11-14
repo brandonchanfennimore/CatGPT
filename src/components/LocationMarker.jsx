@@ -14,7 +14,10 @@ const MAX_PX = 28;
 
 // Glow (Flashlight/Time modes): a soft halo this many times the marker's size,
 // pulsing this many times per second.
-const GLOW_SIZE = 2.6;
+const GLOW_SIZE = 2.2;
+// In the radar modes the pin sits on top of the data you're looking at, so keep it
+// small there (max radius in px) instead of growing with the zoom.
+const GLOW_MAX_PX = 7;
 const GLOW_PULSES_PER_SECOND = 0.8;
 
 // interactive: clickable (Explore mode). glow: pulsing halo showing where radar
@@ -48,7 +51,7 @@ export default function LocationMarker({
     if (!mesh.current) return;
     startDistance.current ??= camera.position.length();
     const zoom = startDistance.current / camera.position.length();
-    const px = MathUtils.clamp(PX_PER_ZOOM * zoom, MIN_PX, MAX_PX);
+    const px = MathUtils.clamp(PX_PER_ZOOM * zoom, MIN_PX, glow ? GLOW_MAX_PX : MAX_PX);
 
     // Pixels per world unit at distance 1 (from the camera's field of view).
     const focalPx = size.height / 2 / Math.tan((camera.fov * Math.PI) / 360);

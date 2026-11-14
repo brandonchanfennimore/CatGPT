@@ -12,6 +12,7 @@ import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 import { LensOverlay, RadarFlashlight } from "./modes/RadarFlashlight";
 import CameraFlyer from "./modes/CameraFlyer";
+import AdaptiveNear from "./components/AdaptiveNear";
 import { CurtainDates, CurtainDivider, TimeCurtain } from "./modes/TimeCurtain";
 import ModeBar from "./modes/ModeBar";
 import { latLonToVector } from "./geo";
@@ -146,8 +147,8 @@ export default function App() {
   return (
     <div className="app-container" data-mode={mode}>
       {/* 3D Earth scene */}
-      {/* near: how close to the camera things can be and still be drawn. The closest
-          zoom puts the camera only 0.1 above the surface, so it must be smaller than that. */}
+      {/* near: how close to the camera things can be and still be drawn. AdaptiveNear
+          (below) keeps it right for the current altitude; 0.01 is just the start. */}
       {/* dpr: draw at most RENDER_MAX_PIXEL_RATIO real pixels per CSS pixel (see tuning.js). */}
       <Canvas camera={{ position: [0, 0, 7], near: 0.01 }} dpr={[1, RENDER_MAX_PIXEL_RATIO]}>
         <Lighting mode={lighting} />
@@ -196,7 +197,9 @@ export default function App() {
           enableDamping
           enablePan={false}
           enableZoom={mode !== "flashlight"} // the wheel resizes the lens there
-          minDistance={EARTH_RADIUS * 1.05}
+          // Closest zoom: 0.4% of the Earth's radius above the ground (about 25 km),
+          // close enough to see a city-sized flood.
+          minDistance={EARTH_RADIUS * 1.004}
           maxDistance={EARTH_RADIUS * 10}
         />
 
@@ -209,6 +212,7 @@ export default function App() {
         />
 
         <CameraFlyer flyRef={flyRef} />
+        <AdaptiveNear earthRadius={EARTH_RADIUS} />
         <ZoomReadout barRef={zoomBarRef} targetRef={zoomTargetRef} />
         <LabelPositioner layerRef={labelsRef} />
       </Canvas>
@@ -227,7 +231,8 @@ export default function App() {
       {/* Data credits (CC BY data must be credited where it's shown) */}
       <p className="map-credits">
         Imagery: NASA Blue Marble · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
-        Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0)
+        Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0) ·
+        Flood maps: OPERA DSWx-S1, NASA/JPL-Caltech (Copernicus Sentinel-1 data)
       </p>
 
       {/* Webcam hand tracking */}

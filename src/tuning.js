@@ -54,8 +54,11 @@ export const LENS_FADE_SPEED = 8;
 
 // ---- "Explore with radar" camera flight ----
 
-// Zoom level to fly to (the "×" on the zoom bar).
-export const RADAR_FLY_ZOOM = 2.5;
+// Zoom level to fly to (the "×" on the zoom bar). 3.45× = about 90 km above the
+// ground, so a ~40 km flood area fills a good part of the screen. (The × number is
+// camera distance from the Earth's centre, so near the ground small changes matter a lot:
+// 3.0× is ~1,000 km up, 3.45× ~90 km, the closest zoom ~3.49× ~25 km.)
+export const RADAR_FLY_ZOOM = 3.45;
 // Flight speed (higher = faster; about 1 / seconds to get most of the way there).
 export const FLY_SPEED = 3;
 

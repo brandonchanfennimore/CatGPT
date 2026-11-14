@@ -66,8 +66,9 @@ export function RadarFlashlight({ area, gestureRef, overlayRef, radiusPx }) {
   const gl = useThree((s) => s.gl);
   const { bounds } = area;
 
-  // Load the site's radar image (the newest observation).
-  const imageUrl = area.observations.at(-1)?.image;
+  // Load the site's radar image: its dedicated flashlight image if it has one
+  // (e.g. a change map), otherwise the newest observation.
+  const imageUrl = area.flashlightImage ?? area.observations.at(-1)?.image;
   const [texture, setTexture] = useState(null);
   useEffect(() => {
     if (!imageUrl) return;
