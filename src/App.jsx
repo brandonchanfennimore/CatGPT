@@ -10,26 +10,30 @@ import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 
 import Header from "./components/Header";
-import LocationPanel from "./components/LocationPanel";
+import StudyAreaView from "./components/StudyAreaView";
+import { studyAreas } from "./data/studyAreas";
+
 import "./components/UI.css";
 
 export default function App() {
-  // Shared "mailbox" between the webcam (outside the 3D canvas) and the camera
-  // controls (inside it). A ref, not state, so 30 updates a second don't re-render React.
-  const gestureRef = useRef({ mode: "none", dx: 0, dy: 0 });
+  // Shared reference for webcam and 3D camera controls
+  const gestureRef = useRef({
+    mode: "none",
+    dx: 0,
+    dy: 0,
+  });
 
-  // The zoom bar element; ZoomReadout (inside the 3D scene) moves its knob.
+  // Reference used by the zoom bar
   const zoomBarRef = useRef(null);
 
-  // Controls whether the information panel is visible
-  const [showPanel, setShowPanel] = useState(false);
+  // Currently selected NISAR study area
+  const [selectedArea, setSelectedArea] = useState(null);
 
-  // "bright" = evenly lit globe, "realistic" = day/night from the real current time
+  // Lighting mode: bright or realistic
   const [lighting, setLighting] = useState("bright");
 
   return (
     <div className="app-container">
-
       {/* 3D Earth scene */}
       <Canvas camera={{ position: [0, 0, 7] }}>
         <Lighting mode={lighting} />
@@ -64,27 +68,35 @@ export default function App() {
       <HandTracker gestureRef={gestureRef} />
 
       {/* UI overlay */}
-      <Header lighting={lighting} onLightingChange={setLighting} />
+      <Header
+        lighting={lighting}
+        onLightingChange={setLighting}
+      />
 
       <ZoomBar barRef={zoomBarRef} />
 
       <div className="explore-controls">
         <p>Use your hand or mouse to explore Earth.</p>
 
-        <button onClick={() => setShowPanel(true)}>
+        <button
+          onClick={() => setSelectedArea(studyAreas[0])}
+        >
           Explore NISAR Data
         </button>
       </div>
 
-      {showPanel && (
-        <LocationPanel
-          onClose={() => setShowPanel(false)}
+      {/* NISAR study area timeline */}
+      {selectedArea && (
+        <StudyAreaView
+          studyArea={selectedArea}
+          onBack={() => setSelectedArea(null)}
         />
       )}
-
     </div>
   );
 }
+
+
 
 
 
