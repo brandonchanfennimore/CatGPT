@@ -31,6 +31,7 @@ export default function Earth() {
         key={map ? "textured" : "plain"}
         map={map}
         color={map ? "white" : "#2876b8"}
+        roughness={1}
       />
     </mesh>
   );
