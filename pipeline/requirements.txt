@@ -1,0 +1,7 @@
+# Python libraries for the offline data pipeline.
+h5py        # reads NISAR .h5 (HDF5) files
+numpy       # fast math on big image arrays
+scipy       # speckle filter (local averaging)
+rasterio    # reprojects UTM -> lat/lon and clips to the study area
+matplotlib  # colour maps
+Pillow      # writes PNG files
