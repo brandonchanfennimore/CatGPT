@@ -59,7 +59,10 @@ function stepValue(steps, zoom) {
   return value;
 }
 // On-screen UI that labels should not hide behind.
-const UI_SELECTORS = ".app-header, .zoom-bar, .hand-panel, .explore-controls, .location-panel, .map-credits";
+const UI_SELECTORS = ".app-header, .zoom-bar, .hand-panel, .explore-controls, .location-panel, .map-credits, .mode-bar, .study-view.compact, .curtain-dates";
+// Measuring those panels makes the browser recalculate the page layout, which is
+// slow if done every frame. Panels rarely move, so re-measure at most this often (ms).
+const UI_REMEASURE_MS = 500;
 
 // All labels, built once. `weight` is in "sphere units": for a country its area,
 // for a city a made-up area from its population. Screen size = sqrt(weight) x zoom.
@@ -123,6 +126,7 @@ export function LabelPositioner({ layerRef }) {
   const lastMatrix = useRef(new Matrix4());
   const lastSize = useRef("");
   const startDistance = useRef(null); // the starting view = "1.0×", same as the zoom bar
+  const obstacles = useRef({ boxes: [], at: -Infinity, sizeKey: "" }); // cached panel boxes
 
   useFrame(() => {
     const layer = layerRef.current;
@@ -196,11 +200,18 @@ export function LabelPositioner({ layerRef }) {
     // 3: place the most important first; skip anything that would overlap.
     // The page's own panels count as already "placed", so labels avoid them too.
     candidates.sort((a, b) => b.priority - a.priority);
-    const origin = layer.getBoundingClientRect();
-    const placed = [...document.querySelectorAll(UI_SELECTORS)].map((el) => {
-      const r = el.getBoundingClientRect();
-      return [r.left - origin.left, r.top - origin.top, r.right - origin.left, r.bottom - origin.top];
-    });
+    const now = performance.now();
+    const ob = obstacles.current;
+    if (now - ob.at > UI_REMEASURE_MS || ob.sizeKey !== sizeKey) {
+      const origin = layer.getBoundingClientRect();
+      ob.boxes = [...document.querySelectorAll(UI_SELECTORS)].map((el) => {
+        const r = el.getBoundingClientRect();
+        return [r.left - origin.left, r.top - origin.top, r.right - origin.left, r.bottom - origin.top];
+      });
+      ob.at = now;
+      ob.sizeKey = sizeKey;
+    }
+    const placed = [...ob.boxes];
     const nowShown = new Array(LABELS.length).fill(false);
     for (const c of candidates) {
       const w = widths[c.i];

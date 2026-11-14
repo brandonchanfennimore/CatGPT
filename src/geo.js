@@ -22,6 +22,17 @@ export function latLonToVector(latDeg, lonDeg, r = 1) {
   return [r * Math.cos(lat) * Math.cos(lon), r * Math.sin(lat), -r * Math.cos(lat) * Math.sin(lon)];
 }
 
+/** The reverse of latLonToVector: a point (x, y, z) -> { lat, lon } in degrees. */
+export function vectorToLatLon(x, y, z) {
+  const r = Math.hypot(x, y, z) || 1;
+  return { lat: Math.asin(y / r) * DEG, lon: Math.atan2(-z, x) * DEG };
+}
+
+/** Is (lat, lon) inside a { west, south, east, north } box (degrees)? */
+export function insideBounds(lat, lon, b) {
+  return lat >= b.south && lat <= b.north && lon >= b.west && lon <= b.east;
+}
+
 /**
  * Readable coordinates, e.g. formatLatLon(6.455, 3.384) -> "6.46°N 3.38°E".
  * Two decimals = about 1 km, plenty for a place label.

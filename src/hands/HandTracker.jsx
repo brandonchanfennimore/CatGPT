@@ -17,14 +17,50 @@ const WASM_URL = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/was
 const MODEL_URL =
   "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task";
 
-// Gesture names shown in the panel. Same hand shapes, different jobs in the info view.
-const LABELS = {
-  globe: { none: "No hand", release: "Paused", pinch: "Pinch: open to select", rotate: "Rotate", zoom: "Zoom" },
-  info: { none: "No hand", release: "Paused", pinch: "Pinch: open to go back", rotate: "Scroll", zoom: "Swipe pictures" },
+// What each hand shape does in each context: the label shown while you make it,
+// and the guide list under the webcam. Same hand shapes, different jobs.
+const CONTEXTS = {
+  explore: {
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom" },
+    guide: [
+      "🖐️ Open palm + move: rotate (swipe out of view to spin)",
+      "☝️ Point + move right/left: zoom in/out",
+      "✊ Fist: pause",
+      "✌️ Two fingers, swipe up: open the marker in the middle",
+    ],
+  },
+  info: {
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Swipe pictures" },
+    guide: [
+      "🖐️ Open palm + move up/down: scroll",
+      "☝️ Point + move right/left: next/previous picture",
+      "✊ Fist: pause",
+      "✌️ Two fingers, swipe up: back to Earth",
+    ],
+  },
+  flashlight: {
+    labels: { none: "No hand (lens follows mouse)", release: "Paused", swipe: "Paused", rotate: "Rotate", zoom: "Radar lens" },
+    guide: [
+      "☝️ Point: move the radar lens",
+      "🖐️ Open palm + move: rotate",
+      "✊ Fist: pause",
+      "Lens size: slider or mouse wheel",
+    ],
+  },
+  time: {
+    labels: { none: "No hand", release: "Paused", swipe: "Paused", rotate: "Curtain", zoom: "Paused" },
+    guide: [
+      "🖐️ Open palm + move sideways: pull the curtain",
+      "🖐️ Fast swipe left/right: previous/next dates",
+      "✊ Fist: pause",
+      "Mouse: drag the divider · ← → keys: change dates",
+    ],
+  },
 };
 
-// context: "globe" (exploring Earth) or "info" (a study area's info view is open).
-export default function HandTracker({ gestureRef, context = "globe" }) {
+// context: "explore", "info" (a study area's full info view is open), "flashlight" or "time".
+export default function HandTracker({ gestureRef, context = "explore" }) {
+  const ui = CONTEXTS[context] ?? CONTEXTS.explore; // unknown context: fall back to Explore
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const cleanupRef = useRef(null);
@@ -104,6 +140,12 @@ export default function HandTracker({ gestureRef, context = "globe" }) {
         // Add this frame's movement to whatever the 3D scene hasn't used yet.
         const g = track(result.landmarks, now);
         const shared = gestureRef.current;
+        // Index fingertip position (mirrored like the preview, 0..1), for the radar lens.
+        const tip = result.landmarks[0]?.[8];
+        shared.tip = tip ? { x: 1 - tip.x, y: tip.y } : null;
+        // Palm centre (middle knuckle) and when it was seen, for the Time curtain.
+        const palm = result.landmarks[0]?.[9];
+        shared.palm = palm ? { x: 1 - palm.x, y: palm.y, t: now } : null;
         shared.mode = g.mode;
         shared.dx += g.dx;
         shared.dy += g.dy;
@@ -177,26 +219,16 @@ export default function HandTracker({ gestureRef, context = "globe" }) {
 
       {state === "running" && (
         <p className="hand-status">
-          Gesture: <strong>{LABELS[context][mode]}</strong>
+          Gesture: <strong>{ui.labels[mode]}</strong>
         </p>
       )}
       {message && <p className="hand-error">{message}</p>}
 
-      {context === "info" ? (
-        <ul className="hand-guide">
-          <li>🖐️ Open palm + move up/down: scroll</li>
-          <li>☝️ Point + move right/left: next/previous picture</li>
-          <li>✊ Fist: pause</li>
-          <li>🤏 Pinch, then open: back to Earth</li>
-        </ul>
-      ) : (
-        <ul className="hand-guide">
-          <li>🖐️ Open palm + move: rotate (swipe out of view to spin)</li>
-          <li>☝️ Point + move right/left: zoom in/out</li>
-          <li>✊ Fist: pause</li>
-          <li>🤏 Pinch, then open: select the marker in the middle</li>
-        </ul>
-      )}
+      <ul className="hand-guide">
+        {ui.guide.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
     </div>
   );
 }

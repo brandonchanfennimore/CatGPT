@@ -4,7 +4,7 @@ import { classifyHand, createGestureTracker } from './gesture.js';
 
 // Build a fake 21-point hand around (cx, cy). Up on screen = smaller y.
 // curled = [index, middle, ring, pinky]: true = finger folded down.
-function makeHand({ cx = 0.5, cy = 0.6, curled = [false, false, false, false], pinch = false } = {}) {
+function makeHand({ cx = 0.5, cy = 0.6, curled = [false, false, false, false] } = {}) {
   const p = (x, y) => ({ x: cx + x * 0.5, y: cy + y * 0.5 });
   const lm = [p(0, 0)]; // 0 wrist
   for (let i = 1; i <= 4; i++) lm.push(p(-0.05 * i, -0.05 * i)); // thumb 1..4
@@ -13,21 +13,19 @@ function makeHand({ cx = 0.5, cy = 0.6, curled = [false, false, false, false], p
     if (curled[f]) lm.push(p(fx, -0.4), p(fx, -0.3), p(fx, -0.18)); // tip folds back into the palm
     else lm.push(p(fx, -0.45), p(fx, -0.52), p(fx, -0.58)); // straight finger
   });
-  if (pinch) lm[4] = { ...lm[8] }; // thumb tip touches index tip
   return lm;
 }
 const OPEN = [false, false, false, false];
 const FIST = [true, true, true, true];
 const POINT = [false, true, true, true]; // only the index finger up
-const PEACE = [false, false, true, true];
+const TWO = [false, false, true, true]; // index + middle up
+const ODD = [true, false, true, false]; // a shape we don't use
 
 assert.equal(classifyHand(makeHand({ curled: OPEN })), 'open');
 assert.equal(classifyHand(makeHand({ curled: FIST })), 'fist');
 assert.equal(classifyHand(makeHand({ curled: POINT })), 'point');
-assert.equal(classifyHand(makeHand({ curled: PEACE })), 'other');
-assert.equal(classifyHand(makeHand({ pinch: true })), 'pinch');
-// Fist with the thumb on the curled index tip: not a pinch (fingertip tucked near the wrist).
-assert.equal(classifyHand(makeHand({ curled: FIST, pinch: true })), 'fist');
+assert.equal(classifyHand(makeHand({ curled: TWO })), 'two');
+assert.equal(classifyHand(makeHand({ curled: ODD })), 'other');
 
 // Open palm moving right (in the mirrored view) -> rotate with dx > 0.
 // Real-world "right" is smaller raw x, because the camera image is not mirrored.
@@ -67,30 +65,30 @@ track = createGestureTracker();
 for (let i = 0; i < 30; i++) track([makeHand()], i * 33);
 assert.equal(track([], 30 * 33).fling, null);
 
-// Pinch "click": hold a pinch (10 frames = 330 ms), then open the hand -> select once.
+// Two fingers flicked up (0.03 per 33 ms frame) -> select exactly once.
 track = createGestureTracker();
-for (let i = 0; i < 10; i++) {
-  out = track([makeHand({ pinch: true })], i * 33);
-  assert.equal(out.mode, 'pinch');
-  assert.equal(out.select, false);
+let selects = 0;
+for (let i = 0; i < 12; i++) {
+  out = track([makeHand({ curled: TWO, cy: 0.7 - i * 0.03 })], i * 33);
+  assert.equal(out.mode, 'swipe');
+  if (out.select) selects++;
 }
-out = track([makeHand()], 10 * 33);
-assert.equal(out.select, true, 'opening a held pinch should select');
-assert.equal(track([makeHand()], 11 * 33).select, false, 'select fires only once');
+assert.equal(selects, 1, 'one swipe up = one select');
 
-// Too quick (one frame) -> no select.
+// Slow upward drift (0.005 per frame) -> no select.
 track = createGestureTracker();
-track([makeHand({ pinch: true })], 0);
-assert.equal(track([makeHand()], 33).select, false);
+for (let i = 0; i < 60; i++) {
+  assert.equal(track([makeHand({ curled: TWO, cy: 0.7 - i * 0.005 })], i * 33).select, false);
+}
 
-// Hand disappears while pinched (tracking lost) -> no select.
+// Swiping down -> no select.
 track = createGestureTracker();
-for (let i = 0; i < 10; i++) track([makeHand({ pinch: true })], i * 33);
-assert.equal(track([], 10 * 33).select, false);
+for (let i = 0; i < 12; i++) {
+  assert.equal(track([makeHand({ curled: TWO, cy: 0.4 + i * 0.03 })], i * 33).select, false);
+}
 
-// Fist, then open palm -> no select.
+// Open palm moving up (a scroll) -> no select.
 track = createGestureTracker();
-for (let i = 0; i < 10; i++) track([makeHand({ curled: FIST })], i * 33);
-assert.equal(track([makeHand()], 10 * 33).select, false);
+for (let i = 0; i < 12; i++) assert.equal(track([makeHand({ cy: 0.7 - i * 0.03 })], i * 33).select, false);
 
 console.log('gesture checks passed');

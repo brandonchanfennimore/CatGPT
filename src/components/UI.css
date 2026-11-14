@@ -385,3 +385,218 @@
   .layer-toggles input,
   .layer-toggles input::before { transition: none; }
 }
+
+/* ---- Mode buttons (top right): Explore / Flashlight / Time ---- */
+.mode-bar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+.mode-buttons {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(9, 22, 43, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.mode-buttons button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #aabbcc;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.mode-buttons button[aria-pressed="true"] {
+  background: #2778c4;
+  color: white;
+  font-weight: bold;
+}
+.app-container[data-mode="flashlight"] .mode-buttons button[aria-pressed="true"],
+.app-container[data-mode="time"] .mode-buttons button[aria-pressed="true"] {
+  background: #b3261e; /* radar red in Flashlight mode */
+}
+.mode-buttons button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.mode-buttons button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+.mode-buttons kbd {
+  padding: 0 4px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font: 11px monospace;
+  opacity: 0.7;
+}
+.mode-details {
+  display: grid;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(9, 22, 43, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #aabbcc;
+  font-size: 13px;
+}
+.mode-site {
+  margin: 0;
+}
+.mode-site strong {
+  color: white;
+}
+.lens-slider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lens-slider input {
+  accent-color: #ff6b5e;
+}
+/* Narrower windows: drop below the zoom bar so they don't overlap. */
+@media (max-width: 1100px) {
+  .mode-bar { top: 64px; }
+}
+
+/* ---- Radar lens ring (Flashlight mode), moved by RadarFlashlight.jsx ---- */
+.lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  visibility: hidden; /* shown once the lens is placed and facing us */
+  pointer-events: none; /* clicks and drags go through to the globe */
+}
+.lens-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 140, 120, 0.95);
+  border-radius: 50%;
+  /* soft glow outside and inside the edge */
+  box-shadow: 0 0 14px 3px rgba(255, 90, 70, 0.55), inset 0 0 16px 2px rgba(255, 90, 70, 0.35);
+  transition: opacity 0.3s ease;
+}
+.lens-label {
+  position: absolute;
+  top: 4%;
+  left: 88%;
+  color: #ffb4a8;
+  font: bold 11px/1 Arial, sans-serif;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  text-shadow: 0 0 4px #000, 0 0 2px #000;
+  transition: opacity 0.3s ease;
+}
+.lens-nodata {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+/* Over an area without radar data: dim the ring, show the message. */
+.lens.no-data .lens-ring {
+  opacity: 0.35;
+  border-style: dashed;
+}
+.lens.no-data .lens-label {
+  opacity: 0.35;
+}
+.lens.no-data .lens-nodata {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lens-ring, .lens-label, .lens-nodata { transition: none; }
+}
+
+/* ---- Time curtain (Time mode), moved by TimeCurtain.jsx ---- */
+.curtain-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(255, 140, 120, 0.8);
+  pointer-events: none; /* only the handle catches the mouse */
+}
+.curtain-handle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #b3261e;
+  color: white;
+  font-size: 18px;
+  cursor: ew-resize;
+  pointer-events: auto;
+  touch-action: none; /* let touch drags move the divider */
+  box-shadow: 0 0 12px rgba(255, 90, 70, 0.8);
+}
+.curtain-handle:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+.curtain-dates {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(9, 22, 43, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #aabbcc;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.curtain-date {
+  color: white;
+  font-weight: bold;
+  animation: curtain-date-in 0.35s ease;
+}
+.curtain-count {
+  font-size: 12px;
+  opacity: 0.7;
+}
+/* New dates slide down into place. */
+@keyframes curtain-date-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .curtain-date { animation: none; }
+}
+/* Narrower windows: the top is crowded, so show the dates at the bottom instead. */
+@media (max-width: 1100px) {
+  .curtain-dates { top: auto; bottom: 30px; }
+}
+/* The "Explore NISAR Data" button belongs to Explore mode; hide it in the radar modes. */
+.app-container:not([data-mode="explore"]) .explore-controls {
+  display: none;
+}

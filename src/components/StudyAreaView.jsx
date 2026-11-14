@@ -11,12 +11,14 @@ export default function StudyAreaView({
   studyArea,
   onBack,
   gestureRef, // shared hand-gesture "mailbox" from App (HandTracker writes to it)
+  onExploreRadar, // "Explore with radar" button: fly there and open Flashlight mode
+  compact = false, // true in Flashlight/Time modes: a side panel instead of full screen
 }) {
   const viewRef = useRef(null); // the scrolling page
   const timelineRef = useRef(null); // GestureTimeline: .next() / .previous()
 
   // While this view is open, hand gestures drive it (the globe is paused):
-  //  open palm up/down -> scroll, finger right/left -> pictures, pinch-open -> back.
+  //  open palm up/down -> scroll, finger right/left -> pictures, two fingers swiped up -> back.
   useEffect(() => {
     if (!gestureRef) return;
     const g = gestureRef.current;
@@ -61,15 +63,22 @@ export default function StudyAreaView({
   }, [gestureRef, onBack]);
 
   return (
-    <div className="study-view" ref={viewRef}>
+    <div className={compact ? "study-view compact" : "study-view"} ref={viewRef}>
       {/* Top navigation */}
       <div className="study-topbar">
         <button
           className="back-button"
           onClick={onBack}
         >
-          ← Back to Earth
+          {compact ? "✕ Close" : "← Back to Earth"}
         </button>
+
+        {/* Only sites with a lat/lon box can be shown on the globe. */}
+        {!compact && studyArea.bounds && onExploreRadar && (
+          <button className="radar-button" onClick={() => onExploreRadar(studyArea)}>
+            📡 Explore with radar
+          </button>
+        )}
 
         <span className="study-brand">
           EARTH IN MOTION / NASA NISAR
