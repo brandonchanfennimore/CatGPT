@@ -14,6 +14,7 @@ import StudyAreaView from "./components/StudyAreaView";
 import { studyAreas } from "./data/studyAreas";
 
 import "./components/UI.css";
+import LocationMarker from "./components/LocationMarker";
 
 export default function App() {
   // Shared reference for webcam and 3D camera controls
@@ -36,33 +37,38 @@ export default function App() {
     <div className="app-container">
       {/* 3D Earth scene */}
       <Canvas camera={{ position: [0, 0, 7] }}>
-        <Lighting mode={lighting} />
+  <Lighting mode={lighting} />
 
-        <Stars
-          radius={100}
-          depth={50}
-          count={3000}
-          factor={4}
-          fade
-        />
+  <Stars
+    radius={100}
+    depth={50}
+    count={3000}
+    factor={4}
+    fade
+  />
 
-        <Earth />
+  <Earth />
 
-        <OrbitControls
-          makeDefault
-          enableDamping
-          enablePan={false}
-          minDistance={EARTH_RADIUS * 1.05}
-          maxDistance={EARTH_RADIUS * 10}
-        />
+  <LocationMarker
+    studyArea={studyAreas[0]}
+    onSelect={setSelectedArea}
+  />
 
-        <HandCameraControls
-          gestureRef={gestureRef}
-          earthRadius={EARTH_RADIUS}
-        />
+  <OrbitControls
+    makeDefault
+    enableDamping
+    enablePan={false}
+    minDistance={EARTH_RADIUS * 1.05}
+    maxDistance={EARTH_RADIUS * 10}
+  />
 
-        <ZoomReadout barRef={zoomBarRef} />
-      </Canvas>
+  <HandCameraControls
+    gestureRef={gestureRef}
+    earthRadius={EARTH_RADIUS}
+  />
+
+  <ZoomReadout barRef={zoomBarRef} />
+</Canvas>
 
       {/* Webcam hand tracking */}
       <HandTracker gestureRef={gestureRef} />
