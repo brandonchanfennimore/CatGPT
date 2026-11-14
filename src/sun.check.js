@@ -1,6 +1,7 @@
 // Quick self-check for sun.js. Run: npm run check
 import assert from 'node:assert/strict';
-import { latLonToVector, subsolarPoint } from './sun.js';
+import { latLonToVector } from './geo.js';
+import { subsolarPoint } from './sun.js';
 
 const near = (a, b, tol, what) => assert.ok(Math.abs(a - b) <= tol, `${what}: expected ~${b}, got ${a}`);
 

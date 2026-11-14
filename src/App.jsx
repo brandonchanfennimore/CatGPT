@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import Earth, { EARTH_RADIUS } from "./components/Earth";
 import Lighting from "./components/Lighting";
 import { ZoomBar, ZoomReadout } from "./components/ZoomBar";
+import { Borders, LabelPositioner, PlaceLabels } from "./components/MapOverlay";
 import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 
@@ -28,6 +29,8 @@ export default function App() {
   const zoomBarRef = useRef(null);
   // Zoom level (0..1) requested by clicking/dragging the bar, or null.
   const zoomTargetRef = useRef(null);
+  // The layer holding country/city labels; LabelPositioner moves them.
+  const labelsRef = useRef(null);
 
   // Currently selected NISAR study area
   const [selectedArea, setSelectedArea] = useState(null);
@@ -35,47 +38,56 @@ export default function App() {
   // Lighting mode: bright or realistic
   const [lighting, setLighting] = useState("bright");
 
+  // Which map layers are switched on (the "Map layers" panel under the title)
+  const [layers, setLayers] = useState({ borders: true, labels: true, coordinates: true });
+
   return (
     <div className="app-container">
       {/* 3D Earth scene */}
       <Canvas camera={{ position: [0, 0, 7] }}>
-  <Lighting mode={lighting} />
+        <Lighting mode={lighting} />
 
-  <Stars
-    radius={100}
-    depth={50}
-    count={3000}
-    factor={4}
-    fade
-  />
+        <Stars
+          radius={100}
+          depth={50}
+          count={3000}
+          factor={4}
+          fade
+        />
 
-  <Earth />
+        <Earth />
+        {layers.borders && <Borders />}
 
-  <LocationMarker
-    studyArea={studyAreas[0]}
-    onSelect={setSelectedArea}
-  />
+        <LocationMarker
+          studyArea={studyAreas[0]}
+          onSelect={setSelectedArea}
+        />
 
-  <OrbitControls
-    makeDefault
-    enableDamping
-    enablePan={false}
-    minDistance={EARTH_RADIUS * 1.05}
-    maxDistance={EARTH_RADIUS * 10}
-  />
+        <OrbitControls
+          makeDefault
+          enableDamping
+          enablePan={false}
+          minDistance={EARTH_RADIUS * 1.05}
+          maxDistance={EARTH_RADIUS * 10}
+        />
 
-<<<<<<< HEAD
-  <HandCameraControls
-    gestureRef={gestureRef}
-    earthRadius={EARTH_RADIUS}
-  />
+        <HandCameraControls
+          gestureRef={gestureRef}
+          earthRadius={EARTH_RADIUS}
+        />
 
-  <ZoomReadout barRef={zoomBarRef} />
-</Canvas>
-=======
         <ZoomReadout barRef={zoomBarRef} targetRef={zoomTargetRef} />
+        <LabelPositioner layerRef={labelsRef} />
       </Canvas>
->>>>>>> 6e24b10 (allow cursor to adjust zoom bar)
+
+      {/* Country and city names over the globe */}
+      <PlaceLabels layerRef={labelsRef} visible={layers.labels} coordinates={layers.coordinates} />
+
+      {/* Data credits (CC BY data must be credited where it's shown) */}
+      <p className="map-credits">
+        Imagery: NASA Blue Marble · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
+        Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0)
+      </p>
 
       {/* Webcam hand tracking */}
       <HandTracker gestureRef={gestureRef} />
@@ -84,6 +96,8 @@ export default function App() {
       <Header
         lighting={lighting}
         onLightingChange={setLighting}
+        layers={layers}
+        onLayersChange={setLayers}
       />
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />

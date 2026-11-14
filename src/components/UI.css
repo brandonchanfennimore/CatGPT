@@ -225,3 +225,163 @@
   .zoom-track { width: 140px; }
   .app-header { top: 56px; }
 }
+
+/* ---- Country / city labels over the globe (Google Earth style) ---- */
+.map-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; /* clicks and drags go through to the globe */
+  transition: opacity 0.3s ease;
+}
+/* Zoomed out past LABELS_FROM_ZOOM (MapOverlay.jsx): hide all labels. */
+.map-labels.too-far {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-labels { transition: none; }
+}
+.map-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden; /* LabelPositioner shows the ones that fit */
+  white-space: nowrap;
+  color: white;
+  font-weight: bold;
+  /* dark outline so white text reads on bright land and dark ocean */
+  text-shadow: 0 0 2px #000, 0 0 3px #000, 0 1px 2px #000;
+  will-change: transform;
+}
+.map-label.country {
+  font-size: 15px;
+}
+.map-label.city,
+.map-label.capital {
+  font-size: 12px;
+  font-weight: 600;
+}
+/* The little circle on the city's exact spot (filled for capitals). */
+.map-label.city::before,
+.map-label.capital::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 5px;
+  border: 1.5px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #000;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.map-label.capital::before {
+  background: white;
+}
+
+.map-credits {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  margin: 0;
+  color: rgba(170, 187, 204, 0.7);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.map-credits a {
+  color: inherit;
+}
+
+/* Coordinates: a small second line under each place name. */
+.map-label-coord {
+  display: block;
+  font-size: 10px;
+  font-weight: normal;
+  color: #d5dee8;
+}
+.map-label.country {
+  text-align: center;
+}
+/* Line the coordinates up with the city name, not with the dot. */
+.map-label.city .map-label-coord,
+.map-label.capital .map-label-coord {
+  padding-left: 13px;
+}
+
+/* Layer switches (Header.jsx): Borders / Labels / Coordinates */
+.map-labels.off {
+  display: none;
+}
+.map-labels.no-coords .map-label-coord {
+  display: none;
+}
+
+.layer-toggles {
+  display: grid;
+  gap: 8px;
+  width: 190px;
+  margin: 12px 0 0;
+  padding: 10px 14px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(9, 22, 43, 0.7);
+  pointer-events: auto; /* the header ignores clicks; this panel must not */
+}
+.layer-toggles legend {
+  padding: 0 4px;
+  color: #7dd3fc;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.layer-toggles label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e6ecff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.layer-toggles label.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* The checkbox drawn as a sliding switch. */
+.layer-toggles input {
+  appearance: none;
+  position: relative;
+  width: 34px;
+  height: 20px;
+  margin: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: inherit;
+  transition: background 0.2s ease;
+}
+.layer-toggles input::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.2s ease;
+}
+.layer-toggles input:checked {
+  background: #2778c4;
+}
+.layer-toggles input:checked::before {
+  transform: translateX(14px);
+}
+.layer-toggles input:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .layer-toggles input,
+  .layer-toggles input::before { transition: none; }
+}

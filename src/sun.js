@@ -11,6 +11,7 @@
  * Formulas: NOAA "General Solar Position Calculations" (accurate to well under 1°).
  * https://gml.noaa.gov/grad/solcalc/solareqns.PDF
  */
+import { latLonToVector } from './geo.js';
 
 const DEG = 180 / Math.PI;
 
@@ -38,17 +39,6 @@ export function subsolarPoint(date) {
   let lon = -15 * (hoursUTC - 12 + eqTime / 60);
   lon = ((((lon + 180) % 360) + 360) % 360) - 180; // wrap into -180..180
   return { lat: decl * DEG, lon };
-}
-
-/**
- * Turn latitude/longitude into a unit direction in the Earth model's own space.
- * Matches how three.js wraps a flat world map onto a SphereGeometry:
- * longitude 0° faces +X, 90°E faces -Z, the North Pole is +Y.
- */
-export function latLonToVector(latDeg, lonDeg) {
-  const lat = latDeg / DEG;
-  const lon = lonDeg / DEG;
-  return [Math.cos(lat) * Math.cos(lon), Math.sin(lat), -Math.cos(lat) * Math.sin(lon)];
 }
 
 /** Direction from Earth's centre toward the Sun at `date`. */

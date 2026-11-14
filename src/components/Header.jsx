@@ -1,5 +1,12 @@
 
-export default function Header({ lighting, onLightingChange }) {
+// The map layers you can switch on/off, in the order shown.
+const LAYERS = [
+  { key: "borders", label: "Borders" },
+  { key: "labels", label: "Labels" },
+  { key: "coordinates", label: "Coordinates", needs: "labels" }, // coordinates live inside labels
+];
+
+export default function Header({ lighting, onLightingChange, layers, onLayersChange }) {
   return (
     <header className="app-header">
       <p className="eyebrow">NASA NISAR EXPLORER</p>
@@ -27,6 +34,27 @@ export default function Header({ lighting, onLightingChange }) {
           Realistic 🕑
         </button>
       </div>
+
+      {/* Map layer switches */}
+      <fieldset className="layer-toggles">
+        <legend>Map layers</legend>
+        {LAYERS.map(({ key, label, needs }) => {
+          const disabled = needs && !layers[needs];
+          return (
+            <label key={key} className={disabled ? "disabled" : undefined}>
+              <span>{label}</span>
+              {/* A real checkbox (keyboard + screen-reader friendly), styled as a switch in UI.css. */}
+              <input
+                type="checkbox"
+                role="switch"
+                checked={layers[key]}
+                disabled={disabled}
+                onChange={(e) => onLayersChange({ ...layers, [key]: e.target.checked })}
+              />
+            </label>
+          );
+        })}
+      </fieldset>
     </header>
   );
 }
