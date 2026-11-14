@@ -5,9 +5,6 @@
  * The mouse/touch OrbitControls stay in charge of the camera; we only nudge
  * the camera position and call controls.update(), so both work together.
  */
-/* eslint-disable react-hooks/immutability --
-   useFrame runs outside React rendering. Mutating refs and three.js objects there
-   every frame is the normal react-three-fiber pattern (no re-renders). */
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { MathUtils, Spherical, Vector3 } from "three";
@@ -21,7 +18,7 @@ const TILT_SPEED = 2; // radians per full video height
 const spherical = new Spherical();
 const offset = new Vector3();
 
-export default function HandCameraControls({ gesture, earthRadius }) {
+export default function HandCameraControls({ gestureRef, earthRadius }) {
   const camera = useThree((s) => s.camera);
   const controls = useThree((s) => s.controls); // set by <OrbitControls makeDefault />
   const tilt = useRef(0); // how far the camera looks up from the Earth's centre
@@ -29,7 +26,7 @@ export default function HandCameraControls({ gesture, earthRadius }) {
   // Runs every frame, AFTER OrbitControls.update() (drei runs that at priority -1).
   useFrame(() => {
     if (!controls) return;
-    const g = gesture.current;
+    const g = gestureRef.current;
 
     if (g.dx || g.dy || g.dSpread) {
       // Describe the camera position as "spherical coordinates" around the target:

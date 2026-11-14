@@ -8,7 +8,7 @@ import HandTracker from "./hands/HandTracker";
 export default function App() {
   // Shared "mailbox" between the webcam (outside the 3D canvas) and the camera
   // controls (inside it). A ref, not state, so 30 updates a second don't re-render React.
-  const gesture = useRef({ mode: "none", dx: 0, dy: 0, dSpread: 0 });
+  const gestureRef = useRef({ mode: "none", dx: 0, dy: 0, dSpread: 0 });
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
@@ -27,10 +27,10 @@ export default function App() {
           minDistance={EARTH_RADIUS * 1.05}
           maxDistance={EARTH_RADIUS * 10}
         />
-        <HandCameraControls gesture={gesture} earthRadius={EARTH_RADIUS} />
+        <HandCameraControls gestureRef={gestureRef} earthRadius={EARTH_RADIUS} />
       </Canvas>
 
-      <HandTracker gesture={gesture} />
+      <HandTracker gestureRef={gestureRef} />
     </div>
   );
 }

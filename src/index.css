@@ -17,11 +17,9 @@ body {
 }
 
 
-/* ---- Webcam / hand-gesture panel (bottom-right corner) ---- */
+/* ---- Webcam / hand-gesture panel (snaps to a corner) ---- */
 .hand-panel {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
   width: 260px;
   padding: 12px;
   border-radius: 12px;
@@ -29,6 +27,36 @@ body {
   color: #e6ecff;
   font: 14px/1.4 system-ui, sans-serif;
 }
+/* Which corner the panel sits in (set by useCornerSnap in HandTracker.jsx). */
+.hand-panel[data-corner^="t"] { top: 16px; }
+.hand-panel[data-corner^="b"] { bottom: 16px; }
+.hand-panel[data-corner$="l"] { left: 16px; }
+.hand-panel[data-corner$="r"] { right: 16px; }
+
+.hand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.hand-drag {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #aab4d4;
+  cursor: grab;
+  touch-action: none; /* let touch drags move the panel instead of scrolling */
+}
+.hand-drag:hover { background: rgba(255, 255, 255, 0.08); color: #e6ecff; }
+.hand-drag:active { cursor: grabbing; }
+.hand-drag:focus-visible,
+.hand-toggle:focus-visible { outline: 2px solid #4fd1ff; outline-offset: 2px; }
+
 .hand-preview {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -43,17 +71,17 @@ body {
   height: 100%;
   transform: scaleX(-1); /* mirror, like a selfie */
 }
-.hand-panel button {
-  width: 100%;
-  padding: 8px;
+.hand-toggle {
+  padding: 4px 14px;
   border: 0;
-  border-radius: 8px;
-  background: #4fd1ff;
-  color: #04121f;
+  border-radius: 6px;
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
 }
-.hand-panel button:disabled { opacity: 0.6; cursor: wait; }
+.hand-toggle.start { background: #16a34a; } /* green = camera off, click to start */
+.hand-toggle.stop { background: #dc2626; } /* red = camera on, click to stop */
+.hand-toggle:disabled { opacity: 0.6; cursor: wait; }
 .hand-status { margin: 8px 0 0; }
 .hand-error { margin: 8px 0 0; color: #ffb4a8; }
 .hand-guide { margin: 8px 0 0; padding-left: 18px; color: #aab4d4; font-size: 13px; }
