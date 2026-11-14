@@ -17,7 +17,7 @@ const WASM_URL = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/was
 const MODEL_URL =
   "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task";
 
-const LABELS = { none: "No hand", open: "Open hand (released)", rotate: "Rotate", zoom: "Zoom" };
+const LABELS = { none: "No hand", release: "Paused", rotate: "Rotate", zoom: "Zoom" };
 
 export default function HandTracker({ gestureRef }) {
   const videoRef = useRef(null);
@@ -177,9 +177,9 @@ export default function HandTracker({ gestureRef }) {
       {message && <p className="hand-error">{message}</p>}
 
       <ul className="hand-guide">
-        <li>🤏 Pinch + move: rotate (let go mid-swipe to spin)</li>
-        <li>✊ Fist + move up/down: zoom in/out</li>
-        <li>🖐️ Open hand: release</li>
+        <li>🖐️ Open palm + move: rotate (swipe out of view to spin)</li>
+        <li>☝️ Point + move right/left: zoom in/out</li>
+        <li>✊ Fist: pause</li>
       </ul>
     </div>
   );

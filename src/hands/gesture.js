@@ -9,18 +9,21 @@
  *   ring  13 14 15 16(tip)   pinky 17 18 19 20(tip)
  *   (for fingers: 5/9/13/17 = knuckle, 6/10/14/18 = middle joint "PIP")
  *
+ * Gestures (one hand only):
+ *   open palm + move          -> 'rotate'
+ *   index finger + move L/R   -> 'zoom' (right = closer, left = farther)
+ *   fist (or any other shape) -> 'release' (nothing moves)
+ *   no hand                   -> 'none'
+ *
  * This file has no React or MediaPipe code, so it can be tested with plain Node
  * (see gesture.check.js).
  */
 
 // ---- Tuning knobs: change these if gestures feel too twitchy or too sticky ----
 
-// Pinch = thumb tip close to index tip, measured relative to hand size,
-// so it works whether your hand is near or far from the camera.
-// Two thresholds ("hysteresis"): a pinch STARTS below PINCH_ON but only ENDS
-// above PINCH_OFF. This stops flickering when your fingers hover at the edge.
-export const PINCH_ON = 0.35;
-export const PINCH_OFF = 0.5;
+// A finger counts as "extended" when its tip is this much farther from the wrist
+// than its middle joint (1.15 = 15% farther). Raise it if bent fingers count as straight.
+export const EXTEND_RATIO = 1.15;
 
 // Smoothing (0..1). Lower = smoother but laggier. Higher = snappier but jittery.
 export const SMOOTHING = 0.4;
@@ -29,8 +32,8 @@ export const SMOOTHING = 0.4;
 // This removes the small shaking that hand tracking always has.
 export const DEAD_ZONE = 0.004;
 
-// "Fling": when a rotate ends (hand leaves the camera or opens), we report the
-// hand's recent speed so the globe can keep spinning like a wheel and slow down.
+// "Fling": when a rotate ends (hand leaves the camera or changes shape), we report
+// the hand's recent speed so the globe can keep spinning like a wheel and slow down.
 // Speed is in video-widths per second. Slower than this = no fling.
 export const MIN_FLING_SPEED = 0.15;
 // How quickly the speed estimate follows the hand (0..1). Lower = steadier.
@@ -44,46 +47,38 @@ const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 // Then "hand moves right" means x increases, matching what you see.
 const mirror = (p) => ({ x: 1 - p.x, y: p.y });
 
-/**
- * Classify one hand as 'pinch', 'fist' or 'open'.
- * wasPinching: was this hand pinching last frame? (for hysteresis)
- */
-export function classifyHand(lm, wasPinching = false) {
-  // Hand size = wrist to middle-finger knuckle. Used to make thresholds scale-free.
-  const size = dist(lm[0], lm[9]) || 1e-6;
+// [tip, middle joint] for index, middle, ring, pinky. (The thumb is ignored:
+// people hold it in all sorts of ways.)
+const FINGERS = [[8, 6], [12, 10], [16, 14], [20, 18]];
 
-  // A finger is "curled" when its tip is closer to the wrist than its middle joint.
-  const curled = [[8, 6], [12, 10], [16, 14], [20, 18]]
-    .every(([tip, pip]) => dist(lm[tip], lm[0]) < dist(lm[pip], lm[0]));
-  if (curled) return 'fist';
-
-  const pinchRatio = dist(lm[4], lm[8]) / size;
-  if (pinchRatio < (wasPinching ? PINCH_OFF : PINCH_ON)) return 'pinch';
-
-  return 'open';
+/** Classify one hand as 'open', 'point', 'fist' or 'other'. */
+export function classifyHand(lm) {
+  // Is each finger straight? Compare tip and middle-joint distance from the wrist.
+  const [index, middle, ring, pinky] = FINGERS.map(
+    ([tip, pip]) => dist(lm[tip], lm[0]) > dist(lm[pip], lm[0]) * EXTEND_RATIO
+  );
+  if (index && middle && ring && pinky) return 'open';
+  if (index && !middle && !ring && !pinky) return 'point';
+  if (!index && !middle && !ring && !pinky) return 'fist';
+  return 'other'; // e.g. a peace sign, or a hand halfway between shapes
 }
 
 /**
  * Create a gesture tracker for ONE hand. It remembers the previous frame so it
  * can report how far the hand MOVED (deltas), with smoothing and a dead zone.
  *
- *   pinch + move  -> 'rotate'
- *   fist + move   -> 'zoom' (up = closer, down = farther)
- *   open hand     -> 'open' (released, nothing moves)
- *   no hand       -> 'none'
- *
  * Call the returned function once per video frame with MediaPipe's
  * `result.landmarks` (an array of hands; only the first is used) and the frame
  * time in milliseconds. It returns:
  *   { mode, dx, dy, fling }
- *   dx, dy: how far the hand moved this frame (fraction of the video size)
+ *   mode:   'none' | 'release' | 'rotate' | 'zoom'
+ *   dx, dy: how far the tracked point moved this frame (fraction of the video size)
  *   fling:  only on the frame a rotate ends: {x, y} speed of the hand, else null
  */
 export function createGestureTracker() {
   let mode = 'none';
-  let smooth = null; // smoothed hand position {x, y}
+  let smooth = null; // smoothed position {x, y} of the point we follow
   let prev = null; // last position we reported movement from
-  let wasPinching = false; // for pinch hysteresis
   let vel = { x: 0, y: 0 }; // smoothed hand speed (per second), used for fling
   let lastTime = null;
 
@@ -91,19 +86,18 @@ export function createGestureTracker() {
     const dt = lastTime === null ? 0 : (timeMs - lastTime) / 1000; // seconds since last frame
     lastTime = timeMs;
 
-    // Pick the mode and the hand point we follow for that mode.
+    // Pick the mode and the point we follow for that mode.
     const hand = hands[0];
-    const kind = hand ? classifyHand(hand, wasPinching) : null;
-    wasPinching = kind === 'pinch';
+    const kind = hand ? classifyHand(hand) : null;
     let newMode, raw;
-    if (kind === 'pinch') {
+    if (kind === 'open') {
       newMode = 'rotate';
-      raw = pinchPoint(hand);
-    } else if (kind === 'fist') {
-      newMode = 'zoom';
       raw = mirror(hand[9]); // middle knuckle = roughly the palm centre
+    } else if (kind === 'point') {
+      newMode = 'zoom';
+      raw = mirror(hand[8]); // index fingertip
     } else {
-      newMode = hand ? 'open' : 'none';
+      newMode = hand ? 'release' : 'none';
       raw = null;
     }
 
@@ -134,7 +128,7 @@ export function createGestureTracker() {
     }
 
     // Speed estimate = movement / time, smoothed. Holding still pulls it toward 0,
-    // so letting go of a still hand does NOT fling.
+    // so stopping before you let go does NOT fling.
     if (dt > 0) {
       vel.x += VELOCITY_SMOOTHING * (dx / dt - vel.x);
       vel.y += VELOCITY_SMOOTHING * (dy / dt - vel.y);
@@ -142,9 +136,4 @@ export function createGestureTracker() {
 
     return { mode, dx, dy, fling: null };
   };
-}
-
-// Point between thumb tip and index tip (mirrored).
-function pinchPoint(lm) {
-  return mirror({ x: (lm[4].x + lm[8].x) / 2, y: (lm[4].y + lm[8].y) / 2 });
 }
