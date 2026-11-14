@@ -1,0 +1,10 @@
+// Cloudflare Workers config: tells `npx wrangler deploy` what to publish.
+// This site is plain static files (HTML, JS, images), so there's no server code:
+// Cloudflare just serves the folder that `npm run build` creates.
+{
+  "name": "catgpt",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
