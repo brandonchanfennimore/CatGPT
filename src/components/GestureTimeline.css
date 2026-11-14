@@ -1,0 +1,111 @@
+
+/* Main timeline container */
+.gesture-timeline {
+    width: 100%;
+    color: white;
+  }
+  
+  /* Satellite imagery container */
+  .timeline-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #09192b;
+    border: 1px solid #294561;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* NASA radar imagery */
+  .timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.4s ease-in-out;
+  }
+  
+  /* Information displayed below image */
+  .timeline-info {
+    margin-top: 20px;
+  }
+  
+  .timeline-info h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+  
+  .timeline-info p {
+    color: #adc6dd;
+    font-size: 14px;
+    margin: 6px 0;
+  }
+  
+  /* Timeline progress indicators */
+  .timeline-progress {
+    display: flex;
+    gap: 8px;
+    margin: 24px 0;
+  }
+  
+  .timeline-dot {
+    height: 6px;
+    flex: 1;
+    background: #294561;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  /* Currently selected observation */
+  .timeline-dot.active {
+    background: #64c9ff;
+    box-shadow: 0 0 10px rgba(100, 201, 255, 0.5);
+  }
+  
+  /* Previous / Next buttons */
+  .timeline-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  .timeline-buttons button {
+    background: #173c61;
+    border: 1px solid #36658a;
+    border-radius: 8px;
+    padding: 12px 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .timeline-buttons button:hover:not(:disabled) {
+    background: #245b8a;
+  }
+  
+  .timeline-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 600px) {
+    .timeline-info h2 {
+      font-size: 20px;
+    }
+  
+    .timeline-buttons {
+      gap: 10px;
+    }
+  
+    .timeline-buttons button {
+      flex: 1;
+      padding: 12px;
+      font-size: 13px;
+    }
+  }
+  

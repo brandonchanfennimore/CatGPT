@@ -8,16 +8,21 @@ import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 
 import Header from "./components/Header";
-import LocationPanel from "./components/LocationPanel";
+import StudyAreaView from "./components/StudyAreaView";
+import { studyAreas } from "./data/studyAreas";
+
 import "./components/UI.css";
 
 export default function App() {
-  // Shared "mailbox" between the webcam (outside the 3D canvas) and the camera
-  // controls (inside it). A ref, not state, so 30 updates a second don't re-render React.
-  const gestureRef = useRef({ mode: "none", dx: 0, dy: 0 });
+  // Shared reference for webcam and 3D camera controls
+  const gestureRef = useRef({
+    mode: "none",
+    dx: 0,
+    dy: 0,
+  });
 
-  // Controls whether the information panel is visible
-  const [showPanel, setShowPanel] = useState(false);
+  // Stores the currently selected study area
+  const [selectedArea, setSelectedArea] = useState(null);
 
   return (
     <div className="app-container">
@@ -64,20 +69,25 @@ export default function App() {
       <div className="explore-controls">
         <p>Use your hand or mouse to explore Earth.</p>
 
-        <button onClick={() => setShowPanel(true)}>
+        <button
+          onClick={() => setSelectedArea(studyAreas[0])}
+        >
           Explore NISAR Data
         </button>
       </div>
 
-      {showPanel && (
-        <LocationPanel
-          onClose={() => setShowPanel(false)}
+      {/* Study area timeline */}
+      {selectedArea && (
+        <StudyAreaView
+          studyArea={selectedArea}
+          onBack={() => setSelectedArea(null)}
         />
       )}
 
     </div>
   );
 }
+
 
 
 
