@@ -86,7 +86,8 @@ export default function HandTracker({ gestureRef }) {
       // Only run the model when the video shows a new frame.
       if (video.currentTime !== lastTime) {
         lastTime = video.currentTime;
-        const result = landmarker.detectForVideo(video, performance.now());
+        const now = performance.now();
+        const result = landmarker.detectForVideo(video, now);
 
         // Draw the skeleton: lines between joints, dots on joints.
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -96,12 +97,13 @@ export default function HandTracker({ gestureRef }) {
         }
 
         // Add this frame's movement to whatever the 3D scene hasn't used yet.
-        const g = track(result.landmarks);
+        const g = track(result.landmarks, now);
         const shared = gestureRef.current;
         shared.mode = g.mode;
         shared.dx += g.dx;
         shared.dy += g.dy;
         shared.dSpread += g.dSpread;
+        if (g.fling) shared.fling = g.fling; // HandCameraControls turns this into a coasting spin
 
         // Only re-render React when the label actually changes.
         if (g.mode !== lastMode) setMode((lastMode = g.mode));

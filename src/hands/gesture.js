@@ -29,6 +29,13 @@ export const SMOOTHING = 0.4;
 // This removes the small shaking that hand tracking always has.
 export const DEAD_ZONE = 0.004;
 
+// "Fling": when a rotate ends (hand leaves the camera or opens), we report the
+// hand's recent speed so the globe can keep spinning like a wheel and slow down.
+// Speed is in video-widths per second. Slower than this = no fling.
+export const MIN_FLING_SPEED = 0.15;
+// How quickly the speed estimate follows the hand (0..1). Lower = steadier.
+export const VELOCITY_SMOOTHING = 0.5;
+
 // ---------------------------------------------------------------------------
 
 const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -61,19 +68,26 @@ export function classifyHand(lm, wasPinching = false) {
  * report how far things MOVED (deltas), with smoothing and a dead zone.
  *
  * Call the returned function once per video frame with MediaPipe's
- * `result.landmarks` (an array of hands). It returns:
- *   { mode, dx, dy, dSpread }
+ * `result.landmarks` (an array of hands) and the frame time in milliseconds.
+ * It returns:
+ *   { mode, dx, dy, dSpread, fling }
  *   mode:    'none' | 'open' | 'rotate' | 'zoom' | 'tilt'
  *   dx, dy:  how far the controlling hand moved this frame (fraction of video)
  *   dSpread: how much the two pinching hands moved apart (+) or together (-)
+ *   fling:   only on the frame a rotate ends: {x, y} speed of the hand, else null
  */
 export function createGestureTracker() {
   let mode = 'none';
   let smooth = null; // smoothed control value: {x, y} for one hand, or {x: spread} for zoom
   let prev = null; // last value we reported movement from
   let pinching = []; // per-hand "was pinching" flags for hysteresis
+  let vel = { x: 0, y: 0 }; // smoothed speed of the controlling hand (per second)
+  let lastTime = null;
 
-  return function update(hands = []) {
+  return function update(hands = [], timeMs = performance.now()) {
+    const dt = lastTime === null ? 0 : (timeMs - lastTime) / 1000; // seconds since last frame
+    lastTime = timeMs;
+
     const kinds = hands.map((lm, i) => classifyHand(lm, pinching[i]));
     pinching = kinds.map((k) => k === 'pinch');
 
@@ -99,10 +113,14 @@ export function createGestureTracker() {
 
     // Mode changed (or released)? Start fresh so the camera doesn't jump.
     if (newMode !== mode || !raw) {
+      // A rotate just ended while the hand was still moving? Hand over its speed.
+      const flinging = mode === "rotate" && Math.hypot(vel.x, vel.y) > MIN_FLING_SPEED;
+      const fling = flinging ? { ...vel } : null;
       mode = newMode;
       smooth = raw && { ...raw };
       prev = raw && { ...raw };
-      return { mode, dx: 0, dy: 0, dSpread: 0 };
+      vel = { x: 0, y: 0 };
+      return { mode, dx: 0, dy: 0, dSpread: 0, fling };
     }
 
     // Exponential smoothing: move part of the way toward the new value each frame.
@@ -113,11 +131,21 @@ export function createGestureTracker() {
     // steady movement still adds up and eventually counts.
     let dx = smooth.x - prev.x;
     let dy = smooth.y - prev.y;
-    if (Math.hypot(dx, dy) < DEAD_ZONE) return { mode, dx: 0, dy: 0, dSpread: 0 };
-    prev = { ...smooth };
+    if (Math.hypot(dx, dy) < DEAD_ZONE) {
+      dx = dy = 0;
+    } else {
+      prev = { ...smooth };
+    }
 
-    if (mode === 'zoom') return { mode, dx: 0, dy: 0, dSpread: dx };
-    return { mode, dx, dy, dSpread: 0 };
+    // Speed estimate = movement / time, smoothed. Holding still pulls it toward 0,
+    // so letting go of a still hand does NOT fling.
+    if (dt > 0) {
+      vel.x += VELOCITY_SMOOTHING * (dx / dt - vel.x);
+      vel.y += VELOCITY_SMOOTHING * (dy / dt - vel.y);
+    }
+
+    if (mode === 'zoom') return { mode, dx: 0, dy: 0, dSpread: dx, fling: null };
+    return { mode, dx, dy, dSpread: 0, fling: null };
   };
 }
 
