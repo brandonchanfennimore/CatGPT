@@ -12,7 +12,8 @@ import LocationPanel from "./components/LocationPanel";
 import "./components/UI.css";
 
 export default function App() {
-  const gesture = useRef({
+  // Shared reference for webcam and camera controls
+  const gestureRef = useRef({
     mode: "none",
     dx: 0,
     dy: 0,
@@ -25,7 +26,7 @@ export default function App() {
   return (
     <div className="app-container">
 
-      {/* Existing 3D Earth scene */}
+      {/* 3D Earth scene */}
       <Canvas camera={{ position: [0, 0, 7] }}>
         <ambientLight intensity={1.2} />
 
@@ -53,15 +54,15 @@ export default function App() {
         />
 
         <HandCameraControls
-          gesture={gesture}
+          gestureRef={gestureRef}
           earthRadius={EARTH_RADIUS}
         />
       </Canvas>
 
-      {/* Existing hand-tracking system */}
-      <HandTracker gesture={gesture} />
+      {/* Webcam hand tracking */}
+      <HandTracker gestureRef={gestureRef} />
 
-      {/* Your new UI */}
+      {/* UI overlay */}
       <Header />
 
       <div className="explore-controls">
@@ -81,4 +82,6 @@ export default function App() {
     </div>
   );
 }
+
+
 

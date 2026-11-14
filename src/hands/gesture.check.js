@@ -46,4 +46,17 @@ track = createGestureTracker();
 assert.equal(track([makeHand({ curled: true })]).mode, 'tilt');
 assert.equal(track([]).mode, 'none');
 
+// Fling: pinch moving fast, then the hand disappears -> fling with x speed > 0.
+// Frames are 33 ms apart (30 fps).
+track = createGestureTracker();
+for (let i = 0; i < 10; i++) track([makeHand({ pinch: true, cx: 0.7 - i * 0.03 })], i * 33);
+out = track([], 10 * 33);
+assert.equal(out.mode, 'none');
+assert.ok(out.fling && out.fling.x > 0, `expected a rightward fling, got ${JSON.stringify(out.fling)}`);
+
+// Holding still before letting go -> no fling.
+track = createGestureTracker();
+for (let i = 0; i < 30; i++) track([makeHand({ pinch: true })], i * 33);
+assert.equal(track([], 30 * 33).fling, null);
+
 console.log('gesture checks passed');
