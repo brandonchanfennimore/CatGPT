@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Data pipeline: raw NISAR files are huge, never commit them
+data/raw/
+pipeline/.venv/
+.env

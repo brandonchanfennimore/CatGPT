@@ -16,3 +16,44 @@ body {
   overflow: hidden;
 }
 
+
+/* ---- Webcam / hand-gesture panel (bottom-right corner) ---- */
+.hand-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 260px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(10, 15, 35, 0.8);
+  color: #e6ecff;
+  font: 14px/1.4 system-ui, sans-serif;
+}
+.hand-preview {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.hand-preview video,
+.hand-preview canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1); /* mirror, like a selfie */
+}
+.hand-panel button {
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #4fd1ff;
+  color: #04121f;
+  font-weight: 600;
+  cursor: pointer;
+}
+.hand-panel button:disabled { opacity: 0.6; cursor: wait; }
+.hand-status { margin: 8px 0 0; }
+.hand-error { margin: 8px 0 0; color: #ffb4a8; }
+.hand-guide { margin: 8px 0 0; padding-left: 18px; color: #aab4d4; font-size: 13px; }
