@@ -26,6 +26,8 @@ export default function App() {
 
   // Reference used by the zoom bar
   const zoomBarRef = useRef(null);
+  // Zoom level (0..1) requested by clicking/dragging the bar, or null.
+  const zoomTargetRef = useRef(null);
 
   // Currently selected NISAR study area
   const [selectedArea, setSelectedArea] = useState(null);
@@ -62,6 +64,7 @@ export default function App() {
     maxDistance={EARTH_RADIUS * 10}
   />
 
+<<<<<<< HEAD
   <HandCameraControls
     gestureRef={gestureRef}
     earthRadius={EARTH_RADIUS}
@@ -69,6 +72,10 @@ export default function App() {
 
   <ZoomReadout barRef={zoomBarRef} />
 </Canvas>
+=======
+        <ZoomReadout barRef={zoomBarRef} targetRef={zoomTargetRef} />
+      </Canvas>
+>>>>>>> 6e24b10 (allow cursor to adjust zoom bar)
 
       {/* Webcam hand tracking */}
       <HandTracker gestureRef={gestureRef} />
@@ -79,7 +86,7 @@ export default function App() {
         onLightingChange={setLighting}
       />
 
-      <ZoomBar barRef={zoomBarRef} />
+      <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />
 
       <div className="explore-controls">
         <p>Use your hand or mouse to explore Earth.</p>
