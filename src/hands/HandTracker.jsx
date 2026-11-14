@@ -17,7 +17,7 @@ const WASM_URL = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/was
 const MODEL_URL =
   "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task";
 
-const LABELS = { none: "No hand", open: "Open hand (released)", rotate: "Rotate", zoom: "Zoom", tilt: "Tilt" };
+const LABELS = { none: "No hand", open: "Open hand (released)", rotate: "Rotate", zoom: "Zoom" };
 
 export default function HandTracker({ gestureRef }) {
   const videoRef = useRef(null);
@@ -60,7 +60,7 @@ export default function HandTracker({ gestureRef }) {
       landmarker = await HandLandmarker.createFromOptions(vision, {
         baseOptions: { modelAssetPath: MODEL_URL, delegate: "GPU" },
         runningMode: "VIDEO", // optimised for a stream of frames
-        numHands: 2,
+        numHands: 1, // one-hand controls: a second hand is ignored
       });
     } catch (err) {
       stream.getTracks().forEach((t) => t.stop());
@@ -102,7 +102,6 @@ export default function HandTracker({ gestureRef }) {
         shared.mode = g.mode;
         shared.dx += g.dx;
         shared.dy += g.dy;
-        shared.dSpread += g.dSpread;
         if (g.fling) shared.fling = g.fling; // HandCameraControls turns this into a coasting spin
 
         // Only re-render React when the label actually changes.
@@ -125,7 +124,7 @@ export default function HandTracker({ gestureRef }) {
     cleanupRef.current = null;
     videoRef.current.srcObject = null;
     // Clear any leftover movement so the globe doesn't keep drifting.
-    gestureRef.current = { mode: "none", dx: 0, dy: 0, dSpread: 0 };
+    gestureRef.current = { mode: "none", dx: 0, dy: 0 };
     setMode("none");
     setState("idle");
   }
@@ -178,9 +177,8 @@ export default function HandTracker({ gestureRef }) {
       {message && <p className="hand-error">{message}</p>}
 
       <ul className="hand-guide">
-        <li>🤏 One hand pinch + move: rotate</li>
-        <li>🤏🤏 Two hands pinch, apart/together: zoom</li>
-        <li>✊ Fist + move up/down: tilt</li>
+        <li>🤏 Pinch + move: rotate (let go mid-swipe to spin)</li>
+        <li>✊ Fist + move up/down: zoom in/out</li>
         <li>🖐️ Open hand: release</li>
       </ul>
     </div>

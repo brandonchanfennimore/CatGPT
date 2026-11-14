@@ -12,13 +12,9 @@ import LocationPanel from "./components/LocationPanel";
 import "./components/UI.css";
 
 export default function App() {
-  // Shared reference for webcam and camera controls
-  const gestureRef = useRef({
-    mode: "none",
-    dx: 0,
-    dy: 0,
-    dSpread: 0,
-  });
+  // Shared "mailbox" between the webcam (outside the 3D canvas) and the camera
+  // controls (inside it). A ref, not state, so 30 updates a second don't re-render React.
+  const gestureRef = useRef({ mode: "none", dx: 0, dy: 0 });
 
   // Controls whether the information panel is visible
   const [showPanel, setShowPanel] = useState(false);

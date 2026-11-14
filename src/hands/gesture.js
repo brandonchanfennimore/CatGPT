@@ -64,63 +64,59 @@ export function classifyHand(lm, wasPinching = false) {
 }
 
 /**
- * Create a gesture tracker. It remembers the previous frame so it can
- * report how far things MOVED (deltas), with smoothing and a dead zone.
+ * Create a gesture tracker for ONE hand. It remembers the previous frame so it
+ * can report how far the hand MOVED (deltas), with smoothing and a dead zone.
+ *
+ *   pinch + move  -> 'rotate'
+ *   fist + move   -> 'zoom' (up = closer, down = farther)
+ *   open hand     -> 'open' (released, nothing moves)
+ *   no hand       -> 'none'
  *
  * Call the returned function once per video frame with MediaPipe's
- * `result.landmarks` (an array of hands) and the frame time in milliseconds.
- * It returns:
- *   { mode, dx, dy, dSpread, fling }
- *   mode:    'none' | 'open' | 'rotate' | 'zoom' | 'tilt'
- *   dx, dy:  how far the controlling hand moved this frame (fraction of video)
- *   dSpread: how much the two pinching hands moved apart (+) or together (-)
- *   fling:   only on the frame a rotate ends: {x, y} speed of the hand, else null
+ * `result.landmarks` (an array of hands; only the first is used) and the frame
+ * time in milliseconds. It returns:
+ *   { mode, dx, dy, fling }
+ *   dx, dy: how far the hand moved this frame (fraction of the video size)
+ *   fling:  only on the frame a rotate ends: {x, y} speed of the hand, else null
  */
 export function createGestureTracker() {
   let mode = 'none';
-  let smooth = null; // smoothed control value: {x, y} for one hand, or {x: spread} for zoom
-  let prev = null; // last value we reported movement from
-  let pinching = []; // per-hand "was pinching" flags for hysteresis
-  let vel = { x: 0, y: 0 }; // smoothed speed of the controlling hand (per second)
+  let smooth = null; // smoothed hand position {x, y}
+  let prev = null; // last position we reported movement from
+  let wasPinching = false; // for pinch hysteresis
+  let vel = { x: 0, y: 0 }; // smoothed hand speed (per second), used for fling
   let lastTime = null;
 
   return function update(hands = [], timeMs = performance.now()) {
     const dt = lastTime === null ? 0 : (timeMs - lastTime) / 1000; // seconds since last frame
     lastTime = timeMs;
 
-    const kinds = hands.map((lm, i) => classifyHand(lm, pinching[i]));
-    pinching = kinds.map((k) => k === 'pinch');
-
-    // Pick the mode and the raw "control value" we track for that mode.
-    const pinchHands = hands.filter((_, i) => kinds[i] === 'pinch');
-    const fistHand = hands.find((_, i) => kinds[i] === 'fist');
+    // Pick the mode and the hand point we follow for that mode.
+    const hand = hands[0];
+    const kind = hand ? classifyHand(hand, wasPinching) : null;
+    wasPinching = kind === 'pinch';
     let newMode, raw;
-    if (pinchHands.length >= 2) {
-      // Zoom: track the distance between the two pinch points.
-      const [a, b] = pinchHands.map(pinchPoint);
-      newMode = 'zoom';
-      raw = { x: dist(a, b), y: 0 };
-    } else if (pinchHands.length === 1) {
+    if (kind === 'pinch') {
       newMode = 'rotate';
-      raw = pinchPoint(pinchHands[0]);
-    } else if (fistHand) {
-      newMode = 'tilt';
-      raw = mirror(fistHand[9]); // middle knuckle = roughly the palm centre
+      raw = pinchPoint(hand);
+    } else if (kind === 'fist') {
+      newMode = 'zoom';
+      raw = mirror(hand[9]); // middle knuckle = roughly the palm centre
     } else {
-      newMode = hands.length ? 'open' : 'none';
+      newMode = hand ? 'open' : 'none';
       raw = null;
     }
 
     // Mode changed (or released)? Start fresh so the camera doesn't jump.
     if (newMode !== mode || !raw) {
       // A rotate just ended while the hand was still moving? Hand over its speed.
-      const flinging = mode === "rotate" && Math.hypot(vel.x, vel.y) > MIN_FLING_SPEED;
+      const flinging = mode === 'rotate' && Math.hypot(vel.x, vel.y) > MIN_FLING_SPEED;
       const fling = flinging ? { ...vel } : null;
       mode = newMode;
       smooth = raw && { ...raw };
       prev = raw && { ...raw };
       vel = { x: 0, y: 0 };
-      return { mode, dx: 0, dy: 0, dSpread: 0, fling };
+      return { mode, dx: 0, dy: 0, fling };
     }
 
     // Exponential smoothing: move part of the way toward the new value each frame.
@@ -144,8 +140,7 @@ export function createGestureTracker() {
       vel.y += VELOCITY_SMOOTHING * (dy / dt - vel.y);
     }
 
-    if (mode === 'zoom') return { mode, dx: 0, dy: 0, dSpread: dx, fling: null };
-    return { mode, dx, dy, dSpread: 0, fling: null };
+    return { mode, dx, dy, fling: null };
   };
 }
 

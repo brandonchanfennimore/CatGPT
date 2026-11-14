@@ -33,17 +33,15 @@ track = createGestureTracker();
 for (let i = 0; i < 10; i++) out = track([makeHand({ pinch: true, cx: 0.5 + (i % 2) * 0.001 })]);
 assert.equal(out.dx, 0);
 
-// Two pinching hands moving apart -> zoom with dSpread > 0.
+// A second hand is ignored: only the first hand controls.
 track = createGestureTracker();
-for (let i = 0; i < 10; i++) {
-  out = track([makeHand({ pinch: true, cx: 0.3 - i * 0.02 }), makeHand({ pinch: true, cx: 0.7 + i * 0.02 })]);
-}
-assert.equal(out.mode, 'zoom');
-assert.ok(out.dSpread > 0);
+assert.equal(track([makeHand(), makeHand({ pinch: true })]).mode, 'open');
 
-// Fist -> tilt; no hands -> none.
+// Fist moving up -> zoom with dy < 0 (HandCameraControls: up = closer).
 track = createGestureTracker();
-assert.equal(track([makeHand({ curled: true })]).mode, 'tilt');
+for (let i = 0; i < 10; i++) out = track([makeHand({ curled: true, cy: 0.7 - i * 0.02 })]);
+assert.equal(out.mode, 'zoom');
+assert.ok(out.dy < 0, `expected dy < 0, got ${out.dy}`);
 assert.equal(track([]).mode, 'none');
 
 // Fling: pinch moving fast, then the hand disappears -> fling with x speed > 0.
