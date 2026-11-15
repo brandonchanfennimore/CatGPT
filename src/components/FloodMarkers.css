@@ -1,0 +1,171 @@
+/* Flood dots on the globe (FloodMarkers.jsx). FloodMarkerPositioner moves them. */
+
+.flood-markers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none; /* only the dots themselves take clicks; drags hit the globe */
+}
+
+.fm-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden; /* the positioner shows the ones in use */
+  will-change: transform;
+}
+
+/* The dot is centred on the place's exact screen point. */
+.fm-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  padding: 0;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: flex; /* centres the cluster count */
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease;
+}
+.fm-dot:hover,
+.fm-dot:focus-visible {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+.fm-dot:focus-visible {
+  outline: 2px solid #64c9ff;
+  outline-offset: 2px;
+}
+
+/* Study area: red, same colour as the radar-mode pins. */
+.fm-item.site .fm-dot {
+  width: 16px;
+  height: 16px;
+  background: #ff3b30;
+}
+
+/* Other flood: smaller amber dot. */
+.fm-item.event .fm-dot {
+  width: 11px;
+  height: 11px;
+  background: #ffb020;
+}
+
+/* Cluster: a blue bubble with the count, a little bigger the more it holds. */
+.fm-item.cluster .fm-dot {
+  width: calc(24px + 1.5px * var(--n, 2));
+  height: calc(24px + 1.5px * var(--n, 2));
+  background: rgba(39, 120, 196, 0.9);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+}
+/* A cluster that hides a study area gets a red ring. */
+.fm-item.cluster.has-site .fm-dot {
+  border-color: #ff3b30;
+  border-width: 3px;
+}
+.fm-count {
+  display: none;
+}
+.fm-item.cluster .fm-count {
+  display: block;
+}
+
+/* Name card: shows on hover, or stays open after clicking an amber dot. */
+.fm-tip {
+  position: absolute;
+  left: 14px;
+  top: 0;
+  transform: translateY(-50%);
+  width: max-content;
+  max-width: 240px;
+  padding: 7px 10px;
+  background: rgba(5, 8, 22, 0.92);
+  border: 1px solid #36658a;
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.fm-item.cluster .fm-tip {
+  left: calc(18px + 0.75px * var(--n, 2));
+}
+.fm-item:hover .fm-tip,
+.fm-item.pinned .fm-tip,
+.fm-dot:focus-visible + .fm-tip {
+  opacity: 1;
+}
+.fm-item:hover,
+.fm-item.pinned {
+  z-index: 1; /* card above neighbouring dots */
+}
+.fm-tip-name,
+.fm-tip-meta,
+.fm-tip-note {
+  display: block;
+}
+.fm-tip-meta {
+  color: #adc6dd;
+}
+.fm-tip-note {
+  display: none;
+  margin-top: 4px;
+  color: #d5dee8;
+}
+/* The one-line note only on a clicked (pinned) dot, so hover stays short. */
+.fm-item.pinned .fm-tip-note:not(:empty) {
+  display: block;
+}
+
+/* Cluster hint under "N floods here": zoom in, or (fully zoomed) pick from the list. */
+.fm-item.cluster .fm-tip-meta::before {
+  content: "Click to zoom in";
+}
+.fm-item.cluster.max-zoom .fm-tip-meta::before {
+  content: "Click to pick one";
+}
+.fm-tip-list {
+  display: none;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.fm-item.cluster.max-zoom.pinned .fm-tip-list {
+  display: block;
+}
+/* An open list must take clicks (cards are click-through otherwise). */
+.fm-item.pinned .fm-tip {
+  pointer-events: auto;
+}
+.fm-tip-list li {
+  padding: 3px 0;
+  color: #d5dee8;
+}
+.fm-tip-list button {
+  padding: 4px 8px;
+  border: 1px solid #36658a;
+  border-radius: 6px;
+  background: #173c61;
+  color: white;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.fm-tip-list button:hover,
+.fm-tip-list button:focus-visible {
+  background: #245b8a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-dot,
+  .fm-tip {
+    transition: none;
+  }
+}

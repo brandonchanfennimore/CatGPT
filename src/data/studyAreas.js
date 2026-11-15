@@ -20,6 +20,8 @@ export const studyAreas = [
       ],
       // Flashlight mode shows this change map: red = water that appeared after the flood.
       flashlightImage: "/radar/valencia/change.png",
+      satellite: "Sentinel-1",
+      dataSource: "Sentinel-1 radar (ESA), water maps by NASA OPERA (DSWx-S1)",
 
       findings:
         "Comparing radar water maps from 19 and 31 October shows about 76 km² of new surface water (red in Flashlight mode), mostly around the Albufera lagoon and the low farmland of L'Horta Sud. Radar sees through the storm clouds, so it mapped the flood when ordinary satellite photos could not. Note: farmers also flood the Albufera rice fields on purpose from around November, so some new water near the lagoon may be seasonal, not the storm.",
@@ -49,6 +51,8 @@ export const studyAreas = [
       ],
       // Flashlight mode: red = water that appeared between 3 and 15 September.
       flashlightImage: "/radar/boris/change.png",
+      satellite: "Sentinel-1",
+      dataSource: "Sentinel-1 radar (ESA), water maps by NASA OPERA (DSWx-S1)",
 
       findings:
         "Between 3 and 15 September about 12 km² of new surface water appeared here (red in Flashlight mode): around the edges of the Otmuchów and Nysa reservoirs, which were holding back floodwater, and across the river plain north of Nysa. Radar sees through the storm clouds, but it misses water in the town itself (buildings bounce the signal back) and in narrow mountain valleys, so the real flooding was larger than this map shows.",
@@ -57,5 +61,87 @@ export const studyAreas = [
         "Storm Boris killed more than two dozen people across Central Europe and forced tens of thousands to evacuate. Reservoirs like Nysa's helped hold back the peak; mapping how full they got and where water escaped helps plan for the next storm.",
 
       sourceUrl: "https://search.earthdata.nasa.gov/search?q=OPERA_L3_DSWX-S1_V1",
+    },
+    {
+      id: "chokwe-flood",
+      name: "Limpopo River Flood, Mozambique",
+      description:
+        "In January 2026, weeks of heavy rain pushed the Limpopo River out of its banks across southern Mozambique. NISAR's radar sees through clouds, so it captured the flood while optical satellites only saw cloud cover.",
+
+      // Chókwè town. Images from NASA-ISRO NISAR GCOV previews (track 114, ascending),
+      // cropped 50 km x 50 km around the town by pipeline/fetch_asf.py:
+      //   python pipeline/fetch_asf.py --lat -24.533 --lon 32.983 --name chokwe-flood
+      center: { lat: -24.533, lon: 32.983 },
+      satellite: "NISAR",
+      bounds: { west: 32.7349, south: -24.7592, east: 33.2313, north: -24.3072 },
+
+      // Radar view: NISAR false colour (dark = water). Normal view: a cloud-free photo
+      // with NISAR's water in blue (pipeline/make_normal_view.py).
+      observations: [
+        { date: "2025-12-24 (before)", image: "/nisar/chokwe-flood/2025-12-24_A114.png",
+          normalImage: "/nisar/chokwe-flood/2025-12-24_A114_normal.jpg" },
+        { date: "2026-01-05 (just before)", image: "/nisar/chokwe-flood/2026-01-05_A114.png",
+          normalImage: "/nisar/chokwe-flood/2026-01-05_A114_normal.jpg" },
+        { date: "2026-01-17 (day after peak)", image: "/nisar/chokwe-flood/2026-01-17_A114.png",
+          normalImage: "/nisar/chokwe-flood/2026-01-17_A114_normal.jpg" },
+        { date: "2026-07-04 (water receded)", image: "/nisar/chokwe-flood/2026-07-04_A114.png",
+          normalImage: "/nisar/chokwe-flood/2026-07-04_A114_normal.jpg" },
+        { date: "2026-09-26 (dry season)", image: "/nisar/chokwe-flood/2026-09-26_A114.png",
+          normalImage: "/nisar/chokwe-flood/2026-09-26_A114_normal.jpg" },
+      ],
+
+      viewNotes: {
+        normal:
+          "Blue = water detected by NISAR radar on this date (not the real colour of the water). Background: cloud-free Landsat/Sentinel-2 photo (NASA HLS) from 15 Aug 2025, the same in every frame.",
+      },
+
+      findings:
+        "Radar bounces away from smooth water, so open water shows up dark in Radar view (blue in Normal view). On 5 January the Limpopo is a thin line crossing the image. On 17 January, the day after the river peaked at Chókwè, the whole valley is flooded: water spread several kilometres across farmland on both banks, up to the edge of the town (centre) and into its irrigated fields (the grid pattern, lower right). By July the river is back in its channel.",
+
+      impact:
+        "NASA reports the flooding displaced over 600,000 people, flooded 30,000 homes and damaged 400,000 acres of cropland; local officials said 88% of Chókwè district was under water. Because radar works day or night and through cloud, NISAR can map a flood while it is happening, when responders need it most.",
+
+      sourceUrl: "https://svs.gsfc.nasa.gov/5661",
+    },
+    {
+      id: "sylhet-flood-2026",
+      name: "Sylhet Monsoon Floods 2026, Bangladesh",
+      description:
+        "Sylhet sits in a bowl of low wetlands (\"haors\") fed by rivers coming off the hills of India. In the 2026 monsoon, flash floods hit from June, and by mid-July the Surma and Kushiyara rivers were above danger level at several gauges.",
+
+      // Sylhet city. Images from NASA-ISRO NISAR GCOV previews (track 91, descending),
+      // cropped 60 km x 60 km around the city by pipeline/fetch_asf.py:
+      //   python pipeline/fetch_asf.py --lat 24.90 --lon 91.87 --name sylhet-flood --radius-km 30
+      center: { lat: 24.9, lon: 91.87 },
+      satellite: "NISAR",
+      bounds: { west: 91.5734, south: 24.6298, east: 92.1664, north: 25.1698 },
+
+      // NISAR's first pass here was 20 June 2026, so there's no pre-monsoon "before";
+      // November (dry season) shows the normal state instead.
+      observations: [
+        { date: "2026-06-20 (flood season)", image: "/nisar/sylhet-flood/2026-06-20_D91.png",
+          normalImage: "/nisar/sylhet-flood/2026-06-20_D91_normal.jpg" },
+        { date: "2026-07-14 (peak)", image: "/nisar/sylhet-flood/2026-07-14_D91.png",
+          normalImage: "/nisar/sylhet-flood/2026-07-14_D91_normal.jpg" },
+        { date: "2026-08-31 (receding)", image: "/nisar/sylhet-flood/2026-08-31_D91.png",
+          normalImage: "/nisar/sylhet-flood/2026-08-31_D91_normal.jpg" },
+        { date: "2026-10-18 (monsoon over)", image: "/nisar/sylhet-flood/2026-10-18_D91.png",
+          normalImage: "/nisar/sylhet-flood/2026-10-18_D91_normal.jpg" },
+        { date: "2026-11-11 (dry season)", image: "/nisar/sylhet-flood/2026-11-11_D91.png",
+          normalImage: "/nisar/sylhet-flood/2026-11-11_D91_normal.jpg" },
+      ],
+
+      viewNotes: {
+        normal:
+          "Blue = water detected by NISAR radar on this date (not the real colour of the water). Background: Landsat/Sentinel-2 photo (NASA HLS) from 5 May 2026, before the monsoon, the same in every frame.",
+      },
+
+      findings:
+        "On 14 July, a day after rivers were reported above danger level at four gauges, NISAR shows patches of open water spread across the low farmland and wetlands north-west of the city (dark in Radar view, blue in Normal view). By November the radar finds about a third as much open water. Some of the water is normal: the haors fill every monsoon (the large lake at the lower right is there in every frame), so the flood is the extra water on top of that.",
+
+      impact:
+        "Sylhet's haors grow one rice crop a year, and early flash floods can wipe it out: rain and flash floods damaged an estimated Tk 7.5 billion of boro rice in May 2026, before the main monsoon. In July the UN and aid agencies coordinated a response to flash floods and landslides across the region. Radar can watch the haors fill and drain under monsoon clouds, every 12 days.",
+
+      sourceUrl: "https://bangladesh.un.org/sites/default/files/2026-07/SitRep_ICCG_Flash%20Flood%20%26%20Landslides_13July26.pdf",
     },
   ];

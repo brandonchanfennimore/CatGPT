@@ -4,8 +4,18 @@ import "./GestureTimeline.css";
 
 // `ref` lets the parent flip pictures too (used by the hand swipe gesture):
 // ref.current.next() / ref.current.previous().
-export default function GestureTimeline({ observations = [], ref }) {
+// What each view shows. A study area can override these with `viewNotes`.
+const DEFAULT_VIEW_NOTES = {
+  radar:
+    "NISAR radar, false colour: dark = water, purple = farmland, green = trees and bush, white = buildings.",
+  normal:
+    "Blue = water detected by NISAR radar, drawn on a cloud-free photo of the area.",
+};
+
+export default function GestureTimeline({ observations = [], viewNotes = {}, ref }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  // "radar" = NISAR's own false-colour image, "normal" = photo + radar water in blue.
+  const [view, setView] = useState("radar");
 
   useImperativeHandle(ref, () => ({
     next: () => setCurrentIndex((i) => Math.min(i + 1, observations.length - 1)),
@@ -17,6 +27,9 @@ export default function GestureTimeline({ observations = [], ref }) {
   }
 
   const current = observations[currentIndex];
+  const hasNormalView = observations.some((o) => o.normalImage);
+  const showNormal = view === "normal" && current.normalImage;
+  const notes = { ...DEFAULT_VIEW_NOTES, ...viewNotes };
 
   function nextObservation() {
     setCurrentIndex((prev) =>
@@ -32,12 +45,39 @@ export default function GestureTimeline({ observations = [], ref }) {
 
   return (
     <div className="gesture-timeline">
+      {hasNormalView && (
+        <div className="view-toggle" role="group" aria-label="Image view">
+          <button
+            className={view === "radar" ? "active" : ""}
+            aria-pressed={view === "radar"}
+            onClick={() => setView("radar")}
+          >
+            Radar view
+          </button>
+          <button
+            className={view === "normal" ? "active" : ""}
+            aria-pressed={view === "normal"}
+            onClick={() => setView("normal")}
+          >
+            Normal view
+          </button>
+        </div>
+      )}
+
       <div className="timeline-image">
         <img
-          src={current.image}
-          alt={`Radar observation from ${current.date}`}
+          src={showNormal ? current.normalImage : current.image}
+          alt={
+            showNormal
+              ? `Photo with flood water from ${current.date}`
+              : `Radar observation from ${current.date}`
+          }
         />
       </div>
+
+      {hasNormalView && (
+        <p className="view-note">{showNormal ? notes.normal : notes.radar}</p>
+      )}
 
       <div className="timeline-info">
         <h2>{current.date}</h2>

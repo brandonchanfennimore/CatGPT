@@ -31,6 +31,7 @@ import { studyAreas } from "./data/studyAreas";
 
 import "./components/UI.css";
 import LocationMarker from "./components/LocationMarker";
+import { FloodMarkerLayer, FloodMarkerPositioner } from "./components/FloodMarkers";
 
 // Keyboard shortcuts for the modes (also shown on the mode buttons).
 const MODE_KEYS = { 1: "explore", 2: "flashlight", 3: "time" };
@@ -49,6 +50,9 @@ export default function App() {
   const zoomTargetRef = useRef(null);
   // The layer holding country/city labels; LabelPositioner moves them.
   const labelsRef = useRef(null);
+  // Flood dots (Explore mode): their HTML layer, and what each dot shows right now.
+  const floodLayerRef = useRef(null);
+  const floodStateRef = useRef(null);
   // The radar lens ring (HTML); RadarFlashlight moves it.
   const lensOverlayRef = useRef(null);
   // A camera flight in progress ({ dir, zoom }), or null. CameraFlyer flies it.
@@ -141,6 +145,9 @@ export default function App() {
     return () => window.removeEventListener("wheel", onWheel);
   }, [mode]);
 
+  // Clicking a cluster of flood dots flies toward it.
+  const flyTo = useCallback((target) => (flyRef.current = target), []);
+
   // Which gesture guide/labels the webcam panel shows.
   const handContext = infoFullScreen ? "info" : mode;
 
@@ -164,16 +171,21 @@ export default function App() {
         <Earth />
         {layers.borders && <Borders />}
 
-        {/* One pin per study area: clickable in Explore; in the radar modes they glow instead. */}
-        {studyAreas.map((area) => (
-          <LocationMarker
-            key={area.id}
-            studyArea={area}
-            onSelect={setSelectedArea}
-            interactive={mode === "explore"}
-            glow={mode !== "explore"}
-          />
-        ))}
+        {/* Explore: flood dots that cluster when zoomed out (study areas in red).
+            Radar modes: a glowing pin per study area instead. */}
+        {mode === "explore" ? (
+          <FloodMarkerPositioner layerRef={floodLayerRef} stateRef={floodStateRef} />
+        ) : (
+          studyAreas.map((area) => (
+            <LocationMarker
+              key={area.id}
+              studyArea={area}
+              onSelect={setSelectedArea}
+              interactive={false}
+              glow
+            />
+          ))
+        )}
 
         {mode === "flashlight" && radarArea?.bounds && (
           <RadarFlashlight
@@ -222,6 +234,16 @@ export default function App() {
 
       {/* Country and city names over the globe */}
       <PlaceLabels layerRef={labelsRef} visible={layers.labels} coordinates={layers.coordinates} />
+
+      {/* Flood dots over the globe (hidden while the full-screen info view is open) */}
+      {mode === "explore" && !infoFullScreen && (
+        <FloodMarkerLayer
+          layerRef={floodLayerRef}
+          stateRef={floodStateRef}
+          onOpenSite={setSelectedArea}
+          onFly={flyTo}
+        />
+      )}
 
       {mode === "flashlight" && <LensOverlay overlayRef={lensOverlayRef} />}
       {mode === "time" && radarArea && (

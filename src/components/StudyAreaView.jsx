@@ -109,6 +109,7 @@ export default function StudyAreaView({
             <GestureTimeline
               ref={timelineRef}
               observations={studyArea.observations || []}
+              viewNotes={studyArea.viewNotes}
             />
           </div>
 
@@ -131,7 +132,7 @@ export default function StudyAreaView({
             </p>
 
             <h3>Data Source</h3>
-            <p>NASA-ISRO Synthetic Aperture Radar</p>
+            <p>{studyArea.dataSource ?? "NASA-ISRO Synthetic Aperture Radar (NISAR)"}</p>
 
             {studyArea.sourceUrl && (
               <a
