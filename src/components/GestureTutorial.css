@@ -1,0 +1,255 @@
+/* Gesture tutorial pop-up (GestureTutorial.jsx). Above everything, including the
+   camera panel (z-index 200), on a darkened backdrop. */
+.tutorial {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex; /* + margin: auto on the card = centred, but never cut off when taller than the screen */
+  padding: 24px 16px;
+  overflow-y: auto;
+  background: rgba(2, 6, 18, 0.78);
+  backdrop-filter: blur(3px);
+  animation: tut-fade 0.25s ease;
+}
+@keyframes tut-fade {
+  from { opacity: 0; }
+}
+
+.tutorial-card {
+  margin: auto;
+  width: min(880px, 100%);
+  padding: 28px;
+  border: 1px solid #28445f;
+  border-radius: 18px;
+  background: #0d2034;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+.tutorial-eyebrow {
+  margin: 0;
+  color: #78c6fa;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.tutorial-card h2 {
+  margin: 6px 0 8px;
+  font-size: 28px;
+}
+.tutorial-intro {
+  margin: 0 0 20px;
+  color: #b3c7db;
+  line-height: 1.5;
+}
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tutorial-step {
+  padding: 12px;
+  border: 1px solid #28445f;
+  border-radius: 12px;
+  background: #10273f;
+}
+.tutorial-step h3 {
+  margin: 12px 0 4px;
+  font-size: 15px;
+}
+.tutorial-step h3 span,
+.tutorial-event li span {
+  margin-right: 4px;
+}
+.tutorial-step p {
+  margin: 0;
+  color: #b3c7db;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* ---- The little animated scene in each card ---- */
+.tut-stage {
+  position: relative;
+  height: 110px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 45%, #0f2a47, #050c1a 75%);
+  overflow: hidden;
+}
+.tut-globe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 66px;
+  height: 66px;
+  margin: -33px 0 0 -33px;
+  border-radius: 50%;
+  /* The real globe map, scrolled sideways to look like it's spinning. */
+  background: url("/textures/earth.jpg") 0 50% / 200% 100%;
+  box-shadow: inset -10px -8px 18px rgba(0, 0, 0, 0.6), 0 0 14px rgba(120, 198, 250, 0.35);
+}
+.tut-hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+.tut-pin,
+.tut-popup,
+.tut-badge {
+  display: none;
+  position: absolute;
+}
+
+/* 1. Open palm: hand sweeps sideways, the globe spins with it. */
+.tut-rotate .tut-hand { animation: tut-sweep 2.6s ease-in-out infinite; top: 78%; }
+.tut-rotate .tut-globe { animation: tut-spin 2.6s ease-in-out infinite; }
+@keyframes tut-sweep {
+  0%, 100% { transform: translate(-150%, -50%); }
+  50% { transform: translate(50%, -50%); }
+}
+@keyframes tut-spin {
+  0%, 100% { background-position: 0 50%; }
+  50% { background-position: -66px 50%; }
+}
+
+/* 2. Point: finger moves right (globe grows), then left (globe shrinks). */
+.tut-zoom .tut-hand { animation: tut-sweep 2.6s ease-in-out infinite; top: 80%; }
+.tut-zoom .tut-globe { animation: tut-zoom 2.6s ease-in-out infinite; }
+@keyframes tut-zoom {
+  0%, 100% { transform: scale(0.75); }
+  50% { transform: scale(1.35); }
+}
+
+/* 3. Fist: hand gently pulses, a pause sign shows, the globe holds still. */
+.tut-pause .tut-hand { animation: tut-pulse 1.6s ease-in-out infinite; top: 78%; left: 72%; }
+.tut-pause .tut-badge {
+  display: block;
+  top: 10px;
+  right: 10px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+@keyframes tut-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* 4. Two fingers up: hand swipes up past the pin, then an info card pops up. */
+.tut-open .tut-hand { animation: tut-swipe-up 2.8s ease-in-out infinite; }
+.tut-open .tut-pin {
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+.tut-open .tut-popup {
+  display: block;
+  top: 14px;
+  left: 50%;
+  width: 70px;
+  height: 40px;
+  margin-left: -35px;
+  border-radius: 6px;
+  background: linear-gradient(#cfe6fa 0 8px, #10243a 8px) padding-box;
+  border: 1px solid #78c6fa;
+  animation: tut-pop 2.8s ease-in-out infinite;
+}
+@keyframes tut-swipe-up {
+  0% { transform: translate(-50%, 60%); opacity: 0; }
+  15% { opacity: 1; }
+  50% { transform: translate(-50%, -110%); opacity: 1; }
+  60%, 100% { transform: translate(-50%, -110%); opacity: 0; }
+}
+@keyframes tut-pop {
+  0%, 50% { transform: scale(0.4); opacity: 0; }
+  62%, 90% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* ---- Inside an event, privacy note, buttons ---- */
+.tutorial-event {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(120, 198, 250, 0.07);
+}
+.tutorial-event h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #78c6fa;
+}
+.tutorial-event ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #d5e2ef;
+  font-size: 13px;
+}
+.tutorial-privacy {
+  margin: 14px 0 0;
+  color: #8ea5bc;
+  font-size: 12px;
+}
+.tutorial-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+.tutorial-actions button {
+  padding: 11px 18px;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tutorial-primary {
+  border: 0;
+  background: #16a34a; /* same green as the camera panel's Start button */
+  color: white;
+}
+.tutorial-primary:hover { background: #1fb457; }
+.tutorial-secondary {
+  border: 1px solid #365979;
+  background: transparent;
+  color: #cfe0f0;
+}
+.tutorial-secondary:hover { background: rgba(255, 255, 255, 0.06); }
+.tutorial-actions button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .tutorial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tutorial-card { padding: 20px; }
+  .tutorial-card h2 { font-size: 23px; }
+}
+@media (max-width: 420px) {
+  .tutorial-actions { flex-direction: column-reverse; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tutorial,
+  .tut-stage * { animation: none !important; }
+  .tut-open .tut-popup { opacity: 1; transform: none; }
+}

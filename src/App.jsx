@@ -16,11 +16,14 @@ import { RENDER_MAX_PIXEL_RATIO } from "./tuning";
 
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
+import GestureTutorial from "./components/GestureTutorial";
 import { countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
 import { FloodMarkerLayer, FloodMarkerPositioner } from "./components/FloodMarkers";
+
+const TUTORIAL_SEEN_KEY = "hand-me-the-earth:tutorial-seen";
 
 export default function App() {
   // Shared reference for webcam and 3D camera controls
@@ -54,6 +57,25 @@ export default function App() {
   const [hiddenCategories, setHiddenCategories] = useState(() => new Set());
 
   const infoFullScreen = selectedArea !== null;
+
+  // Gesture tutorial: shown automatically on the first visit only (remembered in this
+  // browser), and any time from the camera panel's "?" button.
+  const handTrackerRef = useRef(null);
+  const [showTutorial, setShowTutorial] = useState(() => {
+    try {
+      return !localStorage.getItem(TUTORIAL_SEEN_KEY);
+    } catch {
+      return true; // storage blocked (private window): just show it
+    }
+  });
+  const closeTutorial = useCallback(() => {
+    setShowTutorial(false);
+    try {
+      localStorage.setItem(TUTORIAL_SEEN_KEY, "1");
+    } catch {
+      // storage blocked: it will show again next visit, which is fine
+    }
+  }, []);
 
   // Clicking a cluster of flood dots flies toward it.
   const flyTo = useCallback((target) => (flyRef.current = target), []);
@@ -131,7 +153,17 @@ export default function App() {
       </p>
 
       {/* Webcam hand tracking */}
-      <HandTracker gestureRef={gestureRef} context={handContext} />
+      <HandTracker
+        ref={handTrackerRef}
+        gestureRef={gestureRef}
+        context={handContext}
+        onHelp={() => setShowTutorial(true)}
+      />
+
+      {/* Gesture tutorial: on the first visit, and from the camera panel's "?" button */}
+      {showTutorial && (
+        <GestureTutorial onClose={closeTutorial} onStartCamera={() => handTrackerRef.current?.start()} />
+      )}
 
       {/* UI overlay */}
       <Header

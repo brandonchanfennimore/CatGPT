@@ -56,7 +56,21 @@ body {
 .hand-drag:hover { background: rgba(255, 255, 255, 0.08); color: #e6ecff; }
 .hand-drag:active { cursor: grabbing; }
 .hand-drag:focus-visible,
-.hand-toggle:focus-visible { outline: 2px solid #4fd1ff; outline-offset: 2px; }
+.hand-toggle:focus-visible,
+.hand-help:focus-visible { outline: 2px solid #4fd1ff; outline-offset: 2px; }
+.hand-actions { display: flex; align-items: center; gap: 6px; }
+.hand-help {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: transparent;
+  color: #e6ecff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.hand-help:hover { background: rgba(255, 255, 255, 0.1); }
 
 .hand-preview {
   position: relative;

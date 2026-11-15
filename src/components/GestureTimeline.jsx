@@ -2,8 +2,8 @@
 import { useImperativeHandle, useState } from "react";
 import "./GestureTimeline.css";
 
-// `ref` lets the parent flip pictures too (used by the hand swipe gesture):
-// ref.current.next() / ref.current.previous().
+// `ref` lets the parent control it too (used by the hand gestures):
+// ref.current.next() / .previous() flip pictures, .setView("normal" | "radar") switches view.
 // What each view shows. A study area can override these with `viewNotes`.
 const DEFAULT_VIEW_NOTES = {
   radar:
@@ -20,6 +20,7 @@ export default function GestureTimeline({ observations = [], viewNotes = {}, ref
   useImperativeHandle(ref, () => ({
     next: () => setCurrentIndex((i) => Math.min(i + 1, observations.length - 1)),
     previous: () => setCurrentIndex((i) => Math.max(i - 1, 0)),
+    setView,
   }), [observations.length]);
 
   if (observations.length === 0) {

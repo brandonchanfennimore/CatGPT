@@ -15,7 +15,7 @@ function earthdataLink(site) {
 
 // ---- Hand gesture tuning (info view) ----
 const SCROLL_SPEED = 2; // screen heights scrolled per full video height of palm movement
-const SWIPE_STEP = 0.12; // finger must travel this fraction of the video width per picture
+const SWIPE_STEP = 0.12; // finger must travel this fraction of the video per picture / view change
 
 export default function StudyAreaView({
   studyArea,
@@ -29,7 +29,8 @@ export default function StudyAreaView({
   const timelineRef = useRef(null); // GestureTimeline: .next() / .previous()
 
   // While this view is open, hand gestures drive it (the globe is paused):
-  //  open palm up/down -> scroll, finger right/left -> pictures, two fingers swiped up -> back.
+  //  open palm up/down -> scroll, finger right/left -> pictures, finger down/up -> normal/radar
+  //  view, two fingers swiped up -> back.
   useEffect(() => {
     if (!gestureRef) return;
     const g = gestureRef.current;
@@ -41,7 +42,8 @@ export default function StudyAreaView({
     };
     clear();
 
-    let swipe = 0; // finger movement added up since the last picture change
+    let swipe = 0; // sideways finger movement added up since the last change
+    let drop = 0; // up/down finger movement added up since the last change
     let frame;
     const loop = () => {
       const g = gestureRef.current; // HandTracker's Stop button swaps in a new object
@@ -56,11 +58,20 @@ export default function StudyAreaView({
       }
       if (g.mode === "zoom") {
         swipe += g.dx;
-        if (swipe > SWIPE_STEP) timelineRef.current?.next(); // finger right = next
-        if (swipe < -SWIPE_STEP) timelineRef.current?.previous(); // finger left = previous
-        if (Math.abs(swipe) > SWIPE_STEP) swipe = 0;
+        drop += g.dy; // y grows downward
+        // Whichever direction got far enough first (and is the bigger movement) wins.
+        if (Math.max(Math.abs(swipe), Math.abs(drop)) > SWIPE_STEP) {
+          const t = timelineRef.current;
+          if (Math.abs(swipe) >= Math.abs(drop)) {
+            if (swipe > 0) t?.next(); // finger right = next picture
+            else t?.previous(); // finger left = previous picture
+          } else {
+            t?.setView(drop > 0 ? "normal" : "radar"); // finger down = normal view, up = radar
+          }
+          swipe = drop = 0;
+        }
       } else {
-        swipe = 0;
+        swipe = drop = 0;
       }
       g.dx = g.dy = 0; // used up
       g.fling = null; // no globe spin waiting when we return

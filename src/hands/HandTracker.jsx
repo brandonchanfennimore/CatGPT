@@ -8,7 +8,7 @@
  *     which HandCameraControls reads inside the 3D scene.
  */
 import { DrawingUtils, FilesetResolver, HandLandmarker } from "@mediapipe/tasks-vision";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { createGestureTracker } from "./gesture";
 
@@ -30,10 +30,11 @@ const CONTEXTS = {
     ],
   },
   info: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Swipe pictures" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view" },
     guide: [
       "🖐️ Open palm + move up/down: scroll",
       "☝️ Point + move right/left: next/previous picture",
+      "☝️ Point + move down/up: normal/radar view",
       "✊ Fist: pause",
       "✌️ Two fingers, swipe up: back to Earth",
     ],
@@ -41,7 +42,9 @@ const CONTEXTS = {
 };
 
 // context: "explore", or "info" (a study area's full info view is open).
-export default function HandTracker({ gestureRef, context = "explore" }) {
+// onHelp: shows the gesture tutorial ("?" button). ref.current.start() starts the camera
+// (the tutorial's "Start camera" button uses it).
+export default function HandTracker({ gestureRef, context = "explore", onHelp, ref }) {
   const ui = CONTEXTS[context] ?? CONTEXTS.explore; // unknown context: fall back to Explore
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -54,6 +57,8 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
 
   // Stop the camera and model when the component goes away.
   useEffect(() => () => cleanupRef.current?.(), []);
+
+  useImperativeHandle(ref, () => ({ start: () => state === "idle" || state === "error" ? start() : undefined }));
 
   async function start() {
     setState("loading");
@@ -176,15 +181,22 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
             )}
           </svg>
         </button>
-        {state === "running" ? (
-          <button type="button" className="hand-toggle stop" onClick={stop}>
-            Stop
-          </button>
-        ) : (
-          <button type="button" className="hand-toggle start" onClick={start} disabled={state === "loading"}>
-            {state === "loading" ? "Starting…" : "Start"}
-          </button>
-        )}
+        <div className="hand-actions">
+          {onHelp && (
+            <button type="button" className="hand-help" onClick={onHelp} aria-label="How to use hand gestures" title="How to use hand gestures">
+              ?
+            </button>
+          )}
+          {state === "running" ? (
+            <button type="button" className="hand-toggle stop" onClick={stop}>
+              Stop
+            </button>
+          ) : (
+            <button type="button" className="hand-toggle start" onClick={start} disabled={state === "loading"}>
+              {state === "loading" ? "Starting…" : "Start"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="hand-preview" hidden={state !== "running"}>
