@@ -145,3 +145,26 @@
     }
   }
   
+  /* Camera on: the view switch is only an indicator, plus a gesture tip. */
+  .view-toggle-hands {
+    margin-bottom: 12px;
+  }
+  .view-toggle-hands .gesture-tip {
+    margin-top: 8px;
+  }
+  .view-toggle.static {
+    margin-bottom: 0;
+  }
+  .view-toggle.static span {
+    display: inline-block;
+    padding: 8px 16px;
+    color: #adc6dd;
+    font-size: 13px;
+  }
+  .view-toggle.static span + span {
+    border-left: 1px solid #36658a;
+  }
+  .view-toggle.static span.active {
+    background: #245b8a;
+    color: white;
+  }

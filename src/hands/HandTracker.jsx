@@ -44,8 +44,8 @@ const CONTEXTS = {
 
 // context: "explore", or "info" (a study area's full info view is open).
 // onHelp: shows the gesture tutorial ("?" button). ref.current.start() starts the camera
-// (the tutorial's "Start camera" button uses it).
-export default function HandTracker({ gestureRef, context = "explore", onHelp, ref }) {
+// (the tutorial's "Start camera" button uses it). onRunningChange(true/false): camera on/off.
+export default function HandTracker({ gestureRef, context = "explore", onHelp, onRunningChange, ref }) {
   const ui = CONTEXTS[context] ?? CONTEXTS.explore; // unknown context: fall back to Explore
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -58,6 +58,10 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, r
 
   // Stop the camera and model when the component goes away.
   useEffect(() => () => cleanupRef.current?.(), []);
+
+  // Tell the app when hand control is on (the info pop-up then shows gesture hints).
+  const running = state === "running";
+  useEffect(() => onRunningChange?.(running), [running, onRunningChange]);
 
   useImperativeHandle(ref, () => ({ start: () => state === "idle" || state === "error" ? start() : undefined }));
 

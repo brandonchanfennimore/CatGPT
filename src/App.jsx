@@ -61,6 +61,7 @@ export default function App() {
   // Gesture tutorial: shown automatically on the first visit only (remembered in this
   // browser), and any time from the camera panel's "?" button.
   const handTrackerRef = useRef(null);
+  const [cameraOn, setCameraOn] = useState(false); // hand tracking running?
   const [showTutorial, setShowTutorial] = useState(() => {
     try {
       return !localStorage.getItem(TUTORIAL_SEEN_KEY);
@@ -158,6 +159,7 @@ export default function App() {
         gestureRef={gestureRef}
         context={handContext}
         onHelp={() => setShowTutorial(true)}
+        onRunningChange={setCameraOn}
       />
 
       {/* Gesture tutorial: on the first visit, and from the camera panel's "?" button */}
@@ -187,6 +189,7 @@ export default function App() {
           studyArea={selectedArea}
           onBack={() => setSelectedArea(null)}
           gestureRef={gestureRef}
+          handsMode={cameraOn} // camera on: buttons become gesture hints
         />
       )}
     </div>

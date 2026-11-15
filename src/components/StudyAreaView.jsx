@@ -1,6 +1,7 @@
 
 import { useEffect, useRef } from "react";
 import GestureTimeline from "./GestureTimeline";
+import GestureHint from "./GestureHint";
 import { CATEGORY_BY_ID } from "../data/categories";
 import "./StudyAreaView.css";
 
@@ -21,6 +22,7 @@ export default function StudyAreaView({
   studyArea,
   onBack,
   gestureRef, // shared hand-gesture "mailbox" from App (HandTracker writes to it)
+  handsMode = false, // camera on: no clickable buttons; show how to do each action by hand
 }) {
   const category = CATEGORY_BY_ID[studyArea.category];
   const hasImages = (studyArea.observations?.length ?? 0) > 0;
@@ -94,17 +96,23 @@ export default function StudyAreaView({
   return (
     // Darkened backdrop over the globe; clicking it (outside the two cards) closes.
     <div
-      className="study-view"
+      className={handsMode ? "study-view hands-mode" : "study-view"}
       role="dialog"
       aria-modal="true"
       aria-label={studyArea.name}
-      onClick={(e) => e.target === e.currentTarget && onBack()}
+      onClick={(e) => !handsMode && e.target === e.currentTarget && onBack()}
     >
-      <button type="button" className="info-close" onClick={onBack} aria-label="Close and go back to Earth">
-        ✕
-      </button>
+      {handsMode ? (
+        <GestureHint className="info-close-hint" hand="✌️" motion="up">
+          Two fingers, swipe up to close
+        </GestureHint>
+      ) : (
+        <button type="button" className="info-close" onClick={onBack} aria-label="Close and go back to Earth">
+          ✕
+        </button>
+      )}
 
-      <div className="study-grid" onClick={(e) => e.target === e.currentTarget && onBack()}>
+      <div className="study-grid" onClick={(e) => !handsMode && e.target === e.currentTarget && onBack()}>
         {/* Left card: title + radar images (Radar / Normal view), or what NASA data
             exists for this spot (events without images yet). */}
         <div className="radar-card info-modal">
@@ -128,6 +136,7 @@ export default function StudyAreaView({
               ref={timelineRef}
               observations={studyArea.observations || []}
               viewNotes={studyArea.viewNotes}
+              handsMode={handsMode}
             />
           ) : (
             <>
@@ -163,6 +172,11 @@ export default function StudyAreaView({
 
         {/* Right card: the explanation (scrolls on its own; the open palm scrolls it) */}
         <div className="insight-card info-modal" ref={viewRef}>
+          {handsMode && (
+            <GestureHint hand="🖐️" motion="updown">
+              Open palm, move up/down to scroll
+            </GestureHint>
+          )}
           <p className="study-eyebrow">
             NASA SCIENTIFIC INSIGHTS
           </p>
