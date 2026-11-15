@@ -39,18 +39,20 @@
   outline-offset: 2px;
 }
 
-/* Study area: red, same colour as the radar-mode pins. */
+/* Place with radar images: bigger dot in its category colour, white ring. */
 .fm-item.site .fm-dot {
   width: 16px;
   height: 16px;
-  background: #ff3b30;
+  background: var(--c, #ff3b30);
+  border-width: 3px;
 }
 
-/* Other flood: smaller amber dot. */
+/* Info-only place: smaller dot in its category colour, thin dark ring. */
 .fm-item.event .fm-dot {
-  width: 11px;
-  height: 11px;
-  background: #ffb020;
+  width: 10px;
+  height: 10px;
+  background: var(--c, #ffb020);
+  border: 1.5px solid rgba(5, 8, 22, 0.8);
 }
 
 /* Cluster: a blue bubble with the count, a little bigger the more it holds. */
@@ -63,9 +65,8 @@
   font-weight: bold;
   line-height: 1;
 }
-/* A cluster that hides a study area gets a red ring. */
+/* A cluster that holds a place with radar images gets a thicker white ring. */
 .fm-item.cluster.has-site .fm-dot {
-  border-color: #ff3b30;
   border-width: 3px;
 }
 .fm-count {

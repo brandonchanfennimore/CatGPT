@@ -12,7 +12,7 @@ const MODES = [
   { id: "time", key: "3", label: "Time", hint: "Before/after curtain" },
 ];
 
-export default function ModeBar({ mode, onModeChange, siteName, lensRadius, onLensRadiusChange }) {
+export default function ModeBar({ mode, onModeChange, siteName, siteNote, lensRadius, onLensRadiusChange }) {
   const radarMode = mode === "flashlight" || mode === "time";
   return (
     <div className="mode-bar">
@@ -36,6 +36,7 @@ export default function ModeBar({ mode, onModeChange, siteName, lensRadius, onLe
           <p className="mode-site">
             Radar: <strong>{siteName}</strong>
           </p>
+          {siteNote && <p className="mode-site-note">Lens shows: {siteNote}</p>}
           {mode === "flashlight" && (
           <label className="lens-slider">
             Lens size

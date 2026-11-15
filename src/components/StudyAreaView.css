@@ -134,3 +134,26 @@
   grid-template-columns: 1fr; /* stack the cards */
   gap: 16px;
 }
+
+/* Category colour dot in the eyebrow line (matches the pin colour) */
+.category-chip {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+/* NASA data counts for events without processed images */
+.data-counts {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: #b5c8db;
+  line-height: 1.9;
+}
+.data-counts strong {
+  color: white;
+  font-variant-numeric: tabular-nums;
+}

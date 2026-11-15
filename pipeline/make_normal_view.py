@@ -74,15 +74,19 @@ def area_bounds(observations):
             max(x["east"] for x in b), max(x["north"] for x in b))
 
 
-def get_photo(bounds, day):
-    """Ask GIBS for the true-colour image of `bounds` on `day`. Returns RGBA or None."""
+def get_photo(bounds, day, layer=None, width=None):
+    """Ask GIBS for the true-colour image of `bounds` on `day`. Returns RGBA or None.
+    layer / width: optional, default PHOTO_LAYER / PHOTO_WIDTH (event_normal_views.py
+    uses a small width to search quickly, and MODIS for older dates)."""
+    layer = layer or PHOTO_LAYER
+    width = width or PHOTO_WIDTH
     west, south, east, north = bounds
     # Make pixels square on the ground: a degree of longitude shrinks by cos(latitude).
     mid_lat = math.radians((south + north) / 2)
-    height = round(PHOTO_WIDTH * (north - south) / ((east - west) * math.cos(mid_lat)))
-    params = dict(SERVICE="WMS", REQUEST="GetMap", VERSION="1.3.0", LAYERS=PHOTO_LAYER,
+    height = round(width * (north - south) / ((east - west) * math.cos(mid_lat)))
+    params = dict(SERVICE="WMS", REQUEST="GetMap", VERSION="1.3.0", LAYERS=layer,
                   CRS="EPSG:4326", BBOX=f"{south},{west},{north},{east}",  # WMS 1.3 + EPSG:4326 = lat first
-                  WIDTH=PHOTO_WIDTH, HEIGHT=height, FORMAT="image/png", TRANSPARENT="TRUE", TIME=day)
+                  WIDTH=width, HEIGHT=height, FORMAT="image/png", TRANSPARENT="TRUE", TIME=day)
     try:
         r = requests.get(GIBS_WMS, params=params, timeout=120)
     except requests.RequestException:

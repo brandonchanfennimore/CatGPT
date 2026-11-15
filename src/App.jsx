@@ -28,6 +28,17 @@ import {
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import { studyAreas } from "./data/studyAreas";
+import { SITES, countByCategory, hasImages } from "./data/sites";
+import { CATEGORIES, CATEGORY_BY_ID } from "./data/categories";
+
+// Zoom level that makes a site's image box fill most of the screen when flying there.
+// (Camera starts 7 units from the Earth's centre; the Earth's radius is 2 = 6371 km.)
+function flyZoomFor(area) {
+  if (!area.bounds) return RADAR_FLY_ZOOM;
+  const boxWorld = ((area.bounds.north - area.bounds.south) * 111.32) / (6371 / EARTH_RADIUS);
+  const altitude = boxWorld / (2 * Math.tan((75 * Math.PI) / 360)) / 0.7; // box ~70% of the view
+  return Math.min(7 / (EARTH_RADIUS + altitude), 3.48);
+}
 
 import "./components/UI.css";
 import LocationMarker from "./components/LocationMarker";
@@ -69,6 +80,9 @@ export default function App() {
 
   // Which map layers are switched on (the "Map layers" panel under the title)
   const [layers, setLayers] = useState({ borders: true, labels: true, coordinates: true });
+  // Event categories whose pins are hidden (toggled in the legend under "Map layers").
+  const [hiddenCategories, setHiddenCategories] = useState(() => new Set());
+  const visibleSites = SITES.filter((site) => !hiddenCategories.has(site.category));
 
   // App mode: "explore" (spin, zoom, open sites), "flashlight" (radar lens),
   // "time" (before/after curtain).
@@ -91,11 +105,12 @@ export default function App() {
 
   const switchMode = useCallback(
     (next) => {
-      const area = radarArea ?? selectedArea ?? studyAreas[0];
+      // Radar modes need a site with radar images (a lat/lon box), so skip events without one.
+      const area = [radarArea, selectedArea, studyAreas[0]].find((a) => a && hasImages(a));
       if (next !== "explore") setRadarArea(area);
       // The curtain only covers the site, so fly there when Time mode starts.
       if (next === "time" && mode !== "time" && area.center) {
-        flyRef.current = { dir: new Vector3(...latLonToVector(area.center.lat, area.center.lon)), zoom: RADAR_FLY_ZOOM };
+        flyRef.current = { dir: new Vector3(...latLonToVector(area.center.lat, area.center.lon)), zoom: flyZoomFor(area) };
         splitRef.current.x = 0.5;
       }
       setMode(next);
@@ -109,7 +124,7 @@ export default function App() {
     setSelectedArea(area); // keep its explanation open (as a side panel)
     setMode("flashlight");
     const { lat, lon } = area.center;
-    flyRef.current = { dir: new Vector3(...latLonToVector(lat, lon)), zoom: RADAR_FLY_ZOOM };
+    flyRef.current = { dir: new Vector3(...latLonToVector(lat, lon)), zoom: flyZoomFor(area) };
   }
 
   // Keys 1 / 2 / 3 switch modes (ignored while typing in a text box).
@@ -171,20 +186,23 @@ export default function App() {
         <Earth />
         {layers.borders && <Borders />}
 
-        {/* Explore: flood dots that cluster when zoomed out (study areas in red).
-            Radar modes: a glowing pin per study area instead. */}
+        {/* Explore: clickable dots (HTML) that cluster when zoomed out (FloodMarkers.jsx).
+            Radar modes: a glowing, non-clickable pin for each site that has radar images. */}
         {mode === "explore" ? (
-          <FloodMarkerPositioner layerRef={floodLayerRef} stateRef={floodStateRef} />
+          <FloodMarkerPositioner layerRef={floodLayerRef} stateRef={floodStateRef} hidden={hiddenCategories} />
         ) : (
-          studyAreas.map((area) => (
-            <LocationMarker
-              key={area.id}
-              studyArea={area}
-              onSelect={setSelectedArea}
-              interactive={false}
-              glow
-            />
-          ))
+          visibleSites
+            .filter(hasImages)
+            .map((site) => (
+              <LocationMarker
+                key={site.id}
+                studyArea={site}
+                onSelect={setSelectedArea}
+                interactive={false}
+                glow
+                color={CATEGORY_BY_ID[site.category]?.color}
+              />
+            ))
         )}
 
         {mode === "flashlight" && radarArea?.bounds && (
@@ -257,7 +275,8 @@ export default function App() {
       <p className="map-credits">
         Imagery: NASA Blue Marble · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
         Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0) ·
-        Flood maps: OPERA DSWx-S1, NASA/JPL-Caltech (Copernicus Sentinel-1 data)
+        Radar: NASA OPERA (DSWx, DIST), ARIA, NISAR (NASA/ISRO) via NASA Earthdata · Copernicus Sentinel-1 data ·
+        Normal-view photos: NASA HLS and MODIS via NASA GIBS
       </p>
 
       {/* Webcam hand tracking */}
@@ -269,6 +288,10 @@ export default function App() {
         onLightingChange={setLighting}
         layers={layers}
         onLayersChange={setLayers}
+        categories={CATEGORIES}
+        siteCounts={countByCategory}
+        hiddenCategories={hiddenCategories}
+        onHiddenCategoriesChange={setHiddenCategories}
       />
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />
@@ -277,6 +300,7 @@ export default function App() {
         mode={mode}
         onModeChange={switchMode}
         siteName={radarArea?.name}
+        siteNote={mode === "flashlight" ? radarArea?.flashlightLabel : null}
         lensRadius={lensRadius}
         onLensRadiusChange={setLensRadius}
       />

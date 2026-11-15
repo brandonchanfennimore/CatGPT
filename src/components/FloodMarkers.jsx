@@ -8,8 +8,9 @@
  *                            places facing us, merges the close ones
  *                            (clusters.js), and moves/fills the elements.
  *
- * Dots:  red    = one of our study areas: click to open its NISAR timeline.
- *        amber  = another notable flood: click for its name and date.
+ * Dots (colour = type of surface change, see data/categories.js):
+ *        big dot with a white ring = has radar images: click to open its timeline.
+ *        small dot = info only: click for its name, place, date and a short note.
  *        blue + number = several places too close to tell apart: click to zoom in.
  *        Zoomed right in, a cluster that still won't split (e.g. two floods in the
  *        same town, different years) shows a list to pick from instead.
@@ -19,8 +20,8 @@ import { useEffect, useRef } from "react";
 import { Matrix4, Vector3 } from "three";
 import { EARTH_RADIUS } from "./Earth";
 import { clusterScreenPoints } from "../clusters";
-import { floodEvents } from "../data/floodEvents";
-import { studyAreas } from "../data/studyAreas";
+import { SITES, hasImages } from "../data/sites";
+import { CATEGORY_BY_ID } from "../data/categories";
 import { latLonToVector } from "../geo";
 import { registerMarker } from "../markers";
 import "./FloodMarkers.css";
@@ -37,15 +38,27 @@ const STOP_ZOOMING_KM = 40;
 const KM_PER_UNIT = 6371 / EARTH_RADIUS; // Earth radius 6371 km
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const formatMonth = (ym) => (ym ? `${MONTHS[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}` : "");
+// "2024-10-29" or "2024-10" -> "Oct 2024"; "ongoing" stays as it is.
+const formatMonth = (d) => (!d ? "" : d === "ongoing" ? "ongoing" : `${MONTHS[Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}`);
 
-// Every place, built once. Study areas lead their clusters (higher priority).
-const PLACES = [
-  ...studyAreas
-    .filter((a) => a.center)
-    .map((a) => ({ kind: "site", id: a.id, name: a.name, meta: `${a.satellite ?? "NISAR"} images · click to explore`, area: a, ...a.center })),
-  ...floodEvents.map((e) => ({ kind: "event", id: e.id, name: e.name, meta: `${e.place} · ${formatMonth(e.date)}`, note: e.note, ...e })),
-].map((p) => ({ ...p, pos: new Vector3(...latLonToVector(p.lat, p.lon, EARTH_RADIUS)) }));
+// Every place, built once (see data/sites.js). Places with radar images ("site") lead
+// their clusters (higher priority) and open the timeline when clicked.
+const PLACES = SITES.filter((s) => s.center).map((s) => {
+  const site = hasImages(s);
+  return {
+    kind: site ? "site" : "event",
+    id: s.id,
+    name: s.name,
+    category: s.category,
+    color: CATEGORY_BY_ID[s.category]?.color ?? "#ffb020",
+    date: s.date,
+    meta: [s.category, s.place, formatMonth(s.date)].filter(Boolean).join(" · ") + (site ? " · click to explore" : ""),
+    note: s.description,
+    area: s,
+    ...s.center,
+    pos: new Vector3(...latLonToVector(s.center.lat, s.center.lon, EARTH_RADIUS)),
+  };
+});
 
 /**
  * The dots. `stateRef` is shared with the positioner: it writes which places
@@ -112,12 +125,18 @@ function togglePin(s, id) {
 const toCamera = new Vector3();
 const projected = new Vector3();
 
-export function FloodMarkerPositioner({ layerRef, stateRef }) {
+// hidden: Set of category ids whose dots are switched off in the legend.
+export function FloodMarkerPositioner({ layerRef, stateRef, hidden }) {
   const camera = useThree((s) => s.camera);
   const size = useThree((s) => s.size); // canvas size in px
   const lastMatrix = useRef(new Matrix4());
   const lastSize = useRef("");
   const startDistance = useRef(null); // the starting view = "1.0×", same as the zoom bar
+
+  // Legend changed: redraw on the next frame even if the camera didn't move.
+  useEffect(() => {
+    if (stateRef.current) stateRef.current.dirty = true;
+  }, [hidden, stateRef]);
 
   useFrame(() => {
     const layer = layerRef.current;
@@ -139,6 +158,7 @@ export function FloodMarkerPositioner({ layerRef, stateRef }) {
     const visible = []; // indexes into PLACES
     const points = [];
     for (let i = 0; i < PLACES.length; i++) {
+      if (hidden?.has(PLACES[i].category)) continue; // switched off in the legend
       const pos = PLACES[i].pos;
       toCamera.copy(camera.position).sub(pos);
       if (toCamera.dot(pos) / (toCamera.length() * EARTH_RADIUS) < HORIZON) continue;
@@ -201,6 +221,7 @@ function fillSlot(el, c, single) {
   const hasSite = c.members.some((m) => PLACES[m].kind === "site");
   el.className = `fm-item ${single ? single.kind : "cluster"}${hasSite ? " has-site" : ""}`;
   el.style.setProperty("--n", Math.min(c.members.length, 12));
+  el.style.setProperty("--c", single ? single.color : ""); // category colour
   button.firstChild.textContent = single ? "" : c.members.length;
   if (single) {
     name.textContent = single.name;
@@ -208,7 +229,7 @@ function fillSlot(el, c, single) {
     note.textContent = single.note ?? "";
     button.setAttribute("aria-label", `${single.name}, ${single.meta}`);
   } else {
-    const label = `${c.members.length} floods here`;
+    const label = `${c.members.length} places here`;
     name.textContent = label;
     meta.textContent = ""; // hint comes from CSS: "zoom in" or "pick one" (max-zoom)
     note.textContent = "";
@@ -227,7 +248,7 @@ function fillSlot(el, c, single) {
         b.textContent = p.name;
         li.append(b);
       } else {
-        li.textContent = `${p.name} · ${formatMonth(p.date)}`;
+        li.textContent = `${p.name} · ${p.category} · ${formatMonth(p.date)}`;
       }
       return li;
     })

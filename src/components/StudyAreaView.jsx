@@ -1,7 +1,17 @@
 
 import { useEffect, useRef } from "react";
 import GestureTimeline from "./GestureTimeline";
+import { CATEGORY_BY_ID } from "../data/categories";
 import "./StudyAreaView.css";
+
+/** A NASA Earthdata Search link for this spot and time (pre-filled search). */
+function earthdataLink(site) {
+  const { lat, lon } = site.center;
+  const [start, end] = site.nasaData?.window ?? [];
+  const params = new URLSearchParams({ q: site.nasaData?.readyProduct ?? "Sentinel-1", sp: `${lon},${lat}` });
+  if (start) params.set("qt", `${start}T00:00:00.000Z,${end}T23:59:59.999Z`);
+  return `https://search.earthdata.nasa.gov/search?${params}`;
+}
 
 // ---- Hand gesture tuning (info view) ----
 const SCROLL_SPEED = 2; // screen heights scrolled per full video height of palm movement
@@ -14,6 +24,9 @@ export default function StudyAreaView({
   onExploreRadar, // "Explore with radar" button: fly there and open Flashlight mode
   compact = false, // true in Flashlight/Time modes: a side panel instead of full screen
 }) {
+  const category = CATEGORY_BY_ID[studyArea.category];
+  const hasImages = (studyArea.observations?.length ?? 0) > 0;
+  const nasa = studyArea.nasaData; // catalogue check results (events without images)
   const viewRef = useRef(null); // the scrolling page
   const timelineRef = useRef(null); // GestureTimeline: .next() / .previous()
 
@@ -74,7 +87,7 @@ export default function StudyAreaView({
         </button>
 
         {/* Only sites with a lat/lon box can be shown on the globe. */}
-        {!compact && studyArea.bounds && onExploreRadar && (
+        {!compact && studyArea.bounds && studyArea.observations?.length > 0 && onExploreRadar && (
           <button className="radar-button" onClick={() => onExploreRadar(studyArea)}>
             📡 Explore with radar
           </button>
@@ -89,7 +102,16 @@ export default function StudyAreaView({
       <div className="study-content">
         <div className="study-heading">
           <p className="study-eyebrow">
-            SURFACE CHANGE EXPLORER
+            {category ? (
+              <>
+                <span className="category-chip" style={{ background: category.color }} />
+                {category.id.toUpperCase()}
+              </>
+            ) : (
+              "SURFACE CHANGE EXPLORER"
+            )}
+            {studyArea.place && ` · ${studyArea.place}`}
+            {studyArea.date && ` · ${studyArea.date}`}
           </p>
 
           <h1>{studyArea.name}</h1>
@@ -97,21 +119,53 @@ export default function StudyAreaView({
         </div>
 
         <div className="study-grid">
-          {/* Radar visualization */}
-          <div className="radar-card">
-            <h2>Earth Through Time</h2>
+          {/* Radar visualization (sites with processed images), or what NASA data
+              exists for this spot (events without images yet). */}
+          {hasImages ? (
+            <div className="radar-card">
+              <h2>Earth Through Time</h2>
 
-            <p>
-              Point one finger and move it right or
-              left to explore how this region changes.
-            </p>
+              <p>
+                Point one finger and move it right or
+                left to explore how this region changes.
+              </p>
 
-            <GestureTimeline
-              ref={timelineRef}
-              observations={studyArea.observations || []}
-              viewNotes={studyArea.viewNotes}
-            />
-          </div>
+              <GestureTimeline
+                ref={timelineRef}
+                observations={studyArea.observations || []}
+                viewNotes={studyArea.viewNotes}
+              />
+            </div>
+          ) : (
+            <div className="radar-card">
+              <h2>NASA Radar Data for This Event</h2>
+              <p>
+                No processed images in the app yet. NASA&apos;s catalogue has these files at this spot
+                {nasa?.window && studyArea.date !== "ongoing"
+                  ? ` from ${nasa.window[0]} to ${nasa.window[1]}`
+                  : " (during 2024; NISAR: Nov 2025 – Nov 2026)"}
+                :
+              </p>
+              <ul className="data-counts">
+                <li>
+                  <strong>{nasa?.sentinel1 ?? 0}</strong> Sentinel-1 radar scenes (raw, need processing)
+                </li>
+                {nasa?.readyProduct && (
+                  <li>
+                    <strong>{nasa.ready ?? 0}</strong> ready-made map files ({nasa.readyProduct})
+                  </li>
+                )}
+                <li>
+                  <strong>{nasa?.nisar ?? 0}</strong> NISAR radar files
+                </li>
+                {nasa?.older > 0 && (
+                  <li>
+                    <strong>{nasa.older}</strong> older radar files (ALOS PALSAR / UAVSAR)
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
 
           {/* Scientific information */}
           <div className="insight-card">
@@ -122,21 +176,39 @@ export default function StudyAreaView({
             <h2>What Changed?</h2>
             <p>
               {studyArea.findings ||
-                "Our NISAR analysis will appear here."}
+                "Our radar analysis of this event will appear here."}
             </p>
 
-            <h3>Why Does This Matter?</h3>
-            <p>
-              {studyArea.impact ||
-                "Learn how these surface changes affect the environment."}
-            </p>
+            {studyArea.impact && (
+              <>
+                <h3>Why Does This Matter?</h3>
+                <p>{studyArea.impact}</p>
+              </>
+            )}
+
+            {category && (
+              <>
+                <h3>How Radar Sees It</h3>
+                <p>{category.sees}</p>
+              </>
+            )}
 
             <h3>Data Source</h3>
-            <p>{studyArea.dataSource ?? "NASA-ISRO Synthetic Aperture Radar (NISAR)"}</p>
+            <p>
+              {studyArea.dataSource ??
+                (!hasImages
+                  ? "NASA Earthdata catalogue (CMR)"
+                  : nasa
+                    ? "Public preview images from NASA Earthdata (ASF DAAC, PO.DAAC, LP DAAC): Sentinel-1, OPERA DSWx/DIST, ARIA and NISAR, placed on the map by our pipeline. Previews are lower resolution than the full data."
+                    : "NASA-ISRO Synthetic Aperture Radar (NISAR)")}
+            </p>
+            {hasImages && studyArea.flashlightLabel && (
+              <p>Flashlight lens: {studyArea.flashlightLabel}.</p>
+            )}
 
-            {studyArea.sourceUrl && (
+            {(studyArea.sourceUrl || studyArea.center) && (
               <a
-                href={studyArea.sourceUrl}
+                href={studyArea.sourceUrl || earthdataLink(studyArea)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
