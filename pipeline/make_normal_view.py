@@ -21,7 +21,7 @@ Usage:
     python pipeline/make_normal_view.py chokwe-flood
     python pipeline/make_normal_view.py chokwe-flood --photo-date 2025-08-15
     python pipeline/make_normal_view.py chokwe-flood --threshold 50
-    python pipeline/make_normal_view.py sylhet-2022        (a Sentinel-1 folder works too)
+    python pipeline/make_normal_view.py hoover-dam --water-at 36.06,-114.78   (only Lake Mead)
 """
 
 import argparse
@@ -35,7 +35,7 @@ from pathlib import Path
 try:
     import numpy as np
     import requests
-    from PIL import Image, ImageFilter
+    from PIL import Image, ImageDraw, ImageFilter
 except ImportError as e:
     sys.exit(f"Missing library: {e.name}. Run with pipeline/.venv/bin/python, "
              f"or: pip install numpy requests Pillow")
@@ -62,6 +62,10 @@ def parse_args():
     p.add_argument("--threshold", type=float,
                    help="radar brightness (0-255) below which a pixel counts as water "
                         "(default 55 for NISAR, 45 for Sentinel-1)")
+    p.add_argument("--water-at", metavar="LAT,LON", action="append", default=[],
+                   help="keep only water connected to this point (repeat for several). "
+                        "Use in deserts and mountains, where dry lakebeds and slope shadows "
+                        "also look dark to radar")
     return p.parse_args()
 
 
@@ -142,6 +146,19 @@ def water_mask(radar_img, threshold, satellite):
     return mask.filter(ImageFilter.MedianFilter(3))  # drop single-pixel radar noise
 
 
+def keep_connected(mask, seeds, bounds):
+    """Keep only the water joined to one of the seed points (lat, lon); drop the rest.
+    Seeds that land on dry land in this image are ignored."""
+    w, h = mask.size
+    marked = mask.copy()
+    for lat, lon in seeds:
+        x = int((lon - bounds["west"]) / (bounds["east"] - bounds["west"]) * w)
+        y = int((bounds["north"] - lat) / (bounds["north"] - bounds["south"]) * h)
+        if 0 <= x < w and 0 <= y < h and marked.getpixel((x, y)) == 255:
+            ImageDraw.floodfill(marked, (x, y), 128)  # paint the connected water grey
+    return Image.fromarray(((np.asarray(marked) == 128) * 255).astype(np.uint8))
+
+
 def paint_water(photo, mask, crop_bounds, area):
     """Lay the water mask onto the photo, using lat/lon bounds to line them up."""
     west, south, east, north = area
@@ -171,6 +188,7 @@ def main():
     manifest = json.loads(manifest_path.read_text())
     satellite = manifest.get("satellite", "nisar")  # older manifests are all NISAR
     threshold = args.threshold if args.threshold is not None else DARK_THRESHOLD[satellite]
+    seeds = [tuple(float(v) for v in pt.split(",")) for pt in args.water_at]
     obs = manifest["observations"]
     if not obs:
         sys.exit("manifest.json has no observations.")
@@ -193,6 +211,8 @@ def main():
     for o in obs:
         radar_file = ROOT / "public" / o["image"].lstrip("/")
         mask = water_mask(Image.open(radar_file), threshold, satellite)
+        if seeds:
+            mask = keep_connected(mask, seeds, o["bounds"])
         normal, water_frac = paint_water(photo, mask, o["bounds"], area)
         out = radar_file.with_name(radar_file.stem + "_normal.jpg")
         normal.save(out, quality=85)
@@ -200,7 +220,7 @@ def main():
         print(f"  {o['date']}: {water_frac:5.1%} water -> {out.relative_to(ROOT)}")
 
     manifest["normalView"] = {"photoLayer": PHOTO_LAYER, "photoDate": photo_day,
-                              "waterThreshold": threshold}
+                              "waterThreshold": threshold, "waterAt": seeds}
     manifest_path.write_text(json.dumps(manifest, indent=2))
     print(f"\nUpdated {manifest_path.relative_to(ROOT)}")
 

@@ -146,4 +146,46 @@ export const studyAreas = [
 
       sourceUrl: "https://bangladesh.un.org/sites/default/files/2026-07/SitRep_ICCG_Flash%20Flood%20%26%20Landslides_13July26.pdf",
     },
+    {
+      id: "hoover-dam",
+      name: "Lake Mead & Hoover Dam, USA",
+      category: "Reservoirs",
+      description:
+        "Hoover Dam holds back the Colorado River to form Lake Mead, the largest reservoir in the United States and a main water supply for Nevada, Arizona and southern California. After years of drought on the Colorado River, the lake fell to its lowest level on record in August 2026.",
+
+      // Hoover Dam. Images from NASA-ISRO NISAR GCOV previews (track 85, descending),
+      // 50 km x 50 km around the dam, by pipeline/fetch_asf.py:
+      //   python pipeline/fetch_asf.py --lat 36.016045 --lon -114.737839 --name hoover-dam
+      // Only passes from 27 Jan 2026 on are used: earlier previews have no corner file and
+      // land about 1 km off. 31 Aug 2026 is left out (a processing stripe crosses it).
+      center: { lat: 36.016045, lon: -114.737839 },
+      satellite: "NISAR",
+      bounds: { west: -115.0154, south: 35.792, east: -114.4599, north: 36.2413 },
+
+      observations: [
+        { date: "2026-01-27 (winter, ~1,065 ft)", image: "/nisar/hoover-dam/2026-01-27_D85.png",
+          normalImage: "/nisar/hoover-dam/2026-01-27_D85_normal.jpg" },
+        { date: "2026-04-09 (spring)", image: "/nisar/hoover-dam/2026-04-09_D85.png",
+          normalImage: "/nisar/hoover-dam/2026-04-09_D85_normal.jpg" },
+        { date: "2026-06-20 (early summer)", image: "/nisar/hoover-dam/2026-06-20_D85.png",
+          normalImage: "/nisar/hoover-dam/2026-06-20_D85_normal.jpg" },
+        { date: "2026-08-19 (after the record low)", image: "/nisar/hoover-dam/2026-08-19_D85.png",
+          normalImage: "/nisar/hoover-dam/2026-08-19_D85_normal.jpg" },
+        { date: "2026-10-30 (latest)", image: "/nisar/hoover-dam/2026-10-30_D85.png",
+          normalImage: "/nisar/hoover-dam/2026-10-30_D85_normal.jpg" },
+      ],
+
+      viewNotes: {
+        radar:
+          "NISAR radar, false colour: Lake Mead is the dark shape; mountains are purple and white (slopes facing the satellite are brighter); towns are bright white. Dry, smooth lakebeds (bottom left) also look dark but aren't water.",
+        normal:
+          "Blue = Lake Mead as detected by NISAR on this date (not the real colour of the water). Only water connected to the lake is painted. Background: Sentinel-2 photo (NASA HLS) from 18 Oct 2025, the same in every frame.",
+      },
+
+      findings:
+        "The dam sits at the southern tip of Lake Mead's Boulder Basin, where the Colorado River leaves through the narrow Black Canyon. Between late January (about 1,065 ft above sea level) and early August (1,040.5 ft, a record low) the lake fell by roughly 25 feet. Boulder Basin has steep canyon walls, so even that drop moves the shoreline only a short distance, often less than one pixel in these 180 m previews, and wind ripples change how dark the water looks from pass to pass. That's why the lake looks similar in every frame: tracking a few metres of level needs NISAR's full-resolution data, where each pixel is about 20 m.",
+
+      impact:
+        "Lake Mead supplies water to cities and farms across the lower Colorado River basin, and Hoover Dam's power plant makes less electricity as the water drops. Reclamation's July 2026 projection expected the lake to keep falling until November. Radar can watch reservoirs like this every 12 days, day or night, through cloud or dust.",
+    },
   ];
