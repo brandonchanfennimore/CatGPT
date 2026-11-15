@@ -9,6 +9,10 @@ happening, when ordinary satellite photos only see clouds. The focus is **NISAR*
 NASA-ISRO radar satellite launched in 2025, with **Sentinel-1** (ESA) for events
 from before NISAR's data began.
 
+Live site: **[handmetheearth.wiki](https://handmetheearth.wiki)**
+
+![The globe with event pins, View settings and the hand-gesture panel](docs/screenshots/globe.jpg)
+
 ## What's on the globe
 
 - **Study sites:** hand-checked places with a full image timeline and explanation:
@@ -23,16 +27,34 @@ from before NISAR's data began.
 - **Notable floods** with a name, date and short note.
 
 Dots **cluster** when zoomed out (a numbered bubble) and split apart as you zoom in.
-Click a bubble to fly closer. The legend under "Map layers" shows or hides each category.
+Click a bubble to fly closer. The "Event types" list under "View settings" shows or hides each category.
 
 ## Features
 
 | | |
 |---|---|
-| **Globe** | Spin and zoom the Earth, open any dot. Country borders, city labels and coordinates appear as you zoom in; "Bright" / "Realistic" lighting. |
-| **Info view** | Opens when you click a site: what happened, "What Changed?", why it matters, and a **Sources** list with links (NASA, UN, agencies, journals). |
+| **Globe** | Spin and zoom the Earth, open any dot. Country borders, city labels and coordinates appear as you zoom in; "Bright" / "Real time" (day and night) lighting. Sharper NASA map tiles load as you zoom in. |
+| **Info pop-up** | Opens over the darkened globe when you click a site: the images on the left; "What Changed?", how radar sees it, data source and a **Sources** list with links (NASA, UN, agencies, journals) on the right. |
 | **Timeline** | Step through a site's images by date. **Radar view** shows the radar picture; **Normal view** shows a cloud-free photo with the water the radar found painted blue. |
-| **Hand gestures** | Webcam hand tracking (MediaPipe). On the globe: open palm to rotate, point and move left/right to zoom, fist to pause, two fingers swiped up to open the dot in the middle. In the info view: palm up/down to scroll, point left/right to change picture, two fingers up to go back. |
+| **Hand gestures** | Webcam hand tracking (MediaPipe). On the globe: open palm to rotate, point and move left/right to zoom, fist to pause, two fingers swiped up to open the dot in the middle. Pinky up: move down/up through View settings and event types, right to switch one. In the info pop-up: palm up/down to scroll, point left/right to change picture, point down/up for normal/radar view, two fingers up to go back. While the camera is on, the pop-up's buttons turn into gesture hints. A tutorial shows all gestures on the first visit (and from the "?" button). |
+
+## Screenshots
+
+**Info pop-up: radar view.** Sentinel-1 radar image of the event, with the explanation and sources on the right.
+
+![Info pop-up for the 2023 Amazon drought, radar view](docs/screenshots/event-radar-view.jpg)
+
+**Info pop-up: normal view.** A cloud-free NASA photo with the water the radar found painted blue.
+
+![Info pop-up for the 2023 Amazon drought, normal view](docs/screenshots/event-normal-view.jpg)
+
+**Closer in.** Country names, coordinates and borders appear as you zoom; pins cluster into numbered bubbles.
+
+![The globe zoomed in over North America](docs/screenshots/globe-closer.jpg)
+
+**Gesture tutorial.** Shown on the first visit and from the "?" button on the camera panel.
+
+![Gesture tutorial with animated cards for each hand gesture](docs/screenshots/gesture-tutorial.jpg)
 
 ## Run it locally
 
