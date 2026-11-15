@@ -28,14 +28,6 @@ import {
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import { studyAreas } from "./data/studyAreas";
-import { events } from "./data/events";
-import { CATEGORIES, CATEGORY_BY_ID } from "./data/categories";
-
-// Every pin on the globe: the detailed study areas (with radar images) first,
-// then the other surface-change events (info only).
-const SITES = [...studyAreas, ...events];
-// How many pins each category has (shown in the legend).
-const countByCategory = SITES.reduce((n, s) => ({ ...n, [s.category]: (n[s.category] ?? 0) + 1 }), {});
 
 import "./components/UI.css";
 import LocationMarker from "./components/LocationMarker";
@@ -73,9 +65,6 @@ export default function App() {
 
   // Which map layers are switched on (the "Map layers" panel under the title)
   const [layers, setLayers] = useState({ borders: true, labels: true, coordinates: true });
-  // Event categories whose pins are hidden (toggled in the legend under "Map layers").
-  const [hiddenCategories, setHiddenCategories] = useState(() => new Set());
-  const visibleSites = SITES.filter((site) => !hiddenCategories.has(site.category));
 
   // App mode: "explore" (spin, zoom, open sites), "flashlight" (radar lens),
   // "time" (before/after curtain).
@@ -98,8 +87,7 @@ export default function App() {
 
   const switchMode = useCallback(
     (next) => {
-      // Radar modes need a site with radar images (a lat/lon box), so skip events without one.
-      const area = [radarArea, selectedArea, studyAreas[0]].find((a) => a?.bounds);
+      const area = radarArea ?? selectedArea ?? studyAreas[0];
       if (next !== "explore") setRadarArea(area);
       // The curtain only covers the site, so fly there when Time mode starts.
       if (next === "time" && mode !== "time" && area.center) {
@@ -176,20 +164,16 @@ export default function App() {
         <Earth />
         {layers.borders && <Borders />}
 
-        {/* One pin per site, coloured by category: clickable in Explore; in the radar
-            modes only sites with radar images glow (the others are dimmed by hiding). */}
-        {visibleSites
-          .filter((site) => mode === "explore" || site.bounds)
-          .map((site) => (
-            <LocationMarker
-              key={site.id}
-              studyArea={site}
-              onSelect={setSelectedArea}
-              interactive={mode === "explore"}
-              glow={mode !== "explore"}
-              color={CATEGORY_BY_ID[site.category]?.color}
-            />
-          ))}
+        {/* One pin per study area: clickable in Explore; in the radar modes they glow instead. */}
+        {studyAreas.map((area) => (
+          <LocationMarker
+            key={area.id}
+            studyArea={area}
+            onSelect={setSelectedArea}
+            interactive={mode === "explore"}
+            glow={mode !== "explore"}
+          />
+        ))}
 
         {mode === "flashlight" && radarArea?.bounds && (
           <RadarFlashlight
@@ -263,10 +247,6 @@ export default function App() {
         onLightingChange={setLighting}
         layers={layers}
         onLayersChange={setLayers}
-        categories={CATEGORIES}
-        siteCounts={countByCategory}
-        hiddenCategories={hiddenCategories}
-        onHiddenCategoriesChange={setHiddenCategories}
       />
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />

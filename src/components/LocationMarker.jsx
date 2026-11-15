@@ -1,22 +1,16 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import { AdditiveBlending, MathUtils, Vector3 } from "three";
-
-const toCamera = new Vector3(); // scratch vector reused every frame
 import { EARTH_RADIUS } from "./Earth";
 import { latLonToVector } from "../geo";
 import { registerMarker } from "../markers";
 
 // ---- Marker size on screen (radius in px) ----
 // It grows with the zoom number on the zoom bar: PX_PER_ZOOM px per "1×",
-// so about 5 px at 1.0×, 10 px at 2.0×, 17 px at 3.3×. Clamped to a sensible range.
-// (Kept small because there are 130 pins.)
-const PX_PER_ZOOM = 5;
-const MIN_PX = 3;
-const MAX_PX = 20;
-// Hide pins this close to the globe's edge (0 = right at the edge), so pins just
-// over the horizon don't poke out of the outline as bumps.
-const HORIZON_HIDE = 0.12;
+// so about 8 px at 1.0×, 16 px at 2.0×, 26 px at 3.3×. Clamped to a sensible range.
+const PX_PER_ZOOM = 8;
+const MIN_PX = 5;
+const MAX_PX = 28;
 
 // Glow (Flashlight/Time modes): a soft halo this many times the marker's size,
 // pulsing this many times per second.
@@ -28,13 +22,11 @@ const GLOW_PULSES_PER_SECOND = 0.8;
 
 // interactive: clickable (Explore mode). glow: pulsing halo showing where radar
 // data exists (Flashlight/Time modes, where clicking is turned off).
-// color: pin colour (by category, see data/categories.js).
 export default function LocationMarker({
   studyArea,
   onSelect,
   interactive = true,
   glow = false,
-  color = "#ff3b30",
 }) {
   const mesh = useRef(null);
   const halo = useRef(null);
@@ -57,13 +49,6 @@ export default function LocationMarker({
   // big the ball must be in the 3D world to look that big from where the camera is.
   useFrame(({ clock }) => {
     if (!mesh.current) return;
-
-    // Facing test: is the pin on the side of the globe that faces the camera?
-    toCamera.copy(camera.position).sub(position);
-    const facing = toCamera.dot(position) / (toCamera.length() * EARTH_RADIUS);
-    mesh.current.visible = facing > HORIZON_HIDE;
-    if (!mesh.current.visible) return;
-
     startDistance.current ??= camera.position.length();
     const zoom = startDistance.current / camera.position.length();
     const px = MathUtils.clamp(PX_PER_ZOOM * zoom, MIN_PX, glow ? GLOW_MAX_PX : MAX_PX);
@@ -99,7 +84,7 @@ export default function LocationMarker({
     >
       <sphereGeometry args={[1, 24, 24]} />
       <meshBasicMaterial
-        color={color}
+        color="#ff3b30"
         depthTest
       />
       {glow && (
@@ -107,7 +92,7 @@ export default function LocationMarker({
         // so it looks like light. It's a child, so it scales with the marker.
         <mesh ref={halo} scale={GLOW_SIZE} raycast={() => null}>
           <sphereGeometry args={[1, 24, 24]} />
-          <meshBasicMaterial color={color} transparent opacity={0.4} blending={AdditiveBlending} depthWrite={false} />
+          <meshBasicMaterial color="#ff6b5e" transparent opacity={0.4} blending={AdditiveBlending} depthWrite={false} />
         </mesh>
       )}
     </mesh>

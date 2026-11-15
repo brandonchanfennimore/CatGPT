@@ -6,26 +6,7 @@ const LAYERS = [
   { key: "coordinates", label: "Coordinates", needs: "labels" }, // coordinates live inside labels
 ];
 
-export default function Header({
-  lighting,
-  onLightingChange,
-  layers,
-  onLayersChange,
-  categories = [], // [{ id, color }] event types, in legend order
-  siteCounts = {}, // category id -> number of pins
-  hiddenCategories = new Set(), // category ids whose pins are hidden
-  onHiddenCategoriesChange,
-}) {
-  const total = Object.values(siteCounts).reduce((a, b) => a + b, 0);
-
-  // Show/hide one category's pins.
-  function toggleCategory(id, visible) {
-    const next = new Set(hiddenCategories);
-    if (visible) next.delete(id);
-    else next.add(id);
-    onHiddenCategoriesChange(next);
-  }
-
+export default function Header({ lighting, onLightingChange, layers, onLayersChange }) {
   return (
     <header className="app-header">
       <p className="eyebrow">NASA NISAR EXPLORER</p>
@@ -73,33 +54,6 @@ export default function Header({
             </label>
           );
         })}
-
-        {/* Pin legend: colour = type of surface change. A <details> element folds open/closed
-            by itself (no extra code) and keeps the panel short. */}
-        <details className="pin-legend">
-          <summary>Event types ({total})</summary>
-          {categories.map((c) => (
-            <label key={c.id}>
-              <span className="pin-dot" style={{ background: c.color }} aria-hidden="true" />
-              <span className="pin-name">{c.id}</span>
-              <span className="pin-count">{siteCounts[c.id] ?? 0}</span>
-              <input
-                type="checkbox"
-                checked={!hiddenCategories.has(c.id)}
-                onChange={(e) => toggleCategory(c.id, e.target.checked)}
-                aria-label={`Show ${c.id} pins`}
-              />
-            </label>
-          ))}
-          <div className="pin-legend-actions">
-            <button type="button" onClick={() => onHiddenCategoriesChange(new Set())}>
-              Show all
-            </button>
-            <button type="button" onClick={() => onHiddenCategoriesChange(new Set(categories.map((c) => c.id)))}>
-              Hide all
-            </button>
-          </div>
-        </details>
       </fieldset>
     </header>
   );
