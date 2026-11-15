@@ -25,7 +25,7 @@ export default function StudyAreaView({
   const category = CATEGORY_BY_ID[studyArea.category];
   const hasImages = (studyArea.observations?.length ?? 0) > 0;
   const nasa = studyArea.nasaData; // catalogue check results (events without images)
-  const viewRef = useRef(null); // the scrolling page
+  const viewRef = useRef(null); // the right card (scrolls)
   const timelineRef = useRef(null); // GestureTimeline: .next() / .previous()
 
   // While this view is open, hand gestures drive it (the globe is paused):
@@ -73,25 +73,30 @@ export default function StudyAreaView({
     };
   }, [gestureRef, onBack]);
 
+  // Esc closes the pop-up too.
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onBack();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onBack]);
+
   return (
-    <div className="study-view" ref={viewRef}>
-      {/* Top navigation */}
-      <div className="study-topbar">
-        <button
-          className="back-button"
-          onClick={onBack}
-        >
-          ← Back to Earth
-        </button>
+    // Darkened backdrop over the globe; clicking it (outside the two cards) closes.
+    <div
+      className="study-view"
+      role="dialog"
+      aria-modal="true"
+      aria-label={studyArea.name}
+      onClick={(e) => e.target === e.currentTarget && onBack()}
+    >
+      <button type="button" className="info-close" onClick={onBack} aria-label="Close and go back to Earth">
+        ✕
+      </button>
 
-        <span className="study-brand">
-          HAND ME THE EARTH / NASA NISAR
-        </span>
-      </div>
-
-      {/* Main content */}
-      <div className="study-content">
-        <div className="study-heading">
+      <div className="study-grid" onClick={(e) => e.target === e.currentTarget && onBack()}>
+        {/* Left card: title + radar images (Radar / Normal view), or what NASA data
+            exists for this spot (events without images yet). */}
+        <div className="radar-card info-modal">
           <p className="study-eyebrow">
             {category ? (
               <>
@@ -104,32 +109,18 @@ export default function StudyAreaView({
             {studyArea.place && ` · ${studyArea.place}`}
             {studyArea.date && ` · ${studyArea.date}`}
           </p>
+          <h2 className="info-title">{studyArea.name}</h2>
+          {studyArea.description && <p className="info-description">{studyArea.description}</p>}
 
-          <h1>{studyArea.name}</h1>
-          <p>{studyArea.description}</p>
-        </div>
-
-        <div className="study-grid">
-          {/* Radar visualization (sites with processed images), or what NASA data
-              exists for this spot (events without images yet). */}
           {hasImages ? (
-            <div className="radar-card">
-              <h2>Earth Through Time</h2>
-
-              <p>
-                Point one finger and move it right or
-                left to explore how this region changes.
-              </p>
-
-              <GestureTimeline
-                ref={timelineRef}
-                observations={studyArea.observations || []}
-                viewNotes={studyArea.viewNotes}
-              />
-            </div>
+            <GestureTimeline
+              ref={timelineRef}
+              observations={studyArea.observations || []}
+              viewNotes={studyArea.viewNotes}
+            />
           ) : (
-            <div className="radar-card">
-              <h2>NASA Radar Data for This Event</h2>
+            <>
+              <h3>NASA Radar Data for This Event</h3>
               <p>
                 No processed images in the app yet. NASA&apos;s catalogue has these files at this spot
                 {nasa?.window && studyArea.date !== "ongoing"
@@ -155,70 +146,70 @@ export default function StudyAreaView({
                   </li>
                 )}
               </ul>
-            </div>
+            </>
+          )}
+        </div>
+
+        {/* Right card: the explanation (scrolls on its own; the open palm scrolls it) */}
+        <div className="insight-card info-modal" ref={viewRef}>
+          <p className="study-eyebrow">
+            NASA SCIENTIFIC INSIGHTS
+          </p>
+
+          <h2>What Changed?</h2>
+          <p>
+            {studyArea.findings ||
+              "Our radar analysis of this event will appear here."}
+          </p>
+
+          {studyArea.impact && (
+            <>
+              <h3>Why Does This Matter?</h3>
+              <p>{studyArea.impact}</p>
+            </>
           )}
 
-          {/* Scientific information */}
-          <div className="insight-card">
-            <p className="study-eyebrow">
-              NASA SCIENTIFIC INSIGHTS
-            </p>
+          {category && (
+            <>
+              <h3>How Radar Sees It</h3>
+              <p>{category.sees}</p>
+            </>
+          )}
 
-            <h2>What Changed?</h2>
-            <p>
-              {studyArea.findings ||
-                "Our radar analysis of this event will appear here."}
-            </p>
+          <h3>Data Source</h3>
+          <p>
+            {studyArea.dataSource ??
+              (!hasImages
+                ? "NASA Earthdata catalogue (CMR)"
+                : nasa
+                  ? "Public preview images from NASA Earthdata (ASF DAAC, PO.DAAC, LP DAAC): Sentinel-1, OPERA DSWx/DIST, ARIA and NISAR, placed on the map by our pipeline. Previews are lower resolution than the full data."
+                  : "NASA-ISRO Synthetic Aperture Radar (NISAR)")}
+          </p>
 
-            {studyArea.impact && (
-              <>
-                <h3>Why Does This Matter?</h3>
-                <p>{studyArea.impact}</p>
-              </>
-            )}
+          {(studyArea.sourceUrl || studyArea.center) && (
+            <a
+              href={studyArea.sourceUrl || earthdataLink(studyArea)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View NASA Data
+            </a>
+          )}
 
-            {category && (
-              <>
-                <h3>How Radar Sees It</h3>
-                <p>{category.sees}</p>
-              </>
-            )}
-
-            <h3>Data Source</h3>
-            <p>
-              {studyArea.dataSource ??
-                (!hasImages
-                  ? "NASA Earthdata catalogue (CMR)"
-                  : nasa
-                    ? "Public preview images from NASA Earthdata (ASF DAAC, PO.DAAC, LP DAAC): Sentinel-1, OPERA DSWx/DIST, ARIA and NISAR, placed on the map by our pipeline. Previews are lower resolution than the full data."
-                    : "NASA-ISRO Synthetic Aperture Radar (NISAR)")}
-            </p>
-
-            {(studyArea.sourceUrl || studyArea.center) && (
-              <a
-                href={studyArea.sourceUrl || earthdataLink(studyArea)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View NASA Data
-              </a>
-            )}
-
-            {studyArea.sources?.length > 0 && (
-              <>
-                <h3>Sources</h3>
-                <ul className="source-list">
-                  {studyArea.sources.map((s) => (
-                    <li key={s.url}>
-                      <a href={s.url} target="_blank" rel="noopener noreferrer">
-                        {s.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
+          {studyArea.sources?.length > 0 && (
+            <>
+              <h3>Sources</h3>
+              <ul className="source-list">
+                {studyArea.sources.map((s) => (
+                  <li key={s.url}>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </div>
