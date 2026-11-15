@@ -17,6 +17,11 @@ export const eventSources = {
   "sylhet-flood-2026": [
     { label: "UN Bangladesh: Situation Report, Flash Flood & Landslides (13 July 2026)", url: "https://bangladesh.un.org/sites/default/files/2026-07/SitRep_ICCG_Flash%20Flood%20%26%20Landslides_13July26.pdf" },
   ],
+  "hoover-dam": [
+    { label: "U.S. Bureau of Reclamation: Lake Mead at Hoover Dam, end-of-month elevation", url: "https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html" },
+    { label: "Utah Public Radio: Lake Mead, the nation's largest reservoir, hit a record low (12 Aug 2026)", url: "https://www.upr.org/environment/2026-08-12/lake-mead-record-low-colorado-river" },
+    { label: "FOX5 Las Vegas: Lake Mead water levels hit lowest point on record (7 Aug 2026)", url: "https://www.fox5vegas.com/2026/08/07/lake-mead-water-levels-hit-lowest-point-record/" },
+  ],
   "punjab-monsoon-2025": [
     { label: "NASA Earth Observatory: Monsoon Rains Flood Pakistan", url: "https://science.nasa.gov/earth/earth-observatory/monsoon-rains-flood-pakistan-154781/" },
     { label: "Wikipedia: 2025 Pakistan floods", url: "https://en.wikipedia.org/wiki/2025_Pakistan_floods" },

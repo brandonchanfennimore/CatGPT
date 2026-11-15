@@ -81,6 +81,12 @@ export const CATEGORIES = [
     sees: "Wet soil reflects radar more strongly than dry soil. NASA's SMAP satellite (and now NISAR) maps soil moisture worldwide.",
     product: "SPL3SMP",
   },
+  {
+    id: "Reservoirs",
+    color: "#6366f1",
+    sees: "Calm water bounces the radar away, so a lake is a dark shape. Comparing passes shows the shoreline moving as a reservoir fills or drains, through cloud and at night.",
+    product: "OPERA_L3_DSWX-S1_V1",
+  },
 ];
 
 export const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));

@@ -1,0 +1,489 @@
+{
+  "name": "hoover-dam",
+  "satellite": "nisar",
+  "lat": 36.016045,
+  "lon": -114.737839,
+  "radiusKm": 25,
+  "product": "GCOV",
+  "observations": [
+    {
+      "date": "2025-10-23",
+      "image": "/nisar/hoover-dam/2025-10-23_D85.png",
+      "bounds": {
+        "west": -115.028123,
+        "south": 35.781898,
+        "east": -114.447323,
+        "north": 36.249958
+      },
+      "scene": "NISAR_L2_PR_GCOV_003_085_D_070_4005_DHDH_A_20251023T023141_20251023T023215_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_003_085_D_070_4005_DHDH_A_20251023T023141_20251023T023215_X05009_N_F_J_001/NISAR_L2_PR_GCOV_003_085_D_070_4005_DHDH_A_20251023T023141_20251023T023215_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-10-23_D85_normal.jpg"
+    },
+    {
+      "date": "2025-11-04",
+      "image": "/nisar/hoover-dam/2025-11-04_D85.png",
+      "bounds": {
+        "west": -115.027811,
+        "south": 35.781562,
+        "east": -114.447073,
+        "north": 36.249517
+      },
+      "scene": "NISAR_L2_PR_GCOV_004_085_D_070_4005_DHDH_A_20251104T023141_20251104T023216_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_004_085_D_070_4005_DHDH_A_20251104T023141_20251104T023216_X05009_N_F_J_001/NISAR_L2_PR_GCOV_004_085_D_070_4005_DHDH_A_20251104T023141_20251104T023216_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-11-04_D85_normal.jpg"
+    },
+    {
+      "date": "2025-11-16",
+      "image": "/nisar/hoover-dam/2025-11-16_D85.png",
+      "bounds": {
+        "west": -115.026765,
+        "south": 35.781827,
+        "east": -114.448057,
+        "north": 36.249855
+      },
+      "scene": "NISAR_L2_PR_GCOV_005_085_D_070_4005_DHDH_A_20251116T023142_20251116T023216_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_005_085_D_070_4005_DHDH_A_20251116T023142_20251116T023216_X05009_N_F_J_001/NISAR_L2_PR_GCOV_005_085_D_070_4005_DHDH_A_20251116T023142_20251116T023216_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-11-16_D85_normal.jpg"
+    },
+    {
+      "date": "2025-11-28",
+      "image": "/nisar/hoover-dam/2025-11-28_D85.png",
+      "bounds": {
+        "west": -115.026462,
+        "south": 35.781092,
+        "east": -114.448949,
+        "north": 36.251139
+      },
+      "scene": "NISAR_L2_PR_GCOV_006_085_D_070_4005_DHDH_A_20251128T023142_20251128T023217_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_006_085_D_070_4005_DHDH_A_20251128T023142_20251128T023217_X05009_N_F_J_001/NISAR_L2_PR_GCOV_006_085_D_070_4005_DHDH_A_20251128T023142_20251128T023217_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-11-28_D85_normal.jpg"
+    },
+    {
+      "date": "2025-12-10",
+      "image": "/nisar/hoover-dam/2025-12-10_D85.png",
+      "bounds": {
+        "west": -115.028003,
+        "south": 35.782096,
+        "east": -114.447985,
+        "north": 36.249815
+      },
+      "scene": "NISAR_L2_PR_GCOV_007_085_D_070_4005_DHDH_A_20251210T023143_20251210T023217_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_007_085_D_070_4005_DHDH_A_20251210T023143_20251210T023217_X05009_N_F_J_001/NISAR_L2_PR_GCOV_007_085_D_070_4005_DHDH_A_20251210T023143_20251210T023217_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-12-10_D85_normal.jpg"
+    },
+    {
+      "date": "2025-12-22",
+      "image": "/nisar/hoover-dam/2025-12-22_D85.png",
+      "bounds": {
+        "west": -115.029788,
+        "south": 35.782961,
+        "east": -114.4465,
+        "north": 36.24868
+      },
+      "scene": "NISAR_L2_PR_GCOV_008_085_D_070_4005_DHDH_A_20251222T023143_20251222T023218_X05009_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_008_085_D_070_4005_DHDH_A_20251222T023143_20251222T023218_X05009_N_F_J_001/NISAR_L2_PR_GCOV_008_085_D_070_4005_DHDH_A_20251222T023143_20251222T023218_X05009_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2025-12-22_D85_normal.jpg"
+    },
+    {
+      "date": "2026-01-03",
+      "image": "/nisar/hoover-dam/2026-01-03_D85.png",
+      "bounds": {
+        "west": -115.027684,
+        "south": 35.782418,
+        "east": -114.448265,
+        "north": 36.250277
+      },
+      "scene": "NISAR_L2_PR_GCOV_009_085_D_070_4005_DHDH_A_20260103T023144_20260103T023218_X05010_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_009_085_D_070_4005_DHDH_A_20260103T023144_20260103T023218_X05010_N_F_J_001/NISAR_L2_PR_GCOV_009_085_D_070_4005_DHDH_A_20260103T023144_20260103T023218_X05010_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-01-03_D85_normal.jpg"
+    },
+    {
+      "date": "2026-01-15",
+      "image": "/nisar/hoover-dam/2026-01-15_D85.png",
+      "bounds": {
+        "west": -115.0274,
+        "south": 35.782342,
+        "east": -114.448516,
+        "north": 36.250733
+      },
+      "scene": "NISAR_L2_PR_GCOV_010_085_D_070_4005_DHDH_A_20260115T023144_20260115T023219_X05010_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_010_085_D_070_4005_DHDH_A_20260115T023144_20260115T023219_X05010_N_F_J_001/NISAR_L2_PR_GCOV_010_085_D_070_4005_DHDH_A_20260115T023144_20260115T023219_X05010_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-01-15_D85_normal.jpg"
+    },
+    {
+      "date": "2026-01-27",
+      "image": "/nisar/hoover-dam/2026-01-27_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_011_085_D_070_4005_DHDH_A_20260127T023145_20260127T023220_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_011_085_D_070_4005_DHDH_A_20260127T023145_20260127T023220_P05023_N_F_J_001/NISAR_L2_PR_GCOV_011_085_D_070_4005_DHDH_A_20260127T023145_20260127T023220_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-01-27_D85_normal.jpg"
+    },
+    {
+      "date": "2026-02-08",
+      "image": "/nisar/hoover-dam/2026-02-08_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_012_085_D_070_4005_DHDH_A_20260208T023145_20260208T023220_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_012_085_D_070_4005_DHDH_A_20260208T023145_20260208T023220_P05023_N_F_J_001/NISAR_L2_PR_GCOV_012_085_D_070_4005_DHDH_A_20260208T023145_20260208T023220_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-02-08_D85_normal.jpg"
+    },
+    {
+      "date": "2026-02-20",
+      "image": "/nisar/hoover-dam/2026-02-20_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_013_085_D_070_4005_DHDH_A_20260220T023146_20260220T023221_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_013_085_D_070_4005_DHDH_A_20260220T023146_20260220T023221_P05023_N_F_J_001/NISAR_L2_PR_GCOV_013_085_D_070_4005_DHDH_A_20260220T023146_20260220T023221_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-02-20_D85_normal.jpg"
+    },
+    {
+      "date": "2026-03-16",
+      "image": "/nisar/hoover-dam/2026-03-16_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_015_085_D_070_4005_DHDH_A_20260316T023147_20260316T023221_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_015_085_D_070_4005_DHDH_A_20260316T023147_20260316T023221_P05023_N_F_J_001/NISAR_L2_PR_GCOV_015_085_D_070_4005_DHDH_A_20260316T023147_20260316T023221_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-03-16_D85_normal.jpg"
+    },
+    {
+      "date": "2026-04-09",
+      "image": "/nisar/hoover-dam/2026-04-09_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_017_085_D_070_4005_DHDH_A_20260409T023147_20260409T023222_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_017_085_D_070_4005_DHDH_A_20260409T023147_20260409T023222_P05023_N_F_J_001/NISAR_L2_PR_GCOV_017_085_D_070_4005_DHDH_A_20260409T023147_20260409T023222_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-04-09_D85_normal.jpg"
+    },
+    {
+      "date": "2026-04-21",
+      "image": "/nisar/hoover-dam/2026-04-21_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_018_085_D_070_4005_DHDH_A_20260421T023147_20260421T023221_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_018_085_D_070_4005_DHDH_A_20260421T023147_20260421T023221_P05023_N_F_J_001/NISAR_L2_PR_GCOV_018_085_D_070_4005_DHDH_A_20260421T023147_20260421T023221_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-04-21_D85_normal.jpg"
+    },
+    {
+      "date": "2026-05-03",
+      "image": "/nisar/hoover-dam/2026-05-03_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_019_085_D_070_4005_DHDH_A_20260503T023146_20260503T023221_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_019_085_D_070_4005_DHDH_A_20260503T023146_20260503T023221_P05023_N_F_J_001/NISAR_L2_PR_GCOV_019_085_D_070_4005_DHDH_A_20260503T023146_20260503T023221_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-05-03_D85_normal.jpg"
+    },
+    {
+      "date": "2026-05-15",
+      "image": "/nisar/hoover-dam/2026-05-15_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_020_085_D_070_4005_DHDH_A_20260515T023146_20260515T023221_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_020_085_D_070_4005_DHDH_A_20260515T023146_20260515T023221_P05023_N_F_J_001/NISAR_L2_PR_GCOV_020_085_D_070_4005_DHDH_A_20260515T023146_20260515T023221_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-05-15_D85_normal.jpg"
+    },
+    {
+      "date": "2026-05-27",
+      "image": "/nisar/hoover-dam/2026-05-27_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_021_085_D_070_4005_DHDH_A_20260527T023145_20260527T023220_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_021_085_D_070_4005_DHDH_A_20260527T023145_20260527T023220_P05023_N_F_J_001/NISAR_L2_PR_GCOV_021_085_D_070_4005_DHDH_A_20260527T023145_20260527T023220_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-05-27_D85_normal.jpg"
+    },
+    {
+      "date": "2026-06-08",
+      "image": "/nisar/hoover-dam/2026-06-08_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_022_085_D_070_4005_DHDH_A_20260608T023144_20260608T023219_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_022_085_D_070_4005_DHDH_A_20260608T023144_20260608T023219_P05023_N_F_J_001/NISAR_L2_PR_GCOV_022_085_D_070_4005_DHDH_A_20260608T023144_20260608T023219_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-06-08_D85_normal.jpg"
+    },
+    {
+      "date": "2026-06-20",
+      "image": "/nisar/hoover-dam/2026-06-20_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_023_085_D_070_4005_DHDH_A_20260620T023144_20260620T023218_P05023_N_F_J_002",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_023_085_D_070_4005_DHDH_A_20260620T023144_20260620T023218_P05023_N_F_J_002/NISAR_L2_PR_GCOV_023_085_D_070_4005_DHDH_A_20260620T023144_20260620T023218_P05023_N_F_J_002.h5",
+      "normalImage": "/nisar/hoover-dam/2026-06-20_D85_normal.jpg"
+    },
+    {
+      "date": "2026-07-02",
+      "image": "/nisar/hoover-dam/2026-07-02_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_024_085_D_070_4005_DHDH_A_20260702T023143_20260702T023218_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_085_D_070_4005_DHDH_A_20260702T023143_20260702T023218_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_085_D_070_4005_DHDH_A_20260702T023143_20260702T023218_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-07-02_D85_normal.jpg"
+    },
+    {
+      "date": "2026-07-14",
+      "image": "/nisar/hoover-dam/2026-07-14_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_025_085_D_070_4005_DHDH_A_20260714T023142_20260714T023217_P05023_F_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_085_D_070_4005_DHDH_A_20260714T023142_20260714T023217_P05023_F_F_J_001/NISAR_L2_PR_GCOV_025_085_D_070_4005_DHDH_A_20260714T023142_20260714T023217_P05023_F_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-07-14_D85_normal.jpg"
+    },
+    {
+      "date": "2026-07-26",
+      "image": "/nisar/hoover-dam/2026-07-26_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_026_085_D_070_4005_DHDH_A_20260726T023142_20260726T023216_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_026_085_D_070_4005_DHDH_A_20260726T023142_20260726T023216_P05023_N_F_J_001/NISAR_L2_PR_GCOV_026_085_D_070_4005_DHDH_A_20260726T023142_20260726T023216_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-07-26_D85_normal.jpg"
+    },
+    {
+      "date": "2026-08-19",
+      "image": "/nisar/hoover-dam/2026-08-19_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_028_085_D_070_4005_DHDH_A_20260819T023140_20260819T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_028_085_D_070_4005_DHDH_A_20260819T023140_20260819T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_028_085_D_070_4005_DHDH_A_20260819T023140_20260819T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-08-19_D85_normal.jpg"
+    },
+    {
+      "date": "2026-08-31",
+      "image": "/nisar/hoover-dam/2026-08-31_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_029_085_D_070_4005_DHDH_A_20260831T023140_20260831T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_085_D_070_4005_DHDH_A_20260831T023140_20260831T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_085_D_070_4005_DHDH_A_20260831T023140_20260831T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-08-31_D85_normal.jpg"
+    },
+    {
+      "date": "2026-09-12",
+      "image": "/nisar/hoover-dam/2026-09-12_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_030_085_D_070_4005_DHDH_A_20260912T023140_20260912T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_030_085_D_070_4005_DHDH_A_20260912T023140_20260912T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_030_085_D_070_4005_DHDH_A_20260912T023140_20260912T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-09-12_D85_normal.jpg"
+    },
+    {
+      "date": "2026-09-24",
+      "image": "/nisar/hoover-dam/2026-09-24_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_031_085_D_070_4005_DHDH_A_20260924T023140_20260924T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_031_085_D_070_4005_DHDH_A_20260924T023140_20260924T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_031_085_D_070_4005_DHDH_A_20260924T023140_20260924T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-09-24_D85_normal.jpg"
+    },
+    {
+      "date": "2026-10-06",
+      "image": "/nisar/hoover-dam/2026-10-06_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_032_085_D_070_4005_DHDH_A_20261006T023140_20261006T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_032_085_D_070_4005_DHDH_A_20261006T023140_20261006T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_032_085_D_070_4005_DHDH_A_20261006T023140_20261006T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-10-06_D85_normal.jpg"
+    },
+    {
+      "date": "2026-10-18",
+      "image": "/nisar/hoover-dam/2026-10-18_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_033_085_D_070_4005_DHDH_A_20261018T023140_20261018T023215_P05023_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_085_D_070_4005_DHDH_A_20261018T023140_20261018T023215_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_085_D_070_4005_DHDH_A_20261018T023140_20261018T023215_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-10-18_D85_normal.jpg"
+    },
+    {
+      "date": "2026-10-30",
+      "image": "/nisar/hoover-dam/2026-10-30_D85.png",
+      "bounds": {
+        "west": -115.015438,
+        "south": 35.792005,
+        "east": -114.459857,
+        "north": 36.241259
+      },
+      "scene": "NISAR_L2_PR_GCOV_034_085_D_070_4005_DHDH_A_20261030T023141_20261030T023215_P05036_N_F_J_001",
+      "track": 85,
+      "frame": 70,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_V1/NISAR_L2_PR_GCOV_034_085_D_070_4005_DHDH_A_20261030T023141_20261030T023215_P05036_N_F_J_001/NISAR_L2_PR_GCOV_034_085_D_070_4005_DHDH_A_20261030T023141_20261030T023215_P05036_N_F_J_001.h5",
+      "normalImage": "/nisar/hoover-dam/2026-10-30_D85_normal.jpg"
+    }
+  ],
+  "normalView": {
+    "photoLayer": "HLS_S30_Nadir_BRDF_Adjusted_Reflectance",
+    "photoDate": "2025-10-18",
+    "waterThreshold": 55,
+    "waterAt": [
+      [
+        36.06,
+        -114.78
+      ],
+      [
+        36.117,
+        -114.5
+      ]
+    ]
+  }
+}
