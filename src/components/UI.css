@@ -298,11 +298,18 @@
   display: none;
 }
 
-.layer-toggles {
-  /* Bottom-left corner of the screen (it grows upward when "Event types" opens). */
+/* Bottom-left corner: the View settings panel (it grows upward when "Event types"
+   opens), with a gesture tip above it while the camera is on. */
+.view-settings-dock {
   position: fixed;
   left: 36px;
   bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.layer-toggles {
   max-height: calc(100vh - 240px); /* never runs up into the title */
   overflow-y: auto;
   display: grid;
@@ -546,4 +553,16 @@
 }
 .popular-places .gesture-hint {
   margin: 6px 0 0;
+}
+
+/* Gesture tips above the View settings and Popular places panels (camera on). */
+.panel-tip {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 190px;
+  max-width: 240px;
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: rgba(9, 22, 43, 0.85);
 }

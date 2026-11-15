@@ -20,23 +20,21 @@ const MODEL_URL =
 const CONTEXTS = {
   explore: {
     labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom", settings: "View settings", places: "Popular places" },
+    // Short: the View settings and Popular places panels show their own gesture tips.
     guide: [
-      "🖐️ Open palm + move: rotate (swipe out of view to spin)",
-      "☝️ Point + move right/left: zoom in/out",
+      "🖐️ Palm: rotate",
+      "☝️ Point, move right/left: zoom",
       "✊ Fist: pause",
-      "✌️ Two fingers, swipe up: open the marker in the middle",
-      "🤙 Pinky up + move down/up: pick a view setting or event type, right: switch it",
-      "🤘 Index + pinky up, move down/up: pick a popular place, right: fly there",
+      "✌️ Swipe up: open the place in the middle",
     ],
   },
   info: {
     labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view", settings: "Paused", places: "Paused" },
+    // Short: the pop-up itself shows a tip for each action.
     guide: [
-      "🖐️ Open palm + move up/down: scroll",
-      "☝️ Point + move right/left: next/previous picture",
-      "☝️ Point + move down/up: normal/radar view",
-      "✊ Fist: pause",
-      "✌️ Two fingers, swipe up: back to Earth",
+      "🖐️ Palm up/down: scroll",
+      "☝️ Point: pictures / view",
+      "✌️ Swipe up: back to Earth",
     ],
   },
 };

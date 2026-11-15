@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { formatLatLon } from "../geo";
 import { stepSettings } from "../hands/settingsGesture";
+import GestureHint from "./GestureHint";
 
 /**
  * "Popular places" panel: the most visited places; click one to fly there.
  * Hand gesture 🤘 (index + little finger up): move down/up to highlight a place,
  * move right to fly there. Same rules as the pinky on View settings (settingsGesture.js).
+ * handsMode: camera on, so a tip above the panel shows how to use it by hand.
  */
-export default function PopularPlaces({ places, onSelect, gestureRef, gestureEnabled = true }) {
+export default function PopularPlaces({ places, onSelect, gestureRef, gestureEnabled = true, handsMode = false }) {
   const [focus, setFocus] = useState(0); // highlighted place (index into places)
   const [rockActive, setRockActive] = useState(false); // 🤘 up right now?
   const latest = useRef(null); // newest props/state for the animation-frame loop below
@@ -44,33 +46,40 @@ export default function PopularPlaces({ places, onSelect, gestureRef, gestureEna
 
   const shown = Math.min(focus, places.length - 1);
   return (
-    <section
-      className={rockActive ? "popular-places gesture-active" : "popular-places"}
-      aria-labelledby="popular-places-title"
-    >
-      <h2 id="popular-places-title">Popular places</h2>
-      <ol>
-        {places.map((place, i) => (
-          <li key={place.id}>
-            <button
-              type="button"
-              className={rockActive && shown === i ? "gesture-focus" : undefined}
-              onClick={() => onSelect(place)}
-              title={`Fly to ${formatLatLon(place.lat, place.lon)}`}
-            >
-              <span className="place-name">{place.name}</span>
-              <span className="place-visits">
-                {place.visits ? `${place.visits} visit${place.visits === 1 ? "" : "s"}` : "new"}
-              </span>
-            </button>
-          </li>
-        ))}
-      </ol>
-      {rockActive && (
-        <p className="gesture-hint" aria-live="polite">
-          🤘 down/up: choose · right: fly there
-        </p>
+    <>
+      {handsMode && (
+        <GestureHint hand="🤘" motion="updown" className="panel-tip">
+          Index + pinky up: move down/up to choose, right to fly there
+        </GestureHint>
       )}
-    </section>
+      <section
+        className={rockActive ? "popular-places gesture-active" : "popular-places"}
+        aria-labelledby="popular-places-title"
+      >
+        <h2 id="popular-places-title">Popular places</h2>
+        <ol>
+          {places.map((place, i) => (
+            <li key={place.id}>
+              <button
+                type="button"
+                className={rockActive && shown === i ? "gesture-focus" : undefined}
+                onClick={() => onSelect(place)}
+                title={`Fly to ${formatLatLon(place.lat, place.lon)}`}
+              >
+                <span className="place-name">{place.name}</span>
+                <span className="place-visits">
+                  {place.visits ? `${place.visits} visit${place.visits === 1 ? "" : "s"}` : "new"}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ol>
+        {rockActive && (
+          <p className="gesture-hint" aria-live="polite">
+            🤘 down/up: choose · right: fly there
+          </p>
+        )}
+      </section>
+    </>
   );
 }

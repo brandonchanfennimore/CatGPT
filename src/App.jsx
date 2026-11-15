@@ -202,12 +202,14 @@ export default function App() {
         onHiddenCategoriesChange={setHiddenCategories}
         gestureRef={gestureRef}
         gestureEnabled={!infoFullScreen && !showTutorial}
+        handsMode={cameraOn}
       >
         <PopularPlaces
           places={popularPlaces}
           onSelect={goToPlace}
           gestureRef={gestureRef}
           gestureEnabled={!infoFullScreen && !showTutorial}
+          handsMode={cameraOn}
         />
       </Header>
 

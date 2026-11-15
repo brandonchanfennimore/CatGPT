@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { stepSettings } from "../hands/settingsGesture";
+import GestureHint from "./GestureHint";
 
 // The map layers you can switch on/off, in the order shown.
 const LAYERS = [
@@ -29,6 +30,7 @@ export default function Header({
   onHiddenCategoriesChange,
   gestureRef, // shared hand-gesture "mailbox" (pinky up = control these settings)
   gestureEnabled = true, // false while a pop-up is open
+  handsMode = false, // camera on: show how to use this panel by hand
   children, // extra panels under the title (Popular places)
 }) {
   const total = Object.values(siteCounts).reduce((a, b) => a + b, 0);
@@ -125,6 +127,13 @@ export default function Header({
       </p>
 
       {/* View settings: lighting + map layer switches */}
+      {/* Bottom-left: (camera on) a gesture tip, then the View settings panel */}
+      <div className="view-settings-dock">
+        {handsMode && (
+          <GestureHint hand="🤙" motion="updown" className="panel-tip">
+            Pinky up: move down/up to choose, right to switch
+          </GestureHint>
+        )}
       <fieldset ref={panelRef} className={pinkyActive ? "layer-toggles gesture-active" : "layer-toggles"}>
         <legend>View settings</legend>
         {/* Lighting switch. data-mode moves the sliding highlight (see UI.css). */}
@@ -202,6 +211,7 @@ export default function Header({
           </div>
         </details>
       </fieldset>
+      </div>
 
       {children && <div className="header-extra">{children}</div>}
     </header>
