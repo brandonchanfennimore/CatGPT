@@ -36,6 +36,7 @@ Earthdata login (only for --h5), any one of:
 """
 
 import argparse
+import datetime
 import json
 import math
 import os
@@ -70,7 +71,7 @@ SATELLITES = {
 }
 
 
-def parse_args():
+def parse_args(): 
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     # Not required: anything left out is asked for with a question (see ask_missing).
     p.add_argument("--lat", type=float, help="latitude, -90 (south) to 90 (north)")
@@ -124,17 +125,22 @@ def ask_missing(args):
 # ---------- search ----------
 
 def search(args):
-    sat = SATELLITES[args.satellite]
+    return search_point(args.lat, args.lon, args.satellite, args.start, args.end, args.product, args.max)
+
+
+def search_point(lat, lon, satellite="nisar", start=None, end=None, product=None, max_results=200):
+    """Every pass of `satellite` whose coverage includes (lat, lon), optionally between dates."""
+    sat = SATELLITES[satellite]
     opts = dict(
         **sat["search"],
-        processingLevel=args.product or sat["product"],
-        intersectsWith=f"POINT({args.lon} {args.lat})",  # WKT is lon first, then lat
-        maxResults=args.max,
+        processingLevel=product or sat["product"],
+        intersectsWith=f"POINT({lon} {lat})",  # WKT is lon first, then lat
+        maxResults=max_results,
     )
-    if args.start:
-        opts["start"] = args.start
-    if args.end:
-        opts["end"] = args.end
+    if start:
+        opts["start"] = start
+    if end:
+        opts["end"] = end
     return asf.search(**opts)
 
 
@@ -298,6 +304,40 @@ def get_kml_bounds(url):
         return None
 
 
+def crop_preview(g, satellite, lat, lon, radius_km, others=(), known_bounds=None):
+    """Download one pass's preview, place it on the map and crop around (lat, lon).
+
+    Returns (crop, (west, south, east, north), method) on success,
+    or (None, reason, None) saying why not.
+    others:       other passes (same track) whose KML can stand in for a missing one.
+    known_bounds: dict reused across calls so a KML is only fetched once per track."""
+    known_bounds = {} if known_bounds is None else known_bounds
+    png_url, kml_url = preview_urls(g)
+    if not png_url:
+        return None, "no preview image", None
+    try:
+        img = Image.open(BytesIO(requests.get(png_url, timeout=300).content)).convert("RGB")
+    except (requests.RequestException, OSError) as e:
+        return None, f"preview download failed ({e})", None
+    georef, method = None, None
+    if kml_url:
+        grid = (track_key(g), img.size)
+        bounds = get_kml_bounds(kml_url) or known_bounds.get(grid) or next(
+            (b for b in map(get_kml_bounds, sibling_kmls(others, g)) if b), None)
+        if bounds:
+            known_bounds[grid] = bounds
+            georef, method = bounds_to_georef(bounds, img.size), "kml"
+    if georef is None:
+        fit = footprint_fit(img, g.geometry["coordinates"][0], SATELLITES[satellite]["no_data_max"])
+        if not fit or fit[1] > 15:  # corners disagree by >15 px: don't trust it
+            return None, "could not place this preview on the map", None
+        georef, method = fit[0], f"footprint fit, +/-{fit[1]:.0f}px"
+    crop, crop_bounds = crop_around(img, georef, lat, lon, radius_km)
+    if crop is None:
+        return None, "point is outside this preview", None
+    return crop, crop_bounds, method
+
+
 def fetch_previews(chosen, args, out_dir):
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest = []
@@ -307,32 +347,10 @@ def fetch_previews(chosen, args, out_dir):
     for g in chosen:
         p = g.properties
         day = p["startTime"][:10]
-        png_url, kml_url = preview_urls(g)
-        if not png_url:
-            print(f"  {day}: no preview image, skipped")
-            continue
-        try:
-            img = Image.open(BytesIO(requests.get(png_url, timeout=300).content)).convert("RGB")
-        except (requests.RequestException, OSError) as e:
-            print(f"  {day}: preview download failed ({e}), skipped")
-            continue
-        georef, method = None, None
-        if kml_url:
-            grid = (track_key(g), img.size)
-            bounds = get_kml_bounds(kml_url) or known_bounds.get(grid) or next(
-                (b for b in map(get_kml_bounds, sibling_kmls(chosen, g)) if b), None)
-            if bounds:
-                known_bounds[grid] = bounds
-                georef, method = bounds_to_georef(bounds, img.size), "kml"
-        if georef is None:
-            fit = footprint_fit(img, g.geometry["coordinates"][0], SATELLITES[args.satellite]["no_data_max"])
-            if not fit or fit[1] > 15:  # corners disagree by >15 px: don't trust it
-                print(f"  {day}: could not place this preview on the map, skipped")
-                continue
-            georef, method = fit[0], f"footprint fit, +/-{fit[1]:.0f}px"
-        crop, crop_bounds = crop_around(img, georef, args.lat, args.lon, args.radius_km)
+        crop, crop_bounds, method = crop_preview(
+            g, args.satellite, args.lat, args.lon, args.radius_km, chosen, known_bounds)
         if crop is None:
-            print(f"  {day}: point is outside this preview, skipped")
+            print(f"  {day}: {crop_bounds}, skipped")  # crop_bounds holds the reason here
             continue
         file = out_dir / f"{day}_{p.get('flightDirection', '')[:1]}{p.get('pathNumber')}.png"
         crop.save(file, optimize=True)
@@ -356,6 +374,66 @@ def fetch_previews(chosen, args, out_dir):
         "radiusKm": args.radius_km, "product": args.product or SATELLITES[args.satellite]["product"], "observations": manifest,
     }, indent=2))
     print(f"\nWrote {len(manifest)} images + {show(out_dir / 'manifest.json')}")
+
+
+# ---------- one image for any point ----------
+
+def get_image(lat, lon, date=None, radius_km=25, satellite="nisar", window_days=45):
+    """Radar image around any point on Earth, or None if the satellite has none there.
+
+    lat:  -90..90, lon: -180..180 (raises ValueError outside that).
+    date: "YYYY-MM-DD" to get the pass closest to that day (searching window_days
+          either side); leave out for the newest pass.
+    Returns a dict, e.g.
+        {"image": <PIL image>, "date": "2026-01-17", "bounds": {...lat/lon box...},
+         "satellite": "nisar", "scene": "...", "placed_by": "kml"}
+
+    Example (from Python, in the pipeline folder):
+        from fetch_asf import get_image
+        result = get_image(-24.533, 32.983, date="2026-01-17")
+        if result:
+            result["image"].save("chokwe.png")
+    """
+    if not -90 <= lat <= 90:
+        raise ValueError(f"latitude must be between -90 and 90, got {lat}")
+    if not -180 <= lon <= 180:
+        raise ValueError(f"longitude must be between -180 and 180, got {lon}")
+    if satellite not in SATELLITES:
+        raise ValueError(f"satellite must be one of {list(SATELLITES)}, got {satellite!r}")
+
+    start = end = None
+    if date:
+        day = datetime.date.fromisoformat(date)  # also checks the format
+        start = (day - datetime.timedelta(days=window_days)).isoformat()
+        end = (day + datetime.timedelta(days=window_days)).isoformat()
+    passes = list(search_point(lat, lon, satellite, start, end))
+    if not passes:
+        return None
+
+    # Best first: closest to the requested date, or simply newest.
+    def when(g):
+        return datetime.datetime.fromisoformat(g.properties["startTime"].replace("Z", "+00:00"))
+    if date:
+        target = datetime.datetime.fromisoformat(date + "T12:00:00+00:00")
+        passes.sort(key=lambda g: abs(when(g) - target))
+    else:
+        passes.sort(key=when, reverse=True)
+
+    # A preview can be missing or unplaceable, so try the next-best few.
+    known_bounds = {}
+    for g in passes[:5]:
+        crop, bounds, method = crop_preview(g, satellite, lat, lon, radius_km, passes, known_bounds)
+        if crop is not None:
+            p = g.properties
+            return {
+                "image": crop,
+                "date": p["startTime"][:10],
+                "bounds": dict(zip(("west", "south", "east", "north"), bounds)),
+                "satellite": satellite,
+                "scene": p["sceneName"],
+                "placed_by": method,
+            }
+    return None
 
 
 # ---------- full .h5 ----------
