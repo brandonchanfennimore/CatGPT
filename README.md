@@ -9,6 +9,10 @@ happening, when ordinary satellite photos only see clouds. The focus is **NISAR*
 NASA-ISRO radar satellite launched in 2025, with **Sentinel-1** (ESA) for events
 from before NISAR's data began.
 
+Live site: **[handmetheearth.wiki](https://handmetheearth.wiki)**
+
+![The globe with event pins, View settings and the hand-gesture panel](docs/screenshots/globe.jpg)
+
 ## What's on the globe
 
 - **Study sites:** hand-checked places with a full image timeline and explanation:
@@ -23,16 +27,72 @@ from before NISAR's data began.
 - **Notable floods** with a name, date and short note.
 
 Dots **cluster** when zoomed out (a numbered bubble) and split apart as you zoom in.
-Click a bubble to fly closer. The legend under "Map layers" shows or hides each category.
+Click a bubble to fly closer. The "Event types" list under "View settings" shows or hides each category.
 
 ## Features
 
 | | |
 |---|---|
-| **Globe** | Spin and zoom the Earth, open any dot. Country borders, city labels and coordinates appear as you zoom in; "Bright" / "Realistic" lighting. |
-| **Info view** | Opens when you click a site: what happened, "What Changed?", why it matters, and a **Sources** list with links (NASA, UN, agencies, journals). |
+| **Globe** | Spin and zoom the Earth, open any dot. Country borders, city labels and coordinates appear as you zoom in; "Bright" / "Real time" (day and night) lighting. Sharper NASA map tiles load as you zoom in. |
+| **Info pop-up** | Opens over the darkened globe when you click a site: the images on the left; "What Changed?", how radar sees it, data source and a **Sources** list with links (NASA, UN, agencies, journals) on the right. |
 | **Timeline** | Step through a site's images by date. **Radar view** shows the radar picture; **Normal view** shows a cloud-free photo with the water the radar found painted blue. |
-| **Hand gestures** | Webcam hand tracking (MediaPipe). On the globe: open palm to rotate, point and move left/right to zoom, fist to pause, two fingers swiped up to open the dot in the middle. In the info view: palm up/down to scroll, point left/right to change picture, two fingers up to go back. |
+| **Hand gestures** | Webcam hand tracking (MediaPipe). On the globe: open palm to rotate, point and move left/right to zoom, fist to pause, two fingers swiped up to open the dot in the middle. Pinky up: move down/up through View settings and event types, right to switch one. In the info pop-up: palm up/down to scroll, point left/right to change picture, point down/up for normal/radar view, two fingers up to go back. While the camera is on, the pop-up's buttons turn into gesture hints. A tutorial shows all gestures on the first visit (and from the "?" button). |
+
+## Screenshots
+
+### Radar view vs Normal view: Limpopo River flood, Mozambique
+
+Clicking a place opens its info pop-up over the darkened globe: the pictures on the left,
+the explanation and sources on the right. Here is the **Limpopo River flood** on
+**17 January 2026**, the day after the river peaked at Chókwè, in both views.
+
+**Radar view** is the satellite's own picture (NASA-ISRO NISAR, false colour). Radar
+bounces off rough ground and plants but is reflected away by calm water, so **water
+is dark**: the flooded valley shows as a wide black band across the image. Purple is
+farmland, green is trees and bush, white is buildings. It's what the satellite really
+measured, but it takes some practice to read.
+
+![Limpopo flood info pop-up, Radar view](docs/screenshots/limpopo-radar-view.jpg)
+
+**Normal view** shows the same date as an ordinary-looking map: a cloud-free photo of
+the area with the water the radar found painted **blue**. The flood is easy to see at a
+glance: water spread several kilometres across the farmland on both banks.
+
+![Limpopo flood info pop-up, Normal view](docs/screenshots/limpopo-normal-view.jpg)
+
+#### How Normal view is made
+
+Optical satellites couldn't see this flood: the sky was covered in cloud for weeks. Radar
+sees through cloud, so Normal view combines the two (`pipeline/make_normal_view.py` for
+NISAR study areas, `pipeline/event_normal_views.py` for the Sentinel-1 events):
+
+![How Normal view is made, in four steps](docs/screenshots/normal-view-steps.jpg)
+
+1. **Radar image** for the date: here NISAR, 17 January 2026.
+2. **Find the water.** Calm water is the darkest part of a radar image, so every pixel
+   darker than a cut-off counts as water (55 out of 255 for NISAR, 45 for Sentinel-1;
+   Sentinel-1 previews also count clearly blue pixels, which catch water roughened by
+   wind). Single-pixel speckles are smoothed out, and the black "no data" edges of the
+   radar strip are ignored.
+3. **Cloud-free photo** of the same area from NASA GIBS: NASA HLS (Landsat +
+   Sentinel-2, 30 m pixels), or NASA MODIS (250 m) when no clear HLS day exists. The
+   script searches day by day before the first radar date for a photo that covers the
+   whole area with (almost) no cloud; here 15 August 2025, in the dry season.
+4. **Paint the water blue** on the photo (80% opacity, soft edges) and save it. The same
+   photo is used for every date, so only the blue water changes from frame to frame.
+
+The blue shows **where the radar found water on that date**, not the real colour of the
+water. It's a picture of the flood, not a scientific flood map: very smooth dry surfaces
+(bare fields, runways) can be mistaken for water, and edges are only as sharp as the
+radar preview.
+
+**Closer in.** Country names, coordinates and borders appear as you zoom; pins cluster into numbered bubbles.
+
+![The globe zoomed in over North America](docs/screenshots/globe-closer.jpg)
+
+**Gesture tutorial.** Shown on the first visit and from the "?" button on the camera panel.
+
+![Gesture tutorial with animated cards for each hand gesture](docs/screenshots/gesture-tutorial.jpg)
 
 ## Run it locally
 

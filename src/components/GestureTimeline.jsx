@@ -1,5 +1,6 @@
 
 import { useImperativeHandle, useState } from "react";
+import GestureHint from "./GestureHint";
 import "./GestureTimeline.css";
 
 // `ref` lets the parent control it too (used by the hand gestures):
@@ -12,7 +13,8 @@ const DEFAULT_VIEW_NOTES = {
     "Blue = water detected by NISAR radar, drawn on a cloud-free photo of the area.",
 };
 
-export default function GestureTimeline({ observations = [], viewNotes = {}, ref }) {
+// handsMode: camera on, so instead of buttons show how to do each action by hand.
+export default function GestureTimeline({ observations = [], viewNotes = {}, handsMode = false, ref }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   // "radar" = NISAR's own false-colour image, "normal" = photo + radar water in blue.
   const [view, setView] = useState("radar");
@@ -46,7 +48,20 @@ export default function GestureTimeline({ observations = [], viewNotes = {}, ref
 
   return (
     <div className="gesture-timeline">
-      {hasNormalView && (
+      {hasNormalView && handsMode && (
+        <div className="view-toggle-hands">
+          {/* Shows which view is on; switched with the pointing finger, not clicks. */}
+          <div className="view-toggle static" aria-label={`Showing ${showNormal ? "normal" : "radar"} view`}>
+            <span className={view === "radar" ? "active" : ""}>Radar view</span>
+            <span className={view === "normal" ? "active" : ""}>Normal view</span>
+          </div>
+          <GestureHint hand="☝️" motion="updown">
+            Point, move down for normal view, up for radar
+          </GestureHint>
+        </div>
+      )}
+
+      {hasNormalView && !handsMode && (
         <div className="view-toggle" role="group" aria-label="Image view">
           <button
             className={view === "radar" ? "active" : ""}
@@ -100,6 +115,11 @@ export default function GestureTimeline({ observations = [], viewNotes = {}, ref
           ))}
         </div>
 
+        {handsMode ? (
+          <GestureHint hand="☝️" motion="sideways">
+            Point, move right for the next picture, left for the previous one
+          </GestureHint>
+        ) : (
         <div className="timeline-buttons">
           <button
             onClick={previousObservation}
@@ -115,6 +135,7 @@ export default function GestureTimeline({ observations = [], viewNotes = {}, ref
             Next →
           </button>
         </div>
+        )}
       </div>
     </div>
   );

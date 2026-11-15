@@ -530,3 +530,25 @@
   white-space: nowrap;
 }
 
+
+
+/* ---- Pinky-up gesture on the View settings panel (Header.jsx) ---- */
+.layer-toggles.gesture-active {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 1px #7dd3fc, 0 0 18px rgba(125, 211, 252, 0.35);
+}
+/* The highlighted row: a soft box around it. */
+.layer-toggles .gesture-focus {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
+  border-radius: 8px;
+  background: rgba(125, 211, 252, 0.12);
+}
+.layer-toggles .light-toggle.gesture-focus {
+  border-radius: 999px;
+}
+.gesture-hint {
+  margin: 0;
+  color: #7dd3fc;
+  font-size: 11px;
+}

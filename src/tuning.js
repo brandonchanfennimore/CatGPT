@@ -33,6 +33,15 @@ export const SWIPE_UP_DISTANCE = 0.15;
 // ...within this many milliseconds.
 export const SWIPE_MAX_MS = 800;
 
+// ---- Pinky up: View settings (used by components/Header.jsx) ----
+
+// Move the pinky down/up this far (video height) to move the highlight one row.
+export const SETTINGS_STEP = 0.07;
+// Move it right this far (video width) to switch the highlighted setting...
+export const SETTINGS_TOGGLE = 0.09;
+// ...and then wait this long (ms) before another switch, so one swipe = one switch.
+export const SETTINGS_TOGGLE_COOLDOWN_MS = 700;
+
 // ---- Camera flight (clicking a cluster flies toward it) ----
 
 // Flight speed (higher = faster; about 1 / seconds to get most of the way there).

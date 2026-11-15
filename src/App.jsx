@@ -19,7 +19,7 @@ import { latLonToVector } from "./geo";
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import GestureTutorial from "./components/GestureTutorial";
-import { countByCategory } from "./data/sites";
+import { SITES, countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
@@ -27,7 +27,6 @@ import { FloodMarkerLayer, FloodMarkerPositioner } from "./components/FloodMarke
 import PopularPlaces from "./components/PopularPlaces";
 import usePopularPlaces from "./usePopularPlaces";
 import { areaPlace } from "./popularity";
-import { studyAreas } from "./data/studyAreas";
 
 const TUTORIAL_SEEN_KEY = "hand-me-the-earth:tutorial-seen";
 
@@ -85,6 +84,7 @@ export default function App() {
   // Gesture tutorial: shown automatically on the first visit only (remembered in this
   // browser), and any time from the camera panel's "?" button.
   const handTrackerRef = useRef(null);
+  const [cameraOn, setCameraOn] = useState(false); // hand tracking running?
   const [showTutorial, setShowTutorial] = useState(() => {
     try {
       return !localStorage.getItem(TUTORIAL_SEEN_KEY);
@@ -182,6 +182,7 @@ export default function App() {
         gestureRef={gestureRef}
         context={handContext}
         onHelp={() => setShowTutorial(true)}
+        onRunningChange={setCameraOn}
       />
 
       {/* Gesture tutorial: on the first visit, and from the camera panel's "?" button */}
@@ -199,10 +200,13 @@ export default function App() {
         siteCounts={countByCategory}
         hiddenCategories={hiddenCategories}
         onHiddenCategoriesChange={setHiddenCategories}
+        gestureRef={gestureRef}
+        gestureEnabled={!infoFullScreen && !showTutorial}
       >
         <PopularPlaces places={popularPlaces} onSelect={goToPlace} />
 
-        <button type="button" className="explore-button" onClick={() => openSite(studyAreas[0])}>
+        {/* First study area, from SITES so it has its images and sources */}
+        <button type="button" className="explore-button" onClick={() => openSite(SITES[0])}>
           Explore NISAR Data
         </button>
       </Header>
@@ -215,6 +219,7 @@ export default function App() {
           studyArea={selectedArea}
           onBack={() => setSelectedArea(null)}
           gestureRef={gestureRef}
+          handsMode={cameraOn} // camera on: buttons become gesture hints
         />
       )}
     </div>

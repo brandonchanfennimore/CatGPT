@@ -169,3 +169,19 @@
   color: white;
   font-variant-numeric: tabular-nums;
 }
+
+/* ---- Camera on ("hands mode"): gesture tips instead of buttons ---- */
+.info-close-hint {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  margin: 0;
+  background: #10243a;
+}
+.hands-mode .insight-card > .gesture-tip:first-child {
+  margin: 0 0 14px;
+}
+/* The view-switch tip adds a line, so keep the left card fitting on screen. */
+.hands-mode .radar-card .timeline-image {
+  height: clamp(200px, calc(100vh - 545px), 540px);
+}

@@ -20,12 +20,23 @@ const FIST = [true, true, true, true];
 const POINT = [false, true, true, true]; // only the index finger up
 const TWO = [false, false, true, true]; // index + middle up
 const ODD = [true, false, true, false]; // a shape we don't use
+const PINKY = [true, true, true, false]; // only the little finger up
 
 assert.equal(classifyHand(makeHand({ curled: OPEN })), 'open');
 assert.equal(classifyHand(makeHand({ curled: FIST })), 'fist');
 assert.equal(classifyHand(makeHand({ curled: POINT })), 'point');
 assert.equal(classifyHand(makeHand({ curled: TWO })), 'two');
 assert.equal(classifyHand(makeHand({ curled: ODD })), 'other');
+assert.equal(classifyHand(makeHand({ curled: PINKY })), 'pinky');
+
+// Pinky up moving down -> settings mode with dy > 0.
+{
+  const t = createGestureTracker();
+  let o;
+  for (let i = 0; i < 10; i++) o = t([makeHand({ cy: 0.5 + i * 0.02, curled: PINKY })]);
+  assert.equal(o.mode, 'settings');
+  assert.ok(o.dy > 0, `expected dy > 0, got ${o.dy}`);
+}
 
 // Open palm moving right (in the mirrored view) -> rotate with dx > 0.
 // Real-world "right" is smaller raw x, because the camera image is not mirrored.

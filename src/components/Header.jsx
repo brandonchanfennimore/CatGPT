@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { stepSettings } from "../hands/settingsGesture";
 
 // The map layers you can switch on/off, in the order shown.
 const LAYERS = [
@@ -5,6 +7,16 @@ const LAYERS = [
   { key: "labels", label: "Labels" },
   { key: "coordinates", label: "Coordinates", needs: "labels" }, // coordinates live inside labels
 ];
+// Rows the pinky gesture can highlight, top to bottom: the lighting switch, the layers,
+// then (scrolling on down) one row per event type, "cat:<id>". Reaching those opens the
+// Event types list; it closes again when the pinky comes down.
+const SETTING_ROWS = ["lighting", ...LAYERS.map((l) => l.key)];
+const CATEGORY_ROW = "cat:";
+// A row can't be switched while the layer it depends on is off (Coordinates needs Labels).
+function rowDisabled(key, layers) {
+  const needs = LAYERS.find((l) => l.key === key)?.needs;
+  return Boolean(needs && !layers[needs]);
+}
 
 export default function Header({
   lighting,
@@ -15,9 +27,86 @@ export default function Header({
   siteCounts = {}, // category id -> number of pins
   hiddenCategories = new Set(), // category ids whose pins are hidden
   onHiddenCategoriesChange,
+  gestureRef, // shared hand-gesture "mailbox" (pinky up = control these settings)
+  gestureEnabled = true, // false while a pop-up is open
   children, // extra panels under the title (Popular places, Explore button)
 }) {
   const total = Object.values(siteCounts).reduce((a, b) => a + b, 0);
+
+  // ---- Pinky-up gesture: move down/up to highlight a row, move right to switch it ----
+  const rows = [...SETTING_ROWS, ...categories.map((c) => CATEGORY_ROW + c.id)];
+  const [focus, setFocus] = useState(0); // highlighted row (index into rows)
+  const [pinkyActive, setPinkyActive] = useState(false); // pinky up right now?
+  const [legendOpen, setLegendOpen] = useState(false); // Event types list folded open?
+  const panelRef = useRef(null);
+  const latest = useRef(null); // newest props/state for the animation-frame loop below
+  useEffect(() => {
+    latest.current = {
+      rows, lighting, layers, hiddenCategories, onLightingChange, onLayersChange, onHiddenCategoriesChange,
+      focus, gestureEnabled, legendOpen,
+    };
+  });
+  useEffect(() => {
+    if (!gestureRef) return;
+    let frame;
+    let active = false;
+    let lastToggle = -Infinity;
+    let openedByGesture = false; // did the pinky open the Event types list?
+    const loop = (now) => {
+      const g = gestureRef.current; // HandTracker's Stop button swaps in a new object
+      const L = latest.current;
+      const on = Boolean(L?.gestureEnabled) && g.mode === "settings";
+      if (on !== active) {
+        setPinkyActive((active = on));
+        // Pinky down: fold the Event types list away again if the pinky opened it.
+        if (!on && openedByGesture) {
+          openedByGesture = false;
+          setLegendOpen(false);
+        }
+      }
+      if (on) {
+        const r = stepSettings({
+          rows: L.rows,
+          disabled: (key) => rowDisabled(key, L.layers),
+          focus: L.focus,
+          sx: g.sx,
+          sy: g.sy,
+          now,
+          lastToggle,
+        });
+        g.sx = r.sx;
+        g.sy = r.sy;
+        lastToggle = r.lastToggle;
+        if (r.focus !== L.focus) {
+          setFocus(r.focus);
+          // Scrolled on past the settings into the event types: open their list.
+          if (L.rows[r.focus].startsWith(CATEGORY_ROW) && !L.legendOpen) {
+            openedByGesture = true;
+            setLegendOpen(true);
+          }
+        }
+        if (r.toggle?.startsWith(CATEGORY_ROW)) {
+          const id = r.toggle.slice(CATEGORY_ROW.length);
+          const next = new Set(L.hiddenCategories);
+          if (next.has(id)) next.delete(id);
+          else next.add(id);
+          L.onHiddenCategoriesChange(next);
+        } else if (r.toggle === "lighting") L.onLightingChange(L.lighting === "bright" ? "realistic" : "bright");
+        else if (r.toggle) L.onLayersChange({ ...L.layers, [r.toggle]: !L.layers[r.toggle] });
+      } else {
+        g.sx = g.sy = 0; // nothing piles up while the pinky isn't up
+      }
+      frame = requestAnimationFrame(loop);
+    };
+    frame = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(frame);
+  }, [gestureRef]);
+  const focusClass = (i) => (pinkyActive && focus === i ? "gesture-focus" : undefined);
+
+  // Keep the highlighted row in view (the panel scrolls when the list is long).
+  useEffect(() => {
+    if (pinkyActive) panelRef.current?.querySelector(".gesture-focus")?.scrollIntoView({ block: "nearest" });
+  }, [focus, pinkyActive, legendOpen]);
 
   // Show/hide one category's pins.
   function toggleCategory(id, visible) {
@@ -36,10 +125,15 @@ export default function Header({
       </p>
 
       {/* View settings: lighting + map layer switches */}
-      <fieldset className="layer-toggles">
+      <fieldset ref={panelRef} className={pinkyActive ? "layer-toggles gesture-active" : "layer-toggles"}>
         <legend>View settings</legend>
         {/* Lighting switch. data-mode moves the sliding highlight (see UI.css). */}
-        <div className="light-toggle" role="group" aria-label="Earth lighting" data-mode={lighting}>
+        <div
+          className={["light-toggle", focusClass(0)].filter(Boolean).join(" ")}
+          role="group"
+          aria-label="Earth lighting"
+          data-mode={lighting}
+        >
           <button
             type="button"
             aria-pressed={lighting === "bright"}
@@ -58,10 +152,10 @@ export default function Header({
           </button>
         </div>
 
-        {LAYERS.map(({ key, label, needs }) => {
+        {LAYERS.map(({ key, label, needs }, n) => {
           const disabled = needs && !layers[needs];
           return (
-            <label key={key} className={disabled ? "disabled" : undefined}>
+            <label key={key} className={[disabled && "disabled", focusClass(n + 1)].filter(Boolean).join(" ") || undefined}>
               <span>{label}</span>
               {/* A real checkbox (keyboard + screen-reader friendly), styled as a switch in UI.css. */}
               <input
@@ -75,12 +169,18 @@ export default function Header({
           );
         })}
 
+        {pinkyActive && (
+          <p className="gesture-hint" aria-live="polite">
+            Pinky down/up: choose · right: switch
+          </p>
+        )}
+
         {/* Pin legend: colour = type of surface change. A <details> element folds open/closed
-            by itself (no extra code) and keeps the panel short. */}
-        <details className="pin-legend">
+            (click, or the pinky gesture scrolling into it) and keeps the panel short. */}
+        <details className="pin-legend" open={legendOpen} onToggle={(e) => setLegendOpen(e.currentTarget.open)}>
           <summary>Event types ({total})</summary>
-          {categories.map((c) => (
-            <label key={c.id}>
+          {categories.map((c, n) => (
+            <label key={c.id} className={focusClass(SETTING_ROWS.length + n)}>
               <span className="pin-dot" style={{ background: c.color }} aria-hidden="true" />
               <span className="pin-name">{c.id}</span>
               <span className="pin-count">{siteCounts[c.id] ?? 0}</span>

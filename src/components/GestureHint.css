@@ -1,0 +1,40 @@
+/* Gesture tips that replace buttons in the info pop-up while the camera is on. */
+.gesture-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border: 1px dashed rgba(125, 211, 252, 0.55);
+  border-radius: 10px;
+  background: rgba(125, 211, 252, 0.08);
+  color: #cfe8fb;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.gesture-tip-hand {
+  flex: none;
+  display: inline-block;
+  width: 26px;
+  font-size: 20px;
+  text-align: center;
+}
+.gesture-tip-hand.move-sideways { animation: tip-sideways 1.8s ease-in-out infinite; }
+.gesture-tip-hand.move-updown { animation: tip-updown 1.8s ease-in-out infinite; }
+.gesture-tip-hand.move-up { animation: tip-up 1.6s ease-in infinite; }
+@keyframes tip-sideways {
+  0%, 100% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
+@keyframes tip-updown {
+  0%, 100% { transform: translateY(-4px); }
+  50% { transform: translateY(4px); }
+}
+@keyframes tip-up {
+  0% { transform: translateY(6px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-8px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gesture-tip-hand { animation: none !important; }
+}
