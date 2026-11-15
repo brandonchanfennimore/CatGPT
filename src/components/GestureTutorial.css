@@ -17,7 +17,7 @@
 
 .tutorial-card {
   margin: auto;
-  width: min(880px, 100%);
+  width: min(980px, 100%);
   padding: 28px;
   border: 1px solid #28445f;
   border-radius: 18px;
@@ -44,7 +44,7 @@
 
 .tutorial-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
   margin: 0;
   padding: 0;
@@ -181,6 +181,49 @@
   0%, 50% { transform: scale(0.4); opacity: 0; }
   62%, 90% { transform: scale(1); opacity: 1; }
   100% { transform: scale(1); opacity: 0; }
+}
+
+/* 5. Pinky up: a mini settings list; the highlight moves down, then its switch flips. */
+.tut-rows {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  right: 34px;
+  display: grid;
+  gap: 8px;
+}
+.tut-rows i {
+  position: relative;
+  height: 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+/* Each row's switch (right end). */
+.tut-rows i::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 18px;
+  height: 10px;
+  border-radius: 999px;
+  background: #2778c4 linear-gradient(90deg, transparent 50%, white 50% 85%, transparent 85%);
+}
+.tut-rows i:nth-child(2) { animation: tut-row-focus 3.2s ease-in-out infinite; }
+.tut-rows i:nth-child(2)::after { animation: tut-row-switch 3.2s steps(1) infinite; }
+.tut-settings .tut-hand { animation: tut-pinky 3.2s ease-in-out infinite; top: 50%; left: 84%; font-size: 26px; }
+@keyframes tut-row-focus {
+  0%, 25% { box-shadow: none; }
+  35%, 100% { box-shadow: 0 0 0 2px #7dd3fc; background: rgba(125, 211, 252, 0.15); }
+}
+@keyframes tut-row-switch {
+  0%, 70% { background: #2778c4 linear-gradient(90deg, transparent 50%, white 50% 85%, transparent 85%); }
+  71%, 100% { background: rgba(255, 255, 255, 0.25) linear-gradient(90deg, transparent 15%, white 15% 50%, transparent 50%); }
+}
+@keyframes tut-pinky {
+  0% { transform: translate(-50%, -110%); }
+  30%, 45% { transform: translate(-50%, -20%); } /* down: highlight the next row */
+  70%, 100% { transform: translate(10%, -20%); } /* right: switch it */
 }
 
 /* ---- Inside an event, privacy note, buttons ---- */

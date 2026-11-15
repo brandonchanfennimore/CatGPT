@@ -175,6 +175,8 @@ export default function App() {
         siteCounts={countByCategory}
         hiddenCategories={hiddenCategories}
         onHiddenCategoriesChange={setHiddenCategories}
+        gestureRef={gestureRef}
+        gestureEnabled={!infoFullScreen && !showTutorial}
       />
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />

@@ -12,6 +12,7 @@ const GLOBE_GESTURES = [
   { id: "zoom", hand: "☝️", title: "Point", text: "Point one finger and move it right to zoom in, left to zoom out." },
   { id: "pause", hand: "✊", title: "Fist", text: "Make a fist to pause. Nothing moves until you open your hand." },
   { id: "open", hand: "✌️", title: "Two fingers up", text: "Swipe two fingers up to open the place in the middle of the screen." },
+  { id: "settings", hand: "🤙", title: "Pinky up", text: "Only your little finger up: move down/up to pick a view setting, right to switch it. Keep going down to reach the event types." },
 ];
 
 // The same hand shapes do slightly different jobs inside an event's pop-up.
@@ -54,7 +55,15 @@ export default function GestureTutorial({ onClose, onStartCamera }) {
             <li key={g.id} className={`tutorial-step tut-${g.id}`}>
               {/* Decorative animation; the text below says the same thing. */}
               <div className="tut-stage" aria-hidden="true">
-                <span className="tut-globe" />
+                {g.id === "settings" ? (
+                  <span className="tut-rows">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                ) : (
+                  <span className="tut-globe" />
+                )}
                 <span className="tut-pin" />
                 <span className="tut-popup" />
                 <span className="tut-badge">PAUSED</span>

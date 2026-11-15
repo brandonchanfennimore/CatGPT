@@ -21,16 +21,17 @@ const MODEL_URL =
 // and the guide list under the webcam. Same hand shapes, different jobs.
 const CONTEXTS = {
   explore: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom", settings: "View settings" },
     guide: [
       "🖐️ Open palm + move: rotate (swipe out of view to spin)",
       "☝️ Point + move right/left: zoom in/out",
       "✊ Fist: pause",
       "✌️ Two fingers, swipe up: open the marker in the middle",
+      "🤙 Pinky up + move down/up: pick a view setting or event type, right: switch it",
     ],
   },
   info: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view", settings: "Paused" },
     guide: [
       "🖐️ Open palm + move up/down: scroll",
       "☝️ Point + move right/left: next/previous picture",
@@ -128,8 +129,15 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, r
         const g = track(result.landmarks, now);
         const shared = gestureRef.current;
         shared.mode = g.mode;
-        shared.dx += g.dx;
-        shared.dy += g.dy;
+        if (g.mode === "settings") {
+          // Pinky movement goes to its own "mailbox" (read by the View settings panel),
+          // so the globe never moves with it.
+          shared.sx = (shared.sx ?? 0) + g.dx;
+          shared.sy = (shared.sy ?? 0) + g.dy;
+        } else {
+          shared.dx += g.dx;
+          shared.dy += g.dy;
+        }
         if (g.fling) shared.fling = g.fling; // HandCameraControls turns this into a coasting spin
         if (g.select) shared.select = true; // HandCameraControls opens the marker in the middle
 
