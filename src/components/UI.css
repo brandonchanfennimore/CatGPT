@@ -18,18 +18,20 @@
 }
 
 .eyebrow {
+  margin: 0;
   color: #7dd3fc;
   letter-spacing: 3px;
   font-size: 12px;
 }
 
 .app-header h1 {
-  font-size: clamp(36px, 4.5vw, 54px); /* bigger on wide screens, never smaller than before */
-  line-height: 1.05;
-  margin: 8px 0;
+  font-size: 36px;
+  line-height: 1.1;
+  margin: 4px 0;
 }
 
 .subtitle {
+  margin: 0;
   color: #aabbcc;
 }
 
@@ -297,10 +299,16 @@
 }
 
 .layer-toggles {
+  /* Bottom-left corner of the screen (it grows upward when "Event types" opens). */
+  position: fixed;
+  left: 36px;
+  bottom: 40px;
+  max-height: calc(100vh - 240px); /* never runs up into the title */
+  overflow-y: auto;
   display: grid;
   gap: 8px;
   width: 190px;
-  margin: 12px 0 0;
+  margin: 0;
   padding: 10px 14px 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
