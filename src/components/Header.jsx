@@ -15,6 +15,7 @@ export default function Header({
   siteCounts = {}, // category id -> number of pins
   hiddenCategories = new Set(), // category ids whose pins are hidden
   onHiddenCategoriesChange,
+  children, // extra panels under the title (Popular places, Explore button)
 }) {
   const total = Object.values(siteCounts).reduce((a, b) => a + b, 0);
 
@@ -101,6 +102,8 @@ export default function Header({
           </div>
         </details>
       </fieldset>
+
+      {children && <div className="header-extra">{children}</div>}
     </header>
   );
 }
