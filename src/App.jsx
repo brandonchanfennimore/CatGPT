@@ -164,13 +164,16 @@ export default function App() {
         <Earth />
         {layers.borders && <Borders />}
 
-        {/* Pins: clickable in Explore; in the radar modes they glow instead. */}
-        <LocationMarker
-          studyArea={studyAreas[0]}
-          onSelect={setSelectedArea}
-          interactive={mode === "explore"}
-          glow={mode !== "explore"}
-        />
+        {/* One pin per study area: clickable in Explore; in the radar modes they glow instead. */}
+        {studyAreas.map((area) => (
+          <LocationMarker
+            key={area.id}
+            studyArea={area}
+            onSelect={setSelectedArea}
+            interactive={mode === "explore"}
+            glow={mode !== "explore"}
+          />
+        ))}
 
         {mode === "flashlight" && radarArea?.bounds && (
           <RadarFlashlight

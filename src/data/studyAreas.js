@@ -30,40 +30,32 @@ export const studyAreas = [
       sourceUrl: "https://search.earthdata.nasa.gov/search?q=OPERA_L3_DSWX-S1_V1",
     },
     {
-      id: "test-area",
-      name: "Test Region",
+      id: "storm-boris-2024",
+      name: "Storm Boris Floods, Poland",
       description:
-        "Explore how Earth's surface changes over time using satellite observations.",
+        "In mid-September 2024 Storm Boris stalled over Central Europe and poured several days of record rain onto the mountains of Czechia, Poland and Austria. Rivers rose fast; the town of Nysa in south-west Poland flooded as the Nysa Kłodzka river overflowed.",
 
-      // Where the site is (degrees). PLACEHOLDER: made-up values so the radar
-      // flashlight can be built and tested. Replace with the real site's values
-      // (the data pipeline should write them into each image's JSON).
-      center: { lat: 0, lon: -90 },
-      // The radar images' lat/lon box: west/east = longitude, south/north = latitude.
-      bounds: { west: -95, south: -5, east: -85, north: 5 },
-  
+      // Nysa reservoir and town. Images from NASA OPERA DSWx-S1 tile T33UXR,
+      // re-projected to lat/lon and cropped to this box (see pipeline/dswx_flood.py).
+      center: { lat: 50.47, lon: 17.28 },
+      bounds: { west: 16.95, south: 50.4, east: 17.7, north: 50.585 },
+
+      // Surface water maps from radar (Sentinel-1, processed by NASA OPERA).
+      // Blue = open water, cyan = water under vegetation, clear = dry land.
       observations: [
-        {
-          date: "Test Frame 1",
-          image: "/test-data/beginning.jpeg",
-        },
-        {
-          date: "Test Frame 2",
-          image: "/test-data/middle.jpeg",
-        },
-        {
-          date: "Test Frame 3",
-          image: "/test-data/after.jpeg",
-        },
+        { date: "2024-09-03 (before)", image: "/radar/boris/2024-09-03.png" },
+        { date: "2024-09-15 (flood peak)", image: "/radar/boris/2024-09-15.png" },
+        { date: "2024-09-27 (12 days after)", image: "/radar/boris/2024-09-27.png" },
       ],
-  
+      // Flashlight mode: red = water that appeared between 3 and 15 September.
+      flashlightImage: "/radar/boris/change.png",
+
       findings:
-        "This is temporary information for testing the interface.",
-  
+        "Between 3 and 15 September about 12 km² of new surface water appeared here (red in Flashlight mode): around the edges of the Otmuchów and Nysa reservoirs, which were holding back floodwater, and across the river plain north of Nysa. Radar sees through the storm clouds, but it misses water in the town itself (buildings bounce the signal back) and in narrow mountain valleys, so the real flooding was larger than this map shows.",
+
       impact:
-        "Real NASA NISAR findings will appear here once the data is processed.",
-  
-      sourceUrl: "",
+        "Storm Boris killed more than two dozen people across Central Europe and forced tens of thousands to evacuate. Reservoirs like Nysa's helped hold back the peak; mapping how full they got and where water escaped helps plan for the next storm.",
+
+      sourceUrl: "https://search.earthdata.nasa.gov/search?q=OPERA_L3_DSWX-S1_V1",
     },
   ];
-  
