@@ -4,6 +4,7 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { useCallback, useRef, useState } from "react";
 
 import Earth, { EARTH_RADIUS } from "./components/Earth";
+import EarthTiles from "./components/EarthTiles";
 import Lighting from "./components/Lighting";
 import { ZoomBar, ZoomReadout } from "./components/ZoomBar";
 import { Borders, LabelPositioner, PlaceLabels } from "./components/MapOverlay";
@@ -78,6 +79,8 @@ export default function App() {
         />
 
         <Earth />
+        {/* Sharper NASA map tiles for the area in view when zoomed in */}
+        <EarthTiles earthRadius={EARTH_RADIUS} />
         {layers.borders && <Borders />}
 
         {/* Clickable dots (HTML) that cluster when zoomed out (FloodMarkers.jsx). */}
@@ -121,7 +124,7 @@ export default function App() {
 
       {/* Data credits (CC BY data must be credited where it's shown) */}
       <p className="map-credits">
-        Imagery: NASA Blue Marble · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
+        Imagery: NASA Blue Marble via NASA GIBS · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
         Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0) ·
         Radar: NASA OPERA (DSWx, DIST), ARIA, NISAR (NASA/ISRO) via NASA Earthdata · Copernicus Sentinel-1 data ·
         Normal-view photos: NASA HLS and MODIS via NASA GIBS

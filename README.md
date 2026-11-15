@@ -136,7 +136,7 @@ npx wrangler deploy
   products via [NASA Earthdata](https://www.earthdata.nasa.gov)
 - **Photos for Normal view:** NASA HLS (Landsat / Sentinel-2) and MODIS via
   [NASA GIBS](https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api)
-- **Earth texture:** NASA Blue Marble
+- **Earth texture:** NASA Blue Marble (shaded relief + bathymetry) from NASA GIBS: an 8192 x 4096 base map (`pipeline/make_earth_texture.py`) plus sharper tiles loaded as you zoom in (`src/components/EarthTiles.jsx`, down to ~500 m per pixel)
 - **Borders:** [Natural Earth](https://www.naturalearthdata.com) (public domain)
 - **Cities:** [SimpleMaps](https://simplemaps.com/data/world-cities) (CC BY 4.0)
 - Search library: [asf_search](https://github.com/asfadmin/Discovery-asf_search)
