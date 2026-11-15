@@ -11,6 +11,10 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  // Serve the site on our own domain (Cloudflare creates the DNS record and certificate).
+  "routes": [
+    { "pattern": "handmetheearth.wiki", "custom_domain": true }
+  ],
   "r2_buckets": [
     {
       "binding": "RADAR",

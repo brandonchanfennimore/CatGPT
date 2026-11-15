@@ -15,7 +15,7 @@ import { RENDER_MAX_PIXEL_RATIO } from "./tuning";
 
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
-import { SITES, countByCategory } from "./data/sites";
+import { countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
@@ -143,16 +143,6 @@ export default function App() {
       />
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />
-
-      <div className="explore-controls">
-        <p>Use your hand or mouse to explore Earth.</p>
-
-        <button
-          onClick={() => setSelectedArea(SITES[0])} // first study area, with its images and sources
-        >
-          Explore NISAR Data
-        </button>
-      </div>
 
       {/* Info view for the selected site (full screen) */}
       {selectedArea && (

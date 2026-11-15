@@ -85,7 +85,7 @@ export default function StudyAreaView({
         </button>
 
         <span className="study-brand">
-          EARTH IN MOTION / NASA NISAR
+          HAND ME THE EARTH / NASA NISAR
         </span>
       </div>
 

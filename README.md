@@ -1,4 +1,4 @@
-# Earth in Motion: NASA NISAR Explorer
+# Hand Me The Earth: NASA NISAR Explorer
 
 An interactive 3D globe for exploring how Earth's surface changes, seen by radar
 satellites. Spin the globe with your mouse or **your hand** (webcam gestures), click a

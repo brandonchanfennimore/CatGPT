@@ -24,7 +24,8 @@
 }
 
 .app-header h1 {
-  font-size: 36px;
+  font-size: clamp(36px, 4.5vw, 54px); /* bigger on wide screens, never smaller than before */
+  line-height: 1.05;
   margin: 8px 0;
 }
 
@@ -32,12 +33,12 @@
   color: #aabbcc;
 }
 
-/* ---- Bright / Realistic lighting switch ---- */
+/* ---- Bright / Real time lighting switch ---- */
 .light-toggle {
   position: relative;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: 1fr 1fr; /* two equal halves */
-  margin-top: 4px;
+  margin-bottom: 4px;
   padding: 3px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
@@ -61,12 +62,12 @@
 }
 .light-toggle button {
   position: relative; /* sit above the highlight */
-  padding: 6px 14px;
+  padding: 6px 4px;
   border: 0;
   background: transparent;
   color: #aabbcc;
   font: inherit;
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -81,33 +82,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .light-toggle::before { transition: none; }
-}
-
-.explore-controls {
-  position: absolute;
-  bottom: 36px;
-  left: 36px;
-  z-index: 10;
-  max-width: 320px;
-}
-
-.explore-controls p {
-  color: #aabbcc;
-  font-size: 14px;
-}
-
-.explore-controls button {
-  background: #2778c4;
-  border: none;
-  border-radius: 8px;
-  padding: 13px 22px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.explore-controls button:hover {
-  background: #3997ec;
 }
 
 .location-panel {
