@@ -3,8 +3,9 @@ import { SRGBColorSpace, TextureLoader } from "three";
 
 export const EARTH_RADIUS = 2;
 
-// Put a world map image at public/textures/earth.jpg (equirectangular, i.e. a
-// flat 2:1 map). If the file is missing we fall back to a plain blue sphere.
+// World map at public/textures/earth.jpg: NASA Blue Marble, 8192 x 4096, a flat 2:1
+// (equirectangular) map made by pipeline/make_earth_texture.py. EarthTiles.jsx adds
+// sharper tiles on top when zoomed in. If the file is missing: a plain blue sphere.
 const TEXTURE_URL = "/textures/earth.jpg";
 
 export default function Earth() {

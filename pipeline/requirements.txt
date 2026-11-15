@@ -5,3 +5,5 @@ scipy       # speckle filter (local averaging)
 rasterio    # reprojects UTM -> lat/lon and clips to the study area
 matplotlib  # colour maps
 Pillow      # writes PNG files
+asf_search  # searches + downloads NISAR granules from ASF (fetch_asf.py)
+requests    # downloads preview images

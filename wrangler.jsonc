@@ -1,10 +1,24 @@
 // Cloudflare Workers config: tells `npx wrangler deploy` what to publish.
-// This site is plain static files (HTML, JS, images), so there's no server code:
-// Cloudflare just serves the folder that `npm run build` creates.
+//  - assets: the built website (the folder `npm run build` creates), served as static files.
+//  - main:   a small Worker (worker/index.js) that serves the event radar images from R2
+//            at /radar/events/... (requests that don't match a static file go to it).
+//  - r2_buckets: the R2 bucket with those images, available to the Worker as env.RADAR.
 {
   "name": "catgpt",
   "compatibility_date": "2026-09-01",
+  "main": "worker/index.js",
   "assets": {
-    "directory": "./dist"
-  }
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  // Serve the site on our own domain (Cloudflare creates the DNS record and certificate).
+  "routes": [
+    { "pattern": "handmetheearth.wiki", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "RADAR",
+      "bucket_name": "catgpt-radar"
+    }
+  ]
 }

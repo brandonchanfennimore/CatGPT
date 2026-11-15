@@ -23,10 +23,7 @@ const COAST_FRICTION = 3;
 const spherical = new Spherical();
 const offset = new Vector3();
 
-// appMode: "explore" = all globe gestures. "flashlight" = palm still rotates, but the
-// pointing finger moves the radar lens instead of zooming, and the two-finger swipe is off.
-// "time" = the palm moves the before/after curtain instead, so hands don't move the globe.
-export default function HandCameraControls({ gestureRef, earthRadius, paused = false, appMode = "explore" }) {
+export default function HandCameraControls({ gestureRef, earthRadius, paused = false }) {
   const camera = useThree((s) => s.camera);
   const controls = useThree((s) => s.controls); // set by <OrbitControls makeDefault />
   const coast = useRef({ x: 0, y: 0 }); // leftover spin speed after a fling (video-widths/s)
@@ -47,17 +44,14 @@ export default function HandCameraControls({ gestureRef, earthRadius, paused = f
     const g = gestureRef.current;
 
     // Two-finger swipe up: "click" the marker closest to the middle of the screen.
-    const explore = appMode === "explore";
     if (g.select) {
       g.select = false;
-      if (explore) openMarkerNearestCenter(camera);
+      openMarkerNearestCenter(camera);
     }
 
     // A rotate just ended with the hand moving: start coasting at that speed.
-    // (Not in Time mode: there the palm is busy with the curtain.)
-    const palmRotates = appMode !== "time";
     if (g.fling) {
-      if (palmRotates) coast.current = g.fling;
+      coast.current = g.fling;
       g.fling = null;
     }
     // Rotating or zooming by hand "grabs" the wheel and stops the coast.
@@ -65,10 +59,10 @@ export default function HandCameraControls({ gestureRef, earthRadius, paused = f
 
     // Rotation this frame = hand movement + coasting spin.
     const c = coast.current;
-    const handRotates = palmRotates && g.mode === "rotate";
+    const handRotates = g.mode === "rotate";
     const rotX = (handRotates ? g.dx : 0) + c.x * delta;
     const rotY = (handRotates ? g.dy : 0) + c.y * delta;
-    const zoom = explore && g.mode === "zoom" ? g.dx : 0; // pointing finger: left/right
+    const zoom = g.mode === "zoom" ? g.dx : 0; // pointing finger: left/right
 
     // Friction: shrink the coasting speed a bit every frame, like a wheel slowing down.
     // Math.exp makes the slow-down the same no matter the frame rate.

@@ -8,7 +8,7 @@
  *     which HandCameraControls reads inside the 3D scene.
  */
 import { DrawingUtils, FilesetResolver, HandLandmarker } from "@mediapipe/tasks-vision";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { createGestureTracker } from "./gesture";
 
@@ -30,36 +30,21 @@ const CONTEXTS = {
     ],
   },
   info: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Swipe pictures" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view" },
     guide: [
       "🖐️ Open palm + move up/down: scroll",
       "☝️ Point + move right/left: next/previous picture",
+      "☝️ Point + move down/up: normal/radar view",
       "✊ Fist: pause",
       "✌️ Two fingers, swipe up: back to Earth",
     ],
   },
-  flashlight: {
-    labels: { none: "No hand (lens follows mouse)", release: "Paused", swipe: "Paused", rotate: "Rotate", zoom: "Radar lens" },
-    guide: [
-      "☝️ Point: move the radar lens",
-      "🖐️ Open palm + move: rotate",
-      "✊ Fist: pause",
-      "Lens size: slider or mouse wheel",
-    ],
-  },
-  time: {
-    labels: { none: "No hand", release: "Paused", swipe: "Paused", rotate: "Curtain", zoom: "Paused" },
-    guide: [
-      "🖐️ Open palm + move sideways: pull the curtain",
-      "🖐️ Fast swipe left/right: previous/next dates",
-      "✊ Fist: pause",
-      "Mouse: drag the divider · ← → keys: change dates",
-    ],
-  },
 };
 
-// context: "explore", "info" (a study area's full info view is open), "flashlight" or "time".
-export default function HandTracker({ gestureRef, context = "explore" }) {
+// context: "explore", or "info" (a study area's full info view is open).
+// onHelp: shows the gesture tutorial ("?" button). ref.current.start() starts the camera
+// (the tutorial's "Start camera" button uses it).
+export default function HandTracker({ gestureRef, context = "explore", onHelp, ref }) {
   const ui = CONTEXTS[context] ?? CONTEXTS.explore; // unknown context: fall back to Explore
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -72,6 +57,8 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
 
   // Stop the camera and model when the component goes away.
   useEffect(() => () => cleanupRef.current?.(), []);
+
+  useImperativeHandle(ref, () => ({ start: () => state === "idle" || state === "error" ? start() : undefined }));
 
   async function start() {
     setState("loading");
@@ -140,12 +127,6 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
         // Add this frame's movement to whatever the 3D scene hasn't used yet.
         const g = track(result.landmarks, now);
         const shared = gestureRef.current;
-        // Index fingertip position (mirrored like the preview, 0..1), for the radar lens.
-        const tip = result.landmarks[0]?.[8];
-        shared.tip = tip ? { x: 1 - tip.x, y: tip.y } : null;
-        // Palm centre (middle knuckle) and when it was seen, for the Time curtain.
-        const palm = result.landmarks[0]?.[9];
-        shared.palm = palm ? { x: 1 - palm.x, y: palm.y, t: now } : null;
         shared.mode = g.mode;
         shared.dx += g.dx;
         shared.dy += g.dy;
@@ -200,15 +181,22 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
             )}
           </svg>
         </button>
-        {state === "running" ? (
-          <button type="button" className="hand-toggle stop" onClick={stop}>
-            Stop
-          </button>
-        ) : (
-          <button type="button" className="hand-toggle start" onClick={start} disabled={state === "loading"}>
-            {state === "loading" ? "Starting…" : "Start"}
-          </button>
-        )}
+        <div className="hand-actions">
+          {onHelp && (
+            <button type="button" className="hand-help" onClick={onHelp} aria-label="How to use hand gestures" title="How to use hand gestures">
+              ?
+            </button>
+          )}
+          {state === "running" ? (
+            <button type="button" className="hand-toggle stop" onClick={stop}>
+              Stop
+            </button>
+          ) : (
+            <button type="button" className="hand-toggle start" onClick={start} disabled={state === "loading"}>
+              {state === "loading" ? "Starting…" : "Start"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="hand-preview" hidden={state !== "running"}>

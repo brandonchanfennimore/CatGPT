@@ -1,0 +1,110 @@
+{
+  "name": "sylhet-flood",
+  "lat": 24.9,
+  "lon": 91.87,
+  "radiusKm": 30.0,
+  "product": "GCOV",
+  "observations": [
+    {
+      "date": "2026-06-20",
+      "image": "/nisar/sylhet-flood/2026-06-20_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_023_091_D_076_2005_QPDH_A_20260620T123424_20260620T123459_P05023_N_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_023_091_D_076_2005_QPDH_A_20260620T123424_20260620T123459_P05023_N_F_J_001/NISAR_L2_PR_GCOV_023_091_D_076_2005_QPDH_A_20260620T123424_20260620T123459_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-06-20_D91_normal.jpg"
+    },
+    {
+      "date": "2026-07-14",
+      "image": "/nisar/sylhet-flood/2026-07-14_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_025_091_D_076_2005_QPDH_A_20260714T123423_20260714T123457_P05023_F_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_091_D_076_2005_QPDH_A_20260714T123423_20260714T123457_P05023_F_F_J_001/NISAR_L2_PR_GCOV_025_091_D_076_2005_QPDH_A_20260714T123423_20260714T123457_P05023_F_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-07-14_D91_normal.jpg"
+    },
+    {
+      "date": "2026-08-31",
+      "image": "/nisar/sylhet-flood/2026-08-31_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_029_091_D_076_2005_QPDH_A_20260831T123421_20260831T123455_P05023_N_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_091_D_076_2005_QPDH_A_20260831T123421_20260831T123455_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_091_D_076_2005_QPDH_A_20260831T123421_20260831T123455_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-08-31_D91_normal.jpg"
+    },
+    {
+      "date": "2026-09-24",
+      "image": "/nisar/sylhet-flood/2026-09-24_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_031_091_D_076_2005_QPDH_A_20260924T123420_20260924T123455_P05023_N_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_031_091_D_076_2005_QPDH_A_20260924T123420_20260924T123455_P05023_N_F_J_001/NISAR_L2_PR_GCOV_031_091_D_076_2005_QPDH_A_20260924T123420_20260924T123455_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-09-24_D91_normal.jpg"
+    },
+    {
+      "date": "2026-10-18",
+      "image": "/nisar/sylhet-flood/2026-10-18_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_033_091_D_076_2005_QPDH_A_20261018T123421_20261018T123455_P05023_N_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_091_D_076_2005_QPDH_A_20261018T123421_20261018T123455_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_091_D_076_2005_QPDH_A_20261018T123421_20261018T123455_P05023_N_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-10-18_D91_normal.jpg"
+    },
+    {
+      "date": "2026-11-11",
+      "image": "/nisar/sylhet-flood/2026-11-11_D91.png",
+      "bounds": {
+        "west": 91.573437,
+        "south": 24.629771,
+        "east": 92.166359,
+        "north": 25.169808
+      },
+      "scene": "NISAR_L2_PR_GCOV_035_091_D_076_2005_QPDH_A_20261111T123421_20261111T123456_P05036_N_F_J_001",
+      "track": 91,
+      "frame": 76,
+      "direction": "DESCENDING",
+      "h5Url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_V1/NISAR_L2_PR_GCOV_035_091_D_076_2005_QPDH_A_20261111T123421_20261111T123456_P05036_N_F_J_001/NISAR_L2_PR_GCOV_035_091_D_076_2005_QPDH_A_20261111T123421_20261111T123456_P05036_N_F_J_001.h5",
+      "normalImage": "/nisar/sylhet-flood/2026-11-11_D91_normal.jpg"
+    }
+  ],
+  "normalView": {
+    "photoLayer": "HLS_S30_Nadir_BRDF_Adjusted_Reflectance",
+    "photoDate": "2026-05-05",
+    "waterThreshold": 55
+  }
+}
