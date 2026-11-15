@@ -3,6 +3,9 @@ export const studyAreas = [
     {
       id: "valencia-2024",
       name: "Valencia Floods, Spain",
+      category: "Floods",
+      place: "Valencia, Spain",
+      date: "2024-10-29",
       description:
         "On 29 October 2024 a slow-moving storm (a \"DANA\") dropped up to a year's rain in hours. Flash floods tore through the towns south of Valencia and drained into the Albufera lagoon.",
 
@@ -32,6 +35,9 @@ export const studyAreas = [
     {
       id: "storm-boris-2024",
       name: "Storm Boris Floods, Poland",
+      category: "Floods",
+      place: "Nysa, Poland",
+      date: "2024-09-15",
       description:
         "In mid-September 2024 Storm Boris stalled over Central Europe and poured several days of record rain onto the mountains of Czechia, Poland and Austria. Rivers rose fast; the town of Nysa in south-west Poland flooded as the Nysa Kłodzka river overflowed.",
 
