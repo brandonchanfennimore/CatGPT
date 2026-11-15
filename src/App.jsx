@@ -1,8 +1,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { MathUtils, Vector3 } from "three";
+import { useCallback, useRef, useState } from "react";
 
 import Earth, { EARTH_RADIUS } from "./components/Earth";
 import Lighting from "./components/Lighting";
@@ -10,42 +9,17 @@ import { ZoomBar, ZoomReadout } from "./components/ZoomBar";
 import { Borders, LabelPositioner, PlaceLabels } from "./components/MapOverlay";
 import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
-import { LensOverlay, RadarFlashlight } from "./modes/RadarFlashlight";
-import CameraFlyer from "./modes/CameraFlyer";
+import CameraFlyer from "./components/CameraFlyer";
 import AdaptiveNear from "./components/AdaptiveNear";
-import { CurtainDates, CurtainDivider, TimeCurtain } from "./modes/TimeCurtain";
-import ModeBar from "./modes/ModeBar";
-import { latLonToVector } from "./geo";
-import {
-  LENS_RADIUS_MAX_PX,
-  LENS_RADIUS_MIN_PX,
-  LENS_RADIUS_PX,
-  LENS_WHEEL_SENSITIVITY,
-  RADAR_FLY_ZOOM,
-  RENDER_MAX_PIXEL_RATIO,
-} from "./tuning";
+import { RENDER_MAX_PIXEL_RATIO } from "./tuning";
 
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
-import { studyAreas } from "./data/studyAreas";
-import { SITES, countByCategory, hasImages } from "./data/sites";
-import { CATEGORIES, CATEGORY_BY_ID } from "./data/categories";
-
-// Zoom level that makes a site's image box fill most of the screen when flying there.
-// (Camera starts 7 units from the Earth's centre; the Earth's radius is 2 = 6371 km.)
-function flyZoomFor(area) {
-  if (!area.bounds) return RADAR_FLY_ZOOM;
-  const boxWorld = ((area.bounds.north - area.bounds.south) * 111.32) / (6371 / EARTH_RADIUS);
-  const altitude = boxWorld / (2 * Math.tan((75 * Math.PI) / 360)) / 0.7; // box ~70% of the view
-  return Math.min(7 / (EARTH_RADIUS + altitude), 3.48);
-}
+import { SITES, countByCategory } from "./data/sites";
+import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
-import LocationMarker from "./components/LocationMarker";
 import { FloodMarkerLayer, FloodMarkerPositioner } from "./components/FloodMarkers";
-
-// Keyboard shortcuts for the modes (also shown on the mode buttons).
-const MODE_KEYS = { 1: "explore", 2: "flashlight", 3: "time" };
 
 export default function App() {
   // Shared reference for webcam and 3D camera controls
@@ -61,16 +35,11 @@ export default function App() {
   const zoomTargetRef = useRef(null);
   // The layer holding country/city labels; LabelPositioner moves them.
   const labelsRef = useRef(null);
-  // Flood dots (Explore mode): their HTML layer, and what each dot shows right now.
+  // Flood dots: their HTML layer, and what each dot shows right now.
   const floodLayerRef = useRef(null);
   const floodStateRef = useRef(null);
-  // The radar lens ring (HTML); RadarFlashlight moves it.
-  const lensOverlayRef = useRef(null);
   // A camera flight in progress ({ dir, zoom }), or null. CameraFlyer flies it.
   const flyRef = useRef(null);
-  // Time curtain: divider position (0..1 across the screen) and its HTML line.
-  const splitRef = useRef({ x: 0.5, dragging: false });
-  const dividerRef = useRef(null);
 
   // Currently selected NISAR study area
   const [selectedArea, setSelectedArea] = useState(null);
@@ -82,92 +51,17 @@ export default function App() {
   const [layers, setLayers] = useState({ borders: true, labels: true, coordinates: true });
   // Event categories whose pins are hidden (toggled in the legend under "Map layers").
   const [hiddenCategories, setHiddenCategories] = useState(() => new Set());
-  const visibleSites = SITES.filter((site) => !hiddenCategories.has(site.category));
 
-  // App mode: "explore" (spin, zoom, open sites), "flashlight" (radar lens),
-  // "time" (before/after curtain).
-  const [mode, setMode] = useState("explore");
-  // The site whose radar is shown in Flashlight and Time modes.
-  const [radarArea, setRadarArea] = useState(null);
-  // Radar lens radius on screen (px): slider + mouse wheel.
-  const [lensRadius, setLensRadius] = useState(LENS_RADIUS_PX);
-  // Time mode: which pair of dates is compared (0 = 1st vs 2nd image, 1 = 2nd vs 3rd...).
-  const [pair, setPair] = useState(0);
-  const lastPair = Math.max(0, (radarArea?.observations.length ?? 1) - 2);
-  const shownPair = Math.min(pair, lastPair);
-
-  // Next (+1) / previous (-1) date pair; stops at the ends.
-  const stepPair = useCallback((delta) => setPair((p) => MathUtils.clamp(p + delta, 0, lastPair)), [lastPair]);
-
-  // The info view is full screen in Explore mode, a side panel in the radar modes.
-  const infoCompact = mode !== "explore";
-  const infoFullScreen = selectedArea !== null && !infoCompact;
-
-  const switchMode = useCallback(
-    (next) => {
-      // Radar modes need a site with radar images (a lat/lon box), so skip events without one.
-      const area = [radarArea, selectedArea, studyAreas[0]].find((a) => a && hasImages(a));
-      if (next !== "explore") setRadarArea(area);
-      // The curtain only covers the site, so fly there when Time mode starts.
-      if (next === "time" && mode !== "time" && area.center) {
-        flyRef.current = { dir: new Vector3(...latLonToVector(area.center.lat, area.center.lon)), zoom: flyZoomFor(area) };
-        splitRef.current.x = 0.5;
-      }
-      setMode(next);
-    },
-    [radarArea, selectedArea, mode]
-  );
-
-  // "Explore with radar": fly to the site, then show its radar under the lens.
-  function exploreWithRadar(area) {
-    setRadarArea(area);
-    setSelectedArea(area); // keep its explanation open (as a side panel)
-    setMode("flashlight");
-    const { lat, lon } = area.center;
-    flyRef.current = { dir: new Vector3(...latLonToVector(lat, lon)), zoom: flyZoomFor(area) };
-  }
-
-  // Keys 1 / 2 / 3 switch modes (ignored while typing in a text box).
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
-      const typing = e.target.closest?.("textarea, [contenteditable], input:not([type=range]):not([type=checkbox])");
-      if (typing) return;
-      if (MODE_KEYS[e.key]) switchMode(MODE_KEYS[e.key]);
-      // Time mode: ← / → step through date pairs (unless the zoom bar or a
-      // slider has focus, since they use the arrow keys themselves).
-      const arrow = { ArrowLeft: -1, ArrowRight: 1 }[e.key];
-      if (mode === "time" && arrow && !e.target.closest?.(".zoom-bar, input")) {
-        e.preventDefault();
-        stepPair(arrow);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [switchMode, mode, stepPair]);
-
-  // Flashlight mode: the mouse wheel over the globe resizes the lens
-  // (instead of zooming; the zoom bar still zooms).
-  useEffect(() => {
-    if (mode !== "flashlight") return;
-    const onWheel = (e) => {
-      if (e.target.tagName !== "CANVAS") return; // scrolling the side panel etc.
-      setLensRadius((r) =>
-        MathUtils.clamp(r * Math.exp(-e.deltaY * LENS_WHEEL_SENSITIVITY), LENS_RADIUS_MIN_PX, LENS_RADIUS_MAX_PX)
-      );
-    };
-    window.addEventListener("wheel", onWheel);
-    return () => window.removeEventListener("wheel", onWheel);
-  }, [mode]);
+  const infoFullScreen = selectedArea !== null;
 
   // Clicking a cluster of flood dots flies toward it.
   const flyTo = useCallback((target) => (flyRef.current = target), []);
 
   // Which gesture guide/labels the webcam panel shows.
-  const handContext = infoFullScreen ? "info" : mode;
+  const handContext = infoFullScreen ? "info" : "explore";
 
   return (
-    <div className="app-container" data-mode={mode}>
+    <div className="app-container">
       {/* 3D Earth scene */}
       {/* near: how close to the camera things can be and still be drawn. AdaptiveNear
           (below) keeps it right for the current altitude; 0.01 is just the start. */}
@@ -186,50 +80,13 @@ export default function App() {
         <Earth />
         {layers.borders && <Borders />}
 
-        {/* Explore: clickable dots (HTML) that cluster when zoomed out (FloodMarkers.jsx).
-            Radar modes: a glowing, non-clickable pin for each site that has radar images. */}
-        {mode === "explore" ? (
-          <FloodMarkerPositioner layerRef={floodLayerRef} stateRef={floodStateRef} hidden={hiddenCategories} />
-        ) : (
-          visibleSites
-            .filter(hasImages)
-            .map((site) => (
-              <LocationMarker
-                key={site.id}
-                studyArea={site}
-                onSelect={setSelectedArea}
-                interactive={false}
-                glow
-                color={CATEGORY_BY_ID[site.category]?.color}
-              />
-            ))
-        )}
-
-        {mode === "flashlight" && radarArea?.bounds && (
-          <RadarFlashlight
-            area={radarArea}
-            gestureRef={gestureRef}
-            overlayRef={lensOverlayRef}
-            radiusPx={lensRadius}
-          />
-        )}
-
-        {mode === "time" && radarArea?.bounds && (
-          <TimeCurtain
-            area={radarArea}
-            pair={shownPair}
-            gestureRef={gestureRef}
-            splitRef={splitRef}
-            dividerRef={dividerRef}
-            onStep={stepPair}
-          />
-        )}
+        {/* Clickable dots (HTML) that cluster when zoomed out (FloodMarkers.jsx). */}
+        <FloodMarkerPositioner layerRef={floodLayerRef} stateRef={floodStateRef} hidden={hiddenCategories} />
 
         <OrbitControls
           makeDefault
           enableDamping
           enablePan={false}
-          enableZoom={mode !== "flashlight"} // the wheel resizes the lens there
           // Closest zoom: 0.4% of the Earth's radius above the ground (about 25 km),
           // close enough to see a city-sized flood.
           minDistance={EARTH_RADIUS * 1.004}
@@ -241,7 +98,6 @@ export default function App() {
           gestureRef={gestureRef}
           earthRadius={EARTH_RADIUS}
           paused={infoFullScreen}
-          appMode={mode}
         />
 
         <CameraFlyer flyRef={flyRef} />
@@ -254,21 +110,13 @@ export default function App() {
       <PlaceLabels layerRef={labelsRef} visible={layers.labels} coordinates={layers.coordinates} />
 
       {/* Flood dots over the globe (hidden while the full-screen info view is open) */}
-      {mode === "explore" && !infoFullScreen && (
+      {!infoFullScreen && (
         <FloodMarkerLayer
           layerRef={floodLayerRef}
           stateRef={floodStateRef}
           onOpenSite={setSelectedArea}
           onFly={flyTo}
         />
-      )}
-
-      {mode === "flashlight" && <LensOverlay overlayRef={lensOverlayRef} />}
-      {mode === "time" && radarArea && (
-        <>
-          <CurtainDivider dividerRef={dividerRef} splitRef={splitRef} />
-          <CurtainDates area={radarArea} pair={shownPair} />
-        </>
       )}
 
       {/* Data credits (CC BY data must be credited where it's shown) */}
@@ -296,34 +144,22 @@ export default function App() {
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />
 
-      <ModeBar
-        mode={mode}
-        onModeChange={switchMode}
-        siteName={radarArea?.name}
-        siteNote={mode === "flashlight" ? radarArea?.flashlightLabel : null}
-        lensRadius={lensRadius}
-        onLensRadiusChange={setLensRadius}
-      />
-
       <div className="explore-controls">
         <p>Use your hand or mouse to explore Earth.</p>
 
         <button
-          onClick={() => setSelectedArea(studyAreas[0])}
+          onClick={() => setSelectedArea(SITES[0])} // first study area, with its images and sources
         >
           Explore NISAR Data
         </button>
       </div>
 
-      {/* NISAR study area info: full screen in Explore, a side panel in the radar modes */}
+      {/* Info view for the selected site (full screen) */}
       {selectedArea && (
         <StudyAreaView
           studyArea={selectedArea}
           onBack={() => setSelectedArea(null)}
-          // Hand gestures drive the info view only when it's full screen.
-          gestureRef={infoCompact ? undefined : gestureRef}
-          onExploreRadar={exploreWithRadar}
-          compact={infoCompact}
+          gestureRef={gestureRef}
         />
       )}
     </div>

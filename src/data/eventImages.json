@@ -23,8 +23,6 @@
     "normalImage": "/radar/events/punjab-monsoon-2025/2025-09-04-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/punjab-monsoon-2025/change.webp",
-  "flashlightLabel": "New water after the event (red)",
   "water": [
    {
     "date": "2025-08-15",
@@ -58,19 +56,28 @@
   "observations": [
    {
     "date": "2023-01-28 (before) · Sentinel-1 radar",
-    "image": "/radar/events/kahramanmaras/2023-01-28-s1.webp"
+    "image": "/radar/events/kahramanmaras/2023-01-28-s1.webp",
+    "normalImage": "/radar/events/kahramanmaras/2023-01-28-normal.webp"
    },
    {
     "date": "2023-02-09 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kahramanmaras/2023-02-09-s1.webp"
+    "image": "/radar/events/kahramanmaras/2023-02-09-s1.webp",
+    "normalImage": "/radar/events/kahramanmaras/2023-02-09-normal.webp"
    },
    {
     "date": "2023-02-21 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kahramanmaras/2023-02-21-s1.webp"
+    "image": "/radar/events/kahramanmaras/2023-02-21-s1.webp",
+    "normalImage": "/radar/events/kahramanmaras/2023-02-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/kahramanmaras/interferogram.webp",
-  "flashlightLabel": "Ground movement 2023-01-28 → 2023-02-09 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-01-25"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-01-25, the same in every frame."
+  }
  },
  "mexico-city": {
   "bounds": {
@@ -82,19 +89,28 @@
   "observations": [
    {
     "date": "2024-01-04 · Sentinel-1 radar",
-    "image": "/radar/events/mexico-city/2024-01-04-s1.webp"
+    "image": "/radar/events/mexico-city/2024-01-04-s1.webp",
+    "normalImage": "/radar/events/mexico-city/2024-01-04-normal.webp"
    },
    {
     "date": "2024-07-02 · Sentinel-1 radar",
-    "image": "/radar/events/mexico-city/2024-07-02-s1.webp"
+    "image": "/radar/events/mexico-city/2024-07-02-s1.webp",
+    "normalImage": "/radar/events/mexico-city/2024-07-02-normal.webp"
    },
    {
     "date": "2024-12-29 · Sentinel-1 radar",
-    "image": "/radar/events/mexico-city/2024-12-29-s1.webp"
+    "image": "/radar/events/mexico-city/2024-12-29-s1.webp",
+    "normalImage": "/radar/events/mexico-city/2024-12-29-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/mexico-city/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-01"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-01, the same in every frame."
+  }
  },
  "la-palisades-eaton": {
   "bounds": {
@@ -120,8 +136,6 @@
     "normalImage": "/radar/events/la-palisades-eaton/2025-01-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/la-palisades-eaton/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2025-02-06 (OPERA DIST)",
   "normalView": {
    "photo": "NASA HLS (Landsat/Sentinel-2)",
    "photoDate": "2024-12-18"
@@ -141,30 +155,17 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/jakobshavn/2024-01-05-s1.webp",
-    "normalImage": "/radar/events/jakobshavn/2024-01-05-normal.webp"
+    "image": "/radar/events/jakobshavn/2024-01-05-s1.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/jakobshavn/2024-07-03-s1.webp",
-    "normalImage": "/radar/events/jakobshavn/2024-07-03-normal.webp"
+    "image": "/radar/events/jakobshavn/2024-07-03-s1.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/jakobshavn/2024-12-30-s1.webp",
-    "normalImage": "/radar/events/jakobshavn/2024-12-30-normal.webp"
+    "image": "/radar/events/jakobshavn/2024-12-30-s1.webp"
    }
-  ],
-  "flashlightImage": "/radar/events/jakobshavn/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-02",
-  "normalView": {
-   "photo": "NASA MODIS Terra",
-   "photoDate": "2024-01-04"
-  },
-  "viewNotes": {
-   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
-   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-01-04, the same in every frame."
-  }
+  ]
  },
  "wakashio": {
   "bounds": {
@@ -176,19 +177,28 @@
   "observations": [
    {
     "date": "2020-08-03 (before) · Sentinel-1 radar",
-    "image": "/radar/events/wakashio/2020-08-03-s1.webp"
+    "image": "/radar/events/wakashio/2020-08-03-s1.webp",
+    "normalImage": "/radar/events/wakashio/2020-08-03-normal.webp"
    },
    {
     "date": "2020-08-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/wakashio/2020-08-10-s1.webp"
+    "image": "/radar/events/wakashio/2020-08-10-s1.webp",
+    "normalImage": "/radar/events/wakashio/2020-08-10-normal.webp"
    },
    {
     "date": "2020-08-15 (after) · Sentinel-1 radar",
-    "image": "/radar/events/wakashio/2020-08-15-s1.webp"
+    "image": "/radar/events/wakashio/2020-08-15-s1.webp",
+    "normalImage": "/radar/events/wakashio/2020-08-15-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2020-07-17"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2020-07-17, the same in every frame."
+  }
  },
  "maiduguri-dam": {
   "bounds": {
@@ -200,19 +210,20 @@
   "observations": [
    {
     "date": "2024-09-05 (before) · Sentinel-1 radar",
-    "image": "/radar/events/maiduguri-dam/2024-09-05-s1.webp"
+    "image": "/radar/events/maiduguri-dam/2024-09-05-s1.webp",
+    "normalImage": "/radar/events/maiduguri-dam/2024-09-05-normal.webp"
    },
    {
     "date": "2024-09-17 (after) · Sentinel-1 radar",
-    "image": "/radar/events/maiduguri-dam/2024-09-17-s1.webp"
+    "image": "/radar/events/maiduguri-dam/2024-09-17-s1.webp",
+    "normalImage": "/radar/events/maiduguri-dam/2024-09-17-normal.webp"
    },
    {
     "date": "2024-09-29 (after) · Sentinel-1 radar",
-    "image": "/radar/events/maiduguri-dam/2024-09-29-s1.webp"
+    "image": "/radar/events/maiduguri-dam/2024-09-29-s1.webp",
+    "normalImage": "/radar/events/maiduguri-dam/2024-09-29-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/maiduguri-dam/change.webp",
-  "flashlightLabel": "New water after the event (red)",
   "water": [
    {
     "date": "2024-09-05",
@@ -226,7 +237,15 @@
     "date": "2024-09-29",
     "image": "/radar/events/maiduguri-dam/2024-09-29-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-07-14"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-07-14, the same in every frame."
+  }
  },
  "derna-storm-daniel": {
   "bounds": {
@@ -238,19 +257,28 @@
   "observations": [
    {
     "date": "2023-08-31 (before) · Sentinel-1 radar",
-    "image": "/radar/events/derna-storm-daniel/2023-08-31-s1.webp"
+    "image": "/radar/events/derna-storm-daniel/2023-08-31-s1.webp",
+    "normalImage": "/radar/events/derna-storm-daniel/2023-08-31-normal.webp"
    },
    {
     "date": "2023-09-12 (after) · Sentinel-1 radar",
-    "image": "/radar/events/derna-storm-daniel/2023-09-12-s1.webp"
+    "image": "/radar/events/derna-storm-daniel/2023-09-12-s1.webp",
+    "normalImage": "/radar/events/derna-storm-daniel/2023-09-12-normal.webp"
    },
    {
     "date": "2023-09-24 (after) · Sentinel-1 radar",
-    "image": "/radar/events/derna-storm-daniel/2023-09-24-s1.webp"
+    "image": "/radar/events/derna-storm-daniel/2023-09-24-s1.webp",
+    "normalImage": "/radar/events/derna-storm-daniel/2023-09-24-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-08-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-08-28, the same in every frame."
+  }
  },
  "pakistan-2022-sindh": {
   "bounds": {
@@ -262,19 +290,28 @@
   "observations": [
    {
     "date": "2022-08-18 (before) · Sentinel-1 radar",
-    "image": "/radar/events/pakistan-2022-sindh/2022-08-18-s1.webp"
+    "image": "/radar/events/pakistan-2022-sindh/2022-08-18-s1.webp",
+    "normalImage": "/radar/events/pakistan-2022-sindh/2022-08-18-normal.webp"
    },
    {
     "date": "2022-08-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/pakistan-2022-sindh/2022-08-30-s1.webp"
+    "image": "/radar/events/pakistan-2022-sindh/2022-08-30-s1.webp",
+    "normalImage": "/radar/events/pakistan-2022-sindh/2022-08-30-normal.webp"
    },
    {
     "date": "2022-09-11 (after) · Sentinel-1 radar",
-    "image": "/radar/events/pakistan-2022-sindh/2022-09-11-s1.webp"
+    "image": "/radar/events/pakistan-2022-sindh/2022-09-11-s1.webp",
+    "normalImage": "/radar/events/pakistan-2022-sindh/2022-09-11-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-07-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-07-12, the same in every frame."
+  }
  },
  "emilia-romagna": {
   "bounds": {
@@ -286,19 +323,28 @@
   "observations": [
    {
     "date": "2023-05-10 (before) · Sentinel-1 radar",
-    "image": "/radar/events/emilia-romagna/2023-05-10-s1.webp"
+    "image": "/radar/events/emilia-romagna/2023-05-10-s1.webp",
+    "normalImage": "/radar/events/emilia-romagna/2023-05-10-normal.webp"
    },
    {
     "date": "2023-05-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/emilia-romagna/2023-05-22-s1.webp"
+    "image": "/radar/events/emilia-romagna/2023-05-22-s1.webp",
+    "normalImage": "/radar/events/emilia-romagna/2023-05-22-normal.webp"
    },
    {
     "date": "2023-06-03 (after) · Sentinel-1 radar",
-    "image": "/radar/events/emilia-romagna/2023-06-03-s1.webp"
+    "image": "/radar/events/emilia-romagna/2023-06-03-s1.webp",
+    "normalImage": "/radar/events/emilia-romagna/2023-06-03-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-04-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-04-28, the same in every frame."
+  }
  },
  "ahr-valley": {
   "bounds": {
@@ -310,19 +356,28 @@
   "observations": [
    {
     "date": "2021-07-13 (before) · Sentinel-1 radar",
-    "image": "/radar/events/ahr-valley/2021-07-13-s1.webp"
+    "image": "/radar/events/ahr-valley/2021-07-13-s1.webp",
+    "normalImage": "/radar/events/ahr-valley/2021-07-13-normal.webp"
    },
    {
     "date": "2021-07-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/ahr-valley/2021-07-18-s1.webp"
+    "image": "/radar/events/ahr-valley/2021-07-18-s1.webp",
+    "normalImage": "/radar/events/ahr-valley/2021-07-18-normal.webp"
    },
    {
     "date": "2021-07-24 (after) · Sentinel-1 radar",
-    "image": "/radar/events/ahr-valley/2021-07-24-s1.webp"
+    "image": "/radar/events/ahr-valley/2021-07-24-s1.webp",
+    "normalImage": "/radar/events/ahr-valley/2021-07-24-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-06-16"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-06-16, the same in every frame."
+  }
  },
  "hurricane-harvey": {
   "bounds": {
@@ -334,19 +389,28 @@
   "observations": [
    {
     "date": "2017-08-24 (before) · Sentinel-1 radar",
-    "image": "/radar/events/hurricane-harvey/2017-08-24-s1.webp"
+    "image": "/radar/events/hurricane-harvey/2017-08-24-s1.webp",
+    "normalImage": "/radar/events/hurricane-harvey/2017-08-24-normal.webp"
    },
    {
     "date": "2017-08-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hurricane-harvey/2017-08-30-s1.webp"
+    "image": "/radar/events/hurricane-harvey/2017-08-30-s1.webp",
+    "normalImage": "/radar/events/hurricane-harvey/2017-08-30-normal.webp"
    },
    {
     "date": "2017-09-05 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hurricane-harvey/2017-09-05-s1.webp"
+    "image": "/radar/events/hurricane-harvey/2017-09-05-s1.webp",
+    "normalImage": "/radar/events/hurricane-harvey/2017-09-05-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2017-10-29"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2017-10-29, the same in every frame."
+  }
  },
  "myanmar-sagaing": {
   "bounds": {
@@ -358,19 +422,28 @@
   "observations": [
    {
     "date": "2025-03-22 (before) · Sentinel-1 radar",
-    "image": "/radar/events/myanmar-sagaing/2025-03-22-s1.webp"
+    "image": "/radar/events/myanmar-sagaing/2025-03-22-s1.webp",
+    "normalImage": "/radar/events/myanmar-sagaing/2025-03-22-normal.webp"
    },
    {
     "date": "2025-04-03 (after) · Sentinel-1 radar",
-    "image": "/radar/events/myanmar-sagaing/2025-04-03-s1.webp"
+    "image": "/radar/events/myanmar-sagaing/2025-04-03-s1.webp",
+    "normalImage": "/radar/events/myanmar-sagaing/2025-04-03-normal.webp"
    },
    {
     "date": "2025-04-15 (after) · Sentinel-1 radar",
-    "image": "/radar/events/myanmar-sagaing/2025-04-15-s1.webp"
+    "image": "/radar/events/myanmar-sagaing/2025-04-15-s1.webp",
+    "normalImage": "/radar/events/myanmar-sagaing/2025-04-15-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2025-03-20"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2025-03-20, the same in every frame."
+  }
  },
  "noto-peninsula": {
   "bounds": {
@@ -382,19 +455,28 @@
   "observations": [
    {
     "date": "2023-12-25 (before) · Sentinel-1 radar",
-    "image": "/radar/events/noto-peninsula/2023-12-25-s1.webp"
+    "image": "/radar/events/noto-peninsula/2023-12-25-s1.webp",
+    "normalImage": "/radar/events/noto-peninsula/2023-12-25-normal.webp"
    },
    {
     "date": "2024-01-06 (after) · Sentinel-1 radar",
-    "image": "/radar/events/noto-peninsula/2024-01-06-s1.webp"
+    "image": "/radar/events/noto-peninsula/2024-01-06-s1.webp",
+    "normalImage": "/radar/events/noto-peninsula/2024-01-06-normal.webp"
    },
    {
     "date": "2024-01-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/noto-peninsula/2024-01-18-s1.webp"
+    "image": "/radar/events/noto-peninsula/2024-01-18-s1.webp",
+    "normalImage": "/radar/events/noto-peninsula/2024-01-18-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2023-11-21"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2023-11-21, the same in every frame."
+  }
  },
  "al-haouz-morocco": {
   "bounds": {
@@ -406,19 +488,28 @@
   "observations": [
    {
     "date": "2023-08-30 (before) · Sentinel-1 radar",
-    "image": "/radar/events/al-haouz-morocco/2023-08-30-s1.webp"
+    "image": "/radar/events/al-haouz-morocco/2023-08-30-s1.webp",
+    "normalImage": "/radar/events/al-haouz-morocco/2023-08-30-normal.webp"
    },
    {
     "date": "2023-09-11 (after) · Sentinel-1 radar",
-    "image": "/radar/events/al-haouz-morocco/2023-09-11-s1.webp"
+    "image": "/radar/events/al-haouz-morocco/2023-09-11-s1.webp",
+    "normalImage": "/radar/events/al-haouz-morocco/2023-09-11-normal.webp"
    },
    {
     "date": "2023-09-23 (after) · Sentinel-1 radar",
-    "image": "/radar/events/al-haouz-morocco/2023-09-23-s1.webp"
+    "image": "/radar/events/al-haouz-morocco/2023-09-23-s1.webp",
+    "normalImage": "/radar/events/al-haouz-morocco/2023-09-23-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-08-29"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-08-29, the same in every frame."
+  }
  },
  "hualien-taiwan": {
   "bounds": {
@@ -430,19 +521,28 @@
   "observations": [
    {
     "date": "2024-03-27 (before) · Sentinel-1 radar",
-    "image": "/radar/events/hualien-taiwan/2024-03-27-s1.webp"
+    "image": "/radar/events/hualien-taiwan/2024-03-27-s1.webp",
+    "normalImage": "/radar/events/hualien-taiwan/2024-03-27-normal.webp"
    },
    {
     "date": "2024-04-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hualien-taiwan/2024-04-08-s1.webp"
+    "image": "/radar/events/hualien-taiwan/2024-04-08-s1.webp",
+    "normalImage": "/radar/events/hualien-taiwan/2024-04-08-normal.webp"
    },
    {
     "date": "2024-04-20 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hualien-taiwan/2024-04-20-s1.webp"
+    "image": "/radar/events/hualien-taiwan/2024-04-20-s1.webp",
+    "normalImage": "/radar/events/hualien-taiwan/2024-04-20-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-07-18"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-07-18, the same in every frame."
+  }
  },
  "ridgecrest": {
   "bounds": {
@@ -454,19 +554,28 @@
   "observations": [
    {
     "date": "2019-07-04 (before) · Sentinel-1 radar",
-    "image": "/radar/events/ridgecrest/2019-07-04-s1.webp"
+    "image": "/radar/events/ridgecrest/2019-07-04-s1.webp",
+    "normalImage": "/radar/events/ridgecrest/2019-07-04-normal.webp"
    },
    {
     "date": "2019-07-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/ridgecrest/2019-07-10-s1.webp"
+    "image": "/radar/events/ridgecrest/2019-07-10-s1.webp",
+    "normalImage": "/radar/events/ridgecrest/2019-07-10-normal.webp"
    },
    {
     "date": "2019-07-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/ridgecrest/2019-07-16-s1.webp"
+    "image": "/radar/events/ridgecrest/2019-07-16-s1.webp",
+    "normalImage": "/radar/events/ridgecrest/2019-07-16-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/ridgecrest/interferogram.webp",
-  "flashlightLabel": "Ground movement 2019-07-04 → 2019-07-10 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2019-07-03"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2019-07-03, the same in every frame."
+  }
  },
  "kaikoura": {
   "bounds": {
@@ -492,8 +601,6 @@
     "normalImage": "/radar/events/kaikoura/2016-11-22-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null,
   "normalView": {
    "photo": "NASA HLS (Landsat/Sentinel-2)",
    "photoDate": "2016-12-15"
@@ -513,19 +620,28 @@
   "observations": [
    {
     "date": "2015-04-17 (before) · Sentinel-1 radar",
-    "image": "/radar/events/gorkha-nepal/2015-04-17-s1.webp"
+    "image": "/radar/events/gorkha-nepal/2015-04-17-s1.webp",
+    "normalImage": "/radar/events/gorkha-nepal/2015-04-17-normal.webp"
    },
    {
     "date": "2015-04-29 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gorkha-nepal/2015-04-29-s1.webp"
+    "image": "/radar/events/gorkha-nepal/2015-04-29-s1.webp",
+    "normalImage": "/radar/events/gorkha-nepal/2015-04-29-normal.webp"
    },
    {
     "date": "2015-05-11 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gorkha-nepal/2015-05-11-s1.webp"
+    "image": "/radar/events/gorkha-nepal/2015-05-11-s1.webp",
+    "normalImage": "/radar/events/gorkha-nepal/2015-05-11-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/gorkha-nepal/interferogram.webp",
-  "flashlightLabel": "Ground movement 2015-03-28 → 2015-05-15 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2015-07-26"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2015-07-26, the same in every frame."
+  }
  },
  "herat": {
   "bounds": {
@@ -537,19 +653,28 @@
   "observations": [
    {
     "date": "2023-09-25 (before) · Sentinel-1 radar",
-    "image": "/radar/events/herat/2023-09-25-s1.webp"
+    "image": "/radar/events/herat/2023-09-25-s1.webp",
+    "normalImage": "/radar/events/herat/2023-09-25-normal.webp"
    },
    {
     "date": "2023-10-07 (after) · Sentinel-1 radar",
-    "image": "/radar/events/herat/2023-10-07-s1.webp"
+    "image": "/radar/events/herat/2023-10-07-s1.webp",
+    "normalImage": "/radar/events/herat/2023-10-07-normal.webp"
    },
    {
     "date": "2023-10-19 (after) · Sentinel-1 radar",
-    "image": "/radar/events/herat/2023-10-19-s1.webp"
+    "image": "/radar/events/herat/2023-10-19-s1.webp",
+    "normalImage": "/radar/events/herat/2023-10-19-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-09-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-09-22, the same in every frame."
+  }
  },
  "kamchatka-m8-8": {
   "bounds": {
@@ -561,19 +686,28 @@
   "observations": [
    {
     "date": "2025-07-23 (before) · Sentinel-1 radar",
-    "image": "/radar/events/kamchatka-m8-8/2025-07-23-s1.webp"
+    "image": "/radar/events/kamchatka-m8-8/2025-07-23-s1.webp",
+    "normalImage": "/radar/events/kamchatka-m8-8/2025-07-23-normal.webp"
    },
    {
     "date": "2025-07-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kamchatka-m8-8/2025-07-30-s1.webp"
+    "image": "/radar/events/kamchatka-m8-8/2025-07-30-s1.webp",
+    "normalImage": "/radar/events/kamchatka-m8-8/2025-07-30-normal.webp"
    },
    {
     "date": "2025-08-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kamchatka-m8-8/2025-08-04-s1.webp"
+    "image": "/radar/events/kamchatka-m8-8/2025-08-04-s1.webp",
+    "normalImage": "/radar/events/kamchatka-m8-8/2025-08-04-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2025-07-20"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2025-07-20, the same in every frame."
+  }
  },
  "grindavik-sundhnukur": {
   "bounds": {
@@ -585,19 +719,28 @@
   "observations": [
    {
     "date": "2023-10-29 (before) · Sentinel-1 radar",
-    "image": "/radar/events/grindavik-sundhnukur/2023-10-29-s1.webp"
+    "image": "/radar/events/grindavik-sundhnukur/2023-10-29-s1.webp",
+    "normalImage": "/radar/events/grindavik-sundhnukur/2023-10-29-normal.webp"
    },
    {
     "date": "2023-11-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/grindavik-sundhnukur/2023-11-10-s1.webp"
+    "image": "/radar/events/grindavik-sundhnukur/2023-11-10-s1.webp",
+    "normalImage": "/radar/events/grindavik-sundhnukur/2023-11-10-normal.webp"
    },
    {
     "date": "2023-11-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/grindavik-sundhnukur/2023-11-22-s1.webp"
+    "image": "/radar/events/grindavik-sundhnukur/2023-11-22-s1.webp",
+    "normalImage": "/radar/events/grindavik-sundhnukur/2023-11-22-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-07-11"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-07-11, the same in every frame."
+  }
  },
  "cumbre-vieja-la-palma": {
   "bounds": {
@@ -609,19 +752,28 @@
   "observations": [
    {
     "date": "2021-09-14 (before) · Sentinel-1 radar",
-    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-14-s1.webp"
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-14-s1.webp",
+    "normalImage": "/radar/events/cumbre-vieja-la-palma/2021-09-14-normal.webp"
    },
    {
     "date": "2021-09-20 (after) · Sentinel-1 radar",
-    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-20-s1.webp"
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-20-s1.webp",
+    "normalImage": "/radar/events/cumbre-vieja-la-palma/2021-09-20-normal.webp"
    },
    {
     "date": "2021-09-26 (after) · Sentinel-1 radar",
-    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-26-s1.webp"
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-26-s1.webp",
+    "normalImage": "/radar/events/cumbre-vieja-la-palma/2021-09-26-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/cumbre-vieja-la-palma/interferogram.webp",
-  "flashlightLabel": "Ground movement 2021-09-14 → 2021-09-20 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-07-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-07-22, the same in every frame."
+  }
  },
  "kilauea-2018": {
   "bounds": {
@@ -633,19 +785,28 @@
   "observations": [
    {
     "date": "2018-05-02 (before) · Sentinel-1 radar",
-    "image": "/radar/events/kilauea-2018/2018-05-02-s1.webp"
+    "image": "/radar/events/kilauea-2018/2018-05-02-s1.webp",
+    "normalImage": "/radar/events/kilauea-2018/2018-05-02-normal.webp"
    },
    {
     "date": "2018-05-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kilauea-2018/2018-05-08-s1.webp"
+    "image": "/radar/events/kilauea-2018/2018-05-08-s1.webp",
+    "normalImage": "/radar/events/kilauea-2018/2018-05-08-normal.webp"
    },
    {
     "date": "2018-05-14 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kilauea-2018/2018-05-14-s1.webp"
+    "image": "/radar/events/kilauea-2018/2018-05-14-s1.webp",
+    "normalImage": "/radar/events/kilauea-2018/2018-05-14-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/kilauea-2018/interferogram.webp",
-  "flashlightLabel": "Ground movement 2018-05-02 → 2018-05-08 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2018-01-03"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2018-01-03, the same in every frame."
+  }
  },
  "mauna-loa-2022": {
   "bounds": {
@@ -657,19 +818,28 @@
   "observations": [
    {
     "date": "2022-11-22 (before) · Sentinel-1 radar",
-    "image": "/radar/events/mauna-loa-2022/2022-11-22-s1.webp"
+    "image": "/radar/events/mauna-loa-2022/2022-11-22-s1.webp",
+    "normalImage": "/radar/events/mauna-loa-2022/2022-11-22-normal.webp"
    },
    {
     "date": "2022-12-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/mauna-loa-2022/2022-12-04-s1.webp"
+    "image": "/radar/events/mauna-loa-2022/2022-12-04-s1.webp",
+    "normalImage": "/radar/events/mauna-loa-2022/2022-12-04-normal.webp"
    },
    {
     "date": "2022-12-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/mauna-loa-2022/2022-12-16-s1.webp"
+    "image": "/radar/events/mauna-loa-2022/2022-12-16-s1.webp",
+    "normalImage": "/radar/events/mauna-loa-2022/2022-12-16-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/mauna-loa-2022/interferogram.webp",
-  "flashlightLabel": "Ground movement 2022-11-22 → 2022-12-04 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-08-10"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-08-10, the same in every frame."
+  }
  },
  "fagradalsfjall": {
   "bounds": {
@@ -681,19 +851,28 @@
   "observations": [
    {
     "date": "2021-03-13 (before) · Sentinel-1 radar",
-    "image": "/radar/events/fagradalsfjall/2021-03-13-s1.webp"
+    "image": "/radar/events/fagradalsfjall/2021-03-13-s1.webp",
+    "normalImage": "/radar/events/fagradalsfjall/2021-03-13-normal.webp"
    },
    {
     "date": "2021-03-19 (after) · Sentinel-1 radar",
-    "image": "/radar/events/fagradalsfjall/2021-03-19-s1.webp"
+    "image": "/radar/events/fagradalsfjall/2021-03-19-s1.webp",
+    "normalImage": "/radar/events/fagradalsfjall/2021-03-19-normal.webp"
    },
    {
     "date": "2021-03-25 (after) · Sentinel-1 radar",
-    "image": "/radar/events/fagradalsfjall/2021-03-25-s1.webp"
+    "image": "/radar/events/fagradalsfjall/2021-03-25-s1.webp",
+    "normalImage": "/radar/events/fagradalsfjall/2021-03-25-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/fagradalsfjall/interferogram.webp",
-  "flashlightLabel": "Ground movement 2021-03-13 → 2021-03-19 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2021-03-07"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2021-03-07, the same in every frame."
+  }
  },
  "nyiragongo": {
   "bounds": {
@@ -705,19 +884,28 @@
   "observations": [
    {
     "date": "2021-05-21 (before) · Sentinel-1 radar",
-    "image": "/radar/events/nyiragongo/2021-05-21-s1.webp"
+    "image": "/radar/events/nyiragongo/2021-05-21-s1.webp",
+    "normalImage": "/radar/events/nyiragongo/2021-05-21-normal.webp"
    },
    {
     "date": "2021-05-27 (after) · Sentinel-1 radar",
-    "image": "/radar/events/nyiragongo/2021-05-27-s1.webp"
+    "image": "/radar/events/nyiragongo/2021-05-27-s1.webp",
+    "normalImage": "/radar/events/nyiragongo/2021-05-27-normal.webp"
    },
    {
     "date": "2021-06-02 (after) · Sentinel-1 radar",
-    "image": "/radar/events/nyiragongo/2021-06-02-s1.webp"
+    "image": "/radar/events/nyiragongo/2021-06-02-s1.webp",
+    "normalImage": "/radar/events/nyiragongo/2021-06-02-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-06-11"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-06-11, the same in every frame."
+  }
  },
  "semeru": {
   "bounds": {
@@ -729,19 +917,28 @@
   "observations": [
    {
     "date": "2021-12-03 (before) · Sentinel-1 radar",
-    "image": "/radar/events/semeru/2021-12-03-s1.webp"
+    "image": "/radar/events/semeru/2021-12-03-s1.webp",
+    "normalImage": "/radar/events/semeru/2021-12-03-normal.webp"
    },
    {
     "date": "2021-12-09 (after) · Sentinel-1 radar",
-    "image": "/radar/events/semeru/2021-12-09-s1.webp"
+    "image": "/radar/events/semeru/2021-12-09-s1.webp",
+    "normalImage": "/radar/events/semeru/2021-12-09-normal.webp"
    },
    {
     "date": "2021-12-15 (after) · Sentinel-1 radar",
-    "image": "/radar/events/semeru/2021-12-15-s1.webp"
+    "image": "/radar/events/semeru/2021-12-15-s1.webp",
+    "normalImage": "/radar/events/semeru/2021-12-15-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-02-19"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-02-19, the same in every frame."
+  }
  },
  "campi-flegrei": {
   "bounds": {
@@ -753,19 +950,28 @@
   "observations": [
    {
     "date": "2024-01-01 · Sentinel-1 radar",
-    "image": "/radar/events/campi-flegrei/2024-01-01-s1.webp"
+    "image": "/radar/events/campi-flegrei/2024-01-01-s1.webp",
+    "normalImage": "/radar/events/campi-flegrei/2024-01-01-normal.webp"
    },
    {
     "date": "2024-06-29 · Sentinel-1 radar",
-    "image": "/radar/events/campi-flegrei/2024-06-29-s1.webp"
+    "image": "/radar/events/campi-flegrei/2024-06-29-s1.webp",
+    "normalImage": "/radar/events/campi-flegrei/2024-06-29-normal.webp"
    },
    {
     "date": "2024-12-26 · Sentinel-1 radar",
-    "image": "/radar/events/campi-flegrei/2024-12-26-s1.webp"
+    "image": "/radar/events/campi-flegrei/2024-12-26-s1.webp",
+    "normalImage": "/radar/events/campi-flegrei/2024-12-26-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/campi-flegrei/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-27"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-23"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-23, the same in every frame."
+  }
  },
  "etna-2021": {
   "bounds": {
@@ -777,19 +983,28 @@
   "observations": [
    {
     "date": "2021-02-15 (before) · Sentinel-1 radar",
-    "image": "/radar/events/etna-2021/2021-02-15-s1.webp"
+    "image": "/radar/events/etna-2021/2021-02-15-s1.webp",
+    "normalImage": "/radar/events/etna-2021/2021-02-15-normal.webp"
    },
    {
     "date": "2021-02-21 (after) · Sentinel-1 radar",
-    "image": "/radar/events/etna-2021/2021-02-21-s1.webp"
+    "image": "/radar/events/etna-2021/2021-02-21-s1.webp",
+    "normalImage": "/radar/events/etna-2021/2021-02-21-normal.webp"
    },
    {
     "date": "2021-02-27 (after) · Sentinel-1 radar",
-    "image": "/radar/events/etna-2021/2021-02-27-s1.webp"
+    "image": "/radar/events/etna-2021/2021-02-27-s1.webp",
+    "normalImage": "/radar/events/etna-2021/2021-02-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/etna-2021/interferogram.webp",
-  "flashlightLabel": "Ground movement 2021-02-15 → 2021-02-21 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-02-06"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-02-06, the same in every frame."
+  }
  },
  "jakarta": {
   "bounds": {
@@ -801,19 +1016,28 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/jakarta/2024-01-05-s1.webp"
+    "image": "/radar/events/jakarta/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/jakarta/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/jakarta/2024-07-03-s1.webp"
+    "image": "/radar/events/jakarta/2024-07-03-s1.webp",
+    "normalImage": "/radar/events/jakarta/2024-07-03-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/jakarta/2024-12-30-s1.webp"
+    "image": "/radar/events/jakarta/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/jakarta/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/jakarta/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-01"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-20"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-20, the same in every frame."
+  }
  },
  "tehran": {
   "bounds": {
@@ -825,19 +1049,28 @@
   "observations": [
    {
     "date": "2024-01-12 · Sentinel-1 radar",
-    "image": "/radar/events/tehran/2024-01-12-s1.webp"
+    "image": "/radar/events/tehran/2024-01-12-s1.webp",
+    "normalImage": "/radar/events/tehran/2024-01-12-normal.webp"
    },
    {
     "date": "2024-07-10 · Sentinel-1 radar",
-    "image": "/radar/events/tehran/2024-07-10-s1.webp"
+    "image": "/radar/events/tehran/2024-07-10-s1.webp",
+    "normalImage": "/radar/events/tehran/2024-07-10-normal.webp"
    },
    {
     "date": "2024-12-25 · Sentinel-1 radar",
-    "image": "/radar/events/tehran/2024-12-25-s1.webp"
+    "image": "/radar/events/tehran/2024-12-25-s1.webp",
+    "normalImage": "/radar/events/tehran/2024-12-25-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/tehran/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-09"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-07"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-07, the same in every frame."
+  }
  },
  "central-valley-ca": {
   "bounds": {
@@ -849,19 +1082,28 @@
   "observations": [
    {
     "date": "2024-01-08 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-ca/2024-01-08-s1.webp"
+    "image": "/radar/events/central-valley-ca/2024-01-08-s1.webp",
+    "normalImage": "/radar/events/central-valley-ca/2024-01-08-normal.webp"
    },
    {
     "date": "2024-07-06 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-ca/2024-07-06-s1.webp"
+    "image": "/radar/events/central-valley-ca/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/central-valley-ca/2024-07-06-normal.webp"
    },
    {
     "date": "2024-12-21 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-ca/2024-12-21-s1.webp"
+    "image": "/radar/events/central-valley-ca/2024-12-21-s1.webp",
+    "normalImage": "/radar/events/central-valley-ca/2024-12-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/central-valley-ca/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-12, the same in every frame."
+  }
  },
  "semarang": {
   "bounds": {
@@ -873,19 +1115,28 @@
   "observations": [
    {
     "date": "2024-01-03 · Sentinel-1 radar",
-    "image": "/radar/events/semarang/2024-01-03-s1.webp"
+    "image": "/radar/events/semarang/2024-01-03-s1.webp",
+    "normalImage": "/radar/events/semarang/2024-01-03-normal.webp"
    },
    {
     "date": "2024-07-13 · Sentinel-1 radar",
-    "image": "/radar/events/semarang/2024-07-13-s1.webp"
+    "image": "/radar/events/semarang/2024-07-13-s1.webp",
+    "normalImage": "/radar/events/semarang/2024-07-13-normal.webp"
    },
    {
     "date": "2024-12-28 · Sentinel-1 radar",
-    "image": "/radar/events/semarang/2024-12-28-s1.webp"
+    "image": "/radar/events/semarang/2024-12-28-s1.webp",
+    "normalImage": "/radar/events/semarang/2024-12-28-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/semarang/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-09-29"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-10-20"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-10-20, the same in every frame."
+  }
  },
  "houston": {
   "bounds": {
@@ -897,19 +1148,28 @@
   "observations": [
    {
     "date": "2024-01-08 · Sentinel-1 radar",
-    "image": "/radar/events/houston/2024-01-08-s1.webp"
+    "image": "/radar/events/houston/2024-01-08-s1.webp",
+    "normalImage": "/radar/events/houston/2024-01-08-normal.webp"
    },
    {
     "date": "2024-07-06 · Sentinel-1 radar",
-    "image": "/radar/events/houston/2024-07-06-s1.webp"
+    "image": "/radar/events/houston/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/houston/2024-07-06-normal.webp"
    },
    {
     "date": "2024-12-21 · Sentinel-1 radar",
-    "image": "/radar/events/houston/2024-12-21-s1.webp"
+    "image": "/radar/events/houston/2024-12-21-s1.webp",
+    "normalImage": "/radar/events/houston/2024-12-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/houston/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-09"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-06"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-06, the same in every frame."
+  }
  },
  "beijing": {
   "bounds": {
@@ -921,19 +1181,28 @@
   "observations": [
    {
     "date": "2024-01-08 · Sentinel-1 radar",
-    "image": "/radar/events/beijing/2024-01-08-s1.webp"
+    "image": "/radar/events/beijing/2024-01-08-s1.webp",
+    "normalImage": "/radar/events/beijing/2024-01-08-normal.webp"
    },
    {
     "date": "2024-07-06 · Sentinel-1 radar",
-    "image": "/radar/events/beijing/2024-07-06-s1.webp"
+    "image": "/radar/events/beijing/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/beijing/2024-07-06-normal.webp"
    },
    {
     "date": "2024-12-21 · Sentinel-1 radar",
-    "image": "/radar/events/beijing/2024-12-21-s1.webp"
+    "image": "/radar/events/beijing/2024-12-21-s1.webp",
+    "normalImage": "/radar/events/beijing/2024-12-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/beijing/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-07"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-07, the same in every frame."
+  }
  },
  "mekong-delta": {
   "bounds": {
@@ -945,19 +1214,28 @@
   "observations": [
    {
     "date": "2024-01-11 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-delta/2024-01-11-s1.webp"
+    "image": "/radar/events/mekong-delta/2024-01-11-s1.webp",
+    "normalImage": "/radar/events/mekong-delta/2024-01-11-normal.webp"
    },
    {
     "date": "2024-07-09 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-delta/2024-07-09-s1.webp"
+    "image": "/radar/events/mekong-delta/2024-07-09-s1.webp",
+    "normalImage": "/radar/events/mekong-delta/2024-07-09-normal.webp"
    },
    {
     "date": "2024-12-24 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-delta/2024-12-24-s1.webp"
+    "image": "/radar/events/mekong-delta/2024-12-24-s1.webp",
+    "normalImage": "/radar/events/mekong-delta/2024-12-24-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/mekong-delta/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-05"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-26"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-26, the same in every frame."
+  }
  },
  "venice": {
   "bounds": {
@@ -969,19 +1247,28 @@
   "observations": [
    {
     "date": "2024-01-01 · Sentinel-1 radar",
-    "image": "/radar/events/venice/2024-01-01-s1.webp"
+    "image": "/radar/events/venice/2024-01-01-s1.webp",
+    "normalImage": "/radar/events/venice/2024-01-01-normal.webp"
    },
    {
     "date": "2024-06-29 · Sentinel-1 radar",
-    "image": "/radar/events/venice/2024-06-29-s1.webp"
+    "image": "/radar/events/venice/2024-06-29-s1.webp",
+    "normalImage": "/radar/events/venice/2024-06-29-normal.webp"
    },
    {
     "date": "2024-12-26 · Sentinel-1 radar",
-    "image": "/radar/events/venice/2024-12-26-s1.webp"
+    "image": "/radar/events/venice/2024-12-26-s1.webp",
+    "normalImage": "/radar/events/venice/2024-12-26-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/venice/nisar.webp",
-  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-19"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-19, the same in every frame."
+  }
  },
  "joshimath": {
   "bounds": {
@@ -993,19 +1280,28 @@
   "observations": [
    {
     "date": "2022-12-27 (before) · Sentinel-1 radar",
-    "image": "/radar/events/joshimath/2022-12-27-s1.webp"
+    "image": "/radar/events/joshimath/2022-12-27-s1.webp",
+    "normalImage": "/radar/events/joshimath/2022-12-27-normal.webp"
    },
    {
     "date": "2023-01-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/joshimath/2023-01-08-s1.webp"
+    "image": "/radar/events/joshimath/2023-01-08-s1.webp",
+    "normalImage": "/radar/events/joshimath/2023-01-08-normal.webp"
    },
    {
     "date": "2023-02-01 (after) · Sentinel-1 radar",
-    "image": "/radar/events/joshimath/2023-02-01-s1.webp"
+    "image": "/radar/events/joshimath/2023-02-01-s1.webp",
+    "normalImage": "/radar/events/joshimath/2023-02-01-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2022-09-07"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2022-09-07, the same in every frame."
+  }
  },
  "wayanad": {
   "bounds": {
@@ -1017,19 +1313,28 @@
   "observations": [
    {
     "date": "2024-07-20 (before) · Sentinel-1 radar",
-    "image": "/radar/events/wayanad/2024-07-20-s1.webp"
+    "image": "/radar/events/wayanad/2024-07-20-s1.webp",
+    "normalImage": "/radar/events/wayanad/2024-07-20-normal.webp"
    },
    {
     "date": "2024-08-01 (after) · Sentinel-1 radar",
-    "image": "/radar/events/wayanad/2024-08-01-s1.webp"
+    "image": "/radar/events/wayanad/2024-08-01-s1.webp",
+    "normalImage": "/radar/events/wayanad/2024-08-01-normal.webp"
    },
    {
     "date": "2024-08-13 (after) · Sentinel-1 radar",
-    "image": "/radar/events/wayanad/2024-08-13-s1.webp"
+    "image": "/radar/events/wayanad/2024-08-13-s1.webp",
+    "normalImage": "/radar/events/wayanad/2024-08-13-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-04-15"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-04-15, the same in every frame."
+  }
  },
  "enga-png": {
   "bounds": {
@@ -1041,19 +1346,28 @@
   "observations": [
    {
     "date": "2024-05-18 (before) · Sentinel-1 radar",
-    "image": "/radar/events/enga-png/2024-05-18-s1.webp"
+    "image": "/radar/events/enga-png/2024-05-18-s1.webp",
+    "normalImage": "/radar/events/enga-png/2024-05-18-normal.webp"
    },
    {
     "date": "2024-05-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/enga-png/2024-05-30-s1.webp"
+    "image": "/radar/events/enga-png/2024-05-30-s1.webp",
+    "normalImage": "/radar/events/enga-png/2024-05-30-normal.webp"
    },
    {
     "date": "2024-06-11 (after) · Sentinel-1 radar",
-    "image": "/radar/events/enga-png/2024-06-11-s1.webp"
+    "image": "/radar/events/enga-png/2024-06-11-s1.webp",
+    "normalImage": "/radar/events/enga-png/2024-06-11-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-05-13"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-05-13, the same in every frame."
+  }
  },
  "blatten": {
   "bounds": {
@@ -1065,19 +1379,28 @@
   "observations": [
    {
     "date": "2025-05-22 (before) · Sentinel-1 radar",
-    "image": "/radar/events/blatten/2025-05-22-s1.webp"
+    "image": "/radar/events/blatten/2025-05-22-s1.webp",
+    "normalImage": "/radar/events/blatten/2025-05-22-normal.webp"
    },
    {
     "date": "2025-05-28 (after) · Sentinel-1 radar",
-    "image": "/radar/events/blatten/2025-05-28-s1.webp"
+    "image": "/radar/events/blatten/2025-05-28-s1.webp",
+    "normalImage": "/radar/events/blatten/2025-05-28-normal.webp"
    },
    {
     "date": "2025-06-03 (after) · Sentinel-1 radar",
-    "image": "/radar/events/blatten/2025-06-03-s1.webp"
+    "image": "/radar/events/blatten/2025-06-03-s1.webp",
+    "normalImage": "/radar/events/blatten/2025-06-03-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2025-08-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2025-08-12, the same in every frame."
+  }
  },
  "portuguese-bend": {
   "bounds": {
@@ -1089,19 +1412,28 @@
   "observations": [
    {
     "date": "2024-01-03 · Sentinel-1 radar",
-    "image": "/radar/events/portuguese-bend/2024-01-03-s1.webp"
+    "image": "/radar/events/portuguese-bend/2024-01-03-s1.webp",
+    "normalImage": "/radar/events/portuguese-bend/2024-01-03-normal.webp"
    },
    {
     "date": "2024-07-01 · Sentinel-1 radar",
-    "image": "/radar/events/portuguese-bend/2024-07-01-s1.webp"
+    "image": "/radar/events/portuguese-bend/2024-07-01-s1.webp",
+    "normalImage": "/radar/events/portuguese-bend/2024-07-01-normal.webp"
    },
    {
     "date": "2024-12-28 · Sentinel-1 radar",
-    "image": "/radar/events/portuguese-bend/2024-12-28-s1.webp"
+    "image": "/radar/events/portuguese-bend/2024-12-28-s1.webp",
+    "normalImage": "/radar/events/portuguese-bend/2024-12-28-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/portuguese-bend/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-26"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-14"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-14, the same in every frame."
+  }
  },
  "chamoli": {
   "bounds": {
@@ -1113,19 +1445,28 @@
   "observations": [
    {
     "date": "2021-01-29 (before) · Sentinel-1 radar",
-    "image": "/radar/events/chamoli/2021-01-29-s1.webp"
+    "image": "/radar/events/chamoli/2021-01-29-s1.webp",
+    "normalImage": "/radar/events/chamoli/2021-01-29-normal.webp"
    },
    {
     "date": "2021-02-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/chamoli/2021-02-10-s1.webp"
+    "image": "/radar/events/chamoli/2021-02-10-s1.webp",
+    "normalImage": "/radar/events/chamoli/2021-02-10-normal.webp"
    },
    {
     "date": "2021-02-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/chamoli/2021-02-16-s1.webp"
+    "image": "/radar/events/chamoli/2021-02-16-s1.webp",
+    "normalImage": "/radar/events/chamoli/2021-02-16-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/chamoli/interferogram.webp",
-  "flashlightLabel": "Ground movement 2021-01-29 → 2021-02-10 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2021-01-20"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2021-01-20, the same in every frame."
+  }
  },
  "gjerdrum": {
   "bounds": {
@@ -1137,19 +1478,28 @@
   "observations": [
    {
     "date": "2020-12-24 (before) · Sentinel-1 radar",
-    "image": "/radar/events/gjerdrum/2020-12-24-s1.webp"
+    "image": "/radar/events/gjerdrum/2020-12-24-s1.webp",
+    "normalImage": "/radar/events/gjerdrum/2020-12-24-normal.webp"
    },
    {
     "date": "2020-12-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gjerdrum/2020-12-30-s1.webp"
+    "image": "/radar/events/gjerdrum/2020-12-30-s1.webp",
+    "normalImage": "/radar/events/gjerdrum/2020-12-30-normal.webp"
    },
    {
     "date": "2021-01-05 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gjerdrum/2021-01-05-s1.webp"
+    "image": "/radar/events/gjerdrum/2021-01-05-s1.webp",
+    "normalImage": "/radar/events/gjerdrum/2021-01-05-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2020-11-03"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2020-11-03, the same in every frame."
+  }
  },
  "xinmo": {
   "bounds": {
@@ -1161,19 +1511,28 @@
   "observations": [
    {
     "date": "2017-06-12 (before) · Sentinel-1 radar",
-    "image": "/radar/events/xinmo/2017-06-12-s1.webp"
+    "image": "/radar/events/xinmo/2017-06-12-s1.webp",
+    "normalImage": "/radar/events/xinmo/2017-06-12-normal.webp"
    },
    {
     "date": "2017-06-24 (after) · Sentinel-1 radar",
-    "image": "/radar/events/xinmo/2017-06-24-s1.webp"
+    "image": "/radar/events/xinmo/2017-06-24-s1.webp",
+    "normalImage": "/radar/events/xinmo/2017-06-24-normal.webp"
    },
    {
     "date": "2017-06-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/xinmo/2017-06-30-s1.webp"
+    "image": "/radar/events/xinmo/2017-06-30-s1.webp",
+    "normalImage": "/radar/events/xinmo/2017-06-30-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/xinmo/interferogram.webp",
-  "flashlightLabel": "Ground movement 2017-05-26 → 2017-07-25 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2017-02-19"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2017-02-19, the same in every frame."
+  }
  },
  "mud-creek-big-sur": {
   "bounds": {
@@ -1185,19 +1544,28 @@
   "observations": [
    {
     "date": "2017-05-19 (before) · Sentinel-1 radar",
-    "image": "/radar/events/mud-creek-big-sur/2017-05-19-s1.webp"
+    "image": "/radar/events/mud-creek-big-sur/2017-05-19-s1.webp",
+    "normalImage": "/radar/events/mud-creek-big-sur/2017-05-19-normal.webp"
    },
    {
     "date": "2017-05-31 (after) · Sentinel-1 radar",
-    "image": "/radar/events/mud-creek-big-sur/2017-05-31-s1.webp"
+    "image": "/radar/events/mud-creek-big-sur/2017-05-31-s1.webp",
+    "normalImage": "/radar/events/mud-creek-big-sur/2017-05-31-normal.webp"
    },
    {
     "date": "2017-06-12 (after) · Sentinel-1 radar",
-    "image": "/radar/events/mud-creek-big-sur/2017-06-12-s1.webp"
+    "image": "/radar/events/mud-creek-big-sur/2017-06-12-s1.webp",
+    "normalImage": "/radar/events/mud-creek-big-sur/2017-06-12-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/mud-creek-big-sur/interferogram.webp",
-  "flashlightLabel": "Ground movement 2017-05-19 → 2017-05-31 (InSAR, ARIA)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2017-03-11"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2017-03-11, the same in every frame."
+  }
  },
  "brienz-brinzauls": {
   "bounds": {
@@ -1209,19 +1577,28 @@
   "observations": [
    {
     "date": "2023-06-04 (before) · Sentinel-1 radar",
-    "image": "/radar/events/brienz-brinzauls/2023-06-04-s1.webp"
+    "image": "/radar/events/brienz-brinzauls/2023-06-04-s1.webp",
+    "normalImage": "/radar/events/brienz-brinzauls/2023-06-04-normal.webp"
    },
    {
     "date": "2023-06-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/brienz-brinzauls/2023-06-16-s1.webp"
+    "image": "/radar/events/brienz-brinzauls/2023-06-16-s1.webp",
+    "normalImage": "/radar/events/brienz-brinzauls/2023-06-16-normal.webp"
    },
    {
     "date": "2023-06-28 (after) · Sentinel-1 radar",
-    "image": "/radar/events/brienz-brinzauls/2023-06-28-s1.webp"
+    "image": "/radar/events/brienz-brinzauls/2023-06-28-s1.webp",
+    "normalImage": "/radar/events/brienz-brinzauls/2023-06-28-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-06-25"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-06-25, the same in every frame."
+  }
  },
  "lahaina": {
   "bounds": {
@@ -1233,19 +1610,28 @@
   "observations": [
    {
     "date": "2023-08-04 (before) · Sentinel-1 radar",
-    "image": "/radar/events/lahaina/2023-08-04-s1.webp"
+    "image": "/radar/events/lahaina/2023-08-04-s1.webp",
+    "normalImage": "/radar/events/lahaina/2023-08-04-normal.webp"
    },
    {
     "date": "2023-08-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/lahaina/2023-08-16-s1.webp"
+    "image": "/radar/events/lahaina/2023-08-16-s1.webp",
+    "normalImage": "/radar/events/lahaina/2023-08-16-normal.webp"
    },
    {
     "date": "2023-08-28 (after) · Sentinel-1 radar",
-    "image": "/radar/events/lahaina/2023-08-28-s1.webp"
+    "image": "/radar/events/lahaina/2023-08-28-s1.webp",
+    "normalImage": "/radar/events/lahaina/2023-08-28-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/lahaina/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2023-09-07 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-09-07"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-09-07, the same in every frame."
+  }
  },
  "quebec-2023": {
   "bounds": {
@@ -1257,19 +1643,28 @@
   "observations": [
    {
     "date": "2023-05-29 (before) · Sentinel-1 radar",
-    "image": "/radar/events/quebec-2023/2023-05-29-s1.webp"
+    "image": "/radar/events/quebec-2023/2023-05-29-s1.webp",
+    "normalImage": "/radar/events/quebec-2023/2023-05-29-normal.webp"
    },
    {
     "date": "2023-06-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/quebec-2023/2023-06-10-s1.webp"
+    "image": "/radar/events/quebec-2023/2023-06-10-s1.webp",
+    "normalImage": "/radar/events/quebec-2023/2023-06-10-normal.webp"
    },
    {
     "date": "2023-06-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/quebec-2023/2023-06-22-s1.webp"
+    "image": "/radar/events/quebec-2023/2023-06-22-s1.webp",
+    "normalImage": "/radar/events/quebec-2023/2023-06-22-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/quebec-2023/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2023-07-05 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-05-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-05-28, the same in every frame."
+  }
  },
  "jasper": {
   "bounds": {
@@ -1281,19 +1676,28 @@
   "observations": [
    {
     "date": "2024-07-20 (before) · Sentinel-1 radar",
-    "image": "/radar/events/jasper/2024-07-20-s1.webp"
+    "image": "/radar/events/jasper/2024-07-20-s1.webp",
+    "normalImage": "/radar/events/jasper/2024-07-20-normal.webp"
    },
    {
     "date": "2024-08-01 (after) · Sentinel-1 radar",
-    "image": "/radar/events/jasper/2024-08-01-s1.webp"
+    "image": "/radar/events/jasper/2024-08-01-s1.webp",
+    "normalImage": "/radar/events/jasper/2024-08-01-normal.webp"
    },
    {
     "date": "2024-08-13 (after) · Sentinel-1 radar",
-    "image": "/radar/events/jasper/2024-08-13-s1.webp"
+    "image": "/radar/events/jasper/2024-08-13-s1.webp",
+    "normalImage": "/radar/events/jasper/2024-08-13-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-07-15"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-07-15, the same in every frame."
+  }
  },
  "evros-greece": {
   "bounds": {
@@ -1305,19 +1709,28 @@
   "observations": [
    {
     "date": "2023-08-15 (before) · Sentinel-1 radar",
-    "image": "/radar/events/evros-greece/2023-08-15-s1.webp"
+    "image": "/radar/events/evros-greece/2023-08-15-s1.webp",
+    "normalImage": "/radar/events/evros-greece/2023-08-15-normal.webp"
    },
    {
     "date": "2023-08-27 (after) · Sentinel-1 radar",
-    "image": "/radar/events/evros-greece/2023-08-27-s1.webp"
+    "image": "/radar/events/evros-greece/2023-08-27-s1.webp",
+    "normalImage": "/radar/events/evros-greece/2023-08-27-normal.webp"
    },
    {
     "date": "2023-09-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/evros-greece/2023-09-08-s1.webp"
+    "image": "/radar/events/evros-greece/2023-09-08-s1.webp",
+    "normalImage": "/radar/events/evros-greece/2023-09-08-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-08-03"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-08-03, the same in every frame."
+  }
  },
  "valparaiso-chile": {
   "bounds": {
@@ -1329,19 +1742,28 @@
   "observations": [
    {
     "date": "2024-01-21 (before) · Sentinel-1 radar",
-    "image": "/radar/events/valparaiso-chile/2024-01-21-s1.webp"
+    "image": "/radar/events/valparaiso-chile/2024-01-21-s1.webp",
+    "normalImage": "/radar/events/valparaiso-chile/2024-01-21-normal.webp"
    },
    {
     "date": "2024-02-02 (after) · Sentinel-1 radar",
-    "image": "/radar/events/valparaiso-chile/2024-02-02-s1.webp"
+    "image": "/radar/events/valparaiso-chile/2024-02-02-s1.webp",
+    "normalImage": "/radar/events/valparaiso-chile/2024-02-02-normal.webp"
    },
    {
     "date": "2024-02-14 (after) · Sentinel-1 radar",
-    "image": "/radar/events/valparaiso-chile/2024-02-14-s1.webp"
+    "image": "/radar/events/valparaiso-chile/2024-02-14-s1.webp",
+    "normalImage": "/radar/events/valparaiso-chile/2024-02-14-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/valparaiso-chile/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-03-03 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-18"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-18, the same in every frame."
+  }
  },
  "pantanal-2024": {
   "bounds": {
@@ -1353,19 +1775,28 @@
   "observations": [
    {
     "date": "2024-06-12 (before) · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-2024/2024-06-12-s1.webp"
+    "image": "/radar/events/pantanal-2024/2024-06-12-s1.webp",
+    "normalImage": "/radar/events/pantanal-2024/2024-06-12-normal.webp"
    },
    {
     "date": "2024-07-06 (after) · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-2024/2024-07-06-s1.webp"
+    "image": "/radar/events/pantanal-2024/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/pantanal-2024/2024-07-06-normal.webp"
    },
    {
     "date": "2024-07-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-2024/2024-07-18-s1.webp"
+    "image": "/radar/events/pantanal-2024/2024-07-18-s1.webp",
+    "normalImage": "/radar/events/pantanal-2024/2024-07-18-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/pantanal-2024/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-07-24 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-06-09"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-06-09, the same in every frame."
+  }
  },
  "black-summer-nsw": {
   "bounds": {
@@ -1377,19 +1808,28 @@
   "observations": [
    {
     "date": "2019-12-24 (before) · Sentinel-1 radar",
-    "image": "/radar/events/black-summer-nsw/2019-12-24-s1.webp"
+    "image": "/radar/events/black-summer-nsw/2019-12-24-s1.webp",
+    "normalImage": "/radar/events/black-summer-nsw/2019-12-24-normal.webp"
    },
    {
     "date": "2020-01-05 (after) · Sentinel-1 radar",
-    "image": "/radar/events/black-summer-nsw/2020-01-05-s1.webp"
+    "image": "/radar/events/black-summer-nsw/2020-01-05-s1.webp",
+    "normalImage": "/radar/events/black-summer-nsw/2020-01-05-normal.webp"
    },
    {
     "date": "2020-01-17 (after) · Sentinel-1 radar",
-    "image": "/radar/events/black-summer-nsw/2020-01-17-s1.webp"
+    "image": "/radar/events/black-summer-nsw/2020-01-17-s1.webp",
+    "normalImage": "/radar/events/black-summer-nsw/2020-01-17-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2019-12-01"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2019-12-01, the same in every frame."
+  }
  },
  "dixie-fire": {
   "bounds": {
@@ -1401,19 +1841,28 @@
   "observations": [
    {
     "date": "2021-08-02 (before) · Sentinel-1 radar",
-    "image": "/radar/events/dixie-fire/2021-08-02-s1.webp"
+    "image": "/radar/events/dixie-fire/2021-08-02-s1.webp",
+    "normalImage": "/radar/events/dixie-fire/2021-08-02-normal.webp"
    },
    {
     "date": "2021-08-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/dixie-fire/2021-08-08-s1.webp"
+    "image": "/radar/events/dixie-fire/2021-08-08-s1.webp",
+    "normalImage": "/radar/events/dixie-fire/2021-08-08-normal.webp"
    },
    {
     "date": "2021-08-14 (after) · Sentinel-1 radar",
-    "image": "/radar/events/dixie-fire/2021-08-14-s1.webp"
+    "image": "/radar/events/dixie-fire/2021-08-14-s1.webp",
+    "normalImage": "/radar/events/dixie-fire/2021-08-14-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-07-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-07-28, the same in every frame."
+  }
  },
  "camp-fire": {
   "bounds": {
@@ -1425,19 +1874,28 @@
   "observations": [
    {
     "date": "2018-11-05 (before) · Sentinel-1 radar",
-    "image": "/radar/events/camp-fire/2018-11-05-s1.webp"
+    "image": "/radar/events/camp-fire/2018-11-05-s1.webp",
+    "normalImage": "/radar/events/camp-fire/2018-11-05-normal.webp"
    },
    {
     "date": "2018-11-11 (after) · Sentinel-1 radar",
-    "image": "/radar/events/camp-fire/2018-11-11-s1.webp"
+    "image": "/radar/events/camp-fire/2018-11-11-s1.webp",
+    "normalImage": "/radar/events/camp-fire/2018-11-11-normal.webp"
    },
    {
     "date": "2018-11-17 (after) · Sentinel-1 radar",
-    "image": "/radar/events/camp-fire/2018-11-17-s1.webp"
+    "image": "/radar/events/camp-fire/2018-11-17-s1.webp",
+    "normalImage": "/radar/events/camp-fire/2018-11-17-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2018-11-01"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2018-11-01, the same in every frame."
+  }
  },
  "para-arc": {
   "bounds": {
@@ -1449,19 +1907,28 @@
   "observations": [
    {
     "date": "2024-01-01 · Sentinel-1 radar",
-    "image": "/radar/events/para-arc/2024-01-01-s1.webp"
+    "image": "/radar/events/para-arc/2024-01-01-s1.webp",
+    "normalImage": "/radar/events/para-arc/2024-01-01-normal.webp"
    },
    {
     "date": "2024-06-29 · Sentinel-1 radar",
-    "image": "/radar/events/para-arc/2024-06-29-s1.webp"
+    "image": "/radar/events/para-arc/2024-06-29-s1.webp",
+    "normalImage": "/radar/events/para-arc/2024-06-29-normal.webp"
    },
    {
     "date": "2024-12-26 · Sentinel-1 radar",
-    "image": "/radar/events/para-arc/2024-12-26-s1.webp"
+    "image": "/radar/events/para-arc/2024-12-26-s1.webp",
+    "normalImage": "/radar/events/para-arc/2024-12-26-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-17"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-17, the same in every frame."
+  }
  },
  "cerrado-matopiba": {
   "bounds": {
@@ -1473,19 +1940,28 @@
   "observations": [
    {
     "date": "2024-01-12 · Sentinel-1 radar",
-    "image": "/radar/events/cerrado-matopiba/2024-01-12-s1.webp"
+    "image": "/radar/events/cerrado-matopiba/2024-01-12-s1.webp",
+    "normalImage": "/radar/events/cerrado-matopiba/2024-01-12-normal.webp"
    },
    {
     "date": "2024-07-10 · Sentinel-1 radar",
-    "image": "/radar/events/cerrado-matopiba/2024-07-10-s1.webp"
+    "image": "/radar/events/cerrado-matopiba/2024-07-10-s1.webp",
+    "normalImage": "/radar/events/cerrado-matopiba/2024-07-10-normal.webp"
    },
    {
     "date": "2024-12-25 · Sentinel-1 radar",
-    "image": "/radar/events/cerrado-matopiba/2024-12-25-s1.webp"
+    "image": "/radar/events/cerrado-matopiba/2024-12-25-s1.webp",
+    "normalImage": "/radar/events/cerrado-matopiba/2024-12-25-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/cerrado-matopiba/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-10 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-09"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-09, the same in every frame."
+  }
  },
  "gran-chaco": {
   "bounds": {
@@ -1497,19 +1973,28 @@
   "observations": [
    {
     "date": "2025-04-19 · Sentinel-1 radar",
-    "image": "/radar/events/gran-chaco/2025-04-19-s1.webp"
+    "image": "/radar/events/gran-chaco/2025-04-19-s1.webp",
+    "normalImage": "/radar/events/gran-chaco/2025-04-19-normal.webp"
    },
    {
     "date": "2025-08-29 · Sentinel-1 radar",
-    "image": "/radar/events/gran-chaco/2025-08-29-s1.webp"
+    "image": "/radar/events/gran-chaco/2025-08-29-s1.webp",
+    "normalImage": "/radar/events/gran-chaco/2025-08-29-normal.webp"
    },
    {
     "date": "2025-12-27 · Sentinel-1 radar",
-    "image": "/radar/events/gran-chaco/2025-12-27-s1.webp"
+    "image": "/radar/events/gran-chaco/2025-12-27-s1.webp",
+    "normalImage": "/radar/events/gran-chaco/2025-12-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/gran-chaco/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-29 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2025-02-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2025-02-22, the same in every frame."
+  }
  },
  "chiquitano": {
   "bounds": {
@@ -1521,19 +2006,28 @@
   "observations": [
    {
     "date": "2024-01-06 · Sentinel-1 radar",
-    "image": "/radar/events/chiquitano/2024-01-06-s1.webp"
+    "image": "/radar/events/chiquitano/2024-01-06-s1.webp",
+    "normalImage": "/radar/events/chiquitano/2024-01-06-normal.webp"
    },
    {
     "date": "2024-08-09 · Sentinel-1 radar",
-    "image": "/radar/events/chiquitano/2024-08-09-s1.webp"
+    "image": "/radar/events/chiquitano/2024-08-09-s1.webp",
+    "normalImage": "/radar/events/chiquitano/2024-08-09-normal.webp"
    },
    {
     "date": "2024-12-31 · Sentinel-1 radar",
-    "image": "/radar/events/chiquitano/2024-12-31-s1.webp"
+    "image": "/radar/events/chiquitano/2024-12-31-s1.webp",
+    "normalImage": "/radar/events/chiquitano/2024-12-31-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-28, the same in every frame."
+  }
  },
  "kalimantan": {
   "bounds": {
@@ -1545,19 +2039,28 @@
   "observations": [
    {
     "date": "2024-01-10 · Sentinel-1 radar",
-    "image": "/radar/events/kalimantan/2024-01-10-s1.webp"
+    "image": "/radar/events/kalimantan/2024-01-10-s1.webp",
+    "normalImage": "/radar/events/kalimantan/2024-01-10-normal.webp"
    },
    {
     "date": "2024-07-20 · Sentinel-1 radar",
-    "image": "/radar/events/kalimantan/2024-07-20-s1.webp"
+    "image": "/radar/events/kalimantan/2024-07-20-s1.webp",
+    "normalImage": "/radar/events/kalimantan/2024-07-20-normal.webp"
    },
    {
     "date": "2024-12-23 · Sentinel-1 radar",
-    "image": "/radar/events/kalimantan/2024-12-23-s1.webp"
+    "image": "/radar/events/kalimantan/2024-12-23-s1.webp",
+    "normalImage": "/radar/events/kalimantan/2024-12-23-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/kalimantan/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-28 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-23"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-23, the same in every frame."
+  }
  },
  "riau": {
   "bounds": {
@@ -1569,19 +2072,28 @@
   "observations": [
    {
     "date": "2024-01-03 · Sentinel-1 radar",
-    "image": "/radar/events/riau/2024-01-03-s1.webp"
+    "image": "/radar/events/riau/2024-01-03-s1.webp",
+    "normalImage": "/radar/events/riau/2024-01-03-normal.webp"
    },
    {
     "date": "2024-07-13 · Sentinel-1 radar",
-    "image": "/radar/events/riau/2024-07-13-s1.webp"
+    "image": "/radar/events/riau/2024-07-13-s1.webp",
+    "normalImage": "/radar/events/riau/2024-07-13-normal.webp"
    },
    {
     "date": "2024-12-28 · Sentinel-1 radar",
-    "image": "/radar/events/riau/2024-12-28-s1.webp"
+    "image": "/radar/events/riau/2024-12-28-s1.webp",
+    "normalImage": "/radar/events/riau/2024-12-28-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/riau/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-28 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-09-25"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-09-25, the same in every frame."
+  }
  },
  "nusantara": {
   "bounds": {
@@ -1593,19 +2105,28 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/nusantara/2024-01-05-s1.webp"
+    "image": "/radar/events/nusantara/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/nusantara/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/nusantara/2024-07-03-s1.webp"
+    "image": "/radar/events/nusantara/2024-07-03-s1.webp",
+    "normalImage": "/radar/events/nusantara/2024-07-03-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/nusantara/2024-12-30-s1.webp"
+    "image": "/radar/events/nusantara/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/nusantara/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2024-01-04"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-01-04, the same in every frame."
+  }
  },
  "congo-basin": {
   "bounds": {
@@ -1617,19 +2138,28 @@
   "observations": [
    {
     "date": "2024-01-03 · Sentinel-1 radar",
-    "image": "/radar/events/congo-basin/2024-01-03-s1.webp"
+    "image": "/radar/events/congo-basin/2024-01-03-s1.webp",
+    "normalImage": "/radar/events/congo-basin/2024-01-03-normal.webp"
    },
    {
     "date": "2024-07-01 · Sentinel-1 radar",
-    "image": "/radar/events/congo-basin/2024-07-01-s1.webp"
+    "image": "/radar/events/congo-basin/2024-07-01-s1.webp",
+    "normalImage": "/radar/events/congo-basin/2024-07-01-normal.webp"
    },
    {
     "date": "2024-12-28 · Sentinel-1 radar",
-    "image": "/radar/events/congo-basin/2024-12-28-s1.webp"
+    "image": "/radar/events/congo-basin/2024-12-28-s1.webp",
+    "normalImage": "/radar/events/congo-basin/2024-12-28-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2024-01-02"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-01-02, the same in every frame."
+  }
  },
  "cote-d-ivoire": {
   "bounds": {
@@ -1641,19 +2171,28 @@
   "observations": [
    {
     "date": "2024-01-11 · Sentinel-1 radar",
-    "image": "/radar/events/cote-d-ivoire/2024-01-11-s1.webp"
+    "image": "/radar/events/cote-d-ivoire/2024-01-11-s1.webp",
+    "normalImage": "/radar/events/cote-d-ivoire/2024-01-11-normal.webp"
    },
    {
     "date": "2024-07-09 · Sentinel-1 radar",
-    "image": "/radar/events/cote-d-ivoire/2024-07-09-s1.webp"
+    "image": "/radar/events/cote-d-ivoire/2024-07-09-s1.webp",
+    "normalImage": "/radar/events/cote-d-ivoire/2024-07-09-normal.webp"
    },
    {
     "date": "2024-12-24 · Sentinel-1 radar",
-    "image": "/radar/events/cote-d-ivoire/2024-12-24-s1.webp"
+    "image": "/radar/events/cote-d-ivoire/2024-12-24-s1.webp",
+    "normalImage": "/radar/events/cote-d-ivoire/2024-12-24-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/cote-d-ivoire/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-27 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-23"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-23, the same in every frame."
+  }
  },
  "prey-lang": {
   "bounds": {
@@ -1665,19 +2204,28 @@
   "observations": [
    {
     "date": "2024-01-04 · Sentinel-1 radar",
-    "image": "/radar/events/prey-lang/2024-01-04-s1.webp"
+    "image": "/radar/events/prey-lang/2024-01-04-s1.webp",
+    "normalImage": "/radar/events/prey-lang/2024-01-04-normal.webp"
    },
    {
     "date": "2024-07-14 · Sentinel-1 radar",
-    "image": "/radar/events/prey-lang/2024-07-14-s1.webp"
+    "image": "/radar/events/prey-lang/2024-07-14-s1.webp",
+    "normalImage": "/radar/events/prey-lang/2024-07-14-normal.webp"
    },
    {
     "date": "2024-12-29 · Sentinel-1 radar",
-    "image": "/radar/events/prey-lang/2024-12-29-s1.webp"
+    "image": "/radar/events/prey-lang/2024-12-29-s1.webp",
+    "normalImage": "/radar/events/prey-lang/2024-12-29-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/prey-lang/vegetation-loss.webp",
-  "flashlightLabel": "Vegetation loss up to 2024-12-25 (OPERA DIST)"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-31"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-31, the same in every frame."
+  }
  },
  "albufera-rice": {
   "bounds": {
@@ -1689,19 +2237,20 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/albufera-rice/2024-01-05-s1.webp"
+    "image": "/radar/events/albufera-rice/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/albufera-rice/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/albufera-rice/2024-07-03-s1.webp"
+    "image": "/radar/events/albufera-rice/2024-07-03-s1.webp",
+    "normalImage": "/radar/events/albufera-rice/2024-07-03-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/albufera-rice/2024-12-30-s1.webp"
+    "image": "/radar/events/albufera-rice/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/albufera-rice/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/albufera-rice/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-28",
   "water": [
    {
     "date": "2024-08-27",
@@ -1715,7 +2264,15 @@
     "date": "2024-12-25",
     "image": "/radar/events/albufera-rice/2024-12-25-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-26"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-26, the same in every frame."
+  }
  },
  "mekong-rice": {
   "bounds": {
@@ -1727,19 +2284,20 @@
   "observations": [
    {
     "date": "2024-01-11 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-rice/2024-01-11-s1.webp"
+    "image": "/radar/events/mekong-rice/2024-01-11-s1.webp",
+    "normalImage": "/radar/events/mekong-rice/2024-01-11-normal.webp"
    },
    {
     "date": "2024-07-09 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-rice/2024-07-09-s1.webp"
+    "image": "/radar/events/mekong-rice/2024-07-09-s1.webp",
+    "normalImage": "/radar/events/mekong-rice/2024-07-09-normal.webp"
    },
    {
     "date": "2024-12-24 · Sentinel-1 radar",
-    "image": "/radar/events/mekong-rice/2024-12-24-s1.webp"
+    "image": "/radar/events/mekong-rice/2024-12-24-s1.webp",
+    "normalImage": "/radar/events/mekong-rice/2024-12-24-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/mekong-rice/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-29",
   "water": [
    {
     "date": "2024-08-27",
@@ -1753,7 +2311,15 @@
     "date": "2024-12-25",
     "image": "/radar/events/mekong-rice/2024-12-25-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-26"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-26, the same in every frame."
+  }
  },
  "indian-punjab": {
   "bounds": {
@@ -1765,19 +2331,20 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/indian-punjab/2024-01-05-s1.webp"
+    "image": "/radar/events/indian-punjab/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/indian-punjab/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/indian-punjab/2024-07-03-s1.webp"
+    "image": "/radar/events/indian-punjab/2024-07-03-s1.webp",
+    "normalImage": "/radar/events/indian-punjab/2024-07-03-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/indian-punjab/2024-12-30-s1.webp"
+    "image": "/radar/events/indian-punjab/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/indian-punjab/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/indian-punjab/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-07",
   "water": [
    {
     "date": "2024-08-28",
@@ -1791,7 +2358,15 @@
     "date": "2024-12-26",
     "image": "/radar/events/indian-punjab/2024-12-26-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-18"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-18, the same in every frame."
+  }
  },
  "iowa-corn-belt": {
   "bounds": {
@@ -1803,19 +2378,20 @@
   "observations": [
    {
     "date": "2024-01-03 · Sentinel-1 radar",
-    "image": "/radar/events/iowa-corn-belt/2024-01-03-s1.webp"
+    "image": "/radar/events/iowa-corn-belt/2024-01-03-s1.webp",
+    "normalImage": "/radar/events/iowa-corn-belt/2024-01-03-normal.webp"
    },
    {
     "date": "2024-07-25 · Sentinel-1 radar",
-    "image": "/radar/events/iowa-corn-belt/2024-07-25-s1.webp"
+    "image": "/radar/events/iowa-corn-belt/2024-07-25-s1.webp",
+    "normalImage": "/radar/events/iowa-corn-belt/2024-07-25-normal.webp"
    },
    {
     "date": "2024-12-28 · Sentinel-1 radar",
-    "image": "/radar/events/iowa-corn-belt/2024-12-28-s1.webp"
+    "image": "/radar/events/iowa-corn-belt/2024-12-28-s1.webp",
+    "normalImage": "/radar/events/iowa-corn-belt/2024-12-28-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/iowa-corn-belt/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-05",
   "water": [
    {
     "date": "2024-08-30",
@@ -1829,7 +2405,15 @@
     "date": "2024-12-28",
     "image": "/radar/events/iowa-corn-belt/2024-12-28-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-12, the same in every frame."
+  }
  },
  "central-valley-crops": {
   "bounds": {
@@ -1841,19 +2425,20 @@
   "observations": [
    {
     "date": "2024-01-08 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-crops/2024-01-08-s1.webp"
+    "image": "/radar/events/central-valley-crops/2024-01-08-s1.webp",
+    "normalImage": "/radar/events/central-valley-crops/2024-01-08-normal.webp"
    },
    {
     "date": "2024-07-06 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-crops/2024-07-06-s1.webp"
+    "image": "/radar/events/central-valley-crops/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/central-valley-crops/2024-07-06-normal.webp"
    },
    {
     "date": "2024-12-21 · Sentinel-1 radar",
-    "image": "/radar/events/central-valley-crops/2024-12-21-s1.webp"
+    "image": "/radar/events/central-valley-crops/2024-12-21-s1.webp",
+    "normalImage": "/radar/events/central-valley-crops/2024-12-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/central-valley-crops/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-01",
   "water": [
    {
     "date": "2024-08-23",
@@ -1867,7 +2452,15 @@
     "date": "2024-12-21",
     "image": "/radar/events/central-valley-crops/2024-12-21-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-12, the same in every frame."
+  }
  },
  "nile-delta": {
   "bounds": {
@@ -1879,19 +2472,28 @@
   "observations": [
    {
     "date": "2024-01-02 · Sentinel-1 radar",
-    "image": "/radar/events/nile-delta/2024-01-02-s1.webp"
+    "image": "/radar/events/nile-delta/2024-01-02-s1.webp",
+    "normalImage": "/radar/events/nile-delta/2024-01-02-normal.webp"
    },
    {
     "date": "2024-06-30 · Sentinel-1 radar",
-    "image": "/radar/events/nile-delta/2024-06-30-s1.webp"
+    "image": "/radar/events/nile-delta/2024-06-30-s1.webp",
+    "normalImage": "/radar/events/nile-delta/2024-06-30-normal.webp"
    },
    {
     "date": "2024-12-27 · Sentinel-1 radar",
-    "image": "/radar/events/nile-delta/2024-12-27-s1.webp"
+    "image": "/radar/events/nile-delta/2024-12-27-s1.webp",
+    "normalImage": "/radar/events/nile-delta/2024-12-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/nile-delta/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-02"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-11-24"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-11-24, the same in every frame."
+  }
  },
  "okavango": {
   "bounds": {
@@ -1917,8 +2519,6 @@
     "normalImage": "/radar/events/okavango/2025-12-25-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/okavango/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-24",
   "normalView": {
    "photo": "NASA HLS (Landsat/Sentinel-2)",
    "photoDate": "2025-05-09"
@@ -1938,19 +2538,20 @@
   "observations": [
    {
     "date": "2024-01-08 · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-wetland/2024-01-08-s1.webp"
+    "image": "/radar/events/pantanal-wetland/2024-01-08-s1.webp",
+    "normalImage": "/radar/events/pantanal-wetland/2024-01-08-normal.webp"
    },
    {
     "date": "2024-07-06 · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-wetland/2024-07-06-s1.webp"
+    "image": "/radar/events/pantanal-wetland/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/pantanal-wetland/2024-07-06-normal.webp"
    },
    {
     "date": "2024-12-21 · Sentinel-1 radar",
-    "image": "/radar/events/pantanal-wetland/2024-12-21-s1.webp"
+    "image": "/radar/events/pantanal-wetland/2024-12-21-s1.webp",
+    "normalImage": "/radar/events/pantanal-wetland/2024-12-21-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/pantanal-wetland/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-31",
   "water": [
    {
     "date": "2024-08-23",
@@ -1964,7 +2565,15 @@
     "date": "2024-12-21",
     "image": "/radar/events/pantanal-wetland/2024-12-21-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-27"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-27, the same in every frame."
+  }
  },
  "sudd": {
   "bounds": {
@@ -1976,19 +2585,20 @@
   "observations": [
    {
     "date": "2024-01-12 · Sentinel-1 radar",
-    "image": "/radar/events/sudd/2024-01-12-s1.webp"
+    "image": "/radar/events/sudd/2024-01-12-s1.webp",
+    "normalImage": "/radar/events/sudd/2024-01-12-normal.webp"
    },
    {
     "date": "2024-07-10 · Sentinel-1 radar",
-    "image": "/radar/events/sudd/2024-07-10-s1.webp"
+    "image": "/radar/events/sudd/2024-07-10-s1.webp",
+    "normalImage": "/radar/events/sudd/2024-07-10-normal.webp"
    },
    {
     "date": "2024-12-25 · Sentinel-1 radar",
-    "image": "/radar/events/sudd/2024-12-25-s1.webp"
+    "image": "/radar/events/sudd/2024-12-25-s1.webp",
+    "normalImage": "/radar/events/sudd/2024-12-25-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/sudd/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-30",
   "water": [
    {
     "date": "2024-09-01",
@@ -2002,7 +2612,15 @@
     "date": "2024-12-30",
     "image": "/radar/events/sudd/2024-12-30-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2024-01-11"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-01-11, the same in every frame."
+  }
  },
  "everglades": {
   "bounds": {
@@ -2014,19 +2632,20 @@
   "observations": [
    {
     "date": "2024-01-01 · Sentinel-1 radar",
-    "image": "/radar/events/everglades/2024-01-01-s1.webp"
+    "image": "/radar/events/everglades/2024-01-01-s1.webp",
+    "normalImage": "/radar/events/everglades/2024-01-01-normal.webp"
    },
    {
     "date": "2024-06-29 · Sentinel-1 radar",
-    "image": "/radar/events/everglades/2024-06-29-s1.webp"
+    "image": "/radar/events/everglades/2024-06-29-s1.webp",
+    "normalImage": "/radar/events/everglades/2024-06-29-normal.webp"
    },
    {
     "date": "2024-12-26 · Sentinel-1 radar",
-    "image": "/radar/events/everglades/2024-12-26-s1.webp"
+    "image": "/radar/events/everglades/2024-12-26-s1.webp",
+    "normalImage": "/radar/events/everglades/2024-12-26-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/everglades/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-27",
   "water": [
    {
     "date": "2024-08-28",
@@ -2040,7 +2659,15 @@
     "date": "2024-12-26",
     "image": "/radar/events/everglades/2024-12-26-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-31"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-31, the same in every frame."
+  }
  },
  "malaspina": {
   "bounds": {
@@ -2062,9 +2689,7 @@
     "date": "2024-12-31 · Sentinel-1 radar",
     "image": "/radar/events/malaspina/2024-12-31-s1.webp"
    }
-  ],
-  "flashlightImage": "/radar/events/malaspina/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-31"
+  ]
  },
  "columbia-glacier": {
   "bounds": {
@@ -2086,9 +2711,7 @@
     "date": "2024-12-22 · Sentinel-1 radar",
     "image": "/radar/events/columbia-glacier/2024-12-22-s1.webp"
    }
-  ],
-  "flashlightImage": "/radar/events/columbia-glacier/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-04"
+  ]
  },
  "hudson-bay": {
   "bounds": {
@@ -2100,19 +2723,28 @@
   "observations": [
    {
     "date": "2024-06-24 (before) · Sentinel-1 radar",
-    "image": "/radar/events/hudson-bay/2024-06-24-s1.webp"
+    "image": "/radar/events/hudson-bay/2024-06-24-s1.webp",
+    "normalImage": "/radar/events/hudson-bay/2024-06-24-normal.webp"
    },
    {
     "date": "2024-07-06 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hudson-bay/2024-07-06-s1.webp"
+    "image": "/radar/events/hudson-bay/2024-07-06-s1.webp",
+    "normalImage": "/radar/events/hudson-bay/2024-07-06-normal.webp"
    },
    {
     "date": "2024-07-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/hudson-bay/2024-07-18-s1.webp"
+    "image": "/radar/events/hudson-bay/2024-07-18-s1.webp",
+    "normalImage": "/radar/events/hudson-bay/2024-07-18-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2024-06-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-06-22, the same in every frame."
+  }
  },
  "gulf-of-st-lawrence": {
   "bounds": {
@@ -2124,19 +2756,28 @@
   "observations": [
    {
     "date": "2024-02-06 (before) · Sentinel-1 radar",
-    "image": "/radar/events/gulf-of-st-lawrence/2024-02-06-s1.webp"
+    "image": "/radar/events/gulf-of-st-lawrence/2024-02-06-s1.webp",
+    "normalImage": "/radar/events/gulf-of-st-lawrence/2024-02-06-normal.webp"
    },
    {
     "date": "2024-02-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gulf-of-st-lawrence/2024-02-18-s1.webp"
+    "image": "/radar/events/gulf-of-st-lawrence/2024-02-18-s1.webp",
+    "normalImage": "/radar/events/gulf-of-st-lawrence/2024-02-18-normal.webp"
    },
    {
     "date": "2024-03-01 (after) · Sentinel-1 radar",
-    "image": "/radar/events/gulf-of-st-lawrence/2024-03-01-s1.webp"
+    "image": "/radar/events/gulf-of-st-lawrence/2024-03-01-s1.webp",
+    "normalImage": "/radar/events/gulf-of-st-lawrence/2024-03-01-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2023-12-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2023-12-28, the same in every frame."
+  }
  },
  "utqiagvik-shorefast": {
   "bounds": {
@@ -2148,19 +2789,28 @@
   "observations": [
    {
     "date": "2024-04-20 (before) · Sentinel-1 radar",
-    "image": "/radar/events/utqiagvik-shorefast/2024-04-20-s1.webp"
+    "image": "/radar/events/utqiagvik-shorefast/2024-04-20-s1.webp",
+    "normalImage": "/radar/events/utqiagvik-shorefast/2024-04-20-normal.webp"
    },
    {
     "date": "2024-05-02 (after) · Sentinel-1 radar",
-    "image": "/radar/events/utqiagvik-shorefast/2024-05-02-s1.webp"
+    "image": "/radar/events/utqiagvik-shorefast/2024-05-02-s1.webp",
+    "normalImage": "/radar/events/utqiagvik-shorefast/2024-05-02-normal.webp"
    },
    {
     "date": "2024-05-14 (after) · Sentinel-1 radar",
-    "image": "/radar/events/utqiagvik-shorefast/2024-05-14-s1.webp"
+    "image": "/radar/events/utqiagvik-shorefast/2024-05-14-s1.webp",
+    "normalImage": "/radar/events/utqiagvik-shorefast/2024-05-14-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2024-07-11"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2024-07-11, the same in every frame."
+  }
  },
  "sea-of-okhotsk": {
   "bounds": {
@@ -2172,19 +2822,28 @@
   "observations": [
    {
     "date": "2024-02-10 (before) · Sentinel-1 radar",
-    "image": "/radar/events/sea-of-okhotsk/2024-02-10-s1.webp"
+    "image": "/radar/events/sea-of-okhotsk/2024-02-10-s1.webp",
+    "normalImage": "/radar/events/sea-of-okhotsk/2024-02-10-normal.webp"
    },
    {
     "date": "2024-02-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/sea-of-okhotsk/2024-02-22-s1.webp"
+    "image": "/radar/events/sea-of-okhotsk/2024-02-22-s1.webp",
+    "normalImage": "/radar/events/sea-of-okhotsk/2024-02-22-normal.webp"
    },
    {
     "date": "2024-03-05 (after) · Sentinel-1 radar",
-    "image": "/radar/events/sea-of-okhotsk/2024-03-05-s1.webp"
+    "image": "/radar/events/sea-of-okhotsk/2024-03-05-s1.webp",
+    "normalImage": "/radar/events/sea-of-okhotsk/2024-03-05-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2023-10-15"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2023-10-15, the same in every frame."
+  }
  },
  "bothnian-bay": {
   "bounds": {
@@ -2196,19 +2855,28 @@
   "observations": [
    {
     "date": "2024-02-09 (before) · Sentinel-1 radar",
-    "image": "/radar/events/bothnian-bay/2024-02-09-s1.webp"
+    "image": "/radar/events/bothnian-bay/2024-02-09-s1.webp",
+    "normalImage": "/radar/events/bothnian-bay/2024-02-09-normal.webp"
    },
    {
     "date": "2024-02-21 (after) · Sentinel-1 radar",
-    "image": "/radar/events/bothnian-bay/2024-02-21-s1.webp"
+    "image": "/radar/events/bothnian-bay/2024-02-21-s1.webp",
+    "normalImage": "/radar/events/bothnian-bay/2024-02-21-normal.webp"
    },
    {
     "date": "2024-03-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/bothnian-bay/2024-03-04-s1.webp"
+    "image": "/radar/events/bothnian-bay/2024-03-04-s1.webp",
+    "normalImage": "/radar/events/bothnian-bay/2024-03-04-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2023-10-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2023-10-22, the same in every frame."
+  }
  },
  "x-press-pearl": {
   "bounds": {
@@ -2220,19 +2888,28 @@
   "observations": [
    {
     "date": "2021-05-27 (before) · Sentinel-1 radar",
-    "image": "/radar/events/x-press-pearl/2021-05-27-s1.webp"
+    "image": "/radar/events/x-press-pearl/2021-05-27-s1.webp",
+    "normalImage": "/radar/events/x-press-pearl/2021-05-27-normal.webp"
    },
    {
     "date": "2021-06-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/x-press-pearl/2021-06-08-s1.webp"
+    "image": "/radar/events/x-press-pearl/2021-06-08-s1.webp",
+    "normalImage": "/radar/events/x-press-pearl/2021-06-08-normal.webp"
    },
    {
     "date": "2021-06-14 (after) · Sentinel-1 radar",
-    "image": "/radar/events/x-press-pearl/2021-06-14-s1.webp"
+    "image": "/radar/events/x-press-pearl/2021-06-14-s1.webp",
+    "normalImage": "/radar/events/x-press-pearl/2021-06-14-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-02-04"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-02-04, the same in every frame."
+  }
  },
  "princess-empress-mindoro": {
   "bounds": {
@@ -2244,19 +2921,28 @@
   "observations": [
    {
     "date": "2023-02-22 (before) · Sentinel-1 radar",
-    "image": "/radar/events/princess-empress-mindoro/2023-02-22-s1.webp"
+    "image": "/radar/events/princess-empress-mindoro/2023-02-22-s1.webp",
+    "normalImage": "/radar/events/princess-empress-mindoro/2023-02-22-normal.webp"
    },
    {
     "date": "2023-03-06 (after) · Sentinel-1 radar",
-    "image": "/radar/events/princess-empress-mindoro/2023-03-06-s1.webp"
+    "image": "/radar/events/princess-empress-mindoro/2023-03-06-s1.webp",
+    "normalImage": "/radar/events/princess-empress-mindoro/2023-03-06-normal.webp"
    },
    {
     "date": "2023-03-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/princess-empress-mindoro/2023-03-18-s1.webp"
+    "image": "/radar/events/princess-empress-mindoro/2023-03-18-s1.webp",
+    "normalImage": "/radar/events/princess-empress-mindoro/2023-03-18-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-03-23"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-03-23, the same in every frame."
+  }
  },
  "kerch-strait": {
   "bounds": {
@@ -2268,19 +2954,28 @@
   "observations": [
    {
     "date": "2024-12-06 (before) · Sentinel-1 radar",
-    "image": "/radar/events/kerch-strait/2024-12-06-s1.webp"
+    "image": "/radar/events/kerch-strait/2024-12-06-s1.webp",
+    "normalImage": "/radar/events/kerch-strait/2024-12-06-normal.webp"
    },
    {
     "date": "2024-12-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kerch-strait/2024-12-18-s1.webp"
+    "image": "/radar/events/kerch-strait/2024-12-18-s1.webp",
+    "normalImage": "/radar/events/kerch-strait/2024-12-18-normal.webp"
    },
    {
     "date": "2024-12-30 (after) · Sentinel-1 radar",
-    "image": "/radar/events/kerch-strait/2024-12-30-s1.webp"
+    "image": "/radar/events/kerch-strait/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/kerch-strait/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-11-18"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-11-18, the same in every frame."
+  }
  },
  "israel-tar-spill": {
   "bounds": {
@@ -2292,19 +2987,28 @@
   "observations": [
    {
     "date": "2021-02-12 (before) · Sentinel-1 radar",
-    "image": "/radar/events/israel-tar-spill/2021-02-12-s1.webp"
+    "image": "/radar/events/israel-tar-spill/2021-02-12-s1.webp",
+    "normalImage": "/radar/events/israel-tar-spill/2021-02-12-normal.webp"
    },
    {
     "date": "2021-02-18 (after) · Sentinel-1 radar",
-    "image": "/radar/events/israel-tar-spill/2021-02-18-s1.webp"
+    "image": "/radar/events/israel-tar-spill/2021-02-18-s1.webp",
+    "normalImage": "/radar/events/israel-tar-spill/2021-02-18-normal.webp"
    },
    {
     "date": "2021-02-24 (after) · Sentinel-1 radar",
-    "image": "/radar/events/israel-tar-spill/2021-02-24-s1.webp"
+    "image": "/radar/events/israel-tar-spill/2021-02-24-s1.webp",
+    "normalImage": "/radar/events/israel-tar-spill/2021-02-24-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2021-02-09"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2021-02-09, the same in every frame."
+  }
  },
  "taylor-energy": {
   "bounds": {
@@ -2316,19 +3020,28 @@
   "observations": [
    {
     "date": "2018-05-29 (before) · Sentinel-1 radar",
-    "image": "/radar/events/taylor-energy/2018-05-29-s1.webp"
+    "image": "/radar/events/taylor-energy/2018-05-29-s1.webp",
+    "normalImage": "/radar/events/taylor-energy/2018-05-29-normal.webp"
    },
    {
     "date": "2018-06-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/taylor-energy/2018-06-10-s1.webp"
+    "image": "/radar/events/taylor-energy/2018-06-10-s1.webp",
+    "normalImage": "/radar/events/taylor-energy/2018-06-10-normal.webp"
    },
    {
     "date": "2018-06-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/taylor-energy/2018-06-22-s1.webp"
+    "image": "/radar/events/taylor-energy/2018-06-22-s1.webp",
+    "normalImage": "/radar/events/taylor-energy/2018-06-22-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2018-05-24"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2018-05-24, the same in every frame."
+  }
  },
  "rodanthe-outer-banks": {
   "bounds": {
@@ -2340,19 +3053,20 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/rodanthe-outer-banks/2024-01-05-s1.webp"
+    "image": "/radar/events/rodanthe-outer-banks/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/rodanthe-outer-banks/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-03 · Sentinel-1 radar",
-    "image": "/radar/events/rodanthe-outer-banks/2024-07-03-s1.webp"
+    "image": "/radar/events/rodanthe-outer-banks/2024-07-03-s1.webp",
+    "normalImage": "/radar/events/rodanthe-outer-banks/2024-07-03-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/rodanthe-outer-banks/2024-12-30-s1.webp"
+    "image": "/radar/events/rodanthe-outer-banks/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/rodanthe-outer-banks/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/rodanthe-outer-banks/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-28",
   "water": [
    {
     "date": "2024-09-01",
@@ -2366,7 +3080,15 @@
     "date": "2024-12-30",
     "image": "/radar/events/rodanthe-outer-banks/2024-12-30-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-23"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-23, the same in every frame."
+  }
  },
  "coastal-louisiana": {
   "bounds": {
@@ -2378,19 +3100,28 @@
   "observations": [
    {
     "date": "2024-01-10 · Sentinel-1 radar",
-    "image": "/radar/events/coastal-louisiana/2024-01-10-s1.webp"
+    "image": "/radar/events/coastal-louisiana/2024-01-10-s1.webp",
+    "normalImage": "/radar/events/coastal-louisiana/2024-01-10-normal.webp"
    },
    {
     "date": "2024-07-08 · Sentinel-1 radar",
-    "image": "/radar/events/coastal-louisiana/2024-07-08-s1.webp"
+    "image": "/radar/events/coastal-louisiana/2024-07-08-s1.webp",
+    "normalImage": "/radar/events/coastal-louisiana/2024-07-08-normal.webp"
    },
    {
     "date": "2024-12-23 · Sentinel-1 radar",
-    "image": "/radar/events/coastal-louisiana/2024-12-23-s1.webp"
+    "image": "/radar/events/coastal-louisiana/2024-12-23-s1.webp",
+    "normalImage": "/radar/events/coastal-louisiana/2024-12-23-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/coastal-louisiana/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-31"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-02"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-02, the same in every frame."
+  }
  },
  "sundarbans": {
   "bounds": {
@@ -2402,19 +3133,28 @@
   "observations": [
    {
     "date": "2024-01-11 · Sentinel-1 radar",
-    "image": "/radar/events/sundarbans/2024-01-11-s1.webp"
+    "image": "/radar/events/sundarbans/2024-01-11-s1.webp",
+    "normalImage": "/radar/events/sundarbans/2024-01-11-normal.webp"
    },
    {
     "date": "2024-07-09 · Sentinel-1 radar",
-    "image": "/radar/events/sundarbans/2024-07-09-s1.webp"
+    "image": "/radar/events/sundarbans/2024-07-09-s1.webp",
+    "normalImage": "/radar/events/sundarbans/2024-07-09-normal.webp"
    },
    {
     "date": "2024-12-24 · Sentinel-1 radar",
-    "image": "/radar/events/sundarbans/2024-12-24-s1.webp"
+    "image": "/radar/events/sundarbans/2024-12-24-s1.webp",
+    "normalImage": "/radar/events/sundarbans/2024-12-24-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/sundarbans/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-06"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-06"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-06, the same in every frame."
+  }
  },
  "nile-rosetta": {
   "bounds": {
@@ -2426,19 +3166,20 @@
   "observations": [
    {
     "date": "2024-01-02 · Sentinel-1 radar",
-    "image": "/radar/events/nile-rosetta/2024-01-02-s1.webp"
+    "image": "/radar/events/nile-rosetta/2024-01-02-s1.webp",
+    "normalImage": "/radar/events/nile-rosetta/2024-01-02-normal.webp"
    },
    {
     "date": "2024-06-30 · Sentinel-1 radar",
-    "image": "/radar/events/nile-rosetta/2024-06-30-s1.webp"
+    "image": "/radar/events/nile-rosetta/2024-06-30-s1.webp",
+    "normalImage": "/radar/events/nile-rosetta/2024-06-30-normal.webp"
    },
    {
     "date": "2024-12-27 · Sentinel-1 radar",
-    "image": "/radar/events/nile-rosetta/2024-12-27-s1.webp"
+    "image": "/radar/events/nile-rosetta/2024-12-27-s1.webp",
+    "normalImage": "/radar/events/nile-rosetta/2024-12-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/nile-rosetta/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-02",
   "water": [
    {
     "date": "2024-08-25",
@@ -2452,7 +3193,15 @@
     "date": "2024-12-23",
     "image": "/radar/events/nile-rosetta/2024-12-23-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-12-12"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-12-12, the same in every frame."
+  }
  },
  "holderness": {
   "bounds": {
@@ -2464,19 +3213,20 @@
   "observations": [
    {
     "date": "2024-01-02 · Sentinel-1 radar",
-    "image": "/radar/events/holderness/2024-01-02-s1.webp"
+    "image": "/radar/events/holderness/2024-01-02-s1.webp",
+    "normalImage": "/radar/events/holderness/2024-01-02-normal.webp"
    },
    {
     "date": "2024-06-30 · Sentinel-1 radar",
-    "image": "/radar/events/holderness/2024-06-30-s1.webp"
+    "image": "/radar/events/holderness/2024-06-30-s1.webp",
+    "normalImage": "/radar/events/holderness/2024-06-30-normal.webp"
    },
    {
     "date": "2024-12-27 · Sentinel-1 radar",
-    "image": "/radar/events/holderness/2024-12-27-s1.webp"
+    "image": "/radar/events/holderness/2024-12-27-s1.webp",
+    "normalImage": "/radar/events/holderness/2024-12-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/holderness/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-31",
   "water": [
    {
     "date": "2024-08-24",
@@ -2490,7 +3240,15 @@
     "date": "2024-12-22",
     "image": "/radar/events/holderness/2024-12-22-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-11-17"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-11-17, the same in every frame."
+  }
  },
  "drew-point": {
   "bounds": {
@@ -2502,19 +3260,28 @@
   "observations": [
    {
     "date": "2024-01-05 · Sentinel-1 radar",
-    "image": "/radar/events/drew-point/2024-01-05-s1.webp"
+    "image": "/radar/events/drew-point/2024-01-05-s1.webp",
+    "normalImage": "/radar/events/drew-point/2024-01-05-normal.webp"
    },
    {
     "date": "2024-07-15 · Sentinel-1 radar",
-    "image": "/radar/events/drew-point/2024-07-15-s1.webp"
+    "image": "/radar/events/drew-point/2024-07-15-s1.webp",
+    "normalImage": "/radar/events/drew-point/2024-07-15-normal.webp"
    },
    {
     "date": "2024-12-30 · Sentinel-1 radar",
-    "image": "/radar/events/drew-point/2024-12-30-s1.webp"
+    "image": "/radar/events/drew-point/2024-12-30-s1.webp",
+    "normalImage": "/radar/events/drew-point/2024-12-30-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2023-09-14"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2023-09-14, the same in every frame."
+  }
  },
  "saint-louis-senegal": {
   "bounds": {
@@ -2526,19 +3293,28 @@
   "observations": [
    {
     "date": "2024-01-07 · Sentinel-1 radar",
-    "image": "/radar/events/saint-louis-senegal/2024-01-07-s1.webp"
+    "image": "/radar/events/saint-louis-senegal/2024-01-07-s1.webp",
+    "normalImage": "/radar/events/saint-louis-senegal/2024-01-07-normal.webp"
    },
    {
     "date": "2024-07-05 · Sentinel-1 radar",
-    "image": "/radar/events/saint-louis-senegal/2024-07-05-s1.webp"
+    "image": "/radar/events/saint-louis-senegal/2024-07-05-s1.webp",
+    "normalImage": "/radar/events/saint-louis-senegal/2024-07-05-normal.webp"
    },
    {
     "date": "2024-12-20 · Sentinel-1 radar",
-    "image": "/radar/events/saint-louis-senegal/2024-12-20-s1.webp"
+    "image": "/radar/events/saint-louis-senegal/2024-12-20-s1.webp",
+    "normalImage": "/radar/events/saint-louis-senegal/2024-12-20-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/saint-louis-senegal/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-02"
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-01-02"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-01-02, the same in every frame."
+  }
  },
  "fort-myers-beach-ian": {
   "bounds": {
@@ -2550,19 +3326,28 @@
   "observations": [
    {
     "date": "2022-09-25 (before) · Sentinel-1 radar",
-    "image": "/radar/events/fort-myers-beach-ian/2022-09-25-s1.webp"
+    "image": "/radar/events/fort-myers-beach-ian/2022-09-25-s1.webp",
+    "normalImage": "/radar/events/fort-myers-beach-ian/2022-09-25-normal.webp"
    },
    {
     "date": "2022-10-07 (after) · Sentinel-1 radar",
-    "image": "/radar/events/fort-myers-beach-ian/2022-10-07-s1.webp"
+    "image": "/radar/events/fort-myers-beach-ian/2022-10-07-s1.webp",
+    "normalImage": "/radar/events/fort-myers-beach-ian/2022-10-07-normal.webp"
    },
    {
     "date": "2022-10-19 (after) · Sentinel-1 radar",
-    "image": "/radar/events/fort-myers-beach-ian/2022-10-19-s1.webp"
+    "image": "/radar/events/fort-myers-beach-ian/2022-10-19-s1.webp",
+    "normalImage": "/radar/events/fort-myers-beach-ian/2022-10-19-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-09-05"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-09-05, the same in every frame."
+  }
  },
  "big-bend-helene": {
   "bounds": {
@@ -2574,19 +3359,28 @@
   "observations": [
    {
     "date": "2024-09-26 (before) · Sentinel-1 radar",
-    "image": "/radar/events/big-bend-helene/2024-09-26-s1.webp"
+    "image": "/radar/events/big-bend-helene/2024-09-26-s1.webp",
+    "normalImage": "/radar/events/big-bend-helene/2024-09-26-normal.webp"
    },
    {
     "date": "2024-10-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/big-bend-helene/2024-10-08-s1.webp"
+    "image": "/radar/events/big-bend-helene/2024-10-08-s1.webp",
+    "normalImage": "/radar/events/big-bend-helene/2024-10-08-normal.webp"
    },
    {
     "date": "2024-10-20 (after) · Sentinel-1 radar",
-    "image": "/radar/events/big-bend-helene/2024-10-20-s1.webp"
+    "image": "/radar/events/big-bend-helene/2024-10-20-s1.webp",
+    "normalImage": "/radar/events/big-bend-helene/2024-10-20-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-08-13"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-08-13, the same in every frame."
+  }
  },
  "horn-of-africa-2022": {
   "bounds": {
@@ -2598,19 +3392,28 @@
   "observations": [
    {
     "date": "2022-09-23 (before) · Sentinel-1 radar",
-    "image": "/radar/events/horn-of-africa-2022/2022-09-23-s1.webp"
+    "image": "/radar/events/horn-of-africa-2022/2022-09-23-s1.webp",
+    "normalImage": "/radar/events/horn-of-africa-2022/2022-09-23-normal.webp"
    },
    {
     "date": "2022-10-05 (after) · Sentinel-1 radar",
-    "image": "/radar/events/horn-of-africa-2022/2022-10-05-s1.webp"
+    "image": "/radar/events/horn-of-africa-2022/2022-10-05-s1.webp",
+    "normalImage": "/radar/events/horn-of-africa-2022/2022-10-05-normal.webp"
    },
    {
     "date": "2022-10-17 (after) · Sentinel-1 radar",
-    "image": "/radar/events/horn-of-africa-2022/2022-10-17-s1.webp"
+    "image": "/radar/events/horn-of-africa-2022/2022-10-17-s1.webp",
+    "normalImage": "/radar/events/horn-of-africa-2022/2022-10-17-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2022-09-21"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2022-09-21, the same in every frame."
+  }
  },
  "amazon-drought-2023": {
   "bounds": {
@@ -2622,19 +3425,28 @@
   "observations": [
    {
     "date": "2023-10-07 (before) · Sentinel-1 radar",
-    "image": "/radar/events/amazon-drought-2023/2023-10-07-s1.webp"
+    "image": "/radar/events/amazon-drought-2023/2023-10-07-s1.webp",
+    "normalImage": "/radar/events/amazon-drought-2023/2023-10-07-normal.webp"
    },
    {
     "date": "2023-10-19 (after) · Sentinel-1 radar",
-    "image": "/radar/events/amazon-drought-2023/2023-10-19-s1.webp"
+    "image": "/radar/events/amazon-drought-2023/2023-10-19-s1.webp",
+    "normalImage": "/radar/events/amazon-drought-2023/2023-10-19-normal.webp"
    },
    {
     "date": "2023-10-31 (after) · Sentinel-1 radar",
-    "image": "/radar/events/amazon-drought-2023/2023-10-31-s1.webp"
+    "image": "/radar/events/amazon-drought-2023/2023-10-31-s1.webp",
+    "normalImage": "/radar/events/amazon-drought-2023/2023-10-31-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2023-10-06"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2023-10-06, the same in every frame."
+  }
  },
  "europe-2022": {
   "bounds": {
@@ -2646,19 +3458,28 @@
   "observations": [
    {
     "date": "2022-07-23 (before) · Sentinel-1 radar",
-    "image": "/radar/events/europe-2022/2022-07-23-s1.webp"
+    "image": "/radar/events/europe-2022/2022-07-23-s1.webp",
+    "normalImage": "/radar/events/europe-2022/2022-07-23-normal.webp"
    },
    {
     "date": "2022-08-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/europe-2022/2022-08-04-s1.webp"
+    "image": "/radar/events/europe-2022/2022-08-04-s1.webp",
+    "normalImage": "/radar/events/europe-2022/2022-08-04-normal.webp"
    },
    {
     "date": "2022-08-16 (after) · Sentinel-1 radar",
-    "image": "/radar/events/europe-2022/2022-08-16-s1.webp"
+    "image": "/radar/events/europe-2022/2022-08-16-s1.webp",
+    "normalImage": "/radar/events/europe-2022/2022-08-16-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-04-10"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-04-10, the same in every frame."
+  }
  },
  "california-ars-2023": {
   "bounds": {
@@ -2680,9 +3501,7 @@
     "date": "2023-01-25 (after) · Sentinel-1 radar",
     "image": "/radar/events/california-ars-2023/2023-01-25-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "murray-darling-2022": {
   "bounds": {
@@ -2694,19 +3513,28 @@
   "observations": [
    {
     "date": "2022-11-10 (before) · Sentinel-1 radar",
-    "image": "/radar/events/murray-darling-2022/2022-11-10-s1.webp"
+    "image": "/radar/events/murray-darling-2022/2022-11-10-s1.webp",
+    "normalImage": "/radar/events/murray-darling-2022/2022-11-10-normal.webp"
    },
    {
     "date": "2022-11-22 (after) · Sentinel-1 radar",
-    "image": "/radar/events/murray-darling-2022/2022-11-22-s1.webp"
+    "image": "/radar/events/murray-darling-2022/2022-11-22-s1.webp",
+    "normalImage": "/radar/events/murray-darling-2022/2022-11-22-normal.webp"
    },
    {
     "date": "2022-12-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/murray-darling-2022/2022-12-04-s1.webp"
+    "image": "/radar/events/murray-darling-2022/2022-12-04-s1.webp",
+    "normalImage": "/radar/events/murray-darling-2022/2022-12-04-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2022-10-10"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2022-10-10, the same in every frame."
+  }
  },
  "helene-nc-2024": {
   "bounds": {
@@ -2718,19 +3546,28 @@
   "observations": [
    {
     "date": "2024-09-21 (before) · Sentinel-1 radar",
-    "image": "/radar/events/helene-nc-2024/2024-09-21-s1.webp"
+    "image": "/radar/events/helene-nc-2024/2024-09-21-s1.webp",
+    "normalImage": "/radar/events/helene-nc-2024/2024-09-21-normal.webp"
    },
    {
     "date": "2024-10-03 (after) · Sentinel-1 radar",
-    "image": "/radar/events/helene-nc-2024/2024-10-03-s1.webp"
+    "image": "/radar/events/helene-nc-2024/2024-10-03-s1.webp",
+    "normalImage": "/radar/events/helene-nc-2024/2024-10-03-normal.webp"
    },
    {
     "date": "2024-10-15 (after) · Sentinel-1 radar",
-    "image": "/radar/events/helene-nc-2024/2024-10-15-s1.webp"
+    "image": "/radar/events/helene-nc-2024/2024-10-15-s1.webp",
+    "normalImage": "/radar/events/helene-nc-2024/2024-10-15-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-08-28"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-08-28, the same in every frame."
+  }
  },
  "india-monsoon-onset-2025": {
   "bounds": {
@@ -2742,19 +3579,28 @@
   "observations": [
    {
     "date": "2025-05-28 (before) · Sentinel-1 radar",
-    "image": "/radar/events/india-monsoon-onset-2025/2025-05-28-s1.webp"
+    "image": "/radar/events/india-monsoon-onset-2025/2025-05-28-s1.webp",
+    "normalImage": "/radar/events/india-monsoon-onset-2025/2025-05-28-normal.webp"
    },
    {
     "date": "2025-06-09 (after) · Sentinel-1 radar",
-    "image": "/radar/events/india-monsoon-onset-2025/2025-06-09-s1.webp"
+    "image": "/radar/events/india-monsoon-onset-2025/2025-06-09-s1.webp",
+    "normalImage": "/radar/events/india-monsoon-onset-2025/2025-06-09-normal.webp"
    },
    {
     "date": "2025-06-21 (after) · Sentinel-1 radar",
-    "image": "/radar/events/india-monsoon-onset-2025/2025-06-21-s1.webp"
+    "image": "/radar/events/india-monsoon-onset-2025/2025-06-21-s1.webp",
+    "normalImage": "/radar/events/india-monsoon-onset-2025/2025-06-21-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2025-05-15"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2025-05-15, the same in every frame."
+  }
  },
  "sahel-2025": {
   "bounds": {
@@ -2766,19 +3612,28 @@
   "observations": [
    {
     "date": "2025-07-15 (before) · Sentinel-1 radar",
-    "image": "/radar/events/sahel-2025/2025-07-15-s1.webp"
+    "image": "/radar/events/sahel-2025/2025-07-15-s1.webp",
+    "normalImage": "/radar/events/sahel-2025/2025-07-15-normal.webp"
    },
    {
     "date": "2025-08-08 (after) · Sentinel-1 radar",
-    "image": "/radar/events/sahel-2025/2025-08-08-s1.webp"
+    "image": "/radar/events/sahel-2025/2025-08-08-s1.webp",
+    "normalImage": "/radar/events/sahel-2025/2025-08-08-normal.webp"
    },
    {
     "date": "2025-08-20 (after) · Sentinel-1 radar",
-    "image": "/radar/events/sahel-2025/2025-08-20-s1.webp"
+    "image": "/radar/events/sahel-2025/2025-08-20-s1.webp",
+    "normalImage": "/radar/events/sahel-2025/2025-08-20-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2025-06-26"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2025-06-26, the same in every frame."
+  }
  },
  "thwaites": {
   "bounds": {
@@ -2800,9 +3655,7 @@
     "date": "2024-12-30 · Sentinel-1 radar",
     "image": "/radar/events/thwaites/2024-12-30-s1.webp"
    }
-  ],
-  "flashlightImage": "/radar/events/thwaites/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-10-29"
+  ]
  },
  "pine-island": {
   "bounds": {
@@ -2824,9 +3677,7 @@
     "date": "2024-12-18 · Sentinel-1 radar",
     "image": "/radar/events/pine-island/2024-12-18-s1.webp"
    }
-  ],
-  "flashlightImage": "/radar/events/pine-island/nisar.webp",
-  "flashlightLabel": "NISAR radar image, 2026-11-01"
+  ]
  },
  "zachariae-isstrom": {
   "bounds": {
@@ -2848,9 +3699,7 @@
     "date": "2024-11-09 · Sentinel-1 radar",
     "image": "/radar/events/zachariae-isstrom/2024-11-09-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "petermann": {
   "bounds": {
@@ -2872,9 +3721,7 @@
     "date": "2024-12-29 · Sentinel-1 radar",
     "image": "/radar/events/petermann/2024-12-29-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "a68-larsen-c": {
   "bounds": {
@@ -2896,9 +3743,7 @@
     "date": "2017-07-18 (after) · Sentinel-1 radar",
     "image": "/radar/events/a68-larsen-c/2017-07-18-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "antarctic-low-2023-weddell": {
   "bounds": {
@@ -2920,9 +3765,7 @@
     "date": "2023-03-09 (after) · Sentinel-1 radar",
     "image": "/radar/events/antarctic-low-2023-weddell/2023-03-09-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "arctic-max-2025-barents": {
   "bounds": {
@@ -2934,19 +3777,28 @@
   "observations": [
    {
     "date": "2025-03-11 (before) · Sentinel-1 radar",
-    "image": "/radar/events/arctic-max-2025-barents/2025-03-11-s1.webp"
+    "image": "/radar/events/arctic-max-2025-barents/2025-03-11-s1.webp",
+    "normalImage": "/radar/events/arctic-max-2025-barents/2025-03-11-normal.webp"
    },
    {
     "date": "2025-03-23 (after) · Sentinel-1 radar",
-    "image": "/radar/events/arctic-max-2025-barents/2025-03-23-s1.webp"
+    "image": "/radar/events/arctic-max-2025-barents/2025-03-23-s1.webp",
+    "normalImage": "/radar/events/arctic-max-2025-barents/2025-03-23-normal.webp"
    },
    {
     "date": "2025-04-04 (after) · Sentinel-1 radar",
-    "image": "/radar/events/arctic-max-2025-barents/2025-04-04-s1.webp"
+    "image": "/radar/events/arctic-max-2025-barents/2025-04-04-s1.webp",
+    "normalImage": "/radar/events/arctic-max-2025-barents/2025-04-04-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA MODIS Terra",
+   "photoDate": "2025-06-22"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA MODIS Terra) from 2025-06-22, the same in every frame."
+  }
  },
  "maud-rise-polynya": {
   "bounds": {
@@ -2968,9 +3820,7 @@
     "date": "2017-09-28 (after) · Sentinel-1 radar",
     "image": "/radar/events/maud-rise-polynya/2017-09-28-s1.webp"
    }
-  ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  ]
  },
  "northwest-passage": {
   "bounds": {
@@ -2982,19 +3832,28 @@
   "observations": [
    {
     "date": "2024-08-29 (before) · Sentinel-1 radar",
-    "image": "/radar/events/northwest-passage/2024-08-29-s1.webp"
+    "image": "/radar/events/northwest-passage/2024-08-29-s1.webp",
+    "normalImage": "/radar/events/northwest-passage/2024-08-29-normal.webp"
    },
    {
     "date": "2024-09-03 (after) · Sentinel-1 radar",
-    "image": "/radar/events/northwest-passage/2024-09-03-s1.webp"
+    "image": "/radar/events/northwest-passage/2024-09-03-s1.webp",
+    "normalImage": "/radar/events/northwest-passage/2024-09-03-normal.webp"
    },
    {
     "date": "2024-09-10 (after) · Sentinel-1 radar",
-    "image": "/radar/events/northwest-passage/2024-09-10-s1.webp"
+    "image": "/radar/events/northwest-passage/2024-09-10-s1.webp",
+    "normalImage": "/radar/events/northwest-passage/2024-09-10-normal.webp"
    }
   ],
-  "flashlightImage": null,
-  "flashlightLabel": null
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-09-10"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-09-10, the same in every frame."
+  }
  },
  "valencia-2024": {
   "bounds": {
@@ -3020,8 +3879,6 @@
     "normalImage": "/radar/events/valencia-2024/2024-11-12-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/valencia-2024/change.webp",
-  "flashlightLabel": "New water after the event (red)",
   "water": [
    {
     "date": "2024-10-19",
@@ -3055,19 +3912,20 @@
   "observations": [
    {
     "date": "2024-09-03 (before) · Sentinel-1 radar",
-    "image": "/radar/events/storm-boris-2024/2024-09-03-s1.webp"
+    "image": "/radar/events/storm-boris-2024/2024-09-03-s1.webp",
+    "normalImage": "/radar/events/storm-boris-2024/2024-09-03-normal.webp"
    },
    {
     "date": "2024-09-15 (after) · Sentinel-1 radar",
-    "image": "/radar/events/storm-boris-2024/2024-09-15-s1.webp"
+    "image": "/radar/events/storm-boris-2024/2024-09-15-s1.webp",
+    "normalImage": "/radar/events/storm-boris-2024/2024-09-15-normal.webp"
    },
    {
     "date": "2024-09-27 (after) · Sentinel-1 radar",
-    "image": "/radar/events/storm-boris-2024/2024-09-27-s1.webp"
+    "image": "/radar/events/storm-boris-2024/2024-09-27-s1.webp",
+    "normalImage": "/radar/events/storm-boris-2024/2024-09-27-normal.webp"
    }
   ],
-  "flashlightImage": "/radar/events/storm-boris-2024/change.webp",
-  "flashlightLabel": "New water after the event (red)",
   "water": [
    {
     "date": "2024-09-03",
@@ -3081,6 +3939,14 @@
     "date": "2024-09-27",
     "image": "/radar/events/storm-boris-2024/2024-09-27-water.webp"
    }
-  ]
+  ],
+  "normalView": {
+   "photo": "NASA HLS (Landsat/Sentinel-2)",
+   "photoDate": "2024-08-29"
+  },
+  "viewNotes": {
+   "radar": "Sentinel-1 radar preview, false colour. Dark or blue = water or very smooth ground; brighter = rough land, plants and buildings.",
+   "normal": "Blue = water found in the radar image on this date (not the real colour of the water). Background: cloud-free photo (NASA HLS (Landsat/Sentinel-2)) from 2024-08-29, the same in every frame."
+  }
  }
 }

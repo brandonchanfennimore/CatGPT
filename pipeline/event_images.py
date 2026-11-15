@@ -8,12 +8,9 @@ event and saves small WebP files:
   data/radar/events/<event-id>/<file>.webp     (uploaded to R2 by upload_r2.sh)
   src/data/eventImages.json                    (which images each event has)
 
-Sources by category (see CATEGORY_PLAN):
+Sources:
   - Sentinel-1 radar previews: before / after / later (every category)
   - Floods, crops & wetlands, coastal: OPERA DSWx water maps when available
-  - Wildfires, deforestation: OPERA DIST vegetation-loss map (flashlight image)
-  - Earthquakes, volcanoes, landslides: ARIA interferogram spanning the event (flashlight)
-  - Ongoing changes: newest NISAR image (flashlight) when available
 
 Usage (from the project folder):
   pipeline/.venv/bin/python pipeline/event_images.py            # all events
@@ -40,31 +37,28 @@ MANIFEST = Path("src/data/eventImages.json")
 URL_PREFIX = "/radar/events"  # the Worker serves /radar/* from the R2 bucket
 
 S1 = [f"SENTINEL-1{s}_{p}_GRD_{r}" for s in "ABC" for p in ("DP", "SP") for r in ("HIGH", "MEDIUM")]
-DSWX, DIST = "OPERA_L3_DSWX-S1_V1", "OPERA_L3_DIST-ALERT-HLS_V1"
-ARIA = "SENTINEL-1_INTERFEROGRAMS"
-NISAR_GCOV = ["NISAR_L2_GCOV_PROVISIONAL_V1", "NISAR_L2_GCOV_V1"]
-NISAR_GUNW = ["NISAR_L2_GUNW_PROVISIONAL_V1", "NISAR_L2_GUNW_V1"]
+DSWX = "OPERA_L3_DSWX-S1_V1"
 
-# Half-height of the image box (degrees of latitude) and the "flashlight" source per category.
-CATEGORY_PLAN = {
-    "Floods": (0.35, "dswx_change"),
-    "Earthquakes": (0.6, "aria"),
-    "Volcanoes": (0.3, "aria"),
-    "Subsidence": (0.3, "nisar_gunw"),
-    "Landslides": (0.15, "aria"),
-    "Wildfires": (0.3, "dist"),
-    "Deforestation": (0.4, "dist"),
-    "Crops & wetlands": (0.35, "nisar_gcov"),
-    "Glaciers": (0.5, "nisar_gcov"),
-    "Sea ice": (1.5, None),
-    "Oil slicks": (0.4, None),
-    "Coastal": (0.2, "nisar_gcov"),
-    "Soil moisture": (1.0, None),
+# Half-height of the image box (degrees of latitude) per category.
+BOX_HALF_HEIGHT = {
+    "Floods": 0.35,
+    "Earthquakes": 0.6,
+    "Volcanoes": 0.3,
+    "Subsidence": 0.3,
+    "Landslides": 0.15,
+    "Wildfires": 0.3,
+    "Deforestation": 0.4,
+    "Crops & wetlands": 0.35,
+    "Glaciers": 0.5,
+    "Sea ice": 1.5,
+    "Oil slicks": 0.4,
+    "Coastal": 0.2,
+    "Soil moisture": 1.0,
 }
 WATER_MAPS = {"Floods", "Crops & wetlands", "Coastal"}  # use DSWx as the before/after images if possible
 MAX_WIDTH = 720  # output pixels
 MIN_COVER = 0.1  # skip a radar image that covers less than 10% of the box
-MIN_FEATURES = 0.002  # skip a water / vegetation-loss map with almost nothing on it (<0.2% of the box)
+MIN_FEATURES = 0.002  # skip a water map with almost nothing on it (<0.2% of the box)
 
 
 # ---------------- NASA catalogue (CMR) ----------------
@@ -114,9 +108,6 @@ def browse_url(entry, kind):
     want = {
         "s1": lambda u: u.lower().endswith(".jpg"),
         "dswx": lambda u: u.endswith("_BROWSE.png"),
-        "dist": lambda u: u.endswith("VEG-DIST-STATUS.png"),
-        "aria": lambda u: u.endswith(".png"),
-        "nisar": lambda u: u.endswith("_LATLON.png"),
     }[kind]
     return next((u for u in entry["urls"] if want(u)), None)
 
@@ -192,26 +183,16 @@ def place(kind, entry, path, bounds, size):
     if kind == "s1":
         rgba = load_rgba(path, black_is_empty=True)
         out = georef.warp(rgba, georef.LATLON, bounds, size, gcps=georef.sentinel1_gcps(entry, rgba, entry["ascending"]))
-    elif kind in ("dswx", "dist"):
-        raw = np.array(Image.open(path))
-        rgba = recolour_dswx(raw) if kind == "dswx" else load_rgba(path)
-        if kind == "dist":  # dark grey = no disturbance -> transparent
-            rgba[..., 3] = np.where(rgba[..., :3].max(-1) > 40, rgba[..., 3], 0)
+    elif kind == "dswx":
+        rgba = recolour_dswx(np.array(Image.open(path)))
         crs, tr = georef.utm_tile_transform(entry["title"], entry, rgba.shape[1])
         out = georef.warp(rgba, crs, bounds, size, src_transform=tr)
-    elif kind == "aria":
-        rgba = load_rgba(path)
-        crs, tr = georef.latlon_box_transform(entry, rgba.shape[1], rgba.shape[0])
-        out = georef.warp(rgba, crs, bounds, size, src_transform=tr)
-    elif kind == "nisar":
-        rgba = load_rgba(path)
-        out = georef.warp(rgba, georef.LATLON, bounds, size, gcps=georef.quad_gcps(entry, rgba[..., 3]))
     else:
         raise ValueError(kind)
-    # Only count clearly visible pixels. Water and vegetation-loss maps are mostly
-    # transparent on purpose, so they just need *something* on them.
+    # Only count clearly visible pixels. Water maps are mostly transparent on
+    # purpose, so they just need *something* on them.
     cover = (out[..., 3] >= 50).mean()
-    return out if cover >= (MIN_FEATURES if kind in ("dswx", "dist") else MIN_COVER) else None
+    return out if cover >= (MIN_FEATURES if kind == "dswx" else MIN_COVER) else None
 
 
 def recolour_dswx(classes):
@@ -229,22 +210,6 @@ def recolour_dswx(classes):
     return rgba
 
 
-def water_change(before_png, after_png, entry_b, entry_a, bounds, size):
-    """Red = water in the after image that wasn't there before (both DSWx).
-    Class numbers: 0 dry, 1 open water, 3 water under vegetation, 255 no data."""
-    def classes(path, entry):
-        cls = np.array(Image.open(path))
-        crs, tr = georef.utm_tile_transform(entry["title"], entry, cls.shape[1])
-        return georef.warp_classes(cls, crs, bounds, size, tr)
-    b, a = classes(before_png, entry_b), classes(after_png, entry_a)
-    wet = lambda c: (c == 1) | (c == 3)
-    seen = (b != 255) & (a != 255)  # both images have data here
-    out = np.zeros(b.shape + (4,), np.uint8)
-    out[seen & wet(b) & wet(a)] = (40, 120, 255, 90)  # water both times: faint blue
-    out[seen & ~wet(b) & wet(a)] = (255, 59, 48, 235)  # new water: red
-    return out if (seen & ~wet(b) & wet(a)).any() else None
-
-
 def save(rgba, path):
     path.parent.mkdir(parents=True, exist_ok=True)
     rgba = rgba.copy()
@@ -255,7 +220,7 @@ def save(rgba, path):
 # ---------------- one event ----------------
 
 def box_for(ev):
-    half, _ = CATEGORY_PLAN[ev["category"]]
+    half = BOX_HALF_HEIGHT[ev["category"]]
     lat, lon = ev["center"]["lat"], ev["center"]["lon"]
     half_lon = min(half / max(np.cos(np.radians(lat)), 0.05), half * 5)
     b = {"west": lon - half_lon, "east": lon + half_lon, "south": max(lat - half, -89.9), "north": min(lat + half, 89.9)}
@@ -283,7 +248,7 @@ def process(ev):
     bounds, size = box_for(ev)
     event_day, (start, end) = window(ev)
     raw, out = RAW / eid, OUT / eid
-    result = {"bounds": bounds, "observations": [], "flashlightImage": None, "flashlightLabel": None}
+    result = {"bounds": bounds, "observations": []}
     log = []
 
     def emit(rgba, name, text):
@@ -310,7 +275,6 @@ def process(ev):
 
     # 1b. Water categories: NASA's OPERA water maps for the same period, kept separately
     #     (not in the timeline): they're the blue water layer for the "normal view".
-    used_dswx = []
     if cat in WATER_MAPS:
         dswx = [e for e in cmr(DSWX, lat, lon, start, end) if browse_url(e, "dswx")]
         for e in pick_three(dswx, event_day, tile_key):
@@ -318,64 +282,9 @@ def process(ev):
             url = emit(place("dswx", e, p, bounds, size), f"{e['time']:%Y-%m-%d}-water", "")
             if url:
                 result.setdefault("water", []).append({"date": e["time"].date().isoformat(), "image": url})
-                used_dswx.append((e, p))
 
-    # 2. Flashlight image.
-    _, special = CATEGORY_PLAN[cat]
-    try:
-        if special == "dswx_change" and len(used_dswx) >= 2:
-            (eb, pb), (ea, pa) = used_dswx[0], used_dswx[1]
-            url = emit(water_change(pb, pa, eb, ea, bounds, size), "change", "")
-            if url:
-                result["flashlightImage"], result["flashlightLabel"] = url, "New water after the event (red)"
-        elif special == "dist":
-            a = event_day.isoformat() if event_day else start
-            b = (event_day + timedelta(days=30)).isoformat() if event_day else end
-            dist = [e for e in cmr(DIST, lat, lon, a, b) if browse_url(e, "dist")]
-            for e in reversed(dist):  # newest first
-                p = download(browse_url(e, "dist"), raw / f"dist_{e['time']:%Y%m%dT%H%M}_{e['title'][-30:-20]}.png")
-                url = emit(place("dist", e, p, bounds, size), "vegetation-loss", "")
-                if url:
-                    result["flashlightImage"] = url
-                    result["flashlightLabel"] = f"Vegetation loss up to {e['time']:%Y-%m-%d} (OPERA DIST)"
-                    break
-        elif special == "aria" and event_day:
-            ifgs = [e for e in cmr(ARIA, lat, lon, (event_day - timedelta(days=40)).isoformat(),
-                                   (event_day + timedelta(days=40)).isoformat()) if browse_url(e, "aria")]
-            spanning = []
-            for e in ifgs:
-                m = re.search(r"-(\d{8})_(\d{8})-", e["title"])
-                if m:
-                    d1, d2 = sorted(datetime.strptime(x, "%Y%m%d").date() for x in m.groups())
-                    if d1 < event_day <= d2:
-                        spanning.append(((d2 - d1).days, e, d1, d2))
-            for _, e, d1, d2 in sorted(spanning, key=lambda t: t[0]):
-                p = download(browse_url(e, "aria"), raw / f"aria_{e['title'][:60]}.png")
-                url = emit(place("aria", e, p, bounds, size), "interferogram", "")
-                if url:
-                    result["flashlightImage"] = url
-                    result["flashlightLabel"] = f"Ground movement {d1} → {d2} (InSAR, ARIA)"
-                    break
-        if result["flashlightImage"] is None and special in ("nisar_gcov", "nisar_gunw", "aria", "dist") and event_day is None:
-            names = NISAR_GUNW if special == "nisar_gunw" else NISAR_GCOV
-            nis = [e for e in cmr(names, lat, lon, "2025-10-01", "2026-12-31") if browse_url(e, "nisar")]
-            for e in reversed(nis[-6:]):  # newest few
-                p = download(browse_url(e, "nisar"), raw / f"nisar_{e['time']:%Y%m%dT%H%M%S}.png")
-                try:
-                    url = emit(place("nisar", e, p, bounds, size), "nisar", "")
-                except Exception as ex:  # odd footprint shape: try the next image
-                    log.append(f"nisar: {str(ex)[:40]}")
-                    continue
-                if url:
-                    result["flashlightImage"] = url
-                    kind = "interferogram" if special == "nisar_gunw" else "radar image"
-                    result["flashlightLabel"] = f"NISAR {kind}, {e['time']:%Y-%m-%d}"
-                    break
-    except Exception as ex:
-        log.append(f"flashlight: {ex}")
-
-    n = len(result["observations"]) + (1 if result["flashlightImage"] else 0)
-    print(f"{eid:34} {len(result['observations'])} obs + {'flash' if result['flashlightImage'] else '-    '}  {'; '.join(log)[:80]}", flush=True)
+    n = len(result["observations"])
+    print(f"{eid:34} {n} obs  {'; '.join(log)[:80]}", flush=True)
     return eid, (result if n else None)
 
 

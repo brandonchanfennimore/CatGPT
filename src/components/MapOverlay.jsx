@@ -59,7 +59,7 @@ function stepValue(steps, zoom) {
   return value;
 }
 // On-screen UI that labels should not hide behind.
-const UI_SELECTORS = ".app-header, .zoom-bar, .hand-panel, .explore-controls, .location-panel, .map-credits, .mode-bar, .study-view.compact, .curtain-dates";
+const UI_SELECTORS = ".app-header, .zoom-bar, .hand-panel, .explore-controls, .location-panel, .map-credits";
 // Measuring those panels makes the browser recalculate the page layout, which is
 // slow if done every frame. Panels rarely move, so re-measure at most this often (ms).
 const UI_REMEASURE_MS = 500;

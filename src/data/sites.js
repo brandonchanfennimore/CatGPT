@@ -19,6 +19,8 @@ import { studyAreas } from "./studyAreas";
 import { events } from "./events";
 import eventImages from "./eventImages.json";
 import { floodEvents } from "./floodEvents";
+import { eventFindings } from "./eventFindings";
+import { eventSources } from "./eventSources";
 
 const SAME_FLOOD_KM = 150; // closer than this, same year = the same flood
 
@@ -31,8 +33,20 @@ function distanceKm(a, b) {
   return 2 * 6371 * Math.asin(Math.sqrt(h));
 }
 
-// Our events, with their radar images attached.
-const ourEvents = events.map((e) => ({ ...e, ...eventImages[e.id] }));
+// One sentence on what the radar images show: their dates.
+// Observation dates look like "2023-01-28 (before) · Sentinel-1 radar".
+function imagesNote(img) {
+  if (!img?.observations?.length) return "";
+  const dates = img.observations.map((o) => o.date.split(" · ")[0]).join(", ");
+  return ` In these images: Sentinel-1 radar on ${dates}.`;
+}
+
+// Our events, with their radar images and "What Changed?" text attached.
+const ourEvents = events.map((e) => {
+  const img = eventImages[e.id];
+  const text = eventFindings[e.id] ?? e.findings;
+  return { ...e, ...img, ...(text && { findings: text + imagesNote(img) }) };
+});
 
 // Merge each named flood into a matching flood event of ours, or keep it on its own.
 const extraFloods = [];
@@ -58,7 +72,7 @@ for (const f of floodEvents) {
   }
 }
 
-export const SITES = [
+const ALL_SITES = [
   // Study areas are all floods so far. Valencia and Storm Boris take their radar images
   // (raw Sentinel-1 timeline, water maps, lens image) from eventImages.json like the
   // events do; their hand-written text stays. Limpopo and Sylhet keep their NISAR images.
@@ -66,6 +80,9 @@ export const SITES = [
   ...ourEvents,
   ...extraFloods,
 ];
+
+// Every site gets the list of sources behind its description and "What Changed?" text.
+export const SITES = ALL_SITES.map((s) => ({ ...s, sources: eventSources[s.id] ?? [] }));
 
 // How many dots each category has (shown in the legend).
 export const countByCategory = SITES.reduce((n, s) => ({ ...n, [s.category]: (n[s.category] ?? 0) + 1 }), {});

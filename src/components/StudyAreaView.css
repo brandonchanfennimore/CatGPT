@@ -80,6 +80,20 @@
   .insight-card a {
     color: #78c6fa;
   }
+
+  .source-list {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: #b3c7db;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .source-list li + li {
+    margin-top: 4px;
+  }
+  .source-list a {
+    overflow-wrap: anywhere;
+  }
   
   @media (max-width: 800px) {
     .study-grid {
@@ -91,50 +105,6 @@
     }
   }
   
-/* "Explore with radar" button in the top bar */
-.radar-button {
-  background: #b3261e;
-  color: white;
-  border: 1px solid #ff6b5e;
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.radar-button:hover {
-  background: #d93025;
-}
-
-/* Side panel version (Flashlight/Time modes): same content, docked on the
-   right, so the explanation stays readable without blocking the globe. */
-.study-view.compact {
-  inset: auto;
-  top: 150px;
-  right: 16px;
-  bottom: 16px;
-  width: min(360px, calc(100vw - 32px));
-  border: 1px solid #24364d;
-  border-radius: 16px;
-  background: rgba(7, 19, 36, 0.92);
-  box-shadow: 0 10px 40px #0008;
-}
-.study-view.compact .study-topbar {
-  padding: 12px 16px;
-}
-.study-view.compact .study-brand {
-  display: none;
-}
-.study-view.compact .study-content {
-  padding: 16px;
-}
-.study-view.compact h1 {
-  font-size: 22px;
-}
-.study-view.compact .study-grid {
-  grid-template-columns: 1fr; /* stack the cards */
-  gap: 16px;
-}
-
 /* Category colour dot in the eyebrow line (matches the pin colour) */
 .category-chip {
   display: inline-block;

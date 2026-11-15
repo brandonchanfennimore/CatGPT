@@ -4,7 +4,6 @@ georef.py - place NASA preview images (PNG/JPG) on the map in plain lat/lon.
 Each kind of preview is laid out differently, so each gets its own method:
   utm_tile   OPERA DSWx / DIST: one 109.8 km MGRS tile in UTM. Tile corner solved from
              NASA's catalogue box.                                   (checked vs coastline)
-  latlon_box ARIA interferograms: a plain lat/lon grid over the footprint's box. (checked)
   corners    NISAR, DISP, Sentinel-1: the 4 corners NASA lists for the footprint are matched
              to 4 points in the image (the corners of the data area, or of the image), then
              the image is warped through those control points.
@@ -83,13 +82,6 @@ def utm_tile_transform(title, entry, width):
     return utm, Affine(TILE_SIZE / width, 0, ulx, 0, -TILE_SIZE / width, uly)
 
 
-# ---- latlon_box (ARIA) ----
-
-def latlon_box_transform(entry, width, height):
-    s, w, n, e = bbox(entry)
-    return LATLON, from_bounds(w, s, e, n, width, height)
-
-
 # ---- corners (NISAR, DISP, Sentinel-1) ----
 
 def _order_ll(pts):
@@ -150,14 +142,3 @@ def sentinel1_gcps(entry, rgba, ascending):
         return quad_gcps(entry, alpha)
     h, w = alpha.shape
     return image_corner_gcps(entry, w, h, 7 if ascending else 5)
-
-
-def warp_classes(classes, src_crs, dst_bounds, size, src_transform, nodata=255):
-    """Like warp(), for a single band of class numbers: nearest-pixel (no blending of
-    class values) and `nodata` outside the source image."""
-    w, s, e, n = dst_bounds["west"], dst_bounds["south"], dst_bounds["east"], dst_bounds["north"]
-    W, H = size
-    dst = np.full((H, W), nodata, dtype=np.uint8)
-    reproject(classes, dst, src_transform=src_transform, src_crs=src_crs, dst_transform=from_bounds(w, s, e, n, W, H),
-              dst_crs=LATLON, resampling=Resampling.nearest, src_nodata=nodata, dst_nodata=nodata)
-    return dst

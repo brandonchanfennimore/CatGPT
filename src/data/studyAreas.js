@@ -21,13 +21,11 @@ export const studyAreas = [
         { date: "2024-10-31 (2 days after)", image: "/radar/valencia/2024-10-31.png" },
         { date: "2024-11-07 (9 days after)", image: "/radar/valencia/2024-11-07.png" },
       ],
-      // Flashlight mode shows this change map: red = water that appeared after the flood.
-      flashlightImage: "/radar/valencia/change.png",
       satellite: "Sentinel-1",
       dataSource: "Sentinel-1 radar (ESA), water maps by NASA OPERA (DSWx-S1)",
 
       findings:
-        "Comparing radar water maps from 19 and 31 October shows about 76 km² of new surface water (red in Flashlight mode), mostly around the Albufera lagoon and the low farmland of L'Horta Sud. Radar sees through the storm clouds, so it mapped the flood when ordinary satellite photos could not. Note: farmers also flood the Albufera rice fields on purpose from around November, so some new water near the lagoon may be seasonal, not the storm.",
+        "Comparing radar water maps from 19 and 31 October shows about 76 km² of new surface water, mostly around the Albufera lagoon and the low farmland of L'Horta Sud. Radar sees through the storm clouds, so it mapped the flood when ordinary satellite photos could not. Note: farmers also flood the Albufera rice fields on purpose from around November, so some new water near the lagoon may be seasonal, not the storm.",
 
       impact:
         "More than 220 people died and thousands of homes and cars were destroyed. Fast, cloud-proof flood maps like these help rescuers see which neighbourhoods are cut off, and help planners see where water collects in future storms.",
@@ -55,13 +53,11 @@ export const studyAreas = [
         { date: "2024-09-15 (flood peak)", image: "/radar/boris/2024-09-15.png" },
         { date: "2024-09-27 (12 days after)", image: "/radar/boris/2024-09-27.png" },
       ],
-      // Flashlight mode: red = water that appeared between 3 and 15 September.
-      flashlightImage: "/radar/boris/change.png",
       satellite: "Sentinel-1",
       dataSource: "Sentinel-1 radar (ESA), water maps by NASA OPERA (DSWx-S1)",
 
       findings:
-        "Between 3 and 15 September about 12 km² of new surface water appeared here (red in Flashlight mode): around the edges of the Otmuchów and Nysa reservoirs, which were holding back floodwater, and across the river plain north of Nysa. Radar sees through the storm clouds, but it misses water in the town itself (buildings bounce the signal back) and in narrow mountain valleys, so the real flooding was larger than this map shows.",
+        "Between 3 and 15 September about 12 km² of new surface water appeared here: around the edges of the Otmuchów and Nysa reservoirs, which were holding back floodwater, and across the river plain north of Nysa. Radar sees through the storm clouds, but it misses water in the town itself (buildings bounce the signal back) and in narrow mountain valleys, so the real flooding was larger than this map shows.",
 
       impact:
         "Storm Boris killed more than two dozen people across Central Europe and forced tens of thousands to evacuate. Reservoirs like Nysa's helped hold back the peak; mapping how full they got and where water escaped helps plan for the next storm.",

@@ -38,27 +38,9 @@ const CONTEXTS = {
       "✌️ Two fingers, swipe up: back to Earth",
     ],
   },
-  flashlight: {
-    labels: { none: "No hand (lens follows mouse)", release: "Paused", swipe: "Paused", rotate: "Rotate", zoom: "Radar lens" },
-    guide: [
-      "☝️ Point: move the radar lens",
-      "🖐️ Open palm + move: rotate",
-      "✊ Fist: pause",
-      "Lens size: slider or mouse wheel",
-    ],
-  },
-  time: {
-    labels: { none: "No hand", release: "Paused", swipe: "Paused", rotate: "Curtain", zoom: "Paused" },
-    guide: [
-      "🖐️ Open palm + move sideways: pull the curtain",
-      "🖐️ Fast swipe left/right: previous/next dates",
-      "✊ Fist: pause",
-      "Mouse: drag the divider · ← → keys: change dates",
-    ],
-  },
 };
 
-// context: "explore", "info" (a study area's full info view is open), "flashlight" or "time".
+// context: "explore", or "info" (a study area's full info view is open).
 export default function HandTracker({ gestureRef, context = "explore" }) {
   const ui = CONTEXTS[context] ?? CONTEXTS.explore; // unknown context: fall back to Explore
   const videoRef = useRef(null);
@@ -140,12 +122,6 @@ export default function HandTracker({ gestureRef, context = "explore" }) {
         // Add this frame's movement to whatever the 3D scene hasn't used yet.
         const g = track(result.landmarks, now);
         const shared = gestureRef.current;
-        // Index fingertip position (mirrored like the preview, 0..1), for the radar lens.
-        const tip = result.landmarks[0]?.[8];
-        shared.tip = tip ? { x: 1 - tip.x, y: tip.y } : null;
-        // Palm centre (middle knuckle) and when it was seen, for the Time curtain.
-        const palm = result.landmarks[0]?.[9];
-        shared.palm = palm ? { x: 1 - palm.x, y: palm.y, t: now } : null;
         shared.mode = g.mode;
         shared.dx += g.dx;
         shared.dy += g.dy;

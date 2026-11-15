@@ -21,8 +21,6 @@ export default function StudyAreaView({
   studyArea,
   onBack,
   gestureRef, // shared hand-gesture "mailbox" from App (HandTracker writes to it)
-  onExploreRadar, // "Explore with radar" button: fly there and open Flashlight mode
-  compact = false, // true in Flashlight/Time modes: a side panel instead of full screen
 }) {
   const category = CATEGORY_BY_ID[studyArea.category];
   const hasImages = (studyArea.observations?.length ?? 0) > 0;
@@ -76,22 +74,15 @@ export default function StudyAreaView({
   }, [gestureRef, onBack]);
 
   return (
-    <div className={compact ? "study-view compact" : "study-view"} ref={viewRef}>
+    <div className="study-view" ref={viewRef}>
       {/* Top navigation */}
       <div className="study-topbar">
         <button
           className="back-button"
           onClick={onBack}
         >
-          {compact ? "✕ Close" : "← Back to Earth"}
+          ← Back to Earth
         </button>
-
-        {/* Only sites with a lat/lon box can be shown on the globe. */}
-        {!compact && studyArea.bounds && studyArea.observations?.length > 0 && onExploreRadar && (
-          <button className="radar-button" onClick={() => onExploreRadar(studyArea)}>
-            📡 Explore with radar
-          </button>
-        )}
 
         <span className="study-brand">
           EARTH IN MOTION / NASA NISAR
@@ -202,9 +193,6 @@ export default function StudyAreaView({
                     ? "Public preview images from NASA Earthdata (ASF DAAC, PO.DAAC, LP DAAC): Sentinel-1, OPERA DSWx/DIST, ARIA and NISAR, placed on the map by our pipeline. Previews are lower resolution than the full data."
                     : "NASA-ISRO Synthetic Aperture Radar (NISAR)")}
             </p>
-            {hasImages && studyArea.flashlightLabel && (
-              <p>Flashlight lens: {studyArea.flashlightLabel}.</p>
-            )}
 
             {(studyArea.sourceUrl || studyArea.center) && (
               <a
@@ -214,6 +202,21 @@ export default function StudyAreaView({
               >
                 View NASA Data
               </a>
+            )}
+
+            {studyArea.sources?.length > 0 && (
+              <>
+                <h3>Sources</h3>
+                <ul className="source-list">
+                  {studyArea.sources.map((s) => (
+                    <li key={s.url}>
+                      <a href={s.url} target="_blank" rel="noopener noreferrer">
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
           </div>
         </div>

@@ -2384,7 +2384,7 @@ export const events = [
       "lat": 44.9,
       "lon": 37.3
     },
-    "description": "Two old tankers broke apart in a storm, spilling fuel oil.",
+    "description": "Two old tankers were wrecked in a storm, spilling fuel oil.",
     "nasaData": {
       "sentinel1": 10,
       "readyProduct": null,
@@ -2591,7 +2591,7 @@ export const events = [
       "lat": 53.98,
       "lon": -0.2
     },
-    "description": "Europe's fastest-eroding coastline.",
+    "description": "One of Europe's fastest-eroding coastlines.",
     "nasaData": {
       "sentinel1": 121,
       "readyProduct": "OPERA_L3_DSWX-S1_V1",

@@ -82,7 +82,7 @@ export const floodEvents = [
 
   // ---- Americas ----
   { id: "kerrville-2025", name: "Guadalupe River flash flood", place: "Kerrville, Texas, USA", date: "2025-07", lat: 30.05, lon: -99.14,
-    note: "The Guadalupe River rose more than 8 m in under an hour before dawn." },
+    note: "Before dawn the Guadalupe River rose about 10 m in an hour and a half at Kerrville." },
   { id: "comfort-2026", name: "Guadalupe River floods", place: "Comfort, Texas, USA", date: "2026-07", lat: 29.97, lon: -98.91,
     note: "A second July flood in two years; the river crested higher than in 2025." },
   { id: "kentucky-2022", name: "Eastern Kentucky floods", place: "Hazard, Kentucky, USA", date: "2022-07", lat: 37.25, lon: -83.19,
@@ -98,5 +98,5 @@ export const floodEvents = [
   { id: "porto-alegre-2024", name: "Rio Grande do Sul floods", place: "Porto Alegre, Brazil", date: "2024-05", lat: -30.03, lon: -51.23,
     note: "Weeks of rain flooded much of the state and its capital." },
   { id: "bahia-blanca-2025", name: "Bahía Blanca floods", place: "Bahía Blanca, Argentina", date: "2025-03", lat: -38.72, lon: -62.27,
-    note: "Nearly a year's worth of rain fell in hours." },
+    note: "A record downpour (over 200 mm, about a third of a normal year) flooded much of the city in hours." },
 ];
