@@ -672,3 +672,10 @@
   max-height: calc(100vh - 360px); /* leaves room for the bottom-left buttons */
   overflow-y: auto;
 }
+
+.mode-site-note {
+  margin: 0;
+  max-width: 260px;
+  font-size: 12px;
+  color: #ffb4a8;
+}

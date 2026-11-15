@@ -87,7 +87,7 @@ export default function StudyAreaView({
         </button>
 
         {/* Only sites with a lat/lon box can be shown on the globe. */}
-        {!compact && studyArea.bounds && onExploreRadar && (
+        {!compact && studyArea.bounds && studyArea.observations?.length > 0 && onExploreRadar && (
           <button className="radar-button" onClick={() => onExploreRadar(studyArea)}>
             📡 Explore with radar
           </button>
@@ -193,7 +193,16 @@ export default function StudyAreaView({
             )}
 
             <h3>Data Source</h3>
-            <p>{hasImages ? "NASA OPERA DSWx-S1 (Copernicus Sentinel-1 radar)" : "NASA Earthdata catalogue (CMR)"}</p>
+            <p>
+              {!hasImages
+                ? "NASA Earthdata catalogue (CMR)"
+                : nasa
+                  ? "Public preview images from NASA Earthdata (ASF DAAC, PO.DAAC, LP DAAC): Sentinel-1, OPERA DSWx/DIST, ARIA and NISAR, placed on the map by our pipeline. Previews are lower resolution than the full data."
+                  : "NASA OPERA DSWx-S1 (Copernicus Sentinel-1 radar)"}
+            </p>
+            {hasImages && studyArea.flashlightLabel && (
+              <p>Flashlight lens: {studyArea.flashlightLabel}.</p>
+            )}
 
             {(studyArea.sourceUrl || studyArea.center) && (
               <a

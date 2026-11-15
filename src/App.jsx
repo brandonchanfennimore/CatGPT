@@ -29,11 +29,22 @@ import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import { studyAreas } from "./data/studyAreas";
 import { events } from "./data/events";
+import eventImages from "./data/eventImages.json";
 import { CATEGORIES, CATEGORY_BY_ID } from "./data/categories";
 
-// Every pin on the globe: the detailed study areas (with radar images) first,
-// then the other surface-change events (info only).
-const SITES = [...studyAreas, ...events];
+// Every pin on the globe: the detailed study areas first, then the other surface-change
+// events. Events get their radar images (box, before/after images, flashlight image)
+// from eventImages.json, made by pipeline/event_images.py.
+const SITES = [...studyAreas, ...events.map((e) => ({ ...e, ...eventImages[e.id] }))];
+
+// Zoom level that makes a site's image box fill most of the screen when flying there.
+// (Camera starts 7 units from the Earth's centre; the Earth's radius is 2 = 6371 km.)
+function flyZoomFor(area) {
+  if (!area.bounds) return RADAR_FLY_ZOOM;
+  const boxWorld = ((area.bounds.north - area.bounds.south) * 111.32) / (6371 / EARTH_RADIUS);
+  const altitude = boxWorld / (2 * Math.tan((75 * Math.PI) / 360)) / 0.7; // box ~70% of the view
+  return Math.min(7 / (EARTH_RADIUS + altitude), 3.48);
+}
 // How many pins each category has (shown in the legend).
 const countByCategory = SITES.reduce((n, s) => ({ ...n, [s.category]: (n[s.category] ?? 0) + 1 }), {});
 
@@ -103,7 +114,7 @@ export default function App() {
       if (next !== "explore") setRadarArea(area);
       // The curtain only covers the site, so fly there when Time mode starts.
       if (next === "time" && mode !== "time" && area.center) {
-        flyRef.current = { dir: new Vector3(...latLonToVector(area.center.lat, area.center.lon)), zoom: RADAR_FLY_ZOOM };
+        flyRef.current = { dir: new Vector3(...latLonToVector(area.center.lat, area.center.lon)), zoom: flyZoomFor(area) };
         splitRef.current.x = 0.5;
       }
       setMode(next);
@@ -117,7 +128,7 @@ export default function App() {
     setSelectedArea(area); // keep its explanation open (as a side panel)
     setMode("flashlight");
     const { lat, lon } = area.center;
-    flyRef.current = { dir: new Vector3(...latLonToVector(lat, lon)), zoom: RADAR_FLY_ZOOM };
+    flyRef.current = { dir: new Vector3(...latLonToVector(lat, lon)), zoom: flyZoomFor(area) };
   }
 
   // Keys 1 / 2 / 3 switch modes (ignored while typing in a text box).
@@ -251,7 +262,7 @@ export default function App() {
       <p className="map-credits">
         Imagery: NASA Blue Marble · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
         Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0) ·
-        Flood maps: OPERA DSWx-S1, NASA/JPL-Caltech (Copernicus Sentinel-1 data)
+        Radar: NASA OPERA (DSWx, DIST), ARIA, NISAR (NASA/ISRO) via NASA Earthdata · Copernicus Sentinel-1 data
       </p>
 
       {/* Webcam hand tracking */}
@@ -275,6 +286,7 @@ export default function App() {
         mode={mode}
         onModeChange={switchMode}
         siteName={radarArea?.name}
+        siteNote={mode === "flashlight" ? radarArea?.flashlightLabel : null}
         lensRadius={lensRadius}
         onLensRadiusChange={setLensRadius}
       />

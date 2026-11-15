@@ -1,0 +1,2736 @@
+{
+ "punjab-monsoon-2025": {
+  "bounds": {
+   "west": 73.83907,
+   "east": 74.66093,
+   "south": 31.25,
+   "north": 31.95
+  },
+  "observations": [
+   {
+    "date": "2025-08-15 (before) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/punjab-monsoon-2025/2025-08-15-water.webp"
+   },
+   {
+    "date": "2025-08-27 (after) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/punjab-monsoon-2025/2025-08-27-water.webp"
+   },
+   {
+    "date": "2025-09-08 (after) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/punjab-monsoon-2025/2025-09-08-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/punjab-monsoon-2025/change.webp",
+  "flashlightLabel": "New water after the event (red)"
+ },
+ "kahramanmaras": {
+  "bounds": {
+   "west": 36.24473,
+   "east": 37.75527,
+   "south": 36.8,
+   "north": 38.0
+  },
+  "observations": [
+   {
+    "date": "2023-01-28 (before) · Sentinel-1 radar",
+    "image": "/radar/events/kahramanmaras/2023-01-28-s1.webp"
+   },
+   {
+    "date": "2023-02-09 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kahramanmaras/2023-02-09-s1.webp"
+   },
+   {
+    "date": "2023-02-21 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kahramanmaras/2023-02-21-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/kahramanmaras/interferogram.webp",
+  "flashlightLabel": "Ground movement 2023-01-28 → 2023-02-09 (InSAR, ARIA)"
+ },
+ "mexico-city": {
+  "bounds": {
+   "west": -99.44812,
+   "east": -98.81188,
+   "south": 19.13,
+   "north": 19.73
+  },
+  "observations": [
+   {
+    "date": "2024-01-04 · Sentinel-1 radar",
+    "image": "/radar/events/mexico-city/2024-01-04-s1.webp"
+   },
+   {
+    "date": "2024-07-02 · Sentinel-1 radar",
+    "image": "/radar/events/mexico-city/2024-07-02-s1.webp"
+   },
+   {
+    "date": "2024-12-29 · Sentinel-1 radar",
+    "image": "/radar/events/mexico-city/2024-12-29-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/mexico-city/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+ },
+ "la-palisades-eaton": {
+  "bounds": {
+   "west": -118.90216,
+   "east": -118.17784,
+   "south": 33.77,
+   "north": 34.37
+  },
+  "observations": [
+   {
+    "date": "2024-12-28 (before) · Sentinel-1 radar",
+    "image": "/radar/events/la-palisades-eaton/2024-12-28-s1.webp"
+   },
+   {
+    "date": "2025-01-09 (after) · Sentinel-1 radar",
+    "image": "/radar/events/la-palisades-eaton/2025-01-09-s1.webp"
+   },
+   {
+    "date": "2025-01-21 (after) · Sentinel-1 radar",
+    "image": "/radar/events/la-palisades-eaton/2025-01-21-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/la-palisades-eaton/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2025-02-06 (OPERA DIST)"
+ },
+ "jakobshavn": {
+  "bounds": {
+   "west": -51.20609,
+   "east": -48.39391,
+   "south": 68.67,
+   "north": 69.67
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/jakobshavn/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-07-03 · Sentinel-1 radar",
+    "image": "/radar/events/jakobshavn/2024-07-03-s1.webp"
+   },
+   {
+    "date": "2024-12-30 · Sentinel-1 radar",
+    "image": "/radar/events/jakobshavn/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/jakobshavn/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-02"
+ },
+ "wakashio": {
+  "bounds": {
+   "west": 57.32312,
+   "east": 58.17688,
+   "south": -20.84,
+   "north": -20.04
+  },
+  "observations": [
+   {
+    "date": "2020-08-03 (before) · Sentinel-1 radar",
+    "image": "/radar/events/wakashio/2020-08-03-s1.webp"
+   },
+   {
+    "date": "2020-08-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/wakashio/2020-08-10-s1.webp"
+   },
+   {
+    "date": "2020-08-15 (after) · Sentinel-1 radar",
+    "image": "/radar/events/wakashio/2020-08-15-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "maiduguri-dam": {
+  "bounds": {
+   "west": 12.80238,
+   "east": 13.51762,
+   "south": 11.5,
+   "north": 12.2
+  },
+  "observations": [
+   {
+    "date": "2024-09-05 (before) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/maiduguri-dam/2024-09-05-water.webp"
+   },
+   {
+    "date": "2024-09-17 (after) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/maiduguri-dam/2024-09-17-water.webp"
+   },
+   {
+    "date": "2024-09-29 (after) · radar water map (OPERA DSWx)",
+    "image": "/radar/events/maiduguri-dam/2024-09-29-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/maiduguri-dam/change.webp",
+  "flashlightLabel": "New water after the event (red)"
+ },
+ "derna-storm-daniel": {
+  "bounds": {
+   "west": 22.2238,
+   "east": 23.0562,
+   "south": 32.41,
+   "north": 33.11
+  },
+  "observations": [
+   {
+    "date": "2023-08-31 (before) · Sentinel-1 radar",
+    "image": "/radar/events/derna-storm-daniel/2023-08-31-s1.webp"
+   },
+   {
+    "date": "2023-09-12 (after) · Sentinel-1 radar",
+    "image": "/radar/events/derna-storm-daniel/2023-09-12-s1.webp"
+   },
+   {
+    "date": "2023-09-24 (after) · Sentinel-1 radar",
+    "image": "/radar/events/derna-storm-daniel/2023-09-24-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "pakistan-2022-sindh": {
+  "bounds": {
+   "west": 67.38812,
+   "east": 68.17188,
+   "south": 26.38,
+   "north": 27.08
+  },
+  "observations": [
+   {
+    "date": "2022-08-18 (before) · Sentinel-1 radar",
+    "image": "/radar/events/pakistan-2022-sindh/2022-08-18-s1.webp"
+   },
+   {
+    "date": "2022-08-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/pakistan-2022-sindh/2022-08-30-s1.webp"
+   },
+   {
+    "date": "2022-09-11 (after) · Sentinel-1 radar",
+    "image": "/radar/events/pakistan-2022-sindh/2022-09-11-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "emilia-romagna": {
+  "bounds": {
+   "west": 11.46055,
+   "east": 12.43945,
+   "south": 44.0,
+   "north": 44.7
+  },
+  "observations": [
+   {
+    "date": "2023-05-10 (before) · Sentinel-1 radar",
+    "image": "/radar/events/emilia-romagna/2023-05-10-s1.webp"
+   },
+   {
+    "date": "2023-05-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/emilia-romagna/2023-05-22-s1.webp"
+   },
+   {
+    "date": "2023-06-03 (after) · Sentinel-1 radar",
+    "image": "/radar/events/emilia-romagna/2023-06-03-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "ahr-valley": {
+  "bounds": {
+   "west": 6.5694,
+   "east": 7.6706,
+   "south": 50.18,
+   "north": 50.88
+  },
+  "observations": [
+   {
+    "date": "2021-07-13 (before) · Sentinel-1 radar",
+    "image": "/radar/events/ahr-valley/2021-07-13-s1.webp"
+   },
+   {
+    "date": "2021-07-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/ahr-valley/2021-07-18-s1.webp"
+   },
+   {
+    "date": "2021-07-24 (after) · Sentinel-1 radar",
+    "image": "/radar/events/ahr-valley/2021-07-24-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "hurricane-harvey": {
+  "bounds": {
+   "west": -95.77317,
+   "east": -94.96683,
+   "south": 29.41,
+   "north": 30.11
+  },
+  "observations": [
+   {
+    "date": "2017-08-24 (before) · Sentinel-1 radar",
+    "image": "/radar/events/hurricane-harvey/2017-08-24-s1.webp"
+   },
+   {
+    "date": "2017-08-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hurricane-harvey/2017-08-30-s1.webp"
+   },
+   {
+    "date": "2017-09-05 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hurricane-harvey/2017-09-05-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "myanmar-sagaing": {
+  "bounds": {
+   "west": 95.43302,
+   "east": 96.72698,
+   "south": 21.37,
+   "north": 22.57
+  },
+  "observations": [
+   {
+    "date": "2025-03-22 (before) · Sentinel-1 radar",
+    "image": "/radar/events/myanmar-sagaing/2025-03-22-s1.webp"
+   },
+   {
+    "date": "2025-04-03 (after) · Sentinel-1 radar",
+    "image": "/radar/events/myanmar-sagaing/2025-04-03-s1.webp"
+   },
+   {
+    "date": "2025-04-15 (after) · Sentinel-1 radar",
+    "image": "/radar/events/myanmar-sagaing/2025-04-15-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "noto-peninsula": {
+  "bounds": {
+   "west": 136.44473,
+   "east": 137.95527,
+   "south": 36.8,
+   "north": 38.0
+  },
+  "observations": [
+   {
+    "date": "2023-12-25 (before) · Sentinel-1 radar",
+    "image": "/radar/events/noto-peninsula/2023-12-25-s1.webp"
+   },
+   {
+    "date": "2024-01-06 (after) · Sentinel-1 radar",
+    "image": "/radar/events/noto-peninsula/2024-01-06-s1.webp"
+   },
+   {
+    "date": "2024-01-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/noto-peninsula/2024-01-18-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "al-haouz-morocco": {
+  "bounds": {
+   "west": -9.10049,
+   "east": -7.69951,
+   "south": 30.47,
+   "north": 31.67
+  },
+  "observations": [
+   {
+    "date": "2023-08-30 (before) · Sentinel-1 radar",
+    "image": "/radar/events/al-haouz-morocco/2023-08-30-s1.webp"
+   },
+   {
+    "date": "2023-09-11 (after) · Sentinel-1 radar",
+    "image": "/radar/events/al-haouz-morocco/2023-09-11-s1.webp"
+   },
+   {
+    "date": "2023-09-23 (after) · Sentinel-1 radar",
+    "image": "/radar/events/al-haouz-morocco/2023-09-23-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "hualien-taiwan": {
+  "bounds": {
+   "west": 120.94332,
+   "east": 122.25668,
+   "south": 23.38,
+   "north": 24.58
+  },
+  "observations": [
+   {
+    "date": "2024-03-27 (before) · Sentinel-1 radar",
+    "image": "/radar/events/hualien-taiwan/2024-03-27-s1.webp"
+   },
+   {
+    "date": "2024-04-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hualien-taiwan/2024-04-08-s1.webp"
+   },
+   {
+    "date": "2024-04-20 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hualien-taiwan/2024-04-20-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "ridgecrest": {
+  "bounds": {
+   "west": -118.33949,
+   "east": -116.86051,
+   "south": 35.17,
+   "north": 36.37
+  },
+  "observations": [
+   {
+    "date": "2019-07-04 (before) · Sentinel-1 radar",
+    "image": "/radar/events/ridgecrest/2019-07-04-s1.webp"
+   },
+   {
+    "date": "2019-07-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/ridgecrest/2019-07-10-s1.webp"
+   },
+   {
+    "date": "2019-07-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/ridgecrest/2019-07-16-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/ridgecrest/interferogram.webp",
+  "flashlightLabel": "Ground movement 2019-07-04 → 2019-07-10 (InSAR, ARIA)"
+ },
+ "kaikoura": {
+  "bounds": {
+   "west": 172.86749,
+   "east": 174.49251,
+   "south": -43.0,
+   "north": -41.8
+  },
+  "observations": [
+   {
+    "date": "2016-11-10 (before) · Sentinel-1 radar",
+    "image": "/radar/events/kaikoura/2016-11-10-s1.webp"
+   },
+   {
+    "date": "2016-11-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kaikoura/2016-11-16-s1.webp"
+   },
+   {
+    "date": "2016-11-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kaikoura/2016-11-22-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "gorkha-nepal": {
+  "bounds": {
+   "west": 84.01951,
+   "east": 85.38049,
+   "south": 27.55,
+   "north": 28.75
+  },
+  "observations": [
+   {
+    "date": "2015-04-17 (before) · Sentinel-1 radar",
+    "image": "/radar/events/gorkha-nepal/2015-04-17-s1.webp"
+   },
+   {
+    "date": "2015-04-29 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gorkha-nepal/2015-04-29-s1.webp"
+   },
+   {
+    "date": "2015-05-11 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gorkha-nepal/2015-05-11-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/gorkha-nepal/interferogram.webp",
+  "flashlightLabel": "Ground movement 2015-03-28 → 2015-05-15 (InSAR, ARIA)"
+ },
+ "herat": {
+  "bounds": {
+   "west": 61.17108,
+   "east": 62.62892,
+   "south": 34.0,
+   "north": 35.2
+  },
+  "observations": [
+   {
+    "date": "2023-09-25 (before) · Sentinel-1 radar",
+    "image": "/radar/events/herat/2023-09-25-s1.webp"
+   },
+   {
+    "date": "2023-10-07 (after) · Sentinel-1 radar",
+    "image": "/radar/events/herat/2023-10-07-s1.webp"
+   },
+   {
+    "date": "2023-10-19 (after) · Sentinel-1 radar",
+    "image": "/radar/events/herat/2023-10-19-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "kamchatka-m8-8": {
+  "bounds": {
+   "west": 157.65302,
+   "east": 159.64698,
+   "south": 52.4,
+   "north": 53.6
+  },
+  "observations": [
+   {
+    "date": "2025-07-23 (before) · Sentinel-1 radar",
+    "image": "/radar/events/kamchatka-m8-8/2025-07-23-s1.webp"
+   },
+   {
+    "date": "2025-07-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kamchatka-m8-8/2025-07-30-s1.webp"
+   },
+   {
+    "date": "2025-08-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kamchatka-m8-8/2025-08-04-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "grindavik-sundhnukur": {
+  "bounds": {
+   "west": -23.11094,
+   "east": -21.74906,
+   "south": 63.56,
+   "north": 64.16
+  },
+  "observations": [
+   {
+    "date": "2023-10-29 (before) · Sentinel-1 radar",
+    "image": "/radar/events/grindavik-sundhnukur/2023-10-29-s1.webp"
+   },
+   {
+    "date": "2023-11-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/grindavik-sundhnukur/2023-11-10-s1.webp"
+   },
+   {
+    "date": "2023-11-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/grindavik-sundhnukur/2023-11-22-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "cumbre-vieja-la-palma": {
+  "bounds": {
+   "west": -18.21172,
+   "east": -17.52828,
+   "south": 28.31,
+   "north": 28.91
+  },
+  "observations": [
+   {
+    "date": "2021-09-14 (before) · Sentinel-1 radar",
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-14-s1.webp"
+   },
+   {
+    "date": "2021-09-20 (after) · Sentinel-1 radar",
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-20-s1.webp"
+   },
+   {
+    "date": "2021-09-26 (after) · Sentinel-1 radar",
+    "image": "/radar/events/cumbre-vieja-la-palma/2021-09-26-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/cumbre-vieja-la-palma/interferogram.webp",
+  "flashlightLabel": "Ground movement 2021-09-14 → 2021-09-20 (InSAR, ARIA)"
+ },
+ "kilauea-2018": {
+  "bounds": {
+   "west": -155.59808,
+   "east": -154.96192,
+   "south": 19.11,
+   "north": 19.71
+  },
+  "observations": [
+   {
+    "date": "2018-05-02 (before) · Sentinel-1 radar",
+    "image": "/radar/events/kilauea-2018/2018-05-02-s1.webp"
+   },
+   {
+    "date": "2018-05-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kilauea-2018/2018-05-08-s1.webp"
+   },
+   {
+    "date": "2018-05-14 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kilauea-2018/2018-05-14-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/kilauea-2018/interferogram.webp",
+  "flashlightLabel": "Ground movement 2018-05-02 → 2018-05-08 (InSAR, ARIA)"
+ },
+ "mauna-loa-2022": {
+  "bounds": {
+   "west": -155.9182,
+   "east": -155.2818,
+   "south": 19.17,
+   "north": 19.77
+  },
+  "observations": [
+   {
+    "date": "2022-11-22 (before) · Sentinel-1 radar",
+    "image": "/radar/events/mauna-loa-2022/2022-11-22-s1.webp"
+   },
+   {
+    "date": "2022-12-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/mauna-loa-2022/2022-12-04-s1.webp"
+   },
+   {
+    "date": "2022-12-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/mauna-loa-2022/2022-12-16-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/mauna-loa-2022/interferogram.webp",
+  "flashlightLabel": "Ground movement 2022-11-22 → 2022-12-04 (InSAR, ARIA)"
+ },
+ "fagradalsfjall": {
+  "bounds": {
+   "west": -22.95167,
+   "east": -21.58833,
+   "south": 63.59,
+   "north": 64.19
+  },
+  "observations": [
+   {
+    "date": "2021-03-13 (before) · Sentinel-1 radar",
+    "image": "/radar/events/fagradalsfjall/2021-03-13-s1.webp"
+   },
+   {
+    "date": "2021-03-19 (after) · Sentinel-1 radar",
+    "image": "/radar/events/fagradalsfjall/2021-03-19-s1.webp"
+   },
+   {
+    "date": "2021-03-25 (after) · Sentinel-1 radar",
+    "image": "/radar/events/fagradalsfjall/2021-03-25-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/fagradalsfjall/interferogram.webp",
+  "flashlightLabel": "Ground movement 2021-03-13 → 2021-03-19 (InSAR, ARIA)"
+ },
+ "nyiragongo": {
+  "bounds": {
+   "west": 28.94989,
+   "east": 29.55011,
+   "south": -1.82,
+   "north": -1.22
+  },
+  "observations": [
+   {
+    "date": "2021-05-21 (before) · Sentinel-1 radar",
+    "image": "/radar/events/nyiragongo/2021-05-21-s1.webp"
+   },
+   {
+    "date": "2021-05-27 (after) · Sentinel-1 radar",
+    "image": "/radar/events/nyiragongo/2021-05-27-s1.webp"
+   },
+   {
+    "date": "2021-06-02 (after) · Sentinel-1 radar",
+    "image": "/radar/events/nyiragongo/2021-06-02-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "semeru": {
+  "bounds": {
+   "west": 112.61697,
+   "east": 113.22303,
+   "south": -8.41,
+   "north": -7.81
+  },
+  "observations": [
+   {
+    "date": "2021-12-03 (before) · Sentinel-1 radar",
+    "image": "/radar/events/semeru/2021-12-03-s1.webp"
+   },
+   {
+    "date": "2021-12-09 (after) · Sentinel-1 radar",
+    "image": "/radar/events/semeru/2021-12-09-s1.webp"
+   },
+   {
+    "date": "2021-12-15 (after) · Sentinel-1 radar",
+    "image": "/radar/events/semeru/2021-12-15-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "campi-flegrei": {
+  "bounds": {
+   "west": 13.74352,
+   "east": 14.53648,
+   "south": 40.53,
+   "north": 41.13
+  },
+  "observations": [
+   {
+    "date": "2024-01-01 · Sentinel-1 radar",
+    "image": "/radar/events/campi-flegrei/2024-01-01-s1.webp"
+   },
+   {
+    "date": "2024-06-29 · Sentinel-1 radar",
+    "image": "/radar/events/campi-flegrei/2024-06-29-s1.webp"
+   },
+   {
+    "date": "2024-12-26 · Sentinel-1 radar",
+    "image": "/radar/events/campi-flegrei/2024-12-26-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/campi-flegrei/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-27"
+ },
+ "etna-2021": {
+  "bounds": {
+   "west": 14.62058,
+   "east": 15.37942,
+   "south": 37.45,
+   "north": 38.05
+  },
+  "observations": [
+   {
+    "date": "2021-02-15 (before) · Sentinel-1 radar",
+    "image": "/radar/events/etna-2021/2021-02-15-s1.webp"
+   },
+   {
+    "date": "2021-02-21 (after) · Sentinel-1 radar",
+    "image": "/radar/events/etna-2021/2021-02-21-s1.webp"
+   },
+   {
+    "date": "2021-02-27 (after) · Sentinel-1 radar",
+    "image": "/radar/events/etna-2021/2021-02-27-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/etna-2021/interferogram.webp",
+  "flashlightLabel": "Ground movement 2021-02-15 → 2021-02-21 (InSAR, ARIA)"
+ },
+ "jakarta": {
+  "bounds": {
+   "west": 106.54823,
+   "east": 107.15177,
+   "south": -6.5,
+   "north": -5.9
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/jakarta/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-07-03 · Sentinel-1 radar",
+    "image": "/radar/events/jakarta/2024-07-03-s1.webp"
+   },
+   {
+    "date": "2024-12-30 · Sentinel-1 radar",
+    "image": "/radar/events/jakarta/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/jakarta/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-01"
+ },
+ "tehran": {
+  "bounds": {
+   "west": 50.93104,
+   "east": 51.66896,
+   "south": 35.3,
+   "north": 35.9
+  },
+  "observations": [
+   {
+    "date": "2024-01-12 · Sentinel-1 radar",
+    "image": "/radar/events/tehran/2024-01-12-s1.webp"
+   },
+   {
+    "date": "2024-07-10 · Sentinel-1 radar",
+    "image": "/radar/events/tehran/2024-07-10-s1.webp"
+   },
+   {
+    "date": "2024-12-25 · Sentinel-1 radar",
+    "image": "/radar/events/tehran/2024-12-25-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/tehran/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-09"
+ },
+ "central-valley-ca": {
+  "bounds": {
+   "west": -119.97224,
+   "east": -119.22776,
+   "south": 36.0,
+   "north": 36.6
+  },
+  "observations": [
+   {
+    "date": "2024-01-08 · Sentinel-1 radar",
+    "image": "/radar/events/central-valley-ca/2024-01-08-s1.webp"
+   },
+   {
+    "date": "2024-07-06 · Sentinel-1 radar",
+    "image": "/radar/events/central-valley-ca/2024-07-06-s1.webp"
+   },
+   {
+    "date": "2024-12-21 · Sentinel-1 radar",
+    "image": "/radar/events/central-valley-ca/2024-12-21-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/central-valley-ca/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+ },
+ "semarang": {
+  "bounds": {
+   "west": 110.11778,
+   "east": 110.72222,
+   "south": -7.25,
+   "north": -6.65
+  },
+  "observations": [
+   {
+    "date": "2024-01-03 · Sentinel-1 radar",
+    "image": "/radar/events/semarang/2024-01-03-s1.webp"
+   },
+   {
+    "date": "2024-07-13 · Sentinel-1 radar",
+    "image": "/radar/events/semarang/2024-07-13-s1.webp"
+   },
+   {
+    "date": "2024-12-28 · Sentinel-1 radar",
+    "image": "/radar/events/semarang/2024-12-28-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/semarang/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-09-29"
+ },
+ "houston": {
+  "bounds": {
+   "west": -95.71558,
+   "east": -95.02442,
+   "south": 29.46,
+   "north": 30.06
+  },
+  "observations": [
+   {
+    "date": "2024-01-08 · Sentinel-1 radar",
+    "image": "/radar/events/houston/2024-01-08-s1.webp"
+   },
+   {
+    "date": "2024-07-06 · Sentinel-1 radar",
+    "image": "/radar/events/houston/2024-07-06-s1.webp"
+   },
+   {
+    "date": "2024-12-21 · Sentinel-1 radar",
+    "image": "/radar/events/houston/2024-12-21-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/houston/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-09"
+ },
+ "beijing": {
+  "bounds": {
+   "west": 116.00895,
+   "east": 116.79105,
+   "south": 39.6,
+   "north": 40.2
+  },
+  "observations": [
+   {
+    "date": "2024-01-08 · Sentinel-1 radar",
+    "image": "/radar/events/beijing/2024-01-08-s1.webp"
+   },
+   {
+    "date": "2024-07-06 · Sentinel-1 radar",
+    "image": "/radar/events/beijing/2024-07-06-s1.webp"
+   },
+   {
+    "date": "2024-12-21 · Sentinel-1 radar",
+    "image": "/radar/events/beijing/2024-12-21-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/beijing/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+ },
+ "mekong-delta": {
+  "bounds": {
+   "west": 105.49537,
+   "east": 106.10463,
+   "south": 9.7,
+   "north": 10.3
+  },
+  "observations": [
+   {
+    "date": "2024-01-11 · Sentinel-1 radar",
+    "image": "/radar/events/mekong-delta/2024-01-11-s1.webp"
+   },
+   {
+    "date": "2024-07-09 · Sentinel-1 radar",
+    "image": "/radar/events/mekong-delta/2024-07-09-s1.webp"
+   },
+   {
+    "date": "2024-12-24 · Sentinel-1 radar",
+    "image": "/radar/events/mekong-delta/2024-12-24-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/mekong-delta/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-05"
+ },
+ "venice": {
+  "bounds": {
+   "west": 11.90244,
+   "east": 12.75756,
+   "south": 45.14,
+   "north": 45.74
+  },
+  "observations": [
+   {
+    "date": "2024-01-01 · Sentinel-1 radar",
+    "image": "/radar/events/venice/2024-01-01-s1.webp"
+   },
+   {
+    "date": "2024-06-29 · Sentinel-1 radar",
+    "image": "/radar/events/venice/2024-06-29-s1.webp"
+   },
+   {
+    "date": "2024-12-26 · Sentinel-1 radar",
+    "image": "/radar/events/venice/2024-12-26-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/venice/nisar.webp",
+  "flashlightLabel": "NISAR interferogram, 2026-10-08"
+ },
+ "joshimath": {
+  "bounds": {
+   "west": 79.21164,
+   "east": 79.90836,
+   "south": 30.25,
+   "north": 30.85
+  },
+  "observations": [
+   {
+    "date": "2022-12-27 (before) · Sentinel-1 radar",
+    "image": "/radar/events/joshimath/2022-12-27-s1.webp"
+   },
+   {
+    "date": "2023-01-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/joshimath/2023-01-08-s1.webp"
+   },
+   {
+    "date": "2023-02-01 (after) · Sentinel-1 radar",
+    "image": "/radar/events/joshimath/2023-02-01-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "wayanad": {
+  "bounds": {
+   "west": 75.99694,
+   "east": 76.30306,
+   "south": 11.33,
+   "north": 11.63
+  },
+  "observations": [
+   {
+    "date": "2024-07-20 (before) · Sentinel-1 radar",
+    "image": "/radar/events/wayanad/2024-07-20-s1.webp"
+   },
+   {
+    "date": "2024-08-01 (after) · Sentinel-1 radar",
+    "image": "/radar/events/wayanad/2024-08-01-s1.webp"
+   },
+   {
+    "date": "2024-08-13 (after) · Sentinel-1 radar",
+    "image": "/radar/events/wayanad/2024-08-13-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "enga-png": {
+  "bounds": {
+   "west": 143.32934,
+   "east": 143.63066,
+   "south": -5.52,
+   "north": -5.22
+  },
+  "observations": [
+   {
+    "date": "2024-05-18 (before) · Sentinel-1 radar",
+    "image": "/radar/events/enga-png/2024-05-18-s1.webp"
+   },
+   {
+    "date": "2024-05-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/enga-png/2024-05-30-s1.webp"
+   },
+   {
+    "date": "2024-06-11 (after) · Sentinel-1 radar",
+    "image": "/radar/events/enga-png/2024-06-11-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "blatten": {
+  "bounds": {
+   "west": 7.60241,
+   "east": 8.03759,
+   "south": 46.27,
+   "north": 46.57
+  },
+  "observations": [
+   {
+    "date": "2025-05-22 (before) · Sentinel-1 radar",
+    "image": "/radar/events/blatten/2025-05-22-s1.webp"
+   },
+   {
+    "date": "2025-05-28 (after) · Sentinel-1 radar",
+    "image": "/radar/events/blatten/2025-05-28-s1.webp"
+   },
+   {
+    "date": "2025-06-03 (after) · Sentinel-1 radar",
+    "image": "/radar/events/blatten/2025-06-03-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "portuguese-bend": {
+  "bounds": {
+   "west": -118.55038,
+   "east": -118.18962,
+   "south": 33.59,
+   "north": 33.89
+  },
+  "observations": [
+   {
+    "date": "2024-01-03 · Sentinel-1 radar",
+    "image": "/radar/events/portuguese-bend/2024-01-03-s1.webp"
+   },
+   {
+    "date": "2024-07-01 · Sentinel-1 radar",
+    "image": "/radar/events/portuguese-bend/2024-07-01-s1.webp"
+   },
+   {
+    "date": "2024-12-28 · Sentinel-1 radar",
+    "image": "/radar/events/portuguese-bend/2024-12-28-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/portuguese-bend/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-26"
+ },
+ "chamoli": {
+  "bounds": {
+   "west": 79.55609,
+   "east": 79.90391,
+   "south": 30.25,
+   "north": 30.55
+  },
+  "observations": [
+   {
+    "date": "2021-01-29 (before) · Sentinel-1 radar",
+    "image": "/radar/events/chamoli/2021-01-29-s1.webp"
+   },
+   {
+    "date": "2021-02-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/chamoli/2021-02-10-s1.webp"
+   },
+   {
+    "date": "2021-02-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/chamoli/2021-02-16-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/chamoli/interferogram.webp",
+  "flashlightLabel": "Ground movement 2021-01-29 → 2021-02-10 (InSAR, ARIA)"
+ },
+ "gjerdrum": {
+  "bounds": {
+   "west": 10.72936,
+   "east": 11.33064,
+   "south": 59.92,
+   "north": 60.22
+  },
+  "observations": [
+   {
+    "date": "2020-12-24 (before) · Sentinel-1 radar",
+    "image": "/radar/events/gjerdrum/2020-12-24-s1.webp"
+   },
+   {
+    "date": "2020-12-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gjerdrum/2020-12-30-s1.webp"
+   },
+   {
+    "date": "2021-01-05 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gjerdrum/2021-01-05-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "xinmo": {
+  "bounds": {
+   "west": 103.48301,
+   "east": 103.83699,
+   "south": 31.91,
+   "north": 32.21
+  },
+  "observations": [
+   {
+    "date": "2017-06-12 (before) · Sentinel-1 radar",
+    "image": "/radar/events/xinmo/2017-06-12-s1.webp"
+   },
+   {
+    "date": "2017-06-24 (after) · Sentinel-1 radar",
+    "image": "/radar/events/xinmo/2017-06-24-s1.webp"
+   },
+   {
+    "date": "2017-06-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/xinmo/2017-06-30-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/xinmo/interferogram.webp",
+  "flashlightLabel": "Ground movement 2017-05-26 → 2017-07-25 (InSAR, ARIA)"
+ },
+ "mud-creek-big-sur": {
+  "bounds": {
+   "west": -121.61508,
+   "east": -121.24492,
+   "south": 35.71,
+   "north": 36.01
+  },
+  "observations": [
+   {
+    "date": "2017-05-19 (before) · Sentinel-1 radar",
+    "image": "/radar/events/mud-creek-big-sur/2017-05-19-s1.webp"
+   },
+   {
+    "date": "2017-05-31 (after) · Sentinel-1 radar",
+    "image": "/radar/events/mud-creek-big-sur/2017-05-31-s1.webp"
+   },
+   {
+    "date": "2017-06-12 (after) · Sentinel-1 radar",
+    "image": "/radar/events/mud-creek-big-sur/2017-06-12-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/mud-creek-big-sur/interferogram.webp",
+  "flashlightLabel": "Ground movement 2017-05-19 → 2017-05-31 (InSAR, ARIA)"
+ },
+ "brienz-brinzauls": {
+  "bounds": {
+   "west": 9.3814,
+   "east": 9.8186,
+   "south": 46.52,
+   "north": 46.82
+  },
+  "observations": [
+   {
+    "date": "2023-06-04 (before) · Sentinel-1 radar",
+    "image": "/radar/events/brienz-brinzauls/2023-06-04-s1.webp"
+   },
+   {
+    "date": "2023-06-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/brienz-brinzauls/2023-06-16-s1.webp"
+   },
+   {
+    "date": "2023-06-28 (after) · Sentinel-1 radar",
+    "image": "/radar/events/brienz-brinzauls/2023-06-28-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "lahaina": {
+  "bounds": {
+   "west": -157.00109,
+   "east": -156.35891,
+   "south": 20.58,
+   "north": 21.18
+  },
+  "observations": [
+   {
+    "date": "2023-08-04 (before) · Sentinel-1 radar",
+    "image": "/radar/events/lahaina/2023-08-04-s1.webp"
+   },
+   {
+    "date": "2023-08-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/lahaina/2023-08-16-s1.webp"
+   },
+   {
+    "date": "2023-08-28 (after) · Sentinel-1 radar",
+    "image": "/radar/events/lahaina/2023-08-28-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/lahaina/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2023-09-07 (OPERA DIST)"
+ },
+ "quebec-2023": {
+  "bounds": {
+   "west": -74.86575,
+   "east": -73.93425,
+   "south": 49.6,
+   "north": 50.2
+  },
+  "observations": [
+   {
+    "date": "2023-05-29 (before) · Sentinel-1 radar",
+    "image": "/radar/events/quebec-2023/2023-05-29-s1.webp"
+   },
+   {
+    "date": "2023-06-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/quebec-2023/2023-06-10-s1.webp"
+   },
+   {
+    "date": "2023-06-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/quebec-2023/2023-06-22-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/quebec-2023/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2023-07-05 (OPERA DIST)"
+ },
+ "jasper": {
+  "bounds": {
+   "west": -118.577,
+   "east": -117.583,
+   "south": 52.57,
+   "north": 53.17
+  },
+  "observations": [
+   {
+    "date": "2024-07-20 (before) · Sentinel-1 radar",
+    "image": "/radar/events/jasper/2024-07-20-s1.webp"
+   },
+   {
+    "date": "2024-08-01 (after) · Sentinel-1 radar",
+    "image": "/radar/events/jasper/2024-08-01-s1.webp"
+   },
+   {
+    "date": "2024-08-13 (after) · Sentinel-1 radar",
+    "image": "/radar/events/jasper/2024-08-13-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "evros-greece": {
+  "bounds": {
+   "west": 25.80177,
+   "east": 26.59823,
+   "south": 40.82,
+   "north": 41.42
+  },
+  "observations": [
+   {
+    "date": "2023-08-15 (before) · Sentinel-1 radar",
+    "image": "/radar/events/evros-greece/2023-08-15-s1.webp"
+   },
+   {
+    "date": "2023-08-27 (after) · Sentinel-1 radar",
+    "image": "/radar/events/evros-greece/2023-08-27-s1.webp"
+   },
+   {
+    "date": "2023-09-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/evros-greece/2023-09-08-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "valparaiso-chile": {
+  "bounds": {
+   "west": -71.80791,
+   "east": -71.09209,
+   "south": -33.35,
+   "north": -32.75
+  },
+  "observations": [
+   {
+    "date": "2024-01-21 (before) · Sentinel-1 radar",
+    "image": "/radar/events/valparaiso-chile/2024-01-21-s1.webp"
+   },
+   {
+    "date": "2024-02-02 (after) · Sentinel-1 radar",
+    "image": "/radar/events/valparaiso-chile/2024-02-02-s1.webp"
+   },
+   {
+    "date": "2024-02-14 (after) · Sentinel-1 radar",
+    "image": "/radar/events/valparaiso-chile/2024-02-14-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/valparaiso-chile/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-03-03 (OPERA DIST)"
+ },
+ "pantanal-2024": {
+  "bounds": {
+   "west": -57.31456,
+   "east": -56.68544,
+   "south": -17.8,
+   "north": -17.2
+  },
+  "observations": [
+   {
+    "date": "2024-06-12 (before) · Sentinel-1 radar",
+    "image": "/radar/events/pantanal-2024/2024-06-12-s1.webp"
+   },
+   {
+    "date": "2024-07-06 (after) · Sentinel-1 radar",
+    "image": "/radar/events/pantanal-2024/2024-07-06-s1.webp"
+   },
+   {
+    "date": "2024-07-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/pantanal-2024/2024-07-18-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/pantanal-2024/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-07-24 (OPERA DIST)"
+ },
+ "black-summer-nsw": {
+  "bounds": {
+   "west": 149.63058,
+   "east": 150.36942,
+   "south": -36.0,
+   "north": -35.4
+  },
+  "observations": [
+   {
+    "date": "2019-12-24 (before) · Sentinel-1 radar",
+    "image": "/radar/events/black-summer-nsw/2019-12-24-s1.webp"
+   },
+   {
+    "date": "2020-01-05 (after) · Sentinel-1 radar",
+    "image": "/radar/events/black-summer-nsw/2020-01-05-s1.webp"
+   },
+   {
+    "date": "2020-01-17 (after) · Sentinel-1 radar",
+    "image": "/radar/events/black-summer-nsw/2020-01-17-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "dixie-fire": {
+  "bounds": {
+   "west": -121.39162,
+   "east": -120.60838,
+   "south": 39.7,
+   "north": 40.3
+  },
+  "observations": [
+   {
+    "date": "2021-08-02 (before) · Sentinel-1 radar",
+    "image": "/radar/events/dixie-fire/2021-08-02-s1.webp"
+   },
+   {
+    "date": "2021-08-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/dixie-fire/2021-08-08-s1.webp"
+   },
+   {
+    "date": "2021-08-14 (after) · Sentinel-1 radar",
+    "image": "/radar/events/dixie-fire/2021-08-14-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "camp-fire": {
+  "bounds": {
+   "west": -122.01025,
+   "east": -121.22975,
+   "south": 39.46,
+   "north": 40.06
+  },
+  "observations": [
+   {
+    "date": "2018-11-05 (before) · Sentinel-1 radar",
+    "image": "/radar/events/camp-fire/2018-11-05-s1.webp"
+   },
+   {
+    "date": "2018-11-11 (after) · Sentinel-1 radar",
+    "image": "/radar/events/camp-fire/2018-11-11-s1.webp"
+   },
+   {
+    "date": "2018-11-17 (after) · Sentinel-1 radar",
+    "image": "/radar/events/camp-fire/2018-11-17-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "para-arc": {
+  "bounds": {
+   "west": -55.80309,
+   "east": -54.99691,
+   "south": -7.5,
+   "north": -6.7
+  },
+  "observations": [
+   {
+    "date": "2024-01-01 · Sentinel-1 radar",
+    "image": "/radar/events/para-arc/2024-01-01-s1.webp"
+   },
+   {
+    "date": "2024-06-29 · Sentinel-1 radar",
+    "image": "/radar/events/para-arc/2024-06-29-s1.webp"
+   },
+   {
+    "date": "2024-12-26 · Sentinel-1 radar",
+    "image": "/radar/events/para-arc/2024-12-26-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "cerrado-matopiba": {
+  "bounds": {
+   "west": -46.40617,
+   "east": -45.59383,
+   "south": -10.4,
+   "north": -9.6
+  },
+  "observations": [
+   {
+    "date": "2024-01-12 · Sentinel-1 radar",
+    "image": "/radar/events/cerrado-matopiba/2024-01-12-s1.webp"
+   },
+   {
+    "date": "2024-07-10 · Sentinel-1 radar",
+    "image": "/radar/events/cerrado-matopiba/2024-07-10-s1.webp"
+   },
+   {
+    "date": "2024-12-25 · Sentinel-1 radar",
+    "image": "/radar/events/cerrado-matopiba/2024-12-25-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/cerrado-matopiba/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-10 (OPERA DIST)"
+ },
+ "gran-chaco": {
+  "bounds": {
+   "west": -60.92991,
+   "east": -60.07009,
+   "south": -21.9,
+   "north": -21.1
+  },
+  "observations": [],
+  "flashlightImage": "/radar/events/gran-chaco/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-29 (OPERA DIST)"
+ },
+ "chiquitano": {
+  "bounds": {
+   "west": -61.41718,
+   "east": -60.58282,
+   "south": -16.9,
+   "north": -16.1
+  },
+  "observations": [
+   {
+    "date": "2024-01-06 · Sentinel-1 radar",
+    "image": "/radar/events/chiquitano/2024-01-06-s1.webp"
+   },
+   {
+    "date": "2024-08-09 · Sentinel-1 radar",
+    "image": "/radar/events/chiquitano/2024-08-09-s1.webp"
+   },
+   {
+    "date": "2024-12-31 · Sentinel-1 radar",
+    "image": "/radar/events/chiquitano/2024-12-31-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "kalimantan": {
+  "bounds": {
+   "west": 113.09994,
+   "east": 113.90006,
+   "south": -1.4,
+   "north": -0.6
+  },
+  "observations": [
+   {
+    "date": "2024-01-10 · Sentinel-1 radar",
+    "image": "/radar/events/kalimantan/2024-01-10-s1.webp"
+   },
+   {
+    "date": "2024-07-20 · Sentinel-1 radar",
+    "image": "/radar/events/kalimantan/2024-07-20-s1.webp"
+   },
+   {
+    "date": "2024-12-23 · Sentinel-1 radar",
+    "image": "/radar/events/kalimantan/2024-12-23-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/kalimantan/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-28 (OPERA DIST)"
+ },
+ "riau": {
+  "bounds": {
+   "west": 101.09998,
+   "east": 101.90002,
+   "south": 0.1,
+   "north": 0.9
+  },
+  "observations": [
+   {
+    "date": "2024-01-03 · Sentinel-1 radar",
+    "image": "/radar/events/riau/2024-01-03-s1.webp"
+   },
+   {
+    "date": "2024-07-13 · Sentinel-1 radar",
+    "image": "/radar/events/riau/2024-07-13-s1.webp"
+   },
+   {
+    "date": "2024-12-28 · Sentinel-1 radar",
+    "image": "/radar/events/riau/2024-12-28-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/riau/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-28 (OPERA DIST)"
+ },
+ "nusantara": {
+  "bounds": {
+   "west": 116.29994,
+   "east": 117.10006,
+   "south": -1.37,
+   "north": -0.57
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/nusantara/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-07-03 · Sentinel-1 radar",
+    "image": "/radar/events/nusantara/2024-07-03-s1.webp"
+   },
+   {
+    "date": "2024-12-30 · Sentinel-1 radar",
+    "image": "/radar/events/nusantara/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "congo-basin": {
+  "bounds": {
+   "west": 23.59998,
+   "east": 24.40002,
+   "south": 0.1,
+   "north": 0.9
+  },
+  "observations": [
+   {
+    "date": "2024-01-03 · Sentinel-1 radar",
+    "image": "/radar/events/congo-basin/2024-01-03-s1.webp"
+   },
+   {
+    "date": "2024-07-01 · Sentinel-1 radar",
+    "image": "/radar/events/congo-basin/2024-07-01-s1.webp"
+   },
+   {
+    "date": "2024-12-28 · Sentinel-1 radar",
+    "image": "/radar/events/congo-basin/2024-12-28-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "cote-d-ivoire": {
+  "bounds": {
+   "west": -6.4022,
+   "east": -5.5978,
+   "south": 5.6,
+   "north": 6.4
+  },
+  "observations": [
+   {
+    "date": "2024-01-11 · Sentinel-1 radar",
+    "image": "/radar/events/cote-d-ivoire/2024-01-11-s1.webp"
+   },
+   {
+    "date": "2024-07-09 · Sentinel-1 radar",
+    "image": "/radar/events/cote-d-ivoire/2024-07-09-s1.webp"
+   },
+   {
+    "date": "2024-12-24 · Sentinel-1 radar",
+    "image": "/radar/events/cote-d-ivoire/2024-12-24-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/cote-d-ivoire/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-27 (OPERA DIST)"
+ },
+ "prey-lang": {
+  "bounds": {
+   "west": 104.98948,
+   "east": 105.81052,
+   "south": 12.6,
+   "north": 13.4
+  },
+  "observations": [
+   {
+    "date": "2024-01-04 · Sentinel-1 radar",
+    "image": "/radar/events/prey-lang/2024-01-04-s1.webp"
+   },
+   {
+    "date": "2024-07-14 · Sentinel-1 radar",
+    "image": "/radar/events/prey-lang/2024-07-14-s1.webp"
+   },
+   {
+    "date": "2024-12-29 · Sentinel-1 radar",
+    "image": "/radar/events/prey-lang/2024-12-29-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/prey-lang/vegetation-loss.webp",
+  "flashlightLabel": "Vegetation loss up to 2024-12-25 (OPERA DIST)"
+ },
+ "albufera-rice": {
+  "bounds": {
+   "west": -0.80248,
+   "east": 0.10248,
+   "south": 38.98,
+   "north": 39.68
+  },
+  "observations": [
+   {
+    "date": "2024-08-27 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/albufera-rice/2024-08-27-water.webp"
+   },
+   {
+    "date": "2024-10-26 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/albufera-rice/2024-10-26-water.webp"
+   },
+   {
+    "date": "2024-12-25 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/albufera-rice/2024-12-25-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/albufera-rice/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-28"
+ },
+ "mekong-rice": {
+  "bounds": {
+   "west": 105.14427,
+   "east": 105.85573,
+   "south": 9.95,
+   "north": 10.65
+  },
+  "observations": [
+   {
+    "date": "2024-08-27 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/mekong-rice/2024-08-27-water.webp"
+   },
+   {
+    "date": "2024-10-14 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/mekong-rice/2024-10-14-water.webp"
+   },
+   {
+    "date": "2024-12-25 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/mekong-rice/2024-12-25-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/mekong-rice/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-29"
+ },
+ "indian-punjab": {
+  "bounds": {
+   "west": 75.39211,
+   "east": 76.20789,
+   "south": 30.55,
+   "north": 31.25
+  },
+  "observations": [
+   {
+    "date": "2024-08-28 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/indian-punjab/2024-08-28-water.webp"
+   },
+   {
+    "date": "2024-11-08 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/indian-punjab/2024-11-08-water.webp"
+   },
+   {
+    "date": "2024-12-26 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/indian-punjab/2024-12-26-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/indian-punjab/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-07"
+ },
+ "iowa-corn-belt": {
+  "bounds": {
+   "west": -93.97097,
+   "east": -93.02903,
+   "south": 41.65,
+   "north": 42.35
+  },
+  "observations": [
+   {
+    "date": "2024-08-30 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/iowa-corn-belt/2024-08-30-water.webp"
+   },
+   {
+    "date": "2024-10-29 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/iowa-corn-belt/2024-10-29-water.webp"
+   },
+   {
+    "date": "2024-12-28 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/iowa-corn-belt/2024-12-28-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/iowa-corn-belt/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-05"
+ },
+ "central-valley-crops": {
+  "bounds": {
+   "west": -120.43653,
+   "east": -119.56347,
+   "south": 36.35,
+   "north": 37.05
+  },
+  "observations": [
+   {
+    "date": "2024-08-23 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/central-valley-crops/2024-08-23-water.webp"
+   },
+   {
+    "date": "2024-11-03 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/central-valley-crops/2024-11-03-water.webp"
+   },
+   {
+    "date": "2024-12-21 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/central-valley-crops/2024-12-21-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/central-valley-crops/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-01"
+ },
+ "nile-delta": {
+  "bounds": {
+   "west": 30.59253,
+   "east": 31.40747,
+   "south": 30.45,
+   "north": 31.15
+  },
+  "observations": [
+   {
+    "date": "2024-01-02 · Sentinel-1 radar",
+    "image": "/radar/events/nile-delta/2024-01-02-s1.webp"
+   },
+   {
+    "date": "2024-06-30 · Sentinel-1 radar",
+    "image": "/radar/events/nile-delta/2024-06-30-s1.webp"
+   },
+   {
+    "date": "2024-12-27 · Sentinel-1 radar",
+    "image": "/radar/events/nile-delta/2024-12-27-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/nile-delta/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-02"
+ },
+ "okavango": {
+  "bounds": {
+   "west": 22.52916,
+   "east": 23.27084,
+   "south": -19.65,
+   "north": -18.95
+  },
+  "observations": [],
+  "flashlightImage": "/radar/events/okavango/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-24"
+ },
+ "pantanal-wetland": {
+  "bounds": {
+   "west": -57.66801,
+   "east": -56.93199,
+   "south": -18.35,
+   "north": -17.65
+  },
+  "observations": [
+   {
+    "date": "2024-08-23 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/pantanal-wetland/2024-08-23-water.webp"
+   },
+   {
+    "date": "2024-11-15 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/pantanal-wetland/2024-11-15-water.webp"
+   },
+   {
+    "date": "2024-12-21 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/pantanal-wetland/2024-12-21-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/pantanal-wetland/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-31"
+ },
+ "sudd": {
+  "bounds": {
+   "west": 30.14698,
+   "east": 30.85302,
+   "south": 7.15,
+   "north": 7.85
+  },
+  "observations": [
+   {
+    "date": "2024-09-01 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/sudd/2024-09-01-water.webp"
+   },
+   {
+    "date": "2024-10-31 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/sudd/2024-10-31-water.webp"
+   },
+   {
+    "date": "2024-12-30 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/sudd/2024-12-30-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/sudd/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-30"
+ },
+ "everglades": {
+  "bounds": {
+   "west": -81.18875,
+   "east": -80.41125,
+   "south": 25.45,
+   "north": 26.15
+  },
+  "observations": [
+   {
+    "date": "2024-08-28 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/everglades/2024-08-28-water.webp"
+   },
+   {
+    "date": "2024-10-27 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/everglades/2024-10-27-water.webp"
+   },
+   {
+    "date": "2024-12-26 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/everglades/2024-12-26-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/everglades/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-27"
+ },
+ "malaspina": {
+  "bounds": {
+   "west": -141.49699,
+   "east": -139.50301,
+   "south": 59.4,
+   "north": 60.4
+  },
+  "observations": [
+   {
+    "date": "2024-01-06 · Sentinel-1 radar",
+    "image": "/radar/events/malaspina/2024-01-06-s1.webp"
+   },
+   {
+    "date": "2024-07-28 · Sentinel-1 radar",
+    "image": "/radar/events/malaspina/2024-07-28-s1.webp"
+   },
+   {
+    "date": "2024-12-31 · Sentinel-1 radar",
+    "image": "/radar/events/malaspina/2024-12-31-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/malaspina/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-31"
+ },
+ "columbia-glacier": {
+  "bounds": {
+   "west": -148.13787,
+   "east": -146.06213,
+   "south": 60.7,
+   "north": 61.7
+  },
+  "observations": [
+   {
+    "date": "2024-01-21 · Sentinel-1 radar",
+    "image": "/radar/events/columbia-glacier/2024-01-21-s1.webp"
+   },
+   {
+    "date": "2024-06-25 · Sentinel-1 radar",
+    "image": "/radar/events/columbia-glacier/2024-06-25-s1.webp"
+   },
+   {
+    "date": "2024-12-22 · Sentinel-1 radar",
+    "image": "/radar/events/columbia-glacier/2024-12-22-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/columbia-glacier/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-04"
+ },
+ "hudson-bay": {
+  "bounds": {
+   "west": -88.0,
+   "east": -82.0,
+   "south": 58.5,
+   "north": 61.5
+  },
+  "observations": [
+   {
+    "date": "2024-06-24 (before) · Sentinel-1 radar",
+    "image": "/radar/events/hudson-bay/2024-06-24-s1.webp"
+   },
+   {
+    "date": "2024-07-06 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hudson-bay/2024-07-06-s1.webp"
+   },
+   {
+    "date": "2024-07-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/hudson-bay/2024-07-18-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "gulf-of-st-lawrence": {
+  "bounds": {
+   "west": -64.22028,
+   "east": -59.77972,
+   "south": 46.0,
+   "north": 49.0
+  },
+  "observations": [
+   {
+    "date": "2024-02-06 (before) · Sentinel-1 radar",
+    "image": "/radar/events/gulf-of-st-lawrence/2024-02-06-s1.webp"
+   },
+   {
+    "date": "2024-02-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gulf-of-st-lawrence/2024-02-18-s1.webp"
+   },
+   {
+    "date": "2024-03-01 (after) · Sentinel-1 radar",
+    "image": "/radar/events/gulf-of-st-lawrence/2024-03-01-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "utqiagvik-shorefast": {
+  "bounds": {
+   "west": -161.47854,
+   "east": -152.12146,
+   "south": 69.8,
+   "north": 72.8
+  },
+  "observations": [
+   {
+    "date": "2024-04-20 (before) · Sentinel-1 radar",
+    "image": "/radar/events/utqiagvik-shorefast/2024-04-20-s1.webp"
+   },
+   {
+    "date": "2024-05-02 (after) · Sentinel-1 radar",
+    "image": "/radar/events/utqiagvik-shorefast/2024-05-02-s1.webp"
+   },
+   {
+    "date": "2024-05-14 (after) · Sentinel-1 radar",
+    "image": "/radar/events/utqiagvik-shorefast/2024-05-14-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "sea-of-okhotsk": {
+  "bounds": {
+   "west": 142.5636,
+   "east": 147.4364,
+   "south": 50.5,
+   "north": 53.5
+  },
+  "observations": [
+   {
+    "date": "2024-02-10 (before) · Sentinel-1 radar",
+    "image": "/radar/events/sea-of-okhotsk/2024-02-10-s1.webp"
+   },
+   {
+    "date": "2024-02-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/sea-of-okhotsk/2024-02-22-s1.webp"
+   },
+   {
+    "date": "2024-03-05 (after) · Sentinel-1 radar",
+    "image": "/radar/events/sea-of-okhotsk/2024-03-05-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "bothnian-bay": {
+  "bounds": {
+   "west": 20.4507,
+   "east": 27.5493,
+   "south": 63.5,
+   "north": 66.5
+  },
+  "observations": [
+   {
+    "date": "2024-02-09 (before) · Sentinel-1 radar",
+    "image": "/radar/events/bothnian-bay/2024-02-09-s1.webp"
+   },
+   {
+    "date": "2024-02-21 (after) · Sentinel-1 radar",
+    "image": "/radar/events/bothnian-bay/2024-02-21-s1.webp"
+   },
+   {
+    "date": "2024-03-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/bothnian-bay/2024-03-04-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "x-press-pearl": {
+  "bounds": {
+   "west": 79.397,
+   "east": 80.203,
+   "south": 6.6,
+   "north": 7.4
+  },
+  "observations": [
+   {
+    "date": "2021-05-27 (before) · Sentinel-1 radar",
+    "image": "/radar/events/x-press-pearl/2021-05-27-s1.webp"
+   },
+   {
+    "date": "2021-06-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/x-press-pearl/2021-06-08-s1.webp"
+   },
+   {
+    "date": "2021-06-14 (after) · Sentinel-1 radar",
+    "image": "/radar/events/x-press-pearl/2021-06-14-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "princess-empress-mindoro": {
+  "bounds": {
+   "west": 120.88892,
+   "east": 121.71108,
+   "south": 12.93,
+   "north": 13.73
+  },
+  "observations": [
+   {
+    "date": "2023-02-22 (before) · Sentinel-1 radar",
+    "image": "/radar/events/princess-empress-mindoro/2023-02-22-s1.webp"
+   },
+   {
+    "date": "2023-03-06 (after) · Sentinel-1 radar",
+    "image": "/radar/events/princess-empress-mindoro/2023-03-06-s1.webp"
+   },
+   {
+    "date": "2023-03-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/princess-empress-mindoro/2023-03-18-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "kerch-strait": {
+  "bounds": {
+   "west": 36.7353,
+   "east": 37.8647,
+   "south": 44.5,
+   "north": 45.3
+  },
+  "observations": [
+   {
+    "date": "2024-12-06 (before) · Sentinel-1 radar",
+    "image": "/radar/events/kerch-strait/2024-12-06-s1.webp"
+   },
+   {
+    "date": "2024-12-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kerch-strait/2024-12-18-s1.webp"
+   },
+   {
+    "date": "2024-12-30 (after) · Sentinel-1 radar",
+    "image": "/radar/events/kerch-strait/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "israel-tar-spill": {
+  "bounds": {
+   "west": 34.37572,
+   "east": 35.32428,
+   "south": 32.1,
+   "north": 32.9
+  },
+  "observations": [
+   {
+    "date": "2021-02-12 (before) · Sentinel-1 radar",
+    "image": "/radar/events/israel-tar-spill/2021-02-12-s1.webp"
+   },
+   {
+    "date": "2021-02-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/israel-tar-spill/2021-02-18-s1.webp"
+   },
+   {
+    "date": "2021-02-24 (after) · Sentinel-1 radar",
+    "image": "/radar/events/israel-tar-spill/2021-02-24-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "taylor-energy": {
+  "bounds": {
+   "west": -89.42708,
+   "east": -88.51292,
+   "south": 28.54,
+   "north": 29.34
+  },
+  "observations": [
+   {
+    "date": "2018-05-29 (before) · Sentinel-1 radar",
+    "image": "/radar/events/taylor-energy/2018-05-29-s1.webp"
+   },
+   {
+    "date": "2018-06-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/taylor-energy/2018-06-10-s1.webp"
+   },
+   {
+    "date": "2018-06-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/taylor-energy/2018-06-22-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "rodanthe-outer-banks": {
+  "bounds": {
+   "west": -75.71597,
+   "east": -75.22403,
+   "south": 35.4,
+   "north": 35.8
+  },
+  "observations": [
+   {
+    "date": "2024-09-01 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/rodanthe-outer-banks/2024-09-01-water.webp"
+   },
+   {
+    "date": "2024-11-12 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/rodanthe-outer-banks/2024-11-12-water.webp"
+   },
+   {
+    "date": "2024-12-30 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/rodanthe-outer-banks/2024-12-30-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/rodanthe-outer-banks/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-28"
+ },
+ "coastal-louisiana": {
+  "bounds": {
+   "west": -90.22934,
+   "east": -89.77066,
+   "south": 29.1,
+   "north": 29.5
+  },
+  "observations": [
+   {
+    "date": "2024-01-10 · Sentinel-1 radar",
+    "image": "/radar/events/coastal-louisiana/2024-01-10-s1.webp"
+   },
+   {
+    "date": "2024-07-08 · Sentinel-1 radar",
+    "image": "/radar/events/coastal-louisiana/2024-07-08-s1.webp"
+   },
+   {
+    "date": "2024-12-23 · Sentinel-1 radar",
+    "image": "/radar/events/coastal-louisiana/2024-12-23-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/coastal-louisiana/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-31"
+ },
+ "sundarbans": {
+  "bounds": {
+   "west": 88.98444,
+   "east": 89.41556,
+   "south": 21.7,
+   "north": 22.1
+  },
+  "observations": [
+   {
+    "date": "2024-01-11 · Sentinel-1 radar",
+    "image": "/radar/events/sundarbans/2024-01-11-s1.webp"
+   },
+   {
+    "date": "2024-07-09 · Sentinel-1 radar",
+    "image": "/radar/events/sundarbans/2024-07-09-s1.webp"
+   },
+   {
+    "date": "2024-12-24 · Sentinel-1 radar",
+    "image": "/radar/events/sundarbans/2024-12-24-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/sundarbans/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-06"
+ },
+ "nile-rosetta": {
+  "bounds": {
+   "west": 30.12551,
+   "east": 30.59449,
+   "south": 31.27,
+   "north": 31.67
+  },
+  "observations": [
+   {
+    "date": "2024-08-25 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/nile-rosetta/2024-08-25-water.webp"
+   },
+   {
+    "date": "2024-10-24 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/nile-rosetta/2024-10-24-water.webp"
+   },
+   {
+    "date": "2024-12-23 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/nile-rosetta/2024-12-23-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/nile-rosetta/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-02"
+ },
+ "holderness": {
+  "bounds": {
+   "west": -0.5401,
+   "east": 0.1401,
+   "south": 53.78,
+   "north": 54.18
+  },
+  "observations": [
+   {
+    "date": "2024-08-24 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/holderness/2024-08-24-water.webp"
+   },
+   {
+    "date": "2024-11-28 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/holderness/2024-11-28-water.webp"
+   },
+   {
+    "date": "2024-12-22 · radar water map (OPERA DSWx)",
+    "image": "/radar/events/holderness/2024-12-22-water.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/holderness/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-31"
+ },
+ "drew-point": {
+  "bounds": {
+   "west": -154.5106,
+   "east": -153.2894,
+   "south": 70.68,
+   "north": 71.08
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/drew-point/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-07-15 · Sentinel-1 radar",
+    "image": "/radar/events/drew-point/2024-07-15-s1.webp"
+   },
+   {
+    "date": "2024-12-30 · Sentinel-1 radar",
+    "image": "/radar/events/drew-point/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "saint-louis-senegal": {
+  "bounds": {
+   "west": -16.70806,
+   "east": -16.29194,
+   "south": 15.8,
+   "north": 16.2
+  },
+  "observations": [
+   {
+    "date": "2024-01-07 · Sentinel-1 radar",
+    "image": "/radar/events/saint-louis-senegal/2024-01-07-s1.webp"
+   },
+   {
+    "date": "2024-07-05 · Sentinel-1 radar",
+    "image": "/radar/events/saint-louis-senegal/2024-07-05-s1.webp"
+   },
+   {
+    "date": "2024-12-20 · Sentinel-1 radar",
+    "image": "/radar/events/saint-louis-senegal/2024-12-20-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/saint-louis-senegal/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-02"
+ },
+ "fort-myers-beach-ian": {
+  "bounds": {
+   "west": -82.17338,
+   "east": -81.72662,
+   "south": 26.25,
+   "north": 26.65
+  },
+  "observations": [
+   {
+    "date": "2022-09-25 (before) · Sentinel-1 radar",
+    "image": "/radar/events/fort-myers-beach-ian/2022-09-25-s1.webp"
+   },
+   {
+    "date": "2022-10-07 (after) · Sentinel-1 radar",
+    "image": "/radar/events/fort-myers-beach-ian/2022-10-07-s1.webp"
+   },
+   {
+    "date": "2022-10-19 (after) · Sentinel-1 radar",
+    "image": "/radar/events/fort-myers-beach-ian/2022-10-19-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "big-bend-helene": {
+  "bounds": {
+   "west": -83.82052,
+   "east": -83.35948,
+   "south": 29.62,
+   "north": 30.02
+  },
+  "observations": [
+   {
+    "date": "2024-09-26 (before) · Sentinel-1 radar",
+    "image": "/radar/events/big-bend-helene/2024-09-26-s1.webp"
+   },
+   {
+    "date": "2024-10-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/big-bend-helene/2024-10-08-s1.webp"
+   },
+   {
+    "date": "2024-10-20 (after) · Sentinel-1 radar",
+    "image": "/radar/events/big-bend-helene/2024-10-20-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "horn-of-africa-2022": {
+  "bounds": {
+   "west": 38.99756,
+   "east": 41.00244,
+   "south": 3.0,
+   "north": 5.0
+  },
+  "observations": [
+   {
+    "date": "2022-09-23 (before) · Sentinel-1 radar",
+    "image": "/radar/events/horn-of-africa-2022/2022-09-23-s1.webp"
+   },
+   {
+    "date": "2022-10-05 (after) · Sentinel-1 radar",
+    "image": "/radar/events/horn-of-africa-2022/2022-10-05-s1.webp"
+   },
+   {
+    "date": "2022-10-17 (after) · Sentinel-1 radar",
+    "image": "/radar/events/horn-of-africa-2022/2022-10-17-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "amazon-drought-2023": {
+  "bounds": {
+   "west": -61.00147,
+   "east": -58.99853,
+   "south": -4.1,
+   "north": -2.1
+  },
+  "observations": [
+   {
+    "date": "2023-10-07 (before) · Sentinel-1 radar",
+    "image": "/radar/events/amazon-drought-2023/2023-10-07-s1.webp"
+   },
+   {
+    "date": "2023-10-19 (after) · Sentinel-1 radar",
+    "image": "/radar/events/amazon-drought-2023/2023-10-19-s1.webp"
+   },
+   {
+    "date": "2023-10-31 (after) · Sentinel-1 radar",
+    "image": "/radar/events/amazon-drought-2023/2023-10-31-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "europe-2022": {
+  "bounds": {
+   "west": 1.04726,
+   "east": 3.95274,
+   "south": 45.5,
+   "north": 47.5
+  },
+  "observations": [
+   {
+    "date": "2022-07-23 (before) · Sentinel-1 radar",
+    "image": "/radar/events/europe-2022/2022-07-23-s1.webp"
+   },
+   {
+    "date": "2022-08-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/europe-2022/2022-08-04-s1.webp"
+   },
+   {
+    "date": "2022-08-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/europe-2022/2022-08-16-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "california-ars-2023": {
+  "bounds": {
+   "west": -121.75214,
+   "east": -119.24786,
+   "south": 36.0,
+   "north": 38.0
+  },
+  "observations": [
+   {
+    "date": "2023-01-01 (before) · Sentinel-1 radar",
+    "image": "/radar/events/california-ars-2023/2023-01-01-s1.webp"
+   },
+   {
+    "date": "2023-01-13 (after) · Sentinel-1 radar",
+    "image": "/radar/events/california-ars-2023/2023-01-13-s1.webp"
+   },
+   {
+    "date": "2023-01-25 (after) · Sentinel-1 radar",
+    "image": "/radar/events/california-ars-2023/2023-01-25-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "murray-darling-2022": {
+  "bounds": {
+   "west": 140.79378,
+   "east": 143.20622,
+   "south": -35.0,
+   "north": -33.0
+  },
+  "observations": [
+   {
+    "date": "2022-11-10 (before) · Sentinel-1 radar",
+    "image": "/radar/events/murray-darling-2022/2022-11-10-s1.webp"
+   },
+   {
+    "date": "2022-11-22 (after) · Sentinel-1 radar",
+    "image": "/radar/events/murray-darling-2022/2022-11-22-s1.webp"
+   },
+   {
+    "date": "2022-12-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/murray-darling-2022/2022-12-04-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "helene-nc-2024": {
+  "bounds": {
+   "west": -83.77986,
+   "east": -81.32014,
+   "south": 34.6,
+   "north": 36.6
+  },
+  "observations": [
+   {
+    "date": "2024-09-21 (before) · Sentinel-1 radar",
+    "image": "/radar/events/helene-nc-2024/2024-09-21-s1.webp"
+   },
+   {
+    "date": "2024-10-03 (after) · Sentinel-1 radar",
+    "image": "/radar/events/helene-nc-2024/2024-10-03-s1.webp"
+   },
+   {
+    "date": "2024-10-15 (after) · Sentinel-1 radar",
+    "image": "/radar/events/helene-nc-2024/2024-10-15-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "india-monsoon-onset-2025": {
+  "bounds": {
+   "west": 75.28457,
+   "east": 77.31543,
+   "south": 9.0,
+   "north": 11.0
+  },
+  "observations": [
+   {
+    "date": "2025-05-28 (before) · Sentinel-1 radar",
+    "image": "/radar/events/india-monsoon-onset-2025/2025-05-28-s1.webp"
+   },
+   {
+    "date": "2025-06-09 (after) · Sentinel-1 radar",
+    "image": "/radar/events/india-monsoon-onset-2025/2025-06-09-s1.webp"
+   },
+   {
+    "date": "2025-06-21 (after) · Sentinel-1 radar",
+    "image": "/radar/events/india-monsoon-onset-2025/2025-06-21-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "sahel-2025": {
+  "bounds": {
+   "west": 1.07158,
+   "east": 3.12842,
+   "south": 12.5,
+   "north": 14.5
+  },
+  "observations": [
+   {
+    "date": "2025-07-15 (before) · Sentinel-1 radar",
+    "image": "/radar/events/sahel-2025/2025-07-15-s1.webp"
+   },
+   {
+    "date": "2025-08-08 (after) · Sentinel-1 radar",
+    "image": "/radar/events/sahel-2025/2025-08-08-s1.webp"
+   },
+   {
+    "date": "2025-08-20 (after) · Sentinel-1 radar",
+    "image": "/radar/events/sahel-2025/2025-08-20-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "thwaites": {
+  "bounds": {
+   "west": -108.74696,
+   "east": -104.75304,
+   "south": -76.0,
+   "north": -75.0
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/thwaites/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-07-03 · Sentinel-1 radar",
+    "image": "/radar/events/thwaites/2024-07-03-s1.webp"
+   },
+   {
+    "date": "2024-12-30 · Sentinel-1 radar",
+    "image": "/radar/events/thwaites/2024-12-30-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/thwaites/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-10-29"
+ },
+ "pine-island": {
+  "bounds": {
+   "west": -101.95349,
+   "east": -98.04651,
+   "south": -75.67,
+   "north": -74.67
+  },
+  "observations": [
+   {
+    "date": "2024-01-05 · Sentinel-1 radar",
+    "image": "/radar/events/pine-island/2024-01-05-s1.webp"
+   },
+   {
+    "date": "2024-06-21 · Sentinel-1 radar",
+    "image": "/radar/events/pine-island/2024-06-21-s1.webp"
+   },
+   {
+    "date": "2024-12-18 · Sentinel-1 radar",
+    "image": "/radar/events/pine-island/2024-12-18-s1.webp"
+   }
+  ],
+  "flashlightImage": "/radar/events/pine-island/nisar.webp",
+  "flashlightLabel": "NISAR radar image, 2026-11-01"
+ },
+ "zachariae-isstrom": {
+  "bounds": {
+   "west": -24.2,
+   "east": -19.2,
+   "south": 78.4,
+   "north": 79.4
+  },
+  "observations": [
+   {
+    "date": "2024-01-02 · Sentinel-1 radar",
+    "image": "/radar/events/zachariae-isstrom/2024-01-02-s1.webp"
+   },
+   {
+    "date": "2024-06-06 · Sentinel-1 radar",
+    "image": "/radar/events/zachariae-isstrom/2024-06-06-s1.webp"
+   },
+   {
+    "date": "2024-11-09 · Sentinel-1 radar",
+    "image": "/radar/events/zachariae-isstrom/2024-11-09-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "petermann": {
+  "bounds": {
+   "west": -63.0,
+   "east": -58.0,
+   "south": 80.2,
+   "north": 81.2
+  },
+  "observations": [
+   {
+    "date": "2024-01-04 · Sentinel-1 radar",
+    "image": "/radar/events/petermann/2024-01-04-s1.webp"
+   },
+   {
+    "date": "2024-07-02 · Sentinel-1 radar",
+    "image": "/radar/events/petermann/2024-07-02-s1.webp"
+   },
+   {
+    "date": "2024-12-29 · Sentinel-1 radar",
+    "image": "/radar/events/petermann/2024-12-29-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "a68-larsen-c": {
+  "bounds": {
+   "west": -62.80656,
+   "east": -60.19344,
+   "south": -68.0,
+   "north": -67.0
+  },
+  "observations": [
+   {
+    "date": "2017-07-06 (before) · Sentinel-1 radar",
+    "image": "/radar/events/a68-larsen-c/2017-07-06-s1.webp"
+   },
+   {
+    "date": "2017-07-12 (after) · Sentinel-1 radar",
+    "image": "/radar/events/a68-larsen-c/2017-07-12-s1.webp"
+   },
+   {
+    "date": "2017-07-18 (after) · Sentinel-1 radar",
+    "image": "/radar/events/a68-larsen-c/2017-07-18-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "antarctic-low-2023-weddell": {
+  "bounds": {
+   "west": -44.38571,
+   "east": -35.61429,
+   "south": -71.5,
+   "north": -68.5
+  },
+  "observations": [
+   {
+    "date": "2023-02-13 (before) · Sentinel-1 radar",
+    "image": "/radar/events/antarctic-low-2023-weddell/2023-02-13-s1.webp"
+   },
+   {
+    "date": "2023-02-25 (after) · Sentinel-1 radar",
+    "image": "/radar/events/antarctic-low-2023-weddell/2023-02-25-s1.webp"
+   },
+   {
+    "date": "2023-03-09 (after) · Sentinel-1 radar",
+    "image": "/radar/events/antarctic-low-2023-weddell/2023-03-09-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "arctic-max-2025-barents": {
+  "bounds": {
+   "west": 33.79965,
+   "east": 46.20035,
+   "south": 74.5,
+   "north": 77.5
+  },
+  "observations": [
+   {
+    "date": "2025-03-11 (before) · Sentinel-1 radar",
+    "image": "/radar/events/arctic-max-2025-barents/2025-03-11-s1.webp"
+   },
+   {
+    "date": "2025-03-23 (after) · Sentinel-1 radar",
+    "image": "/radar/events/arctic-max-2025-barents/2025-03-23-s1.webp"
+   },
+   {
+    "date": "2025-04-04 (after) · Sentinel-1 radar",
+    "image": "/radar/events/arctic-max-2025-barents/2025-04-04-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "maud-rise-polynya": {
+  "bounds": {
+   "west": -0.5493,
+   "east": 6.5493,
+   "south": -66.5,
+   "north": -63.5
+  },
+  "observations": [
+   {
+    "date": "2017-09-04 (before) · Sentinel-1 radar",
+    "image": "/radar/events/maud-rise-polynya/2017-09-04-s1.webp"
+   },
+   {
+    "date": "2017-09-16 (after) · Sentinel-1 radar",
+    "image": "/radar/events/maud-rise-polynya/2017-09-16-s1.webp"
+   },
+   {
+    "date": "2017-09-28 (after) · Sentinel-1 radar",
+    "image": "/radar/events/maud-rise-polynya/2017-09-28-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ },
+ "northwest-passage": {
+  "bounds": {
+   "west": -100.44193,
+   "east": -89.55807,
+   "south": 72.5,
+   "north": 75.5
+  },
+  "observations": [
+   {
+    "date": "2024-08-29 (before) · Sentinel-1 radar",
+    "image": "/radar/events/northwest-passage/2024-08-29-s1.webp"
+   },
+   {
+    "date": "2024-09-03 (after) · Sentinel-1 radar",
+    "image": "/radar/events/northwest-passage/2024-09-03-s1.webp"
+   },
+   {
+    "date": "2024-09-10 (after) · Sentinel-1 radar",
+    "image": "/radar/events/northwest-passage/2024-09-10-s1.webp"
+   }
+  ],
+  "flashlightImage": null,
+  "flashlightLabel": null
+ }
+}
