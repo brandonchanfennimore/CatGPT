@@ -27,7 +27,3 @@ dist-ssr
 data/raw/
 pipeline/.venv/
 .env
-
-# Processed event images: uploaded to R2, not committed
-data/radar/
-__pycache__/
