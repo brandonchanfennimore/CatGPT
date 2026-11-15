@@ -20,6 +20,8 @@ body {
 /* ---- Webcam / hand-gesture panel (snaps to a corner) ---- */
 .hand-panel {
   position: fixed;
+  right: 16px;
+  bottom: 16px;
   z-index: 200; /* above the study-area info view (z-index 100) so gestures stay usable */
   width: 260px;
   padding: 12px;
@@ -28,34 +30,13 @@ body {
   color: #e6ecff;
   font: 14px/1.4 system-ui, sans-serif;
 }
-/* Which corner the panel sits in (set by useCornerSnap in HandTracker.jsx). */
-.hand-panel[data-corner^="t"] { top: 16px; }
-.hand-panel[data-corner^="b"] { bottom: 16px; }
-.hand-panel[data-corner$="l"] { left: 16px; }
-.hand-panel[data-corner$="r"] { right: 16px; }
 
 .hand-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 8px;
 }
-.hand-drag {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #aab4d4;
-  cursor: grab;
-  touch-action: none; /* let touch drags move the panel instead of scrolling */
-}
-.hand-drag:hover { background: rgba(255, 255, 255, 0.08); color: #e6ecff; }
-.hand-drag:active { cursor: grabbing; }
-.hand-drag:focus-visible,
 .hand-toggle:focus-visible,
 .hand-help:focus-visible { outline: 2px solid #4fd1ff; outline-offset: 2px; }
 .hand-actions { display: flex; align-items: center; gap: 6px; }

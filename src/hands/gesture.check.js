@@ -21,6 +21,7 @@ const POINT = [false, true, true, true]; // only the index finger up
 const TWO = [false, false, true, true]; // index + middle up
 const ODD = [true, false, true, false]; // a shape we don't use
 const PINKY = [true, true, true, false]; // only the little finger up
+const ROCK = [false, true, true, false]; // index + little finger up
 
 assert.equal(classifyHand(makeHand({ curled: OPEN })), 'open');
 assert.equal(classifyHand(makeHand({ curled: FIST })), 'fist');
@@ -28,6 +29,16 @@ assert.equal(classifyHand(makeHand({ curled: POINT })), 'point');
 assert.equal(classifyHand(makeHand({ curled: TWO })), 'two');
 assert.equal(classifyHand(makeHand({ curled: ODD })), 'other');
 assert.equal(classifyHand(makeHand({ curled: PINKY })), 'pinky');
+assert.equal(classifyHand(makeHand({ curled: ROCK })), 'rock');
+
+// Rock hand moving down -> places mode with dy > 0.
+{
+  const t = createGestureTracker();
+  let o;
+  for (let i = 0; i < 10; i++) o = t([makeHand({ cy: 0.5 + i * 0.02, curled: ROCK })]);
+  assert.equal(o.mode, 'places');
+  assert.ok(o.dy > 0, `expected dy > 0, got ${o.dy}`);
+}
 
 // Pinky up moving down -> settings mode with dy > 0.
 {

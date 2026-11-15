@@ -19,7 +19,7 @@ import { latLonToVector } from "./geo";
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import GestureTutorial from "./components/GestureTutorial";
-import { SITES, countByCategory } from "./data/sites";
+import { countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
@@ -203,12 +203,12 @@ export default function App() {
         gestureRef={gestureRef}
         gestureEnabled={!infoFullScreen && !showTutorial}
       >
-        <PopularPlaces places={popularPlaces} onSelect={goToPlace} />
-
-        {/* First study area, from SITES so it has its images and sources */}
-        <button type="button" className="explore-button" onClick={() => openSite(SITES[0])}>
-          Explore NISAR Data
-        </button>
+        <PopularPlaces
+          places={popularPlaces}
+          onSelect={goToPlace}
+          gestureRef={gestureRef}
+          gestureEnabled={!infoFullScreen && !showTutorial}
+        />
       </Header>
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />

@@ -450,31 +450,12 @@
   margin-top: 16px;
 }
 
-.explore-button {
-  width: 190px;
-  background: #2778c4;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: white;
-  font: inherit;
-  font-size: 14px;
-  font-weight: bold;
-  white-space: nowrap;
-  cursor: pointer;
-  pointer-events: auto; /* the header ignores clicks; the button must not */
-}
-.explore-button:hover {
-  background: #3997ec;
-}
-.explore-button:focus-visible {
-  outline: 2px solid #7dd3fc;
-  outline-offset: 2px;
-}
-
 /* Popular places (PopularPlaces.jsx), under the title. */
 .popular-places {
-  width: 190px;
+  /* As wide as the longest name + visit count, within limits (long names get "…"). */
+  width: max-content;
+  min-width: 190px;
+  max-width: min(360px, calc(100vw - 72px));
   padding: 10px 14px 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
@@ -500,7 +481,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 8px;
+  gap: 18px;
   width: 100%;
   padding: 5px 6px;
   border: 0;
@@ -551,4 +532,18 @@
   margin: 0;
   color: #7dd3fc;
   font-size: 11px;
+}
+
+/* 🤘 gesture on the Popular places panel (PopularPlaces.jsx): same look as View settings. */
+.popular-places.gesture-active {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 1px #7dd3fc, 0 0 18px rgba(125, 211, 252, 0.35);
+}
+.popular-places button.gesture-focus {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 1px;
+  background: rgba(125, 211, 252, 0.12);
+}
+.popular-places .gesture-hint {
+  margin: 6px 0 0;
 }

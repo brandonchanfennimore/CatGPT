@@ -29,7 +29,7 @@ export default function Header({
   onHiddenCategoriesChange,
   gestureRef, // shared hand-gesture "mailbox" (pinky up = control these settings)
   gestureEnabled = true, // false while a pop-up is open
-  children, // extra panels under the title (Popular places, Explore button)
+  children, // extra panels under the title (Popular places)
 }) {
   const total = Object.values(siteCounts).reduce((a, b) => a + b, 0);
 

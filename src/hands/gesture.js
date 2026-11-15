@@ -15,6 +15,7 @@
  *   two fingers (index+middle) -> 'swipe' (nothing moves)...
  *     ...flicked upward        -> `select: true` once: open/close the info view
  *   pinky only + move         -> 'settings' (down/up = pick a View setting, right = toggle it)
+ *   index + pinky ("rock") + move -> 'places' (down/up = pick a Popular place, right = fly there)
  *   fist (or any other shape) -> 'release' (nothing moves)
  *   no hand                   -> 'none'
  *
@@ -43,7 +44,7 @@ const mirror = (p) => ({ x: 1 - p.x, y: p.y });
 // people hold it in all sorts of ways.)
 const FINGERS = [[8, 6], [12, 10], [16, 14], [20, 18]];
 
-/** Classify one hand as 'open', 'point', 'two', 'pinky', 'fist' or 'other'. */
+/** Classify one hand as 'open', 'point', 'two', 'pinky', 'rock', 'fist' or 'other'. */
 export function classifyHand(lm) {
   // Is each finger straight? Compare tip and middle-joint distance from the wrist.
   const [index, middle, ring, pinky] = FINGERS.map(
@@ -53,6 +54,7 @@ export function classifyHand(lm) {
   if (index && !middle && !ring && !pinky) return 'point';
   if (index && middle && !ring && !pinky) return 'two'; // index + middle up, like a peace sign
   if (!index && !middle && !ring && pinky) return 'pinky'; // only the little finger up
+  if (index && !middle && !ring && pinky) return 'rock'; // index + little finger up 🤘
   if (!index && !middle && !ring && !pinky) return 'fist';
   return 'other'; // a hand halfway between shapes
 }
@@ -65,7 +67,7 @@ export function classifyHand(lm) {
  * `result.landmarks` (an array of hands; only the first is used) and the frame
  * time in milliseconds. It returns:
  *   { mode, dx, dy, fling, select }
- *   mode:   'none' | 'release' | 'swipe' | 'rotate' | 'zoom' | 'settings'
+ *   mode:   'none' | 'release' | 'swipe' | 'rotate' | 'zoom' | 'settings' | 'places'
  *   dx, dy: how far the tracked point moved this frame (fraction of the video size)
  *   fling:  only on the frame a rotate ends: {x, y} speed of the hand, else null
  *   select: true only on the frame a two-finger swipe up completes
@@ -115,6 +117,9 @@ export function createGestureTracker() {
     } else if (kind === 'pinky') {
       newMode = 'settings';
       raw = mirror(hand[20]); // pinky fingertip
+    } else if (kind === 'rock') {
+      newMode = 'places';
+      raw = mirror(hand[9]); // middle knuckle: the steady middle of the hand
     } else {
       newMode = hand ? 'release' : 'none';
       raw = null;

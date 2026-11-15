@@ -44,7 +44,7 @@
 
 .tutorial-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin: 0;
   padding: 0;
@@ -211,7 +211,11 @@
 }
 .tut-rows i:nth-child(2) { animation: tut-row-focus 3.2s ease-in-out infinite; }
 .tut-rows i:nth-child(2)::after { animation: tut-row-switch 3.2s steps(1) infinite; }
-.tut-settings .tut-hand { animation: tut-pinky 3.2s ease-in-out infinite; top: 50%; left: 84%; font-size: 26px; }
+.tut-settings .tut-hand,
+.tut-places .tut-hand { animation: tut-pinky 3.2s ease-in-out infinite; top: 50%; left: 84%; font-size: 26px; }
+/* Popular places list: rows without switches. */
+.tut-places .tut-rows i::after { display: none; }
+.tut-places .tut-rows i:nth-child(2)::after { display: none; }
 @keyframes tut-row-focus {
   0%, 25% { box-shadow: none; }
   35%, 100% { box-shadow: 0 0 0 2px #7dd3fc; background: rgba(125, 211, 252, 0.15); }

@@ -1,6 +1,5 @@
 /*
- * HandTracker - the webcam panel in the corner.
- *  0. A drag handle: drop the panel anywhere and it snaps to the nearest corner.
+ * HandTracker - the webcam panel in the bottom-right corner.
  *  1. Start/Stop button (browsers only allow the camera after a click).
  *  2. Runs MediaPipe HandLandmarker on each video frame.
  *  3. Draws the hand skeleton over the preview.
@@ -9,7 +8,6 @@
  */
 import { DrawingUtils, FilesetResolver, HandLandmarker } from "@mediapipe/tasks-vision";
 import { useEffect, useImperativeHandle, useRef, useState } from "react";
-import { flushSync } from "react-dom";
 import { createGestureTracker } from "./gesture";
 
 // The WASM runtime must match the installed package version (see package.json).
@@ -21,17 +19,18 @@ const MODEL_URL =
 // and the guide list under the webcam. Same hand shapes, different jobs.
 const CONTEXTS = {
   explore: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom", settings: "View settings" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to open", rotate: "Rotate", zoom: "Zoom", settings: "View settings", places: "Popular places" },
     guide: [
       "🖐️ Open palm + move: rotate (swipe out of view to spin)",
       "☝️ Point + move right/left: zoom in/out",
       "✊ Fist: pause",
       "✌️ Two fingers, swipe up: open the marker in the middle",
       "🤙 Pinky up + move down/up: pick a view setting or event type, right: switch it",
+      "🤘 Index + pinky up, move down/up: pick a popular place, right: fly there",
     ],
   },
   info: {
-    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view", settings: "Paused" },
+    labels: { none: "No hand", release: "Paused", swipe: "Two fingers: swipe up to go back", rotate: "Scroll", zoom: "Pictures / view", settings: "Paused", places: "Paused" },
     guide: [
       "🖐️ Open palm + move up/down: scroll",
       "☝️ Point + move right/left: next/previous picture",
@@ -53,8 +52,6 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, o
   const [state, setState] = useState("idle"); // idle | loading | running | error
   const [message, setMessage] = useState("");
   const [mode, setMode] = useState("none");
-  const panelRef = useRef(null);
-  const dragHandle = useCornerSnap(panelRef);
 
   // Stop the camera and model when the component goes away.
   useEffect(() => () => cleanupRef.current?.(), []);
@@ -138,6 +135,10 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, o
           // so the globe never moves with it.
           shared.sx = (shared.sx ?? 0) + g.dx;
           shared.sy = (shared.sy ?? 0) + g.dy;
+        } else if (g.mode === "places") {
+          // 🤘 movement: its own mailbox too (read by the Popular places panel).
+          shared.px = (shared.px ?? 0) + g.dx;
+          shared.py = (shared.py ?? 0) + g.dy;
         } else {
           shared.dx += g.dx;
           shared.dy += g.dy;
@@ -176,23 +177,9 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, o
   }
 
   return (
-    <div className="hand-panel" ref={panelRef} data-corner={dragHandle.corner}>
-      {/* Top bar: drag handle on the left, Start/Stop on the right. */}
+    <div className="hand-panel">
+      {/* Top bar: "?" (gesture tutorial) and Start/Stop on the right. */}
       <div className="hand-header">
-        <button
-          type="button"
-          className="hand-drag"
-          aria-label="Move panel. Drag it, or use arrow keys to pick a corner."
-          title="Drag to move"
-          {...dragHandle.props}
-        >
-          {/* "Grip" icon: six dots */}
-          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-            {[4, 8, 12].map((y) =>
-              [6, 10].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.5" fill="currentColor" />)
-            )}
-          </svg>
-        </button>
         <div className="hand-actions">
           {onHelp && (
             <button type="button" className="hand-help" onClick={onHelp} aria-label="How to use hand gestures" title="How to use hand gestures">
@@ -231,68 +218,4 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, o
       </ul>
     </div>
   );
-}
-
-/*
- * useCornerSnap - lets the user drag the panel and "magnetically" snaps it to the
- * nearest screen corner on release.
- *
- * How: the corner is stored in React state and CSS anchors the panel there
- * (see [data-corner] in index.css). While dragging, we only move the panel
- * visually with a CSS transform. On release we pick the corner closest to the
- * panel's centre, then animate from where it was dropped into the corner
- * (the "FLIP" trick: measure First, switch to Last, Invert with a transform, Play).
- */
-function useCornerSnap(panelRef) {
-  const [corner, setCorner] = useState("br"); // t/b = top/bottom, l/r = left/right
-  const dragStart = useRef(null);
-
-  function snapTo(next) {
-    const panel = panelRef.current;
-    const before = panel.getBoundingClientRect(); // where it is now (maybe mid-drag)
-    flushSync(() => setCorner(next)); // apply the new corner to the DOM right away
-    panel.style.transition = "none";
-    panel.style.transform = "none";
-    const after = panel.getBoundingClientRect(); // where the corner puts it
-    // Jump back visually to where it was...
-    panel.style.transform = `translate(${before.left - after.left}px, ${before.top - after.top}px)`;
-    panel.getBoundingClientRect(); // force the browser to apply that before animating
-    // ...then glide into the corner. The curve overshoots a little = "magnetic" feel.
-    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    panel.style.transition = reduceMotion ? "none" : "transform 0.35s cubic-bezier(0.2, 1.3, 0.4, 1)";
-    panel.style.transform = "";
-  }
-
-  const props = {
-    onPointerDown(e) {
-      e.currentTarget.setPointerCapture(e.pointerId); // keep receiving moves outside the handle
-      dragStart.current = { x: e.clientX, y: e.clientY };
-      panelRef.current.style.transition = "none";
-    },
-    onPointerMove(e) {
-      if (!dragStart.current) return;
-      const dx = e.clientX - dragStart.current.x;
-      const dy = e.clientY - dragStart.current.y;
-      panelRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
-    },
-    onPointerUp() {
-      if (!dragStart.current) return;
-      dragStart.current = null;
-      const r = panelRef.current.getBoundingClientRect();
-      const top = r.top + r.height / 2 < innerHeight / 2;
-      const left = r.left + r.width / 2 < innerWidth / 2;
-      snapTo((top ? "t" : "b") + (left ? "l" : "r"));
-    },
-    // Keyboard users: arrow keys move the panel to another corner.
-    onKeyDown(e) {
-      const keys = { ArrowUp: "t" + corner[1], ArrowDown: "b" + corner[1], ArrowLeft: corner[0] + "l", ArrowRight: corner[0] + "r" };
-      if (keys[e.key] && keys[e.key] !== corner) {
-        e.preventDefault();
-        snapTo(keys[e.key]);
-      }
-    },
-  };
-  props.onPointerCancel = props.onPointerUp;
-
-  return { corner, props };
 }
