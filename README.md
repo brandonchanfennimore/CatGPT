@@ -18,7 +18,8 @@ from before NISAR's data began.
   - **Storm Boris floods, Poland** (Sep 2024, Sentinel-1 / NASA OPERA)
 - **128 surface-change events** in 13 categories (floods, earthquakes, volcanoes,
   subsidence, landslides, wildfires, deforestation, crops & wetlands, glaciers, sea ice,
-  oil slicks, coastal, soil moisture), most with radar images.
+  oil slicks, coastal, soil moisture). 117 of them have radar images, with a written
+  explanation and cited sources.
 - **Notable floods** with a name, date and short note.
 
 Dots **cluster** when zoomed out (a numbered bubble) and split apart as you zoom in.
@@ -28,11 +29,10 @@ Click a bubble to fly closer. The legend under "Map layers" shows or hides each 
 
 | | |
 |---|---|
-| **Explore mode** | Spin and zoom the globe, open any site. Country borders, city labels and coordinates appear as you zoom in. |
-| **Timeline** | Step through a site's images by date. **Radar view** shows the raw radar picture; **Normal view** shows a cloud-free photo with the water the radar found painted blue. |
-| **Flashlight mode** | Move a "lens" over the globe to reveal radar imagery underneath. |
-| **Time mode** | Drag a before/after curtain across a site. |
-| **Hand gestures** | Webcam hand tracking (MediaPipe): open palm to rotate, point and move to zoom, fist to pause, two fingers swiped up to open the dot in the middle. Keys **1 / 2 / 3** switch modes. |
+| **Globe** | Spin and zoom the Earth, open any dot. Country borders, city labels and coordinates appear as you zoom in; "Bright" / "Realistic" lighting. |
+| **Info view** | Opens when you click a site: what happened, "What Changed?", why it matters, and a **Sources** list with links (NASA, UN, agencies, journals). |
+| **Timeline** | Step through a site's images by date. **Radar view** shows the radar picture; **Normal view** shows a cloud-free photo with the water the radar found painted blue. |
+| **Hand gestures** | Webcam hand tracking (MediaPipe). On the globe: open palm to rotate, point and move left/right to zoom, fist to pause, two fingers swiped up to open the dot in the middle. In the info view: palm up/down to scroll, point left/right to change picture, two fingers up to go back. |
 
 ## Run it locally
 
@@ -95,13 +95,14 @@ For floods before NISAR (2014 onward), add `--satellite sentinel1 --start YYYY-M
 
 ```
 src/
-  App.jsx               the globe scene, modes and panels
-  components/           globe, markers (FloodMarkers = clustered dots), timeline, info view, map overlay
-  modes/                Flashlight and Time modes, camera flights
+  App.jsx               the globe scene and panels
+  components/           globe, markers (FloodMarkers = clustered dots), timeline, info view,
+                        map overlay, camera flights
   hands/                webcam hand tracking and gestures
-  data/                 studyAreas.js, events.js, floodEvents.js, sites.js (merges them), categories.js
+  data/                 studyAreas.js, events.js, floodEvents.js, sites.js (merges them),
+                        categories.js, eventFindings.js ("What Changed?"), eventSources.js (citations)
   clusters.js           merges nearby dots on screen
-  tuning.js             adjustable numbers for gestures and radar modes
+  tuning.js             adjustable numbers for hand gestures and the camera
 public/                 study site images (nisar/, radar/), Earth texture
 pipeline/               Python scripts that make the images
 worker/, wrangler.jsonc Cloudflare hosting
@@ -125,7 +126,8 @@ npx wrangler deploy
 - **Previews, not full data.** The images are NASA's quick-look previews (roughly
   170–290 m per pixel), not the full-resolution science files.
 - **NISAR's data starts in late 2025.** Older events use Sentinel-1.
-- **Event descriptions** in `events.js` are short summaries: check them before presenting.
+- **Event text** in `events.js` and `eventFindings.js` is summarised from public reports;
+  each place lists its sources in the info view. Check numbers before presenting.
 
 ## Data and credits
 
