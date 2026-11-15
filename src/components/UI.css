@@ -441,6 +441,96 @@
   overflow-y: auto;
 }
 
+/* Panels under the title (Popular places, Explore button). View settings stays bottom-left. */
+.header-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.explore-button {
+  width: 190px;
+  background: #2778c4;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+  pointer-events: auto; /* the header ignores clicks; the button must not */
+}
+.explore-button:hover {
+  background: #3997ec;
+}
+.explore-button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
+/* Popular places (PopularPlaces.jsx), under the title. */
+.popular-places {
+  width: 190px;
+  padding: 10px 14px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(9, 22, 43, 0.7);
+  pointer-events: auto; /* the header ignores clicks; this panel must not */
+}
+.popular-places h2 {
+  margin: 0 0 6px;
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.popular-places ol {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.popular-places button {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #e6ecff;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.popular-places button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.popular-places button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+.place-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.place-visits {
+  color: #aabbcc;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+
 
 /* ---- Pinky-up gesture on the View settings panel (Header.jsx) ---- */
 .layer-toggles.gesture-active {

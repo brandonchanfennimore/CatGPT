@@ -2,6 +2,7 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import { useCallback, useRef, useState } from "react";
+import { Vector3 } from "three";
 
 import Earth, { EARTH_RADIUS } from "./components/Earth";
 import EarthTiles from "./components/EarthTiles";
@@ -12,16 +13,20 @@ import HandCameraControls from "./hands/HandCameraControls";
 import HandTracker from "./hands/HandTracker";
 import CameraFlyer from "./components/CameraFlyer";
 import AdaptiveNear from "./components/AdaptiveNear";
-import { RENDER_MAX_PIXEL_RATIO } from "./tuning";
+import { PLACE_FLY_ZOOM, RENDER_MAX_PIXEL_RATIO } from "./tuning";
+import { latLonToVector } from "./geo";
 
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import GestureTutorial from "./components/GestureTutorial";
-import { countByCategory } from "./data/sites";
+import { SITES, countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
 import "./components/UI.css";
 import { FloodMarkerLayer, FloodMarkerPositioner } from "./components/FloodMarkers";
+import PopularPlaces from "./components/PopularPlaces";
+import usePopularPlaces from "./usePopularPlaces";
+import { areaPlace } from "./popularity";
 
 const TUTORIAL_SEEN_KEY = "hand-me-the-earth:tutorial-seen";
 
@@ -47,6 +52,24 @@ export default function App() {
 
   // Currently selected NISAR study area
   const [selectedArea, setSelectedArea] = useState(null);
+
+  // Most visited places (the "Popular places" panel) and a way to count a visit.
+  const [popularPlaces, visitPlace] = usePopularPlaces();
+
+  // Open a site's info and count it as a visit.
+  const openSite = useCallback(
+    (area) => {
+      if (area?.center) visitPlace(areaPlace(area));
+      setSelectedArea(area);
+    },
+    [visitPlace]
+  );
+
+  // A place in the "Popular places" list: count the visit and fly there.
+  function goToPlace(place) {
+    visitPlace(place);
+    flyRef.current = { dir: new Vector3(...latLonToVector(place.lat, place.lon)), zoom: PLACE_FLY_ZOOM };
+  }
 
   // Lighting mode: bright or realistic
   const [lighting, setLighting] = useState("bright");
@@ -140,7 +163,7 @@ export default function App() {
         <FloodMarkerLayer
           layerRef={floodLayerRef}
           stateRef={floodStateRef}
-          onOpenSite={setSelectedArea}
+          onOpenSite={openSite}
           onFly={flyTo}
         />
       )}
@@ -179,7 +202,14 @@ export default function App() {
         onHiddenCategoriesChange={setHiddenCategories}
         gestureRef={gestureRef}
         gestureEnabled={!infoFullScreen && !showTutorial}
-      />
+      >
+        <PopularPlaces places={popularPlaces} onSelect={goToPlace} />
+
+        {/* First study area, from SITES so it has its images and sources */}
+        <button type="button" className="explore-button" onClick={() => openSite(SITES[0])}>
+          Explore NISAR Data
+        </button>
+      </Header>
 
       <ZoomBar barRef={zoomBarRef} targetRef={zoomTargetRef} />
 

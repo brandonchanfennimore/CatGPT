@@ -47,6 +47,16 @@ export const SETTINGS_TOGGLE_COOLDOWN_MS = 700;
 // Flight speed (higher = faster; about 1 / seconds to get most of the way there).
 export const FLY_SPEED = 3;
 
+// ---- Popular places panel ----
+
+// Zoom level to fly to when a place in the list is clicked.
+export const PLACE_FLY_ZOOM = 2;
+// How many places the list shows.
+export const POPULAR_PLACES_SHOWN = 5;
+// Before anything is visited, the list starts with random cities picked from
+// this many of the biggest cities.
+export const POPULAR_STARTER_POOL = 100;
+
 // ---- Performance ----
 
 // Retina screens have 2 real pixels per CSS pixel, so the 3D scene would draw 4x
