@@ -95,7 +95,7 @@ export default function GestureTutorial({ onClose, onStartCamera }) {
 
         <div className="tutorial-actions">
           <button type="button" className="tutorial-secondary" onClick={onClose}>
-            Use mouse instead
+            Use mouse or touch instead
           </button>
           <button
             type="button"

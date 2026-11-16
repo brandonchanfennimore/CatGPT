@@ -19,6 +19,7 @@ import { latLonToVector } from "./geo";
 import Header from "./components/Header";
 import StudyAreaView from "./components/StudyAreaView";
 import GestureTutorial from "./components/GestureTutorial";
+import TeamModal from "./components/TeamModal";
 import { countByCategory } from "./data/sites";
 import { CATEGORIES } from "./data/categories";
 
@@ -85,6 +86,9 @@ export default function App() {
   // browser), and any time from the camera panel's "?" button.
   const handTrackerRef = useRef(null);
   const [cameraOn, setCameraOn] = useState(false); // hand tracking running?
+  const [showTeam, setShowTeam] = useState(false); // "Built by CatGPT" pop-up
+  const [creditsOpen, setCreditsOpen] = useState(false); // phones: data credits folded open?
+  const closeTeam = useCallback(() => setShowTeam(false), []);
   const [showTutorial, setShowTutorial] = useState(() => {
     try {
       return !localStorage.getItem(TUTORIAL_SEEN_KEY);
@@ -169,12 +173,18 @@ export default function App() {
       )}
 
       {/* Data credits (CC BY data must be credited where it's shown) */}
-      <p className="map-credits">
+      <div className={creditsOpen ? "map-credits open" : "map-credits"}>
+        {/* Phones only (UI.css): the credits fold away behind this button. */}
+        <button type="button" className="credits-toggle" aria-expanded={creditsOpen} onClick={() => setCreditsOpen((o) => !o)}>
+          Credits
+        </button>
+        <p className="credits-text">
         Imagery: NASA Blue Marble via NASA GIBS · Borders: <a href="https://www.naturalearthdata.com/">Natural Earth</a> ·
         Cities: <a href="https://simplemaps.com/data/world-cities">SimpleMaps</a> (CC BY 4.0) ·
         Radar: NASA OPERA (DSWx, DIST), ARIA, NISAR (NASA/ISRO) via NASA Earthdata · Copernicus Sentinel-1 data ·
         Normal-view photos: NASA HLS and MODIS via NASA GIBS
-      </p>
+        </p>
+      </div>
 
       {/* Webcam hand tracking */}
       <HandTracker
@@ -184,6 +194,15 @@ export default function App() {
         onHelp={() => setShowTutorial(true)}
         onRunningChange={setCameraOn}
       />
+
+      {/* "Built by CatGPT" (top right) and the team pop-up */}
+      <p className="built-by">
+        Built by{" "}
+        <button type="button" onClick={() => setShowTeam(true)}>
+          CatGPT
+        </button>
+      </p>
+      {showTeam && <TeamModal onClose={closeTeam} />}
 
       {/* Gesture tutorial: on the first visit, and from the camera panel's "?" button */}
       {showTutorial && (

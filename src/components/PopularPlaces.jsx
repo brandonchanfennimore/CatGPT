@@ -44,6 +44,12 @@ export default function PopularPlaces({ places, onSelect, gestureRef, gestureEna
     return () => cancelAnimationFrame(frame);
   }, [gestureRef]);
 
+  // Keep the highlighted place in view (on phones the list is a row you swipe sideways).
+  const listRef = useRef(null);
+  useEffect(() => {
+    if (rockActive) listRef.current?.querySelector(".gesture-focus")?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }, [focus, rockActive]);
+
   const shown = Math.min(focus, places.length - 1);
   return (
     <>
@@ -57,7 +63,7 @@ export default function PopularPlaces({ places, onSelect, gestureRef, gestureEna
         aria-labelledby="popular-places-title"
       >
         <h2 id="popular-places-title">Popular places</h2>
-        <ol>
+        <ol ref={listRef}>
           {places.map((place, i) => (
             <li key={place.id}>
               <button

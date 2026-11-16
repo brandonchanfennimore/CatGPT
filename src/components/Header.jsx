@@ -40,6 +40,7 @@ export default function Header({
   const [focus, setFocus] = useState(0); // highlighted row (index into rows)
   const [pinkyActive, setPinkyActive] = useState(false); // pinky up right now?
   const [legendOpen, setLegendOpen] = useState(false); // Event types list folded open?
+  const [settingsOpen, setSettingsOpen] = useState(false); // phones: panel folded open? (UI.css)
   const panelRef = useRef(null);
   const latest = useRef(null); // newest props/state for the animation-frame loop below
   useEffect(() => {
@@ -128,12 +129,21 @@ export default function Header({
 
       {/* View settings: lighting + map layer switches */}
       {/* Bottom-left: (camera on) a gesture tip, then the View settings panel */}
-      <div className="view-settings-dock">
+      <div className={settingsOpen || pinkyActive ? "view-settings-dock open" : "view-settings-dock"}>
         {handsMode && (
           <GestureHint hand="🤙" motion="updown" className="panel-tip">
             Pinky up: move down/up to choose, right to switch
           </GestureHint>
         )}
+      {/* Phones only (UI.css): the panel folds away behind this button; the pinky opens it too. */}
+      <button
+        type="button"
+        className="settings-toggle"
+        aria-expanded={settingsOpen || pinkyActive}
+        onClick={() => setSettingsOpen((o) => !o)}
+      >
+        View settings
+      </button>
       <fieldset ref={panelRef} className={pinkyActive ? "layer-toggles gesture-active" : "layer-toggles"}>
         <legend>View settings</legend>
         {/* Lighting switch. data-mode moves the sliding highlight (see UI.css). */}

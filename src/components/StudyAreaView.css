@@ -23,8 +23,8 @@
 
 .info-close {
   position: absolute;
-  top: 16px;
-  right: 20px;
+  top: calc(env(safe-area-inset-top, 0px) + 16px);
+  right: calc(env(safe-area-inset-right, 0px) + 20px);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -34,8 +34,10 @@
   font-size: 18px;
   cursor: pointer;
 }
-.info-close:hover {
-  background: #22486d;
+@media (hover: hover) and (pointer: fine) {
+  .info-close:hover {
+    background: #22486d;
+  }
 }
 .info-close:focus-visible {
   outline: 2px solid #7dd3fc;
@@ -62,7 +64,7 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
 }
 .info-modal {
-  max-height: calc(100vh - 88px);
+  max-height: calc(100dvh - 88px);
   overflow-y: auto;
 }
 
@@ -90,7 +92,7 @@
 /* Keep the image short enough that the whole left card fits on screen. */
 .radar-card .timeline-image {
   aspect-ratio: auto;
-  height: clamp(200px, calc(100vh - 480px), 540px);
+  height: clamp(200px, calc(100dvh - 480px), 540px);
 }
 .radar-card .timeline-info {
   margin-top: 12px;
@@ -132,7 +134,9 @@
   .study-view {
     display: block;
     overflow-y: auto;
-    padding: 64px 16px 16px;
+    /* Bottom: room to scroll the last buttons up past the camera panel (bottom-right). */
+    padding: calc(env(safe-area-inset-top, 0px) + 64px) 16px calc(env(safe-area-inset-bottom, 0px) + 80px);
+    overscroll-behavior: contain;
   }
   .study-grid {
     grid-template-columns: 1fr;
@@ -171,17 +175,48 @@
 }
 
 /* ---- Camera on ("hands mode"): gesture tips instead of buttons ---- */
-.info-close-hint {
+.info-top-hints {
   position: absolute;
   top: 12px;
   right: 20px;
+  display: flex;
+  gap: 8px;
+}
+.info-top-hints .gesture-tip {
   margin: 0;
   background: #10243a;
+}
+.info-scroll-hint {
+  display: none; /* wide screens: the scroll tip sits in the right card instead */
+}
+/* Phones: both tips side by side at the top, staying there while the pop-up scrolls. */
+@media (max-width: 640px) {
+  .study-view.hands-mode {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+  }
+  .info-top-hints {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    z-index: 2;
+    margin-bottom: 12px;
+  }
+  .info-top-hints .gesture-tip {
+    flex: 1;
+    padding: 6px 8px;
+    gap: 6px;
+    font-size: 12px;
+  }
+  .info-top-hints .info-scroll-hint {
+    display: flex;
+  }
+  .hands-mode .insight-card > .gesture-tip:first-child {
+    display: none; /* shown at the top instead */
+  }
 }
 .hands-mode .insight-card > .gesture-tip:first-child {
   margin: 0 0 14px;
 }
 /* The view-switch tip adds a line, so keep the left card fitting on screen. */
 .hands-mode .radar-card .timeline-image {
-  height: clamp(200px, calc(100vh - 545px), 540px);
+  height: clamp(200px, calc(100dvh - 545px), 540px);
 }

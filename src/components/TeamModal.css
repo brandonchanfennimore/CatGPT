@@ -1,0 +1,117 @@
+/* "Built by CatGPT" link (top right) and the team pop-up. */
+.built-by {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  z-index: 10;
+  margin: 0;
+  color: #aabbcc;
+  font-size: 14px;
+}
+.built-by button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #7dd3fc;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .built-by button:hover {
+    color: #b5e6ff;
+  }
+}
+.built-by button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Same look as the info pop-up: darkened backdrop, one centred card. */
+.team-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 250; /* above the camera panel (200), below the gesture tutorial (300) */
+  display: flex;
+  padding: calc(env(safe-area-inset-top, 0px) + 24px) 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(2, 6, 18, 0.72);
+  backdrop-filter: blur(2px);
+  animation: team-fade 0.2s ease;
+}
+@keyframes team-fade {
+  from { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-backdrop { animation: none; }
+}
+
+.team-card {
+  position: relative;
+  margin: auto; /* centred, but never cut off when taller than the screen */
+  width: min(640px, 100%);
+  overflow: hidden;
+  border: 1px solid #28445f;
+  border-radius: 16px;
+  background: #10243a;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+.team-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(10, 20, 35, 0.7);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.team-close:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+.team-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 44vh; /* leave room for the names on a laptop screen */
+  object-fit: cover;
+  object-position: 50% 70%; /* keep the people in frame when cropped */
+}
+.team-body {
+  padding: 22px 24px 24px;
+}
+.team-eyebrow {
+  margin: 0;
+  color: #78c6fa;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.team-body h2 {
+  margin: 4px 0 10px;
+  font-size: 28px;
+}
+.team-description {
+  margin: 0 0 18px;
+  color: #b3c7db;
+  line-height: 1.6;
+}
+.team-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.team-list li {
+  padding: 10px 0;
+  border-top: 1px solid #24364d;
+  font-weight: bold;
+}

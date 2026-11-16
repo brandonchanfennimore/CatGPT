@@ -3,6 +3,32 @@
   box-sizing: border-box;
 }
 
+/* Phone basics: no grey flash on tap, no font inflation in landscape, and no
+   pull-to-refresh / rubber-band (dragging the globe down must not reload the page). */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+/* Taps fire at once (no double-tap-zoom wait), and holding a button doesn't
+   select its label. Content text stays selectable. */
+button,
+a,
+summary,
+label,
+[role="button"] {
+  touch-action: manipulation;
+}
+button,
+summary,
+label,
+[role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 html,
 body,
 #root {
@@ -51,7 +77,9 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
-.hand-help:hover { background: rgba(255, 255, 255, 0.1); }
+@media (hover: hover) and (pointer: fine) {
+  .hand-help:hover { background: rgba(255, 255, 255, 0.1); }
+}
 
 .hand-preview {
   position: relative;

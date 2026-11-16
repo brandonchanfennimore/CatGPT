@@ -30,9 +30,25 @@
   justify-content: center;
   transition: transform 0.12s ease;
 }
-.fm-dot:hover,
 .fm-dot:focus-visible {
   transform: translate(-50%, -50%) scale(1.2);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fm-dot:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+/* Touch: press feedback, and a finger-sized tap area around the small dots. */
+.fm-dot:active {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+@media (pointer: coarse) {
+  .fm-dot::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+  }
 }
 .fm-dot:focus-visible {
   outline: 2px solid #64c9ff;
@@ -83,7 +99,7 @@
   top: 0;
   transform: translateY(-50%);
   width: max-content;
-  max-width: 240px;
+  max-width: min(240px, 60vw);
   padding: 7px 10px;
   background: rgba(5, 8, 22, 0.92);
   border: 1px solid #36658a;
@@ -98,14 +114,20 @@
 .fm-item.cluster .fm-tip {
   left: calc(18px + 0.75px * var(--n, 2));
 }
-.fm-item:hover .fm-tip,
 .fm-item.pinned .fm-tip,
 .fm-dot:focus-visible + .fm-tip {
   opacity: 1;
 }
-.fm-item:hover,
 .fm-item.pinned {
   z-index: 1; /* card above neighbouring dots */
+}
+@media (hover: hover) and (pointer: fine) {
+  .fm-item:hover .fm-tip {
+    opacity: 1;
+  }
+  .fm-item:hover {
+    z-index: 1;
+  }
 }
 .fm-tip-name,
 .fm-tip-meta,
@@ -131,6 +153,10 @@
 }
 .fm-item.cluster.max-zoom .fm-tip-meta::before {
   content: "Click to pick one";
+}
+@media (pointer: coarse) {
+  .fm-item.cluster .fm-tip-meta::before { content: "Tap to zoom in"; }
+  .fm-item.cluster.max-zoom .fm-tip-meta::before { content: "Tap to pick one"; }
 }
 .fm-tip-list {
   display: none;
@@ -159,9 +185,14 @@
   text-align: left;
   cursor: pointer;
 }
-.fm-tip-list button:hover,
-.fm-tip-list button:focus-visible {
+.fm-tip-list button:focus-visible,
+.fm-tip-list button:active {
   background: #245b8a;
+}
+@media (hover: hover) and (pointer: fine) {
+  .fm-tip-list button:hover {
+    background: #245b8a;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

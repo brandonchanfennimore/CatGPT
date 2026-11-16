@@ -27,6 +27,7 @@ export default function StudyAreaView({
   const category = CATEGORY_BY_ID[studyArea.category];
   const hasImages = (studyArea.observations?.length ?? 0) > 0;
   const nasa = studyArea.nasaData; // catalogue check results (events without images)
+  const rootRef = useRef(null); // the whole pop-up (it scrolls instead of the cards on phones)
   const viewRef = useRef(null); // the right card (scrolls)
   const timelineRef = useRef(null); // GestureTimeline: .next() / .previous()
 
@@ -54,9 +55,13 @@ export default function StudyAreaView({
         onBack();
         return; // view is closing
       }
-      if (g.mode === "rotate" && g.dy && viewRef.current) {
+      if (g.mode === "rotate" && g.dy) {
+        // Scroll whichever part actually scrolls: the right card on wide screens, the
+        // whole pop-up on phones (the cards are stacked and grow to fit there).
+        const card = viewRef.current;
+        const target = card && card.scrollHeight > card.clientHeight ? card : rootRef.current;
         // "Grab" feel: palm moves up, the page moves up (scrolls down).
-        viewRef.current.scrollTop -= g.dy * SCROLL_SPEED * window.innerHeight;
+        if (target) target.scrollTop -= g.dy * SCROLL_SPEED * window.innerHeight;
       }
       if (g.mode === "zoom") {
         swipe += g.dx;
@@ -96,6 +101,7 @@ export default function StudyAreaView({
   return (
     // Darkened backdrop over the globe; clicking it (outside the two cards) closes.
     <div
+      ref={rootRef}
       className={handsMode ? "study-view hands-mode" : "study-view"}
       role="dialog"
       aria-modal="true"
@@ -103,9 +109,15 @@ export default function StudyAreaView({
       onClick={(e) => !handsMode && e.target === e.currentTarget && onBack()}
     >
       {handsMode ? (
-        <GestureHint className="info-close-hint" hand="✌️" motion="up">
-          Two fingers, swipe up to close
-        </GestureHint>
+        <div className="info-top-hints">
+          {/* Phones only (StudyAreaView.css): the scroll tip next to the close tip. */}
+          <GestureHint className="info-scroll-hint" hand="🖐️" motion="updown">
+            Open palm up/down to scroll
+          </GestureHint>
+          <GestureHint className="info-close-hint" hand="✌️" motion="up">
+            Two fingers, swipe up to close
+          </GestureHint>
+        </div>
       ) : (
         <button type="button" className="info-close" onClick={onBack} aria-label="Close and go back to Earth">
           ✕

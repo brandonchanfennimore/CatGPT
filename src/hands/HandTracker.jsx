@@ -71,7 +71,7 @@ export default function HandTracker({ gestureRef, context = "explore", onHelp, o
 
     let stream;
     try {
-      stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+      stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480, facingMode: "user" } }) // phones: the selfie camera;
     } catch (err) {
       if (err.name === "NotAllowedError") {
         return fail(

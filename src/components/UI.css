@@ -2,7 +2,7 @@
 .app-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh; /* the visible area: tracks the phone browser bar as it shows/hides */
   overflow: hidden;
   background: #050816;
   color: white;
@@ -185,9 +185,11 @@
   font-weight: bold;
   cursor: pointer;
 }
-.zoom-end:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+@media (hover: hover) and (pointer: fine) {
+  .zoom-end:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
 }
 .zoom-value {
   min-width: 3.5em;
@@ -310,7 +312,7 @@
   gap: 8px;
 }
 .layer-toggles {
-  max-height: calc(100vh - 240px); /* never runs up into the title */
+  max-height: calc(100dvh - 240px); /* never runs up into the title */
   overflow-y: auto;
   display: grid;
   gap: 8px;
@@ -439,12 +441,14 @@
   font-size: 12px;
   cursor: pointer;
 }
-.pin-legend-actions button:hover {
-  background: rgba(255, 255, 255, 0.08);
+@media (hover: hover) and (pointer: fine) {
+  .pin-legend-actions button:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 /* With the legend open the panel is tall: let it scroll instead of running off screen. */
 .layer-toggles {
-  max-height: calc(100vh - 360px); /* leaves room for the bottom-left buttons */
+  max-height: calc(100dvh - 360px); /* leaves room for the bottom-left buttons */
   overflow-y: auto;
 }
 
@@ -500,8 +504,10 @@
   text-align: left;
   cursor: pointer;
 }
-.popular-places button:hover {
-  background: rgba(255, 255, 255, 0.08);
+@media (hover: hover) and (pointer: fine) {
+  .popular-places button:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 .popular-places button:focus-visible {
   outline: 2px solid #7dd3fc;
@@ -565,4 +571,230 @@
   padding: 6px 10px;
   font-size: 12px;
   background: rgba(9, 22, 43, 0.85);
+}
+
+/* ---- Phones ---- */
+
+/* Fold-away buttons that only phones show (see the media query below). */
+.settings-toggle,
+.credits-toggle {
+  display: none;
+}
+.credits-text {
+  margin: 0;
+}
+
+/* Touch has no hover, so every button lights up while it's pressed instead. */
+button:not(:disabled):active {
+  filter: brightness(1.3);
+}
+
+/* Phone layout: zoom bar on top, title + a swipeable row of popular places under it,
+   and three small buttons along the bottom (View settings, the camera panel) that fold
+   their panels out. Everything stays clear of the notch and the home bar. */
+@media (max-width: 640px) {
+  .zoom-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    gap: 4px;
+    padding: 2px 10px;
+    font-size: 13px;
+  }
+  .zoom-track {
+    width: 120px;
+  }
+  .zoom-end {
+    width: 32px; /* finger-sized */
+    height: 32px;
+  }
+
+  .app-header {
+    top: calc(env(safe-area-inset-top, 0px) + 56px);
+    left: calc(env(safe-area-inset-left, 0px) + 16px);
+    right: calc(env(safe-area-inset-right, 0px) + 16px);
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .app-header h1 {
+    font-size: 24px;
+  }
+  .subtitle {
+    font-size: 13px;
+  }
+
+  /* "Built by CatGPT" on the eyebrow line, "Credits" under it. */
+  .app-container .built-by {
+    top: calc(env(safe-area-inset-top, 0px) + 54px);
+    right: calc(env(safe-area-inset-right, 0px) + 16px);
+    font-size: 12px;
+  }
+  .map-credits {
+    top: calc(env(safe-area-inset-top, 0px) + 78px);
+    bottom: auto;
+    left: auto;
+    right: calc(env(safe-area-inset-right, 0px) + 16px);
+    z-index: 30;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    max-width: calc(100vw - 32px);
+    text-align: left;
+  }
+  .credits-toggle {
+    display: block;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: #aabbcc;
+    font: inherit;
+    font-size: 12px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .map-credits:not(.open) .credits-text {
+    display: none;
+  }
+  .credits-text {
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(9, 22, 43, 0.95);
+    color: #aabbcc;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Popular places: one row of chips you swipe sideways. */
+  .header-extra {
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .popular-places {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    padding: 8px 0 8px 10px;
+  }
+  .popular-places ol {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 6px;
+    padding-right: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain; /* the swipe stops at the ends instead of moving the page */
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .popular-places ol::-webkit-scrollbar {
+    display: none;
+  }
+  .popular-places li {
+    scroll-snap-align: start;
+  }
+  .popular-places button {
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .panel-tip {
+    max-width: none;
+  }
+
+  /* View settings: a button bottom-left; its panel opens above it. */
+  .view-settings-dock {
+    left: calc(env(safe-area-inset-left, 0px) + 16px);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+    max-width: calc(100vw - 32px);
+  }
+  .view-settings-dock .panel-tip {
+    max-width: 240px;
+  }
+  .settings-toggle {
+    display: block;
+    order: 2; /* under the panel */
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(9, 22, 43, 0.85);
+    color: #e6ecff;
+    font: inherit;
+    font-size: 14px;
+    pointer-events: auto;
+  }
+  .settings-toggle::after {
+    content: " ▴";
+    color: #7dd3fc;
+  }
+  .view-settings-dock.open .settings-toggle::after {
+    content: " ▾";
+  }
+  .view-settings-dock:not(.open) .layer-toggles {
+    display: none;
+  }
+  .layer-toggles {
+    width: min(250px, calc(100vw - 32px));
+    max-height: calc(100dvh - 330px);
+    overscroll-behavior: contain;
+    background: rgba(9, 22, 43, 0.92);
+  }
+  .layer-toggles label {
+    min-height: 36px; /* finger-sized rows */
+  }
+  .pin-legend summary {
+    padding: 8px 0;
+  }
+  .pin-legend label {
+    min-height: 34px;
+    margin-top: 0;
+  }
+  .layer-toggles .pin-legend input {
+    width: 18px;
+    height: 18px;
+  }
+  .pin-legend-actions button {
+    padding: 8px 6px;
+  }
+
+  /* Camera panel bottom-right: just "?" and Start until the camera runs. */
+  .hand-panel {
+    right: calc(env(safe-area-inset-right, 0px) + 16px);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+    width: auto;
+    padding: 6px;
+    border-radius: 999px;
+  }
+  .hand-panel:has(.hand-preview:not([hidden])) {
+    width: 150px;
+    border-radius: 12px;
+  }
+  .hand-header {
+    margin-bottom: 0;
+  }
+  .hand-panel:has(.hand-preview:not([hidden])) .hand-header {
+    margin-bottom: 6px;
+  }
+  .hand-help {
+    width: 36px;
+    height: 36px;
+  }
+  .hand-toggle {
+    padding: 9px 18px;
+    border-radius: 999px;
+  }
+  .hand-status,
+  .hand-error {
+    font-size: 12px;
+  }
+  .hand-error {
+    max-width: 200px;
+  }
+  .hand-guide {
+    display: none; /* the "?" opens the full gesture guide */
+  }
 }

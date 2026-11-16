@@ -5,8 +5,9 @@
   inset: 0;
   z-index: 300;
   display: flex; /* + margin: auto on the card = centred, but never cut off when taller than the screen */
-  padding: 24px 16px;
+  padding: calc(env(safe-area-inset-top, 0px) + 24px) 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: rgba(2, 6, 18, 0.78);
   backdrop-filter: blur(3px);
   animation: tut-fade 0.25s ease;
@@ -275,13 +276,17 @@
   background: #16a34a; /* same green as the camera panel's Start button */
   color: white;
 }
-.tutorial-primary:hover { background: #1fb457; }
+@media (hover: hover) and (pointer: fine) {
+  .tutorial-primary:hover { background: #1fb457; }
+}
 .tutorial-secondary {
   border: 1px solid #365979;
   background: transparent;
   color: #cfe0f0;
 }
-.tutorial-secondary:hover { background: rgba(255, 255, 255, 0.06); }
+@media (hover: hover) and (pointer: fine) {
+  .tutorial-secondary:hover { background: rgba(255, 255, 255, 0.06); }
+}
 .tutorial-actions button:focus-visible {
   outline: 2px solid #7dd3fc;
   outline-offset: 2px;

@@ -119,8 +119,10 @@
     transition: background 0.2s ease;
   }
   
-  .timeline-buttons button:hover:not(:disabled) {
-    background: #245b8a;
+  @media (hover: hover) and (pointer: fine) {
+    .timeline-buttons button:hover:not(:disabled) {
+      background: #245b8a;
+    }
   }
   
   .timeline-buttons button:disabled {
